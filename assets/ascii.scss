@@ -55,7 +55,7 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 { font-size: 2.2rem; }
-h2 { font-size: 1.7rem; }
+h2 { font-size: 1.6rem; }
 img { border-radius: var(--radius-large); }
 
 body {
@@ -108,7 +108,7 @@ main {
   }
 
   /** Alignment Carrousel + Grid **/
-  .grid {
+  section.summary .grid {
     display: grid;
     grid-template-rows: auto var(--padding-regular) var(--padding-large) auto auto;
     column-gap: var(--padding-regular);
@@ -117,11 +117,14 @@ main {
       grid-row-start: 1;
       grid-row-end: 3;
     }
-    img {
+    div.img-container {
       grid-row-start: 2;
       grid-row-end: 6;
-      max-height: 100%;
-      max-width: 100%;
+      img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+      }
     }
     >a {
       grid-row-start: 4;
@@ -141,7 +144,7 @@ main {
       grid-column-start: 1;
       grid-column-end: 3;
     }
-    img {
+    div.img-container {
       grid-column-start: 2;
       grid-column-end: 4;
     }
@@ -160,7 +163,7 @@ main {
       grid-column-start: 2;
       grid-column-end: 4;
     }
-    img {
+    div.img-container {
       grid-column-start: 1;
       grid-column-end: 3;
     }
