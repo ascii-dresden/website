@@ -71,6 +71,10 @@ main {
     padding: var(--padding-large) var(--padding-regular);
     min-height: 50vh;
 
+    h1 {
+      margin: 27px 0 47px;
+    }
+
     div.textbox {
       border-radius: var(--radius-large);
       padding: var(--padding-regular);
