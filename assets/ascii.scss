@@ -6,6 +6,7 @@
   --status-green: #26C485;
   --status-red: #FF3366;
   --radius-large: 20px;
+  --padding-small: 10px;
   --padding-regular: 20px;
   --padding-large: 30px;
 }
@@ -57,6 +58,7 @@ h1, h2, h3, h4, h5 {
 h1 { font-size: 2.2rem; }
 h2 { font-size: 1.6rem; }
 img { border-radius: var(--radius-large); }
+.clear { clear: both; }
 
 body {
   font-family: "JetBrains Mono", "monospace";
@@ -67,6 +69,7 @@ body {
 main {
   section {
     padding: var(--padding-large) var(--padding-regular);
+    min-height: 50vh;
 
     div.textbox {
       border-radius: var(--radius-large);
@@ -80,6 +83,10 @@ main {
     >img {
       max-width: 100%;
     }
+  }
+
+  section.ascii-description > * {
+    margin-bottom: var(--padding-large);
   }
 
   /** Color Carrousel **/
@@ -171,5 +178,35 @@ main {
       grid-column-start: 3;
       grid-column-end: 4;
     }
+  }
+
+  footer {
+    --icon-height: 2em;
+    padding: var(--padding-small);
+    height: var(--icon-height);
+
+    .social-media a {
+      float: left;
+    }
+
+    img.icon {
+      height: var(--icon-height);
+      margin-right: 1em;
+    }
+    .compliance a {
+      margin-top: 0.3em;
+      float: right;
+      padding-left: var(--padding-regular);
+    }
+  }
+
+  // ensuring that the footer color doesn't match the background color of the previous post
+  footer:nth-child(3n+1), footer:nth-child(3n+2) {
+    background-color: var(--brown);
+    color: var(--white);
+  }
+  footer:nth-child(3n) {
+    background-color: var(--blue);
+    color: var(--white);
   }
 }
