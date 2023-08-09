@@ -67,15 +67,22 @@ body {
 }
 
 header {
+  --header-height: 2.2em;
   padding: var(--padding-small) var(--padding-regular);
   box-shadow: 0px -2px 11px black;
   z-index: 2;
   position: relative;
-  height: 2.2em;
+  height: var(--header-height);
 
   .logo {
-    height: 2.2em;
+    height: var(--header-height);
     border-radius: 0;
+  }
+
+  .menu {
+    position: absolute;
+    height: var(--header-height);
+    right: var(--padding-regular);
   }
 }
 
