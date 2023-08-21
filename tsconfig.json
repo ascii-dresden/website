@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		//
+		"strict": true,
+		"target": "ES2022",
+		"module": "ES2022",
+		"moduleResolution": "Node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"importsNotUsedAsValues": "remove",
+		// Solid specific settings
+		"jsx": "preserve",
+		"jsxImportSource": "solid-js",
+		"paths": {
+			"src/*": ["./src/*"]
+		}
+	}
+}
