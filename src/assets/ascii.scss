@@ -82,14 +82,14 @@ body {
 }
 
 header {
+	display: grid;
+	grid-template-columns: 
 	background-color: var(--white);
 	--header-height: 2.2em;
 	padding: var(--padding-small) var(--padding-regular);
 	box-shadow: 0px -2px 11px black;
 	position: sticky;
 	top: 0;
-	display: flex;
-	justify-content: space-between;
 
 	a {
 		display: block;
@@ -257,4 +257,8 @@ footer:nth-child(3n + 2) {
 footer:nth-child(3n) {
 	background-color: var(--blue);
 	color: var(--white);
+}
+
+.hidden {
+	display: none;
 }

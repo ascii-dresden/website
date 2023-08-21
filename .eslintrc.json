@@ -19,14 +19,8 @@
 	},
 	"overrides": [
 		{
-			"files": [
-				"*.ts",
-				"*.tsx"
-			],
-			"extends": [
-				"plugin:solid/typescript",
-				"plugin:jsx-a11y/strict"
-			]
+			"files": ["*.ts", "*.tsx"],
+			"extends": ["plugin:solid/typescript", "plugin:jsx-a11y/strict"]
 		},
 		{
 			"files": "*.astro",
@@ -37,17 +31,10 @@
 			}
 		}
 	],
-	"plugins": [
-		"@typescript-eslint",
-		"astro",
-		"solid"
-	],
+	"plugins": ["@typescript-eslint", "astro", "solid"],
 	"rules": {
 		"@typescript-eslint/non-nullable-type-assertion-style": "off",
-		"@typescript-eslint/consistent-type-definitions": [
-			"error",
-			"type"
-		],
+		"@typescript-eslint/consistent-type-definitions": ["error", "type"],
 		"@typescript-eslint/array-type": [
 			"error",
 			{

@@ -1,0 +1,27 @@
+---
+import 'src/styles/global/mod.css.ts';
+
+import '@fontsource/concert-one';
+import '@fontsource-variable/jetbrains-mono';
+
+import { header, main, footer } from './base.css.ts';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ascii</title>
+	</head>
+
+	<body>
+		<header class={header}></header>
+		<main class={main}>
+			<slot />
+		</main>
+		<footer class={footer}>
+			<p>&copy;ascii Dresden e.V.</p>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,20 @@
+---
+import { main } from './fonts.css.ts';
+
+import BaseLayout from 'src/layouts/base.astro';
+import { body_medium, body_small } from 'src/styles/atomic/fonts.css.ts';
+---
+
+<BaseLayout>
+	<main class={main}>
+		<h1>Display Large</h1>
+		<h2>Display Medium</h2>
+		<h3>Display Small</h3>
+		<h4>Title Large</h4>
+		<h5>Title Medium</h5>
+		<h6>Title Small</h6>
+		<p>Body Large</p>
+		<p class={body_medium}>Body Medium</p>
+		<p class={body_small}>Body Small</p>
+	</main>
+</BaseLayout>

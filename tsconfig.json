@@ -1,19 +1,33 @@
 {
 	"compilerOptions": {
-		//
-		"strict": true,
+		// Output is handled by Vite
+		"noEmit": true,
+		// Imports
 		"target": "ES2022",
 		"module": "ES2022",
-		"moduleResolution": "Node",
+		"moduleResolution": "Bundler",
 		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"noEmit": true,
 		"esModuleInterop": true,
+		"isolatedModules": true,
+		// Strict typing
+		"strict": true,
 		"skipLibCheck": true,
-		"importsNotUsedAsValues": "remove",
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noUncheckedIndexedAccess": true,
+		"exactOptionalPropertyTypes": true,
+		"allowImportingTsExtensions": true,
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"allowJs": false,
 		// Solid specific settings
 		"jsx": "preserve",
 		"jsxImportSource": "solid-js",
+		// Resolve path aliases
+		"baseUrl": ".",
 		"paths": {
 			"src/*": ["./src/*"]
 		}
