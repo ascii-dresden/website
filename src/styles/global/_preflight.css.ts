@@ -25,7 +25,6 @@ preflightStyle('*, ::before, ::after', {
 // 3. Use a more readable tab size.
 
 preflightStyle('html', {
-	height: '100%',
 	lineHeight: 1.5 /* 1 */,
 	WebkitTextSizeAdjust: '100%' /* 2 */,
 	MozTabSize: 4 /* 2 */,
@@ -36,7 +35,6 @@ preflightStyle('html', {
 // 2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
 
 preflightStyle('body', {
-	height: '100%',
 	margin: 0 /* 1 */,
 	lineHeight: 'inherit' /* 2 */,
 });
@@ -266,4 +264,13 @@ preflightStyle('img, video', {
 
 preflightStyle('[hidden]', {
 	display: 'none',
+});
+
+// Remove default padding and constraints from the `dialog` element.
+
+preflightStyle('dialog', {
+	maxWidth: 'none',
+	maxHeight: 'none',
+	margin: 0,
+	padding: 0,
 });

@@ -27,12 +27,13 @@ const mapCategoryToGeneric = new Map([
 
 // TODO: Clean up
 export function createFont(metrics: FontMetrics): (rule: ComplexFontRule) => StyleRule {
-	return function(rules) {
+	return function (rules) {
 		const styleRules: StyleRule[] = [
 			{
 				display: 'block',
-				fontFamily: `"${metrics.familyName}", ${metrics.category && (mapCategoryToGeneric.get(metrics.category) || 'sans-serif')
-					}`,
+				fontFamily: `"${metrics.familyName}", ${
+					metrics.category && (mapCategoryToGeneric.get(metrics.category) || 'sans-serif')
+				}`,
 			},
 		];
 

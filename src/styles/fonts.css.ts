@@ -16,24 +16,50 @@ const metricsJetBrainsMono: FontMetrics = {
 	xWidthAvg: 600,
 };
 
+// const metricsConcertOne: FontMetrics = {
+// 	familyName: 'Concert One',
+// 	category: 'display',
+// 	capHeight: 1470,
+// 	ascent: 2100,
+// 	descent: -450,
+// 	lineGap: 0,
+// 	unitsPerEm: 2048,
+// 	xHeight: 1004,
+// 	xWidthAvg: 930,
+// };
+
 const metricsConcertOne: FontMetrics = {
 	familyName: 'Concert One',
 	category: 'display',
-	capHeight: 1470,
-	ascent: 2100,
-	descent: -450,
+	capHeight: 1400,
+	ascent: 2005,
+	descent: 410,
 	lineGap: 0,
 	unitsPerEm: 2048,
 	xHeight: 1004,
 	xWidthAvg: 930,
 };
 
+const metricsNunito: FontMetrics = {
+	familyName: 'Nunito Variable',
+	category: 'sans-serif',
+	capHeight: 705,
+	ascent: 1011,
+	descent: -353,
+	lineGap: 0,
+	unitsPerEm: 1000,
+	xHeight: 484,
+	xWidthAvg: 449,
+};
+
 const concertOne = createFont(metricsConcertOne);
+// const concertOne = createFont(metricsNunito);
 const jetBrainsMono = createFont(metricsJetBrainsMono);
 
 export const displayLargeRule = concertOne([
 	{
-		letterSpacing: '-0.0625em',
+		// fontWeight: 900,
+		letterSpacing: '-0.05em',
 		fontOptions: {
 			capHeight: 44,
 			lineGap: 24,
@@ -55,7 +81,8 @@ export const displayLargeRule = concertOne([
 
 export const displayMediumRule = concertOne([
 	{
-		letterSpacing: '-0.0625em',
+		// fontWeight: 900,
+		letterSpacing: '-0.05em',
 		fontOptions: {
 			capHeight: 28,
 			lineGap: 16,
@@ -77,7 +104,8 @@ export const displayMediumRule = concertOne([
 
 export const displaySmallRule = concertOne([
 	{
-		letterSpacing: '-0.0625em',
+		// fontWeight: 900,
+		letterSpacing: '-0.05em',
 		fontOptions: {
 			capHeight: 20,
 			lineGap: 12,
@@ -99,6 +127,7 @@ export const displaySmallRule = concertOne([
 
 export const titleLargeRule = concertOne([
 	{
+		// fontWeight: 900,
 		fontOptions: {
 			capHeight: 14,
 			lineGap: 8,
@@ -114,6 +143,7 @@ export const titleLargeRule = concertOne([
 
 export const titleMediumRule = concertOne([
 	{
+		// fontWeight: 900,
 		fontOptions: {
 			capHeight: 10,
 			lineGap: 8,
@@ -129,6 +159,7 @@ export const titleMediumRule = concertOne([
 
 export const titleSmallRule = concertOne([
 	{
+		// fontWeight: 900,
 		fontOptions: {
 			capHeight: 8,
 			lineGap: 8,

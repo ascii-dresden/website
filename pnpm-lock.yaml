@@ -22,6 +22,9 @@ devDependencies:
   '@fontsource-variable/jetbrains-mono':
     specifier: ^5.0.9
     version: 5.0.9
+  '@fontsource-variable/nunito':
+    specifier: ^5.0.9
+    version: 5.0.9
   '@fontsource/concert-one':
     specifier: ^5.0.8
     version: 5.0.8
@@ -1046,6 +1049,10 @@ packages:
 
   /@fontsource-variable/jetbrains-mono@5.0.9:
     resolution: {integrity: sha512-VaF1GjUbSFLJIeTG3WE721IyabL5ghOeseIfPukVrPBo+NNLhfFmHPMO+KH2/KSJ9AO/3/JNMYVkszVAnbMd6Q==}
+    dev: true
+
+  /@fontsource-variable/nunito@5.0.9:
+    resolution: {integrity: sha512-6SivBy9FfkcPJdc3MyMF1JZaWgWQL5BGmUst6gQbTAkHT1O4BmGxhW8/7v5NBa/Dh4K4dLOwXmz8zXbNddCQwQ==}
     dev: true
 
   /@fontsource/concert-one@5.0.8:

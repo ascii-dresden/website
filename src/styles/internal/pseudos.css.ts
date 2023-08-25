@@ -1,17 +1,11 @@
-import { StyleRule, globalStyle } from '@vanilla-extract/css';
+import { GlobalStyleRule, StyleRule, globalStyle } from '@vanilla-extract/css';
 import { SimplePseudos } from 'csstype';
+import deepmerge from 'deepmerge';
 
-import { mapObject } from 'src/util/map_object.ts';
-
-type QueryType = '@media' | '@layer' | '@supports' | '@container';
-
-type QueryContext = {
-	type: string;
-	query: string;
-};
+import { filterWithRemainder } from 'src/util/filter_with_remainder.ts';
 
 // Extracted from @vanilla-extract/css/src/simplePseudos.ts
-export const simplePseudos: SimplePseudos[] = [
+export const SIMPLE_PSEUDOS: readonly SimplePseudos[] = [
 	':-moz-any-link',
 	':-moz-full-screen',
 	':-moz-placeholder',
@@ -100,59 +94,77 @@ export const simplePseudos: SimplePseudos[] = [
 	':target',
 	':valid',
 	':visited',
-];
+] as const;
 
-const queryTypes = ['@media', '@layer', '@supports', '@container'] as const;
+const QUERY_TYPES = ['@media', '@layer', '@supports', '@container'] as const;
 
-function buildStyleRule(queryContexts: QueryContext[], rule: StyleRule): StyleRule {
-	const ctx = queryContexts.at(0);
-	if (!ctx) return rule;
-	return {
-		[ctx.type]: {
-			[ctx.query]: buildStyleRule(queryContexts.slice(1), rule),
-		},
-	};
-}
-
-function globalStyleWithPseudosRecursive(
-	queries: QueryContext[],
-	selector: string,
-	rule: StyleRule
-): StyleRule {
-	const ruleEntries = Object.entries(rule);
-	const ruleEntriesWithPseudoNulls = ruleEntries.map(([key, value]) => {
-		if (simplePseudos.includes(key as SimplePseudos)) {
-			globalStyleWithPseudosRecursive(queries, `${selector}${key}`, value);
-			// map pseudos to null, to filter out later
-			return null;
-		}
-		if (queryTypes.includes(key as QueryType)) {
-			return [
-				key,
-				mapObject(value, (queryRule, query) =>
-					globalStyleWithPseudosRecursive(
-						[...queries, { type: key, query }],
-						selector,
-						queryRule as StyleRule
-					)
-				),
-			] as const;
-		}
-		return [key, value as string] as const;
-	});
-
-	const ruleEntriesWithoutPseudos = ruleEntriesWithPseudoNulls.filter(
-		(entry) => entry !== null
-	) as Array<readonly [string, Record<string, StyleRule>] | readonly [string, string]>;
-
-	const ruleWithoutPseudos = Object.fromEntries(ruleEntriesWithoutPseudos);
-	globalStyle(selector, buildStyleRule(queries, ruleWithoutPseudos));
-	return ruleWithoutPseudos;
+/**
+ * Filter an array consisting of key-value pairs.
+ * @param array - The array to filter
+ * @param includes - The keys to include
+ */
+function filterEntriesByKey<K, V>(
+	array: Array<[K, V]>,
+	includes: readonly K[]
+): { filtered: Array<[K, V]>; remainder: Array<[K, V]> } {
+	return filterWithRemainder(array, ([key]) => includes.includes(key));
 }
 
 /**
- * Wrapper for globalStyle that allows for pseudos
+ * Convert a {@link StyleRule} to an array of {@link GlobalStyleRule}s
+ */
+function toGlobalStyleRules(rule: StyleRule): Array<{
+	pseudo: SimplePseudos | null;
+	rule: GlobalStyleRule;
+}> {
+	const globalStyleMap: Map<SimplePseudos | '', GlobalStyleRule> = new Map();
+
+	function setGlobalStyle(rule: GlobalStyleRule, pseudo?: SimplePseudos): void {
+		const currentGlobalStyleRule: GlobalStyleRule = globalStyleMap.get(pseudo ?? '') ?? {};
+		globalStyleMap.set(pseudo ?? '', deepmerge(currentGlobalStyleRule, rule));
+	}
+
+	const ruleEntries = Object.entries(rule);
+
+	const { filtered: ruleEntriesOnlyPseudos, remainder: ruleEntriesWithoutPseudos } =
+		filterEntriesByKey(ruleEntries, SIMPLE_PSEUDOS);
+
+	ruleEntriesOnlyPseudos.forEach(([pseudo, pseudoRules]) =>
+		setGlobalStyle(pseudoRules, pseudo as SimplePseudos)
+	);
+
+	const { filtered: ruleEntriesOnlyQueries, remainder: ruleEntriesWithoutPseudosAndQueries } =
+		filterEntriesByKey(ruleEntriesWithoutPseudos, QUERY_TYPES);
+
+	ruleEntriesWithoutPseudosAndQueries.forEach(([key, value]) => setGlobalStyle({ [key]: value }));
+
+	ruleEntriesOnlyQueries.forEach(([queryType, queryRules]) => {
+		Object.entries(queryRules).forEach(([query, queryRule]) => {
+			toGlobalStyleRules(queryRule as GlobalStyleRule).forEach(({ pseudo, rule }) => {
+				const globalStyleRule = {
+					[queryType]: {
+						[query]: rule,
+					},
+				};
+				setGlobalStyle(globalStyleRule, pseudo ?? undefined);
+			});
+		});
+	});
+
+	return [...globalStyleMap.entries()].map(([pseudo, rule]) => ({
+		pseudo: pseudo === '' ? null : pseudo,
+		rule,
+	}));
+}
+
+/**
+ * Wrapper for {@link globalStyle} that allows the use of pseudo selectors.
  */
 export function globalStyleWithPseudos(selector: string, rule: StyleRule): void {
-	globalStyleWithPseudosRecursive([], selector, rule);
+	toGlobalStyleRules(rule).forEach(({ pseudo, rule }) => {
+		if (pseudo === null) {
+			return globalStyle(selector, rule);
+		}
+		return globalStyle(`${selector}${pseudo}`, rule);
+	});
 }

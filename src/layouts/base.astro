@@ -1,10 +1,15 @@
 ---
-import 'src/styles/global/mod.css.ts';
-
 import '@fontsource/concert-one';
+import '@fontsource-variable/nunito';
 import '@fontsource-variable/jetbrains-mono';
 
-import { header, main, footer } from './base.css.ts';
+import 'src/styles/global/mod.css.ts';
+import { dark, light } from 'src/styles/theme.css.ts';
+
+import { main } from './base.css';
+
+import Header from './base/header.astro';
+import Footer from './base/footer.astro';
 ---
 
 <!DOCTYPE html>
@@ -15,13 +20,11 @@ import { header, main, footer } from './base.css.ts';
 		<title>ascii</title>
 	</head>
 
-	<body>
-		<header class={header}></header>
+	<body class={light}>
+		<Header />
 		<main class={main}>
 			<slot />
 		</main>
-		<footer class={footer}>
-			<p>&copy;ascii Dresden e.V.</p>
-		</footer>
+		<Footer />
 	</body>
 </html>
