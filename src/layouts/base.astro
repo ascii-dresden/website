@@ -4,9 +4,8 @@ import '@fontsource-variable/nunito';
 import '@fontsource-variable/jetbrains-mono';
 
 import 'src/styles/global/mod.css.ts';
-import { dark, light } from 'src/styles/theme.css.ts';
 
-import { main } from './base.css';
+import { main } from './base.css.ts';
 
 import Header from './base/header.astro';
 import Footer from './base/footer.astro';
@@ -20,7 +19,7 @@ import Footer from './base/footer.astro';
 		<title>ascii</title>
 	</head>
 
-	<body class={light}>
+	<body>
 		<Header />
 		<main class={main}>
 			<slot />
@@ -28,3 +27,8 @@ import Footer from './base/footer.astro';
 		<Footer />
 	</body>
 </html>
+
+<script>
+	import { loadTheme, setTheme } from 'src/theme.ts';
+	setTheme(loadTheme());
+</script>

@@ -1,23 +1,27 @@
-import { globalStyle, style } from '@vanilla-extract/css';
-import { theme } from 'src/styles/theme.css';
+import { style } from '@vanilla-extract/css';
+
+import { colors } from 'src/styles/colors.css.ts';
+import { spacing } from 'src/styles/spacing.css.ts';
 
 export const header = style([
 	{
 		position: 'sticky',
 		top: 0,
+		height: spacing['4'],
+
 		display: 'flex',
-		height: '3rem',
 		justifyContent: 'space-between',
-		boxShadow: '0 0 0.5rem 0 rgba(0, 0, 0, 0.5)',
-		backgroundColor: theme.surface,
-		color: theme.on_surface,
-		gap: '0.5rem',
+		gap: spacing['1'],
+
+		backgroundColor: colors.surface,
+		color: colors.on_surface,
+		boxShadow: `0 0 ${spacing['1']} 0 rgba(0, 0, 0, 0.5)`,
 	},
 ]);
 
 export const header_logo = style({
 	display: 'flex',
 	alignSelf: 'center',
-	marginInline: '0.5rem',
-	height: '2rem',
+	padding: spacing['1'],
+	height: '100%',
 });

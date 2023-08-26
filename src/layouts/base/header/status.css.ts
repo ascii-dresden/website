@@ -1,12 +1,12 @@
 import { style } from '@vanilla-extract/css';
 
-import { theme } from 'src/styles/theme.css.ts';
+import { colors } from 'src/styles/colors.css.ts';
 
 export const status = style({
 	alignSelf: 'center',
-	backgroundColor: theme.success,
+	backgroundColor: colors.success,
 	borderRadius: '1rem',
-	color: theme.on_success,
+	color: colors.on_success,
 	flex: 1,
 	maxWidth: '16rem',
 	padding: '0.5rem',
