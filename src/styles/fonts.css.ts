@@ -165,10 +165,16 @@ export const labelLargeRule = jetBrainsMono([
 	{
 		fontWeight: 500,
 		fontOptions: {
-			capHeight: 12,
+			capHeight: 10,
 			lineGap: 8,
 		},
 	},
+	sm<FontRule>({
+		fontOptions: {
+			capHeight: 12,
+			lineGap: 12,
+		},
+	}),
 ]);
 
 export const labelMediumRule = jetBrainsMono([

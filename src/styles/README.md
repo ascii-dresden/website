@@ -13,3 +13,4 @@ Ideally try to order declarations according to
 | `/atomic`   | Utility classes ([Atomic CSS](https://antfu.me/posts/reimagine-atomic-css))                   |
 | `/global`   | Global and preflight styles                                                                   |
 | `/internal` | Helper functions for generating styles, etc. (not meant to be used outside of this directory) |
+| `/util`     | Helper functions, etc.                                                                        |

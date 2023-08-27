@@ -25,6 +25,9 @@ devDependencies:
   '@fontsource-variable/nunito':
     specifier: ^5.0.9
     version: 5.0.9
+  '@fontsource-variable/recursive':
+    specifier: ^5.0.8
+    version: 5.0.8
   '@fontsource/concert-one':
     specifier: ^5.0.8
     version: 5.0.8
@@ -1053,6 +1056,10 @@ packages:
 
   /@fontsource-variable/nunito@5.0.9:
     resolution: {integrity: sha512-6SivBy9FfkcPJdc3MyMF1JZaWgWQL5BGmUst6gQbTAkHT1O4BmGxhW8/7v5NBa/Dh4K4dLOwXmz8zXbNddCQwQ==}
+    dev: true
+
+  /@fontsource-variable/recursive@5.0.8:
+    resolution: {integrity: sha512-6CPUJM3M4+fHtuH5Rbm/uUmWzbOAP2W/DValZSD5w+1avG9VmbAit2m0FSfOGc4DZzhRx1rCBR4HuQReiysVqA==}
     dev: true
 
   /@fontsource/concert-one@5.0.8:

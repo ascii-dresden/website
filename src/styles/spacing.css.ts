@@ -5,4 +5,4 @@ export const spacing = createGlobalTheme(':root', {
 	'2': '1rem',
 	'3': '2rem',
 	'4': '3rem',
-});
+} as const);
