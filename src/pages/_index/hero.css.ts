@@ -9,7 +9,8 @@ export const hero = style({
 	flexDirection: 'column',
 
 	gap: spacing['2'],
-	paddingBlock: spacing['2'],
+	paddingTop: spacing['2'],
+	paddingBottom: spacing['4'],
 
 	backgroundColor: colors.background,
 	color: colors.on_background,
@@ -17,7 +18,7 @@ export const hero = style({
 
 export const hero_image = style({
 	objectFit: 'cover',
-	aspectRatio: '1',
+	aspectRatio: '1.5',
 	marginInline: spacing['2'],
 	zIndex: 1,
 
@@ -45,19 +46,4 @@ export const hero_summary = style({
 	borderStyle: border_style,
 	borderColor: colors.on_background,
 	borderLeft: 'none',
-
-	// '::before': {
-	// 	content: '""',
-	// 	display: 'block',
-	//
-	// 	position: 'absolute',
-	// 	top: `calc(${spacing['3']} * -1)`,
-	// 	left: 0,
-	//
-	// 	height: spacing['3'],
-	// 	width: spacing['3'],
-	//
-	// 	backgroundColor: colors.surface,
-	// 	backgroundImage: `radial-gradient(circle at 100% 0, ${colors.background} ${spacing['3']}, transparent ${spacing['2']})`,
-	// },
 });

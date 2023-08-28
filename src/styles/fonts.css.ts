@@ -109,19 +109,19 @@ export const displaySmallRule = concertOne([
 		letterSpacing: '-0.025em',
 		fontOptions: {
 			capHeight: 24,
-			lineGap: 24,
+			lineGap: 12,
 		},
 	},
 	sm<FontRule>({
 		fontOptions: {
-			capHeight: 22,
-			lineGap: 22,
+			capHeight: 24,
+			lineGap: 12,
 		},
 	}),
 	xl<FontRule>({
 		fontOptions: {
-			capHeight: 22,
-			lineGap: 22,
+			capHeight: 24,
+			lineGap: 12,
 		},
 	}),
 ]);

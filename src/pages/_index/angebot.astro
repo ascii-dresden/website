@@ -1,0 +1,18 @@
+---
+import asset_img_cafe from 'src/assets/ascii_hero.jpg';
+
+import { angebot, button_more, head, image, title, summary, date } from './angebot.css.ts';
+---
+
+<section class={angebot}>
+	<h2 class={head}>Angebot</h2>
+	<h3 class={title}>Getränk des Monats</h3>
+	<p class={summary}>Wostok Wostok Wostok Wostok</p>
+	<p class={date}>Oktober 2023</p>
+	<div class={image}>
+		<img src={asset_img_cafe} alt="Event" />
+	</div>
+	<a href="/angebot" class={button_more}>
+		<p>Mehr...</p>
+	</a>
+</section>
