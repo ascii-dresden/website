@@ -1,5 +1,5 @@
 /**
- * https://m3.material.io/styles/color/the-color-system/color-roles
+ * {@link https://m3.material.io/styles/color/the-color-system/color-roles}
  */
 
 import { createGlobalTheme, createThemeContract } from '@vanilla-extract/css';
@@ -38,7 +38,7 @@ export const light = createGlobalTheme(`html`, colors, {
 	on_surface: palette.espresso,
 
 	success: palette.green,
-	on_success: palette.milk,
+	on_success: palette.espresso,
 
 	error: palette.red,
 	on_error: palette.milk,

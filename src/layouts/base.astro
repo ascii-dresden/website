@@ -6,7 +6,7 @@ import 'src/styles/global/mod.css.ts';
 
 import { main } from './base.css.ts';
 
-import Header from './base/header.astro';
+import { Header } from './base/header.tsx';
 import Footer from './base/footer.astro';
 ---
 
@@ -24,7 +24,7 @@ import Footer from './base/footer.astro';
 	</head>
 
 	<body>
-		<Header />
+		<Header client:load />
 		<main class={main}>
 			<slot />
 		</main>

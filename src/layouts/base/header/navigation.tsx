@@ -7,7 +7,7 @@ import { SvgTheme } from 'src/svg/theme.tsx';
 import { getTheme, setTheme } from 'src/theme.ts';
 
 import {
-	animation_out_active,
+	ANIMATION_OUT_ACTIVE,
 	navigation,
 	navigation_button,
 	navigation_link,
@@ -36,10 +36,10 @@ export const Navigation: Component = function () {
 
 	function close(event: Event) {
 		event.preventDefault();
-		dialog.classList.add(animation_out_active);
+		dialog.setAttribute(ANIMATION_OUT_ACTIVE, '');
 		function listener(event: Event) {
 			if (event.target !== dialog) return;
-			dialog.classList.remove(animation_out_active);
+			dialog.removeAttribute(ANIMATION_OUT_ACTIVE);
 			dialog.close();
 			dialog.removeEventListener('animationend', listener);
 		}

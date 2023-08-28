@@ -5,6 +5,8 @@ import { durations, ease } from 'src/styles/motion.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';
 import { enumerate } from 'src/styles/util/enumerate.css.ts';
 
+export const ANIMATION_OUT_ACTIVE = 'data-animation-out-active';
+
 const animation_in = keyframes({
 	'0%': { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 200% 100%)' },
 	'100%': { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' },
@@ -15,8 +17,6 @@ const animation_out = keyframes({
 	'100%': { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 200% 100%)' },
 });
 
-export const animation_out_active = style({});
-
 export const navigation = style({
 	'::backdrop': {
 		backgroundColor: 'transparent',
@@ -25,19 +25,21 @@ export const navigation = style({
 		'&[open]': {
 			height: '100%',
 			width: '100%',
+
 			display: 'grid',
 			gridTemplateColumns: `1fr max-content`,
 			gridTemplateRows: `${spacing['4']} 1fr`,
 			gridTemplateAreas: `"button button" "links links" "socials theme"`,
+
 			backgroundColor: colors.surface,
 			color: colors.on_surface,
 		},
-		[`&[open]:not(.${animation_out_active})`]: {
+		[`&[open]:not([${ANIMATION_OUT_ACTIVE}])`]: {
 			animationName: animation_in,
 			animationDuration: durations.long,
 			animationTimingFunction: ease.standard,
 		},
-		[`&.${animation_out_active}`]: {
+		[`&[${ANIMATION_OUT_ACTIVE}]`]: {
 			animationName: animation_out,
 			animationDuration: durations.long,
 			animationTimingFunction: ease.standard,
@@ -82,7 +84,7 @@ export const navigation_link = style({
 	borderBottomWidth: 2,
 	borderBottomColor: colors.on_surface,
 	selectors: enumerate(5, (i) => [
-		`${navigation}[open]:not(.${animation_out_active}) ul li:nth-child(${i + 1}) &`,
+		`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${i + 1}) &`,
 		{
 			animationName: animation_link_in,
 			animationDelay: `${i * 0.1}s`,
@@ -115,7 +117,8 @@ export const navigation_link_label = style({
 			lineHeight: '2em',
 		},
 		...enumerate(5, (i) => [
-			`${navigation}[open]:not(.${animation_out_active}) ul li:nth-child(${i + 1
+			`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${
+				i + 1
 			}) ${navigation_link} &`,
 			{
 				animationName: animation_link_label_in,
