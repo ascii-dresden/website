@@ -7,11 +7,12 @@ import { SvgTheme } from 'src/svg/theme.tsx';
 import { getTheme, setTheme } from 'src/theme.ts';
 
 import {
+	animation_out_active,
 	navigation,
 	navigation_button,
 	navigation_link,
 	navigation_link_label,
-	navigation_link_letter,
+	navigation_link_label_hover,
 	navigation_links,
 	navigation_social,
 	navigation_socials,
@@ -35,15 +36,14 @@ export const Navigation: Component = function() {
 
 	function close(event: Event) {
 		event.preventDefault();
-		dialog.classList.add('hide');
-		dialog.addEventListener(
-			'animationend',
-			function() {
-				dialog.classList.remove('hide');
-				dialog.close();
-			},
-			{ once: true }
-		);
+		dialog.classList.add(animation_out_active);
+		function listener(event: Event) {
+			if (event.target !== dialog) return;
+			dialog.classList.remove(animation_out_active);
+			dialog.close();
+			dialog.removeEventListener('animationend', listener);
+		}
+		dialog.addEventListener('animationend', listener);
 	}
 
 	return (
@@ -62,6 +62,7 @@ export const Navigation: Component = function() {
 								<li>
 									<a href={path} class={navigation_link}>
 										<p class={navigation_link_label}>{name}</p>
+										<p class={navigation_link_label_hover}>/</p>
 									</a>
 								</li>
 							)}

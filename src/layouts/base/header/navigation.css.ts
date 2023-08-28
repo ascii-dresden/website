@@ -1,39 +1,21 @@
 import { keyframes, style } from '@vanilla-extract/css';
 
 import { colors } from 'src/styles/colors.css.ts';
-import { spacing } from 'src/styles/spacing.css';
-import { repeat } from 'src/styles/util/repeat.css';
+import { durations, ease } from 'src/styles/motion.css.ts';
+import { spacing } from 'src/styles/spacing.css.ts';
+import { enumerate } from 'src/styles/util/enumerate.css.ts';
 
-const animation_duration = 0.5;
-
-const slide_in = keyframes({
-	'0%': {
-		clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 200% 100%)',
-	},
-	'100%': {
-		clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-	},
+const animation_in = keyframes({
+	'0%': { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 200% 100%)' },
+	'100%': { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' },
 });
 
-const slide_out = keyframes({
-	'0%': {
-		clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-	},
-	'100%': {
-		clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 200% 100%)',
-	},
+const animation_out = keyframes({
+	'0%': { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' },
+	'100%': { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 200% 100%)' },
 });
 
-const slide_in_letter = keyframes({
-	'0%': {
-		transform: 'translateY(100%)',
-		clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
-	},
-	'100%': {
-		transform: 'translateY(0%)',
-		clipPath: 'polygon(0 -100%, 100% -100%, 100% 200%, 0 200%)',
-	},
-});
+export const animation_out_active = style({});
 
 export const navigation = style({
 	'::backdrop': {
@@ -49,14 +31,16 @@ export const navigation = style({
 			gridTemplateAreas: `"button button" "links links" "socials theme"`,
 			backgroundColor: colors.surface,
 			color: colors.on_surface,
-			animationName: slide_in,
-			animationDuration: `${animation_duration}s`,
-			animationTimingFunction: 'cubic-bezier(0,0,.3,1)',
 		},
-		'&.hide': {
-			animationName: slide_out,
-			animationDuration: `${animation_duration}s`,
-			animationTimingFunction: 'ease-in-out',
+		[`&[open]:not(.${animation_out_active})`]: {
+			animationName: animation_in,
+			animationDuration: durations.long,
+			animationTimingFunction: ease.standard,
+		},
+		[`&.${animation_out_active}`]: {
+			animationName: animation_out,
+			animationDuration: durations.long,
+			animationTimingFunction: ease.standard,
 		},
 	},
 });
@@ -67,6 +51,13 @@ export const navigation_button = style({
 	display: 'grid',
 	placeItems: 'center',
 	justifySelf: 'end',
+
+	transitionProperty: 'transform',
+	transitionDuration: durations.medium,
+	transitionTimingFunction: ease.standard,
+	':hover': {
+		transform: 'rotate(180deg)',
+	},
 });
 
 export const navigation_links = style({
@@ -74,8 +65,15 @@ export const navigation_links = style({
 	flex: 1,
 });
 
+const animation_link_in = keyframes({
+	'0%': { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' },
+	'100%': { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' },
+});
+
 export const navigation_link = style({
-	display: 'block',
+	display: 'flex',
+	justifyContent: 'flex-end',
+	alignItems: 'center',
 	// TODO: fixed height conflicts with the hover effect
 	// height: spacing['4'],
 	paddingBlock: spacing['2'],
@@ -83,38 +81,68 @@ export const navigation_link = style({
 	textAlign: 'end',
 	borderBottomWidth: 2,
 	borderBottomColor: colors.on_surface,
-	selectors: repeat(5, (i) => [
-		`${navigation}[open] ul li:nth-child(${i + 1}) &`,
+	selectors: enumerate(5, (i) => [
+		`${navigation}[open]:not(.${animation_out_active}) ul li:nth-child(${i + 1}) &`,
 		{
-			animationName: slide_in,
+			animationName: animation_link_in,
 			animationDelay: `${i * 0.1}s`,
-			animationDuration: `${animation_duration}s`,
-			animationTimingFunction: 'cubic-bezier(0,0,.3,1)',
+			animationDuration: durations.long,
+			animationTimingFunction: ease.standard,
 			animationFillMode: 'both',
 		},
 	]),
 });
 
+const animation_link_label_in = keyframes({
+	'0%': {
+		transform: 'translateY(100%)',
+		clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
+	},
+	'100%': {
+		transform: 'translateY(0%)',
+		clipPath: 'polygon(0 -100%, 100% -100%, 100% 200%, 0 200%)',
+	},
+});
+
 export const navigation_link_label = style({
 	transitionProperty: 'font-size, font-weight, line-height',
-	transitionDuration: '100ms',
-	transitionTimingFunction: 'ease',
+	transitionDuration: durations.short,
+	transitionTimingFunction: ease.standard,
 	selectors: {
 		[`${navigation_link}:hover &`]: {
 			fontSize: '2rem',
-			fontWeight: 200,
+			fontWeight: 300,
 			lineHeight: '2em',
 		},
-		...repeat(5, (i) => [
-			`${navigation}[open] ul li:nth-child(${i + 1}) &`,
+		...enumerate(5, (i) => [
+			`${navigation}[open]:not(.${animation_out_active}) ul li:nth-child(${i + 1
+			}) ${navigation_link} &`,
 			{
-				animationName: slide_in_letter,
-				animationDelay: `${i * 0.1}s`,
-				animationDuration: `${animation_duration * 0.5}s`,
-				animationTimingFunction: 'cubic-bezier(0,0,.3,1)',
+				animationName: animation_link_label_in,
+				animationDelay: `${i * 0.1 + 0.25}s`,
+				animationDuration: durations.medium,
+				animationTimingFunction: ease.standard,
 				animationFillMode: 'both',
 			},
 		]),
+	},
+});
+
+export const navigation_link_label_hover = style({
+	width: '0rem',
+	transitionProperty: 'font-size, font-weight, line-height, width',
+	transitionDuration: durations.medium,
+	transitionTimingFunction: ease.standard,
+	textAlign: 'center',
+	opacity: 0.3,
+	overflow: 'hidden',
+	selectors: {
+		[`${navigation_link}:hover &`]: {
+			fontSize: '2rem',
+			fontWeight: 300,
+			lineHeight: '2em',
+			width: spacing['3'],
+		},
 	},
 });
 

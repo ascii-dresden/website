@@ -1,0 +1,21 @@
+---
+import asset_img_cafe from 'src/assets/ascii_hero.jpg';
+
+import { button_more, head, image, next_event, title, summary, date } from './next_event.css.ts';
+---
+
+<section class={next_event}>
+	<h2 class={head}>Nächstes Event</h2>
+	<h3 class={title}>Spieleabend</h3>
+	<p class={summary}>
+		To be fair, you have to have a very high IQ to understand Rick and Morty. The humour is
+		extremely subtle, and without a solid grasp of theoretical physics most of the jokes will
+	</p>
+	<p class={date}>2023/09/14</p>
+	<div class={image}>
+		<img src={asset_img_cafe} alt="Event" />
+	</div>
+	<a class={button_more}>
+		<p>Mehr...</p>
+	</a>
+</section>
