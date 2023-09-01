@@ -4,6 +4,7 @@ import { border_style, border_width } from 'src/styles/border.css';
 import { colors } from 'src/styles/colors.css.ts';
 import { durations, ease } from 'src/styles/motion.css';
 import { spacing } from 'src/styles/spacing.css.ts';
+import { dark } from 'src/styles/themes.css.ts';
 
 export const SETTLE = 'data-settle';
 
@@ -17,13 +18,13 @@ export const header = style([
 		justifyContent: 'space-between',
 		gap: spacing['1'],
 
-		backgroundColor: colors.surface,
-		color: colors.on_surface,
+		backgroundColor: colors.milk,
+		color: colors.espresso,
 		boxShadow: `0 0 ${spacing['1']} 0 rgba(0, 0, 0, 0.5)`,
 
 		borderBottomStyle: border_style,
 		borderBottomWidth: border_width,
-		borderBottomColor: colors.on_surface,
+		borderBottomColor: colors.espresso,
 
 		zIndex: 2,
 
@@ -32,12 +33,17 @@ export const header = style([
 		transitionTimingFunction: ease.standard,
 
 		selectors: {
+			[dark()]: {
+				backgroundColor: colors.creme,
+			},
 			[`&[${SETTLE}]`]: {
-				backgroundColor: colors.background,
-				color: colors.on_background,
+				backgroundColor: colors.creme,
 				boxShadow: 'none',
-
 				borderBottomColor: 'transparent',
+			},
+			[dark(`&[${SETTLE}]`)]: {
+				backgroundColor: colors.espresso,
+				color: colors.creme,
 			},
 		},
 	},

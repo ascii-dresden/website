@@ -4,7 +4,7 @@ import '@fontsource-variable/jetbrains-mono';
 
 import 'src/styles/global/mod.css.ts';
 
-import { main } from './base.css.ts';
+import { main, body } from './base.css.ts';
 
 import { Header } from './base/header.tsx';
 import Footer from './base/footer.astro';
@@ -22,8 +22,7 @@ import Footer from './base/footer.astro';
 			rel="stylesheet"
 		/>
 	</head>
-
-	<body>
+	<body class={body}>
 		<Header client:load />
 		<main class={main}>
 			<slot />

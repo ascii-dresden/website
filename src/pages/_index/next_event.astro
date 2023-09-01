@@ -1,17 +1,31 @@
 ---
 import asset_img_cafe from 'src/assets/ascii_hero.jpg';
+import Divider from 'src/components/divider.astro';
 
-import { button_more, head, image, next_event, title, summary, date } from './next_event.css.ts';
+import { colors } from 'src/styles/colors.css.ts';
+
+import {
+	button_more,
+	card_background,
+	card_summary,
+	card_title,
+	card_date,
+	head,
+	image,
+	next_event,
+} from './next_event.css.ts';
 ---
 
 <section class={next_event}>
+	<Divider stroke={colors.espresso} fill={colors.milk} />
+	<div class={card_background}></div>
 	<h2 class={head}>Nächstes Event</h2>
-	<h3 class={title}>Spieleabend</h3>
-	<p class={summary}>
+	<h3 class={card_title}>Spieleabend</h3>
+	<p class={card_summary}>
 		To be fair, you have to have a very high IQ to understand Rick and Morty. The humour is
 		extremely subtle, and without a solid grasp of theoretical physics most of the jokes will
 	</p>
-	<p class={date}>2023/09/14</p>
+	<p class={card_date}>2023/09/14</p>
 	<div class={image}>
 		<img src={asset_img_cafe} alt="Event" />
 	</div>

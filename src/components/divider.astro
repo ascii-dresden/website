@@ -1,0 +1,49 @@
+---
+import { border_width } from 'src/styles/border.css.ts';
+
+type Props = {
+	stroke: string;
+	fill: string;
+};
+
+const SIZE = 8;
+
+const { stroke, fill } = Astro.props;
+
+const width = SIZE * 4;
+const height = SIZE + border_width;
+
+const startY = border_width / 2;
+const endY = SIZE + border_width / 2;
+
+const id = `pattern-${btoa(stroke)}-${btoa(fill)}`;
+---
+
+<svg
+	style={{ position: 'absolute', top: -height }}
+	preserve-aspect-ratio="none"
+	width="100%"
+	height={height}
+>
+	<defs>
+		<pattern
+			id={id}
+			patternUnits="userSpaceOnUse"
+			viewBox={`0 0 ${width} ${height}`}
+			width={width}
+			height={height}
+		>
+			<path d={`M0,${endY} L${width},${endY}`} stroke={fill} stroke-width={border_width}> </path>
+			<path
+				d={[
+					`M0,${endY}`,
+					`C${SIZE},${endY} ${SIZE},${startY} ${SIZE * 2},${startY}`,
+					`C${SIZE * 3},${startY} ${SIZE * 3},${endY} ${width},${endY}`,
+				].join(' ')}
+				stroke={stroke}
+				fill={fill}
+				stroke-width={border_width}></path>
+		</pattern>
+	</defs>
+	<rect width="100%" height="100%" fill={`url(#${id})`}></rect>
+</svg>

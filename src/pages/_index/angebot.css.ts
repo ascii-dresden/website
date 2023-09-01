@@ -9,9 +9,13 @@ export const angebot = style({
 	gridTemplateColumns: `max-content 1fr calc(${spacing['4']} - ${spacing['2']})`,
 	gridTemplateRows: `repeat(5, max-content) calc(${spacing['4']} - ${spacing['2']})`,
 
+	position: 'relative',
+
 	gap: spacing['2'],
 	paddingBlock: spacing['4'],
 	paddingInline: spacing['2'],
+
+	backgroundColor: colors.light_teal,
 
 	'::before': {
 		content: '""',
@@ -20,12 +24,12 @@ export const angebot = style({
 		gridColumn: '1 / 3',
 		gridRow: '2 / 5',
 
-		backgroundColor: colors.on_surface,
+		backgroundColor: colors.teal,
+		backgroundImage: `url(src/assets/grain.svg)`,
+		backgroundBlendMode: 'soft-light',
+		backgroundSize: '256px',
 
 		borderRadius: border_radius,
-		// borderStyle: border_style,
-		// borderWidth: border_width,
-		// borderColor: colors.on_surface,
 	},
 
 	'::after': {
@@ -37,10 +41,10 @@ export const angebot = style({
 
 		borderTopWidth: border_width,
 		borderTopStyle: border_style,
-		borderTopColor: colors.surface,
+		borderTopColor: colors.light_teal,
 		borderLeftWidth: border_width,
 		borderLeftStyle: border_style,
-		borderLeftColor: colors.surface,
+		borderLeftColor: colors.light_teal,
 	},
 });
 
@@ -50,7 +54,7 @@ export const head = style({
 
 	paddingBottom: spacing['2'],
 
-	color: colors.on_surface,
+	color: colors.teal,
 });
 
 export const title = style({
@@ -61,7 +65,7 @@ export const title = style({
 	paddingLeft: spacing['3'],
 	paddingRight: spacing['3'],
 
-	color: colors.surface,
+	color: colors.light_teal,
 });
 
 export const summary = style({
@@ -71,7 +75,7 @@ export const summary = style({
 	paddingInline: spacing['3'],
 	paddingBlock: spacing['2'],
 
-	color: colors.surface,
+	color: colors.light_teal,
 	fontWeight: 400,
 });
 
@@ -82,11 +86,11 @@ export const date = style({
 	textAlign: 'center',
 	padding: spacing['2'],
 
-	color: colors.surface,
+	color: colors.light_teal,
 
 	borderTopStyle: border_style,
 	borderTopWidth: border_width,
-	borderTopColor: colors.surface,
+	borderTopColor: colors.light_teal,
 });
 
 export const image = style({
@@ -104,10 +108,10 @@ globalStyle(`${image} img`, {
 	objectFit: 'cover',
 
 	borderRadius: border_radius,
+	borderTopLeftRadius: 0,
 	borderStyle: border_style,
 	borderWidth: border_width,
-	borderColor: colors.on_surface,
-	borderTopLeftRadius: 0,
+	borderColor: colors.teal,
 });
 
 export const button_more = style({
@@ -118,12 +122,12 @@ export const button_more = style({
 	padding: spacing['2'],
 	textAlign: 'center',
 
-	backgroundColor: colors.surface,
-	color: colors.on_surface,
+	backgroundColor: colors.light_teal,
+	color: colors.teal,
 
 	borderRadius: border_radius,
+	borderTopRightRadius: 0,
 	borderStyle: border_style,
 	borderWidth: border_width,
-	borderColor: colors.on_surface,
-	borderTopRightRadius: 0,
+	borderColor: colors.teal,
 });

@@ -1,8 +1,9 @@
 import { style } from '@vanilla-extract/css';
 
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
-import { colors } from 'src/styles/colors.css';
-import { spacing } from 'src/styles/spacing.css';
+import { colors } from 'src/styles/colors.css.ts';
+import { spacing } from 'src/styles/spacing.css.ts';
+import { dark } from 'src/styles/themes.css.ts';
 
 export const hero = style({
 	display: 'flex',
@@ -12,8 +13,15 @@ export const hero = style({
 	paddingTop: spacing['2'],
 	paddingBottom: spacing['4'],
 
-	backgroundColor: colors.background,
-	color: colors.on_background,
+	backgroundColor: colors.creme,
+	color: colors.espresso,
+
+	selectors: {
+		[dark()]: {
+			backgroundColor: colors.espresso,
+			color: colors.creme,
+		},
+	},
 });
 
 export const hero_image = style({
@@ -25,7 +33,13 @@ export const hero_image = style({
 	borderRadius: border_radius,
 	borderWidth: border_width,
 	borderStyle: border_style,
-	borderColor: colors.on_background,
+	borderColor: colors.espresso,
+
+	selectors: {
+		[dark()]: {
+			borderColor: colors.creme,
+		},
+	},
 });
 
 export const hero_summary = style({
@@ -37,13 +51,19 @@ export const hero_summary = style({
 	padding: spacing['3'],
 	marginRight: spacing['2'],
 
-	backgroundColor: colors.surface,
-	color: colors.on_surface,
+	backgroundColor: colors.milk,
+	color: colors.espresso,
 
 	borderTopRightRadius: border_radius,
 	borderBottomRightRadius: border_radius,
 	borderWidth: border_width,
 	borderStyle: border_style,
-	borderColor: colors.on_background,
+	borderColor: colors.espresso,
 	borderLeft: 'none',
+
+	selectors: {
+		[dark()]: {
+			backgroundColor: colors.creme,
+		},
+	},
 });

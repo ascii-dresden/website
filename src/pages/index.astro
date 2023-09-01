@@ -4,15 +4,10 @@ import BaseLayout from 'src/layouts/base.astro';
 import Hero from './_index/hero.astro';
 import NextEvent from './_index/next_event.astro';
 import Angebot from './_index/angebot.astro';
-
-import { divider } from './index.css.ts';
 ---
 
 <BaseLayout>
 	<Hero />
-	<div class={divider}></div>
 	<NextEvent />
-	<div class={divider}></div>
 	<Angebot />
-	<div class={divider}></div>
 </BaseLayout>

@@ -1,0 +1,21 @@
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+	<filter id="grain">
+		<feTurbulence
+			type="fractalNoise"
+			result="TURBULENCE"
+			baseFrequency="1"
+			numOctaves="4"
+			stitchTiles="stitch"
+		/>
+		<feColorMatrix in="TURBULENCE" type="saturate" values="0" result="GRAYSCALE" />
+		<feColorMatrix
+			in="GRAYSCALE"
+			type="matrix"
+			values="1   0   0   0   0
+					0   1   0   0   0
+					0   0   1   0   0
+					0  0   0   16   -8"
+		/>
+	</filter>
+	<rect width="100%" height="100%" filter="url(#grain)" />
+</svg>

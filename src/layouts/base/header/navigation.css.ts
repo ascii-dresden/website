@@ -3,6 +3,7 @@ import { keyframes, style } from '@vanilla-extract/css';
 import { colors } from 'src/styles/colors.css.ts';
 import { durations, ease } from 'src/styles/motion.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';
+import { dark } from 'src/styles/themes.css.ts';
 import { enumerate } from 'src/styles/util/enumerate.css.ts';
 
 export const ANIMATION_OUT_ACTIVE = 'data-animation-out-active';
@@ -17,35 +18,42 @@ const animation_out = keyframes({
 	'100%': { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 200% 100%)' },
 });
 
-export const navigation = style({
-	'::backdrop': {
-		backgroundColor: 'transparent',
-	},
-	selectors: {
-		'&[open]': {
-			height: '100%',
-			width: '100%',
+export const navigation = style([
+	{
+		'::backdrop': {
+			backgroundColor: 'transparent',
+		},
+		selectors: {
+			'&[open]': {
+				height: '100%',
+				width: '100%',
 
-			display: 'grid',
-			gridTemplateColumns: `1fr max-content`,
-			gridTemplateRows: `${spacing['4']} 1fr`,
-			gridTemplateAreas: `"button button" "links links" "socials theme"`,
+				display: 'grid',
+				gridTemplateColumns: `1fr max-content`,
+				gridTemplateRows: `${spacing['4']} 1fr`,
+				gridTemplateAreas: `"button button" "links links" "socials theme"`,
 
-			backgroundColor: colors.surface,
-			color: colors.on_surface,
-		},
-		[`&[open]:not([${ANIMATION_OUT_ACTIVE}])`]: {
-			animationName: animation_in,
-			animationDuration: durations.long,
-			animationTimingFunction: ease.standard,
-		},
-		[`&[${ANIMATION_OUT_ACTIVE}]`]: {
-			animationName: animation_out,
-			animationDuration: durations.long,
-			animationTimingFunction: ease.standard,
+				backgroundColor: colors.milk,
+				color: colors.espresso,
+			},
+			[dark('&[open]')]: {
+				backgroundColor: colors.espresso,
+				color: colors.creme,
+			},
+			[`&[open]:not([${ANIMATION_OUT_ACTIVE}])`]: {
+				animationName: animation_in,
+				animationDuration: durations.long,
+				animationTimingFunction: ease.standard,
+			},
+			[`&[${ANIMATION_OUT_ACTIVE}]`]: {
+				animationName: animation_out,
+				animationDuration: durations.long,
+				animationTimingFunction: ease.standard,
+				pointerEvents: 'none',
+			},
 		},
 	},
-});
+]);
 
 export const navigation_button = style({
 	gridArea: 'button',
@@ -82,17 +90,22 @@ export const navigation_link = style({
 	marginInline: spacing['2'],
 	textAlign: 'end',
 	borderBottomWidth: 2,
-	borderBottomColor: colors.on_surface,
-	selectors: enumerate(5, (i) => [
-		`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${i + 1}) &`,
-		{
-			animationName: animation_link_in,
-			animationDelay: `${i * 0.1}s`,
-			animationDuration: durations.long,
-			animationTimingFunction: ease.standard,
-			animationFillMode: 'both',
+	borderBottomColor: colors.espresso,
+	selectors: {
+		[dark()]: {
+			borderBottomColor: colors.creme,
 		},
-	]),
+		...enumerate(5, (i) => [
+			`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${i + 1}) &`,
+			{
+				animationName: animation_link_in,
+				animationDelay: `${i * 0.1}s`,
+				animationDuration: durations.long,
+				animationTimingFunction: ease.standard,
+				animationFillMode: 'both',
+			},
+		]),
+	},
 });
 
 const animation_link_label_in = keyframes({
@@ -117,8 +130,7 @@ export const navigation_link_label = style({
 			lineHeight: '2em',
 		},
 		...enumerate(5, (i) => [
-			`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${
-				i + 1
+			`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${i + 1
 			}) ${navigation_link} &`,
 			{
 				animationName: animation_link_label_in,

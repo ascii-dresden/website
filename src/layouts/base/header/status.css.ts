@@ -5,16 +5,18 @@ import { colors } from 'src/styles/colors.css.ts';
 import { spacing } from 'src/styles/spacing.css';
 
 export const status = style({
-	alignSelf: 'center',
-	backgroundColor: colors.success,
-	color: colors.on_success,
 	flex: 1,
 	maxWidth: '16rem',
-	padding: spacing['1'],
+	alignSelf: 'center',
 	textAlign: 'center',
 
+	padding: spacing['1'],
+
+	backgroundColor: colors.green,
+	color: colors.espresso,
+
 	borderRadius: border_radius,
-	borderColor: colors.on_success,
+	borderColor: colors.espresso,
 	borderStyle: border_style,
 	borderWidth: border_width,
 });

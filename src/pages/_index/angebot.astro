@@ -1,10 +1,13 @@
 ---
 import asset_img_cafe from 'src/assets/ascii_hero.jpg';
+import Divider from 'src/components/Divider.astro';
+import { colors } from 'src/styles/colors.css.ts';
 
 import { angebot, button_more, head, image, title, summary, date } from './angebot.css.ts';
 ---
 
 <section class={angebot}>
+	<Divider stroke={colors.teal} fill={colors.light_teal} />
 	<h2 class={head}>Angebot</h2>
 	<h3 class={title}>Getränk des Monats</h3>
 	<p class={summary}>Wostok Wostok Wostok Wostok</p>
