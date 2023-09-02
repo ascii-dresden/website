@@ -63,7 +63,9 @@ export const hero_summary = style({
 
 	selectors: {
 		[dark()]: {
-			backgroundColor: colors.creme,
+			backgroundColor: colors.espresso,
+			color: colors.creme,
+			borderColor: colors.creme,
 		},
 	},
 });

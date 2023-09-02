@@ -1,15 +1,13 @@
 ---
 import asset_img_cafe from 'src/assets/ascii_hero.jpg';
-import Divider from 'src/components/divider.astro';
-
-import { colors } from 'src/styles/colors.css.ts';
+import { Divider } from 'src/components/divider.tsx';
 
 import {
 	button_more,
-	card_background,
 	card_summary,
 	card_title,
 	card_date,
+	divider,
 	head,
 	image,
 	next_event,
@@ -17,8 +15,7 @@ import {
 ---
 
 <section class={next_event}>
-	<Divider stroke={colors.espresso} from={colors.creme} to={colors.milk} />
-	<div class={card_background}></div>
+	<Divider class={divider} />
 	<h2 class={head}>Nächstes Event</h2>
 	<h3 class={card_title}>Spieleabend</h3>
 	<p class={card_summary}>

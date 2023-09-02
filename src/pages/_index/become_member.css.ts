@@ -1,8 +1,27 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { assignVars, globalStyle, style } from '@vanilla-extract/css';
 
+import { divider_colors } from 'src/components/divider.css.ts';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';
+import { dark } from 'src/styles/themes.css.ts';
+
+export const divider = style({
+	vars: assignVars(divider_colors, {
+		from: colors.light_teal,
+		to: colors.creme,
+		stroke: colors.espresso,
+	}),
+	selectors: {
+		[dark()]: {
+			vars: assignVars(divider_colors, {
+				from: colors.teal,
+				to: colors.espresso,
+				stroke: colors.milk,
+			}),
+		},
+	},
+});
 
 export const become_member = style({
 	display: 'grid',
@@ -16,6 +35,34 @@ export const become_member = style({
 	position: 'relative',
 
 	backgroundColor: colors.creme,
+
+	'::before': {
+		content: '""',
+		display: 'block',
+
+		gridColumn: '2 / 4',
+		gridRow: '2 / 4',
+
+		backgroundColor: colors.milk,
+
+		borderRadius: border_radius,
+		borderStyle: border_style,
+		borderWidth: border_width,
+		borderColor: colors.espresso,
+	},
+	selectors: {
+		[dark()]: {
+			backgroundColor: colors.espresso,
+		},
+
+		[dark('&::before')]: {
+			borderStyle: 'none',
+			backgroundColor: colors.creme,
+			backgroundImage: `url(src/assets/grain.svg)`,
+			backgroundBlendMode: 'multiply',
+			backgroundSize: '256px',
+		},
+	},
 });
 
 export const head = style({
@@ -25,21 +72,15 @@ export const head = style({
 	paddingBottom: spacing['2'],
 
 	color: colors.espresso,
+
+	selectors: {
+		[dark()]: {
+			color: colors.creme,
+		},
+	},
 });
 
-export const card_background = style({
-	gridColumn: '2 / 4',
-	gridRow: '2 / 4',
-
-	display: 'block',
-
-	backgroundColor: colors.milk,
-
-	borderRadius: border_radius,
-	borderStyle: border_style,
-	borderWidth: border_width,
-	borderColor: colors.espresso,
-});
+export const card_background = style({});
 
 export const card_summary = style({
 	gridColumn: '2 / 4',
@@ -83,4 +124,11 @@ export const button_more = style({
 	borderWidth: border_width,
 	borderColor: colors.espresso,
 	borderTopLeftRadius: 0,
+
+	selectors: {
+		[dark()]: {
+			color: colors.creme,
+			borderColor: colors.creme,
+		},
+	},
 });

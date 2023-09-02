@@ -1,8 +1,27 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { assignVars, globalStyle, style } from '@vanilla-extract/css';
 
+import { divider_colors } from 'src/components/divider.css.ts';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';
+import { dark } from 'src/styles/themes.css.ts';
+
+export const divider = style({
+	vars: assignVars(divider_colors, {
+		from: colors.milk,
+		to: colors.light_teal,
+		stroke: colors.teal,
+	}),
+	selectors: {
+		[dark()]: {
+			vars: assignVars(divider_colors, {
+				from: colors.espresso,
+				to: colors.teal,
+				stroke: colors.milk,
+			}),
+		},
+	},
+});
 
 export const angebot = style({
 	display: 'grid',
@@ -46,6 +65,20 @@ export const angebot = style({
 		borderLeftStyle: border_style,
 		borderLeftColor: colors.light_teal,
 	},
+
+	selectors: {
+		[dark()]: {
+			backgroundColor: colors.teal,
+		},
+		[dark('&::before')]: {
+			backgroundColor: colors.light_teal,
+			backgroundBlendMode: 'multiply',
+		},
+		[dark('&::after')]: {
+			borderTopColor: colors.teal,
+			borderLeftColor: colors.teal,
+		},
+	},
 });
 
 export const head = style({
@@ -55,6 +88,12 @@ export const head = style({
 	paddingBottom: spacing['2'],
 
 	color: colors.teal,
+
+	selectors: {
+		[dark()]: {
+			color: colors.light_teal,
+		},
+	},
 });
 
 export const title = style({
@@ -66,6 +105,12 @@ export const title = style({
 	paddingRight: spacing['3'],
 
 	color: colors.light_teal,
+
+	selectors: {
+		[dark()]: {
+			color: colors.teal,
+		},
+	},
 });
 
 export const summary = style({
@@ -77,6 +122,12 @@ export const summary = style({
 
 	color: colors.light_teal,
 	fontWeight: 400,
+
+	selectors: {
+		[dark()]: {
+			color: colors.teal,
+		},
+	},
 });
 
 export const date = style({
@@ -91,6 +142,13 @@ export const date = style({
 	borderTopStyle: border_style,
 	borderTopWidth: border_width,
 	borderTopColor: colors.light_teal,
+
+	selectors: {
+		[dark()]: {
+			color: colors.teal,
+			borderTopColor: colors.teal,
+		},
+	},
 });
 
 export const image = style({
@@ -114,6 +172,10 @@ globalStyle(`${image} img`, {
 	borderColor: colors.teal,
 });
 
+globalStyle(dark(`${image} img`), {
+	borderColor: colors.light_teal,
+});
+
 export const button_more = style({
 	gridColumn: '1 / 2',
 	gridRow: '5 / 6',
@@ -122,7 +184,6 @@ export const button_more = style({
 	padding: spacing['2'],
 	textAlign: 'center',
 
-	backgroundColor: colors.light_teal,
 	color: colors.teal,
 
 	borderRadius: border_radius,
@@ -130,4 +191,11 @@ export const button_more = style({
 	borderStyle: border_style,
 	borderWidth: border_width,
 	borderColor: colors.teal,
+
+	selectors: {
+		[dark()]: {
+			color: colors.light_teal,
+			borderColor: colors.light_teal,
+		},
+	},
 });

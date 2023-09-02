@@ -1,8 +1,27 @@
-import { style } from '@vanilla-extract/css';
+import { assignVars, style } from '@vanilla-extract/css';
 
+import { divider_colors } from 'src/components/divider.css.ts';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';
+import { dark } from 'src/styles/themes.css.ts';
+
+export const divider = style({
+	vars: assignVars(divider_colors, {
+		from: colors.creme,
+		to: colors.milk,
+		stroke: colors.espresso,
+	}),
+	selectors: {
+		[dark()]: {
+			vars: assignVars(divider_colors, {
+				from: colors.espresso,
+				to: colors.espresso,
+				stroke: colors.milk,
+			}),
+		},
+	},
+});
 
 export const business_hours = style({
 	display: 'grid',
@@ -15,6 +34,13 @@ export const business_hours = style({
 
 	color: colors.espresso,
 	backgroundColor: colors.milk,
+
+	selectors: {
+		[dark()]: {
+			color: colors.creme,
+			backgroundColor: colors.espresso,
+		},
+	},
 });
 
 export const head = style({
@@ -34,6 +60,14 @@ export const card = style({
 	backgroundSize: '256px',
 
 	borderRadius: border_radius,
+
+	selectors: {
+		[dark()]: {
+			color: colors.espresso,
+			backgroundColor: colors.creme,
+			backgroundBlendMode: 'multiply',
+		},
+	},
 });
 
 export const hr = style({
@@ -41,6 +75,12 @@ export const hr = style({
 	borderTopWidth: border_width,
 	borderTopStyle: border_style,
 	borderTopColor: colors.milk,
+
+	selectors: {
+		[dark()]: {
+			borderTopColor: colors.espresso,
+		},
+	},
 });
 
 export const dl = style({

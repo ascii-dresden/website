@@ -1,8 +1,9 @@
 import { style } from '@vanilla-extract/css';
-import { border_radius, border_style, border_width } from 'src/styles/border.css';
 
+import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
-import { spacing } from 'src/styles/spacing.css';
+import { spacing } from 'src/styles/spacing.css.ts';
+import { dark } from 'src/styles/themes.css.ts';
 
 export const status = style({
 	flex: 1,
@@ -15,8 +16,15 @@ export const status = style({
 	backgroundColor: colors.green,
 	color: colors.espresso,
 
-	borderRadius: border_radius,
 	borderColor: colors.espresso,
+	borderRadius: border_radius,
 	borderStyle: border_style,
 	borderWidth: border_width,
+
+	selectors: {
+		[dark()]: {
+			borderColor: colors.creme,
+			boxShadow: `inset 0 0 0 ${border_width}px ${colors.espresso}`,
+		},
+	},
 });

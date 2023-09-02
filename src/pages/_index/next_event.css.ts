@@ -1,8 +1,27 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { assignVars, globalStyle, style } from '@vanilla-extract/css';
 
+import { divider_colors } from 'src/components/divider.css';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';
+import { dark } from 'src/styles/themes.css.ts';
+
+export const divider = style({
+	vars: assignVars(divider_colors, {
+		from: colors.creme,
+		to: colors.milk,
+		stroke: colors.espresso,
+	}),
+	selectors: {
+		[dark()]: {
+			vars: assignVars(divider_colors, {
+				from: colors.espresso,
+				to: colors.espresso,
+				stroke: colors.milk,
+			}),
+		},
+	},
+});
 
 export const next_event = style({
 	display: 'grid',
@@ -17,6 +36,20 @@ export const next_event = style({
 
 	backgroundColor: colors.milk,
 
+	'::before': {
+		content: '""',
+		display: 'block',
+
+		gridColumn: '2 / 4',
+		gridRow: '2 / 5',
+
+		backgroundColor: colors.espresso,
+		backgroundImage: `url(src/assets/grain.svg)`,
+		backgroundBlendMode: 'soft-light',
+		backgroundSize: '256px',
+
+		borderRadius: border_radius,
+	},
 	'::after': {
 		content: '""',
 		display: 'block',
@@ -31,6 +64,19 @@ export const next_event = style({
 		borderRightStyle: border_style,
 		borderRightColor: colors.milk,
 	},
+	selectors: {
+		[dark()]: {
+			backgroundColor: colors.espresso,
+		},
+		[dark('&::before')]: {
+			backgroundColor: colors.creme,
+			backgroundBlendMode: 'multiply',
+		},
+		[dark('&::after')]: {
+			borderTopColor: colors.espresso,
+			borderRightColor: colors.espresso,
+		},
+	},
 });
 
 export const head = style({
@@ -40,20 +86,12 @@ export const head = style({
 	paddingBottom: spacing['2'],
 
 	color: colors.espresso,
-});
 
-export const card_background = style({
-	gridColumn: '2 / 4',
-	gridRow: '2 / 5',
-
-	display: 'block',
-
-	backgroundColor: colors.espresso,
-	backgroundImage: `url(src/assets/grain.svg)`,
-	backgroundBlendMode: 'soft-light',
-	backgroundSize: '256px',
-
-	borderRadius: border_radius,
+	selectors: {
+		[dark()]: {
+			color: colors.creme,
+		},
+	},
 });
 
 export const card_title = style({
@@ -65,6 +103,12 @@ export const card_title = style({
 	paddingRight: spacing['3'],
 
 	color: colors.milk,
+
+	selectors: {
+		[dark()]: {
+			color: colors.espresso,
+		},
+	},
 });
 
 export const card_summary = style({
@@ -76,6 +120,12 @@ export const card_summary = style({
 
 	color: colors.milk,
 	fontWeight: 400,
+
+	selectors: {
+		[dark()]: {
+			color: colors.espresso,
+		},
+	},
 });
 
 export const card_date = style({
@@ -90,6 +140,13 @@ export const card_date = style({
 	borderTopStyle: border_style,
 	borderTopWidth: border_width,
 	borderTopColor: colors.milk,
+
+	selectors: {
+		[dark()]: {
+			color: colors.espresso,
+			borderTopColor: colors.espresso,
+		},
+	},
 });
 
 export const image = style({
@@ -113,6 +170,10 @@ globalStyle(`${image} img`, {
 	borderTopRightRadius: 0,
 });
 
+globalStyle(dark(`${image} img`), {
+	borderColor: colors.creme,
+});
+
 export const button_more = style({
 	gridColumn: '3 / 4',
 	gridRow: '5 / 6',
@@ -121,7 +182,6 @@ export const button_more = style({
 	padding: spacing['2'],
 	textAlign: 'center',
 
-	backgroundColor: colors.milk,
 	color: colors.espresso,
 
 	borderRadius: border_radius,
@@ -129,4 +189,11 @@ export const button_more = style({
 	borderWidth: border_width,
 	borderColor: colors.espresso,
 	borderTopLeftRadius: 0,
+
+	selectors: {
+		[dark()]: {
+			color: colors.creme,
+			borderColor: colors.creme,
+		},
+	},
 });

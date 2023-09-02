@@ -1,6 +1,6 @@
 import { Component, For } from 'solid-js';
 
-import { SvgClose, SvgMenu } from 'src/svg/menus.tsx';
+import { SvgClose, SvgMenu } from 'src/svg/header.tsx';
 import { SvgInstagram, SvgGithub } from 'src/svg/socials.tsx';
 import { SvgTheme } from 'src/svg/theme.tsx';
 
@@ -27,7 +27,7 @@ const ROUTES = [
 	{ name: 'öffnung', path: '/öffnung' },
 ] as const;
 
-export const Navigation: Component = function () {
+export const Navigation: Component = function() {
 	let dialog: HTMLDialogElement;
 
 	function open() {

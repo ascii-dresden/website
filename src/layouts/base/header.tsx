@@ -1,6 +1,6 @@
 import { Component, createSignal, onMount } from 'solid-js';
 
-import { SvgLogo } from 'src/svg/logo.tsx';
+import { SvgLogo } from 'src/svg/header.tsx';
 
 import { SETTLE, header, header_logo } from './header.css.ts';
 

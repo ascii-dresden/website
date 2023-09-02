@@ -1,9 +1,27 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { assignVars, globalStyle, style } from '@vanilla-extract/css';
+import { divider_colors } from 'src/components/divider.css';
 import { border_style, border_width } from 'src/styles/border.css';
 
 import { colors } from 'src/styles/colors.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
+
+export const divider = style({
+	vars: assignVars(divider_colors, {
+		from: colors.milk,
+		to: colors.creme,
+		stroke: colors.espresso,
+	}),
+	selectors: {
+		[dark()]: {
+			vars: assignVars(divider_colors, {
+				from: colors.espresso,
+				to: colors.espresso,
+				stroke: colors.milk,
+			}),
+		},
+	},
+});
 
 export const footer = style({
 	display: 'grid',

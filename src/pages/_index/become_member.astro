@@ -1,12 +1,11 @@
 ---
-import Divider from 'src/components/divider.astro';
-import { colors } from 'src/styles/colors.css';
+import { Divider } from 'src/components/divider.tsx';
 import { SvgSticker } from 'src/svg/sticker.tsx';
 
 import {
+	divider,
 	become_member,
 	button_more,
-	card_background,
 	card_summary,
 	head,
 	image,
@@ -14,8 +13,7 @@ import {
 ---
 
 <section class={become_member}>
-	<Divider stroke={colors.espresso} from={colors.light_teal} to={colors.creme} />
-	<div class={card_background}></div>
+	<Divider class={divider} />
 	<h2 class={head}>Werde Mitglied</h2>
 	<p class={card_summary}>
 		Das ascii ist toll. Ehrenamt, blah. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
