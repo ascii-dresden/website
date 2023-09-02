@@ -1,0 +1,25 @@
+---
+import Divider from 'src/components/divider.astro';
+import { colors } from 'src/styles/colors.css.ts';
+import { body_large } from 'src/styles/atomic/fonts.css.ts';
+
+import { business_hours, card, dl, dt, dd, head } from './business_hours.css.ts';
+---
+
+<section class={business_hours}>
+	<Divider stroke={colors.espresso} from={colors.creme} to={colors.milk} />
+	<h2 class={head}>Öffnungszeiten</h2>
+	<div class={card}>
+		<h6>Während der Vorlesungszeit</h6>
+		<dl class={dl}>
+			<dt class:list={[body_large, dt]}>Montag bis Donnerstag</dt>
+			<dd class:list={[body_large, dd]}>
+				<time datetime="9:00">9:00 Uhr</time> bis <time datetime="17:00">17:00 Uhr</time>
+			</dd>
+			<dt class:list={[body_large, dt]}>Freitag</dt>
+			<dd class:list={[body_large, dd]}>
+				<time datetime="9:00">9:00 Uhr</time> bis <time datetime="17:00">17:00 Uhr</time>
+			</dd>
+		</dl>
+	</div>
+</section>

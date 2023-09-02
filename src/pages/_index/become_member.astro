@@ -1,0 +1,30 @@
+---
+import Divider from 'src/components/divider.astro';
+import { colors } from 'src/styles/colors.css';
+import { SvgSticker } from 'src/svg/sticker.tsx';
+
+import {
+	become_member,
+	button_more,
+	card_background,
+	card_summary,
+	head,
+	image,
+} from './become_member.css.ts';
+---
+
+<section class={become_member}>
+	<Divider stroke={colors.espresso} from={colors.light_teal} to={colors.creme} />
+	<div class={card_background}></div>
+	<h2 class={head}>Werde Mitglied</h2>
+	<p class={card_summary}>
+		Das ascii ist toll. Ehrenamt, blah. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+		diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+	</p>
+	<div class={image}>
+		<SvgSticker />
+	</div>
+	<a href="/events" class={button_more}>
+		<p>Mehr...</p>
+	</a>
+</section>

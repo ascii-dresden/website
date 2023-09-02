@@ -1,8 +1,68 @@
 ---
-import { footer } from './footer.css.ts';
+import Divider from 'src/components/divider.astro';
+import { colors } from 'src/styles/colors.css.ts';
+import { SvgInstagram, SvgGithub } from 'src/svg/socials.tsx';
+
+import { footer, tree, contact, location, legal, social, text_link } from './footer.css.ts';
 ---
 
 <footer class={footer}>
-	<!-- TODO: Siehe Figma -->
-	<p>&copy;ascii Dresden e.V.</p>
+	<Divider from={colors.milk} to={colors.milk} stroke={colors.espresso} />
+	<ul class={tree}>
+		<li>
+			<ul class={contact}>
+				<li><p>//</p></li>
+				<li>
+					<a href="mailto:info@ascii-dresden.de" class={text_link}>
+						<p>info@ascii-dresden.de</p>
+					</a>
+				</li>
+				<li>
+					<a href="tel:+4935146342221" class={text_link}>
+						<p>+49 351 463 42221</p>
+					</a>
+				</li>
+				<li>
+					<p>
+						Studentencafé ASCII<br />
+						 Andreas-Pfitzmann-Bau, Raum E016<br />
+						 Nöthnitzer Strasse 46<br />
+						 01187 Dresden
+					</p>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<ul class={legal}>
+				<li><p>//</p></li>
+				<li>
+					<a href="/datenschutz" class={text_link}>
+						<p>Datenschutz</p>
+					</a>
+				</li>
+				<li>
+					<a href="/impressum" class={text_link}>
+						<p>Impressum</p>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<ul class={social}>
+				<li>
+					<a href="https://www.instagram.com/asciidresden/">
+						<SvgInstagram />
+					</a>
+				</li>
+				<li>
+					<a href="https://github.com/ascii-dresden">
+						<SvgGithub />
+					</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<p>&copy; ascii Dresden e.V. 2023</p>
+		</li>
+	</ul>
 </footer>

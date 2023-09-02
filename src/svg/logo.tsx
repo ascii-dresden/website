@@ -2,7 +2,7 @@ import { Component } from 'solid-js';
 
 import { colors } from 'src/styles/colors.css.ts';
 
-export const SvgLogo: Component = function () {
+export const SvgLogo: Component = function() {
 	return (
 		<svg
 			width="100%"
@@ -16,7 +16,7 @@ export const SvgLogo: Component = function () {
 	);
 };
 
-export const SvgLogoOld: Component = function () {
+export const SvgLogoTBD: Component = function() {
 	return (
 		<svg width="100%" height="100%" viewBox="0 0 223 128" xmlns="http://www.w3.org/2000/svg">
 			<path

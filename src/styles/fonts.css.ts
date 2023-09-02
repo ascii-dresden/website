@@ -16,29 +16,17 @@ const metricsJetBrainsMono: FontMetrics = {
 	xWidthAvg: 600,
 };
 
-const metricsConcertOne: FontMetrics = {
-	familyName: 'Concert One',
-	category: 'display',
-	capHeight: 1400, // 1470
-	ascent: 2005, // 2100
-	descent: 410, // 450
-	lineGap: 0,
-	unitsPerEm: 2048,
-	xHeight: 1004,
-	xWidthAvg: 930,
-};
-
-const metricsNunito: FontMetrics = {
-	familyName: 'Nunito Variable',
-	category: 'sans-serif',
-	capHeight: 705,
-	ascent: 1011,
-	descent: 353,
-	lineGap: 0,
-	unitsPerEm: 1000,
-	xHeight: 484,
-	xWidthAvg: 449,
-};
+// const metricsConcertOne: FontMetrics = {
+// 	familyName: 'Concert One',
+// 	category: 'display',
+// 	capHeight: 1400, // 1470
+// 	ascent: 2005, // 2100
+// 	descent: 410, // 450
+// 	lineGap: 0,
+// 	unitsPerEm: 2048,
+// 	xHeight: 1004,
+// 	xWidthAvg: 930,
+// };
 
 const metricsPilcrowRounded: FontMetrics = {
 	familyName: 'Pilcrow Rounded',
@@ -52,14 +40,12 @@ const metricsPilcrowRounded: FontMetrics = {
 	xWidthAvg: 532,
 };
 
-// const concertOne = createFont(metricsConcertOne);
-// const concertOne = createFont(metricsNunito);
-const concertOne = createFont(metricsPilcrowRounded);
+const pilcrowRounded = createFont(metricsPilcrowRounded);
 const jetBrainsMono = createFont(metricsJetBrainsMono);
 
-export const displayLargeRule = concertOne([
+export const displayLargeRule = pilcrowRounded([
 	{
-		// fontWeight: 900,
+		fontWeight: 700,
 		letterSpacing: '-0.05em',
 		fontOptions: {
 			capHeight: 40,
@@ -80,7 +66,7 @@ export const displayLargeRule = concertOne([
 	}),
 ]);
 
-export const displayMediumRule = concertOne([
+export const displayMediumRule = pilcrowRounded([
 	{
 		fontWeight: 800,
 		letterSpacing: '-0.025em',
@@ -103,9 +89,9 @@ export const displayMediumRule = concertOne([
 	}),
 ]);
 
-export const displaySmallRule = concertOne([
+export const displaySmallRule = pilcrowRounded([
 	{
-		// fontWeight: 700,
+		fontWeight: 700,
 		letterSpacing: '-0.025em',
 		fontOptions: {
 			capHeight: 24,
@@ -126,9 +112,9 @@ export const displaySmallRule = concertOne([
 	}),
 ]);
 
-export const titleLargeRule = concertOne([
+export const titleLargeRule = pilcrowRounded([
 	{
-		// fontWeight: 900,
+		fontWeight: 700,
 		fontOptions: {
 			capHeight: 18,
 			lineGap: 18,
@@ -142,9 +128,9 @@ export const titleLargeRule = concertOne([
 	}),
 ]);
 
-export const titleMediumRule = concertOne([
+export const titleMediumRule = pilcrowRounded([
 	{
-		// fontWeight: 900,
+		fontWeight: 700,
 		fontOptions: {
 			capHeight: 14,
 			lineGap: 14,
@@ -158,9 +144,9 @@ export const titleMediumRule = concertOne([
 	}),
 ]);
 
-export const titleSmallRule = concertOne([
+export const titleSmallRule = pilcrowRounded([
 	{
-		// fontWeight: 900,
+		fontWeight: 900,
 		fontOptions: {
 			capHeight: 12,
 			lineGap: 12,

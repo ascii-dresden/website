@@ -1,8 +1,8 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
-import { border_radius, border_style, border_width } from 'src/styles/border.css';
-import { colors } from 'src/styles/colors.css';
-import { spacing } from 'src/styles/spacing.css';
+import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
+import { colors } from 'src/styles/colors.css.ts';
+import { spacing } from 'src/styles/spacing.css.ts';
 
 export const angebot = style({
 	display: 'grid',
