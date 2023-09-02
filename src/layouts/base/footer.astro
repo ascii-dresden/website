@@ -1,17 +1,27 @@
 ---
 import Divider from 'src/components/divider.astro';
 import { colors } from 'src/styles/colors.css.ts';
+import { SvgCopyright } from 'src/svg/copyright.tsx';
 import { SvgInstagram, SvgGithub } from 'src/svg/socials.tsx';
 
-import { footer, tree, contact, location, legal, social, text_link } from './footer.css.ts';
+import {
+	footer,
+	tree,
+	contact,
+	location,
+	legal,
+	social,
+	text_link,
+	copyright,
+} from './footer.css.ts';
+import { body_medium, body_small } from 'src/styles/atomic/fonts.css';
 ---
 
 <footer class={footer}>
-	<Divider from={colors.milk} to={colors.milk} stroke={colors.espresso} />
+	<Divider from={colors.milk} to={colors.creme} stroke={colors.espresso} />
 	<ul class={tree}>
-		<li>
-			<ul class={contact}>
-				<li><p>//</p></li>
+		<li class={contact}>
+			<ul>
 				<li>
 					<a href="mailto:info@ascii-dresden.de" class={text_link}>
 						<p>info@ascii-dresden.de</p>
@@ -19,7 +29,7 @@ import { footer, tree, contact, location, legal, social, text_link } from './foo
 				</li>
 				<li>
 					<a href="tel:+4935146342221" class={text_link}>
-						<p>+49 351 463 42221</p>
+						<p>+49 351 46342221</p>
 					</a>
 				</li>
 				<li>
@@ -32,9 +42,8 @@ import { footer, tree, contact, location, legal, social, text_link } from './foo
 				</li>
 			</ul>
 		</li>
-		<li>
-			<ul class={legal}>
-				<li><p>//</p></li>
+		<li class={legal}>
+			<ul>
 				<li>
 					<a href="/datenschutz" class={text_link}>
 						<p>Datenschutz</p>
@@ -47,8 +56,8 @@ import { footer, tree, contact, location, legal, social, text_link } from './foo
 				</li>
 			</ul>
 		</li>
-		<li>
-			<ul class={social}>
+		<li class={social}>
+			<ul>
 				<li>
 					<a href="https://www.instagram.com/asciidresden/">
 						<SvgInstagram />
@@ -61,8 +70,9 @@ import { footer, tree, contact, location, legal, social, text_link } from './foo
 				</li>
 			</ul>
 		</li>
-		<li>
-			<p>&copy; ascii Dresden e.V. 2023</p>
+		<li class={copyright}>
+			<SvgCopyright />
+			<p class={body_medium}>ascii Dresden e.V. 2023</p>
 		</li>
 	</ul>
 </footer>

@@ -4,20 +4,20 @@
 
 import { globalStyleWithPseudos } from 'src/styles/internal/pseudos.css.ts';
 import {
-	bodyLargeRule,
-	displayLargeRule,
-	displayMediumRule,
-	displaySmallRule,
-	titleLargeRule,
+	body_large_rule,
+	display_large_rule,
+	display_medium_rule,
+	display_small_rule,
+	title_large_rule,
 	titleMediumRule,
-	titleSmallRule,
+	title_small_rule,
 } from 'src/styles/fonts.css.ts';
 
-globalStyleWithPseudos('h1', displayLargeRule);
-globalStyleWithPseudos('h2', displayMediumRule);
-globalStyleWithPseudos('h3', displaySmallRule);
-globalStyleWithPseudos('h4', titleLargeRule);
+globalStyleWithPseudos('h1', display_large_rule);
+globalStyleWithPseudos('h2', display_medium_rule);
+globalStyleWithPseudos('h3', display_small_rule);
+globalStyleWithPseudos('h4', title_large_rule);
 globalStyleWithPseudos('h5', titleMediumRule);
-globalStyleWithPseudos('h6', titleSmallRule);
+globalStyleWithPseudos('h6', title_small_rule);
 
-globalStyleWithPseudos('p', bodyLargeRule);
+globalStyleWithPseudos('p', body_large_rule);

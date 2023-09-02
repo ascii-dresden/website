@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { border_radius } from 'src/styles/border.css.ts';
+import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';
 
@@ -36,6 +36,13 @@ export const card = style({
 	borderRadius: border_radius,
 });
 
+export const hr = style({
+	marginInline: `calc(-1 * ${spacing['3']})`,
+	borderTopWidth: border_width,
+	borderTopStyle: border_style,
+	borderTopColor: colors.milk,
+});
+
 export const dl = style({
 	display: 'grid',
 	gap: spacing['2'],
@@ -46,5 +53,13 @@ export const dt = style({
 });
 
 export const dd = style({
-	marginBottom: spacing['2'],
+	selectors: {
+		'&:not(:last-child)': {
+			marginBottom: spacing['2'],
+		},
+	},
+});
+
+export const footnote = style({
+	marginLeft: spacing['3'],
 });

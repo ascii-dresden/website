@@ -1,9 +1,9 @@
 ---
 import Divider from 'src/components/divider.astro';
 import { colors } from 'src/styles/colors.css.ts';
-import { body_large } from 'src/styles/atomic/fonts.css.ts';
+import { body_large, body_medium, body_small } from 'src/styles/atomic/fonts.css.ts';
 
-import { business_hours, card, dl, dt, dd, head } from './business_hours.css.ts';
+import { business_hours, card, hr, dl, dt, dd, head, footnote } from './business_hours.css.ts';
 ---
 
 <section class={business_hours}>
@@ -18,8 +18,14 @@ import { business_hours, card, dl, dt, dd, head } from './business_hours.css.ts'
 			</dd>
 			<dt class:list={[body_large, dt]}>Freitag</dt>
 			<dd class:list={[body_large, dd]}>
-				<time datetime="9:00">9:00 Uhr</time> bis <time datetime="17:00">17:00 Uhr</time>
+				<time datetime="9:00">9:00 Uhr</time> bis <time datetime="15:00">15:00 Uhr</time>
 			</dd>
+			<dt class:list={[body_large, dt]}>Wochenende</dt>
+			<dd class:list={[body_large, dd]}>Geschlossen</dd>
 		</dl>
+		<hr class={hr} />
+		<h6>Vorlesungsfreie Zeit</h6>
+		<p>It's open when it's open</p>
 	</div>
+	<p class:list={[body_small, footnote]}>Öffnungszeiten können abweichen</p>
 </section>

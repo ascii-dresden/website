@@ -10,10 +10,11 @@ export const footer = style({
 
 	position: 'relative',
 
-	paddingBlock: spacing['4'],
 	paddingInline: spacing['2'],
+	paddingTop: spacing['4'],
+	paddingBottom: spacing['3'],
 
-	backgroundColor: colors.milk,
+	backgroundColor: colors.creme,
 	color: colors.espresso,
 
 	selectors: {
@@ -30,17 +31,20 @@ export const text_link = style({
 
 export const tree = style({
 	display: 'grid',
+	gridTemplateColumns: '1fr 1fr',
 	gap: spacing['3'],
 });
 
-export const sub_tree = style({
-	display: 'grid',
-	justifyItems: 'start',
+export const sub_tree = style({});
 
+globalStyle(`${sub_tree} > ul`, {
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'start',
 	gap: spacing['1'],
 });
 
-globalStyle(`${sub_tree} > li > p, ${sub_tree} > li > ${text_link}`, {
+globalStyle(`${sub_tree} > ul > li > p, ${sub_tree} > ul > li > ${text_link}`, {
 	paddingTop: spacing['1'],
 	paddingBottom: spacing['1'],
 
@@ -49,20 +53,39 @@ globalStyle(`${sub_tree} > li > p, ${sub_tree} > li > ${text_link}`, {
 	borderBlockColor: 'transparent',
 });
 
-globalStyle(`${sub_tree} > li > ${text_link}:hover`, {
+globalStyle(`${sub_tree} > ul > li > ${text_link}:hover`, {
 	borderBottomColor: colors.espresso,
 });
 
-export const contact = style([sub_tree, {}]);
+export const contact = style([
+	sub_tree,
+	{
+		gridColumn: '1 / 3',
+	},
+]);
 
-export const location = style([sub_tree, {}]);
+export const location = style([
+	sub_tree,
+	{
+		gridColumn: '1 / 3',
+	},
+]);
 
 export const legal = style([sub_tree, {}]);
 
-export const social = style([
-	sub_tree,
-	{
-		display: 'flex',
-		gap: spacing['1'],
-	},
-]);
+export const social = style([sub_tree]);
+
+globalStyle(`${social} > ul`, {
+	display: 'flex',
+	flexDirection: 'row',
+	gap: spacing['1'],
+});
+
+export const copyright = style({
+	gridColumn: '1 / 3',
+
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
+	gap: spacing['1'],
+});
