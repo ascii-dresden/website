@@ -23,8 +23,9 @@ export const status = style({
 
 	selectors: {
 		[dark()]: {
+			color: colors.black,
 			borderColor: colors.creme,
-			boxShadow: `inset 0 0 0 ${border_width}px ${colors.espresso}`,
+			boxShadow: `inset 0 0 0 ${border_width}px ${colors.black}`,
 		},
 	},
 });

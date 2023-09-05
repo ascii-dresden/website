@@ -63,13 +63,13 @@ export const card = style({
 
 	selectors: {
 		[dark()]: {
-			color: colors.espresso,
+			color: colors.black,
 			backgroundColor: colors.creme,
 			backgroundBlendMode: 'multiply',
 			borderStyle: border_style,
 			borderWidth: border_width,
 			borderColor: colors.creme,
-			boxShadow: `inset 0 0 0 ${border_width}px ${colors.espresso}`,
+			boxShadow: `inset 0 0 0 ${border_width}px ${colors.black}`,
 		},
 	},
 });
@@ -82,7 +82,7 @@ export const hr = style({
 
 	selectors: {
 		[dark()]: {
-			borderTopColor: colors.espresso,
+			borderTopColor: colors.black,
 		},
 	},
 });
