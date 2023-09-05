@@ -142,6 +142,8 @@ export const date = style({
 
 	textAlign: 'center',
 	padding: spacing['2'],
+	paddingBottom: `calc(${spacing['2']} + ${border_width}px)`,
+	paddingLeft: `calc(${spacing['2']} + ${border_width}px)`,
 
 	color: colors.light_teal,
 
@@ -151,6 +153,10 @@ export const date = style({
 
 	selectors: {
 		[dark()]: {
+			marginBottom: border_width,
+			marginLeft: border_width,
+			padding: spacing['2'],
+
 			color: colors.teal,
 			borderTopColor: colors.teal,
 		},

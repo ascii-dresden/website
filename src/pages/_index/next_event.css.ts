@@ -140,6 +140,8 @@ export const card_date = style({
 
 	textAlign: 'center',
 	padding: spacing['2'],
+	paddingBottom: `calc(${spacing['2']} + ${border_width}px)`,
+	paddingRight: `calc(${spacing['2']} + ${border_width}px)`,
 
 	color: colors.milk,
 
@@ -149,6 +151,10 @@ export const card_date = style({
 
 	selectors: {
 		[dark()]: {
+			padding: spacing['2'],
+			marginBottom: border_width,
+			marginRight: border_width,
+
 			color: colors.espresso,
 			borderTopColor: colors.espresso,
 		},
