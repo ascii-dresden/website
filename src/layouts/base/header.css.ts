@@ -34,15 +34,16 @@ export const header = style([
 
 		selectors: {
 			[dark()]: {
-				backgroundColor: colors.espresso,
-				borderBottomColor: colors.milk,
+				backgroundColor: colors.black,
+				borderBottomColor: colors.creme,
 			},
 			[`&[${SETTLE}]`]: {
-				backgroundColor: colors.creme,
+				backgroundColor: 'transparent',
 				borderBottomColor: 'transparent',
 				boxShadow: 'none',
 			},
 			[dark(`&[${SETTLE}]`)]: {
+				backgroundColor: 'transparent',
 				borderBottomColor: 'transparent',
 			},
 		},

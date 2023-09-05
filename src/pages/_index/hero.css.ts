@@ -18,7 +18,7 @@ export const hero = style({
 
 	selectors: {
 		[dark()]: {
-			backgroundColor: colors.espresso,
+			backgroundColor: colors.black,
 			color: colors.creme,
 		},
 	},
@@ -37,7 +37,8 @@ export const hero_image = style({
 
 	selectors: {
 		[dark()]: {
-			borderColor: colors.creme,
+			borderColor: colors.black,
+			boxShadow: `0 0 0 ${border_width}px ${colors.creme}`,
 		},
 	},
 });
@@ -65,7 +66,8 @@ export const hero_summary = style({
 		[dark()]: {
 			backgroundColor: colors.espresso,
 			color: colors.creme,
-			borderColor: colors.creme,
+			borderColor: colors.black,
+			boxShadow: `0 0 0 ${border_width}px ${colors.espresso}`,
 		},
 	},
 });

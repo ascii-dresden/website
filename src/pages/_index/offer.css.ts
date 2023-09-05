@@ -17,7 +17,7 @@ export const divider = style({
 			vars: assignVars(divider_colors, {
 				from: colors.espresso,
 				to: colors.teal,
-				stroke: colors.milk,
+				stroke: colors.black,
 			}),
 		},
 	},
@@ -73,10 +73,16 @@ export const angebot = style({
 		[dark('&::before')]: {
 			backgroundColor: colors.light_teal,
 			backgroundBlendMode: 'multiply',
+			boxShadow: `inset 0 0 0 ${border_width}px ${colors.teal}`,
+			borderWidth: border_width,
+			borderStyle: border_style,
+			borderColor: colors.light_teal,
 		},
 		[dark('&::after')]: {
 			borderTopColor: colors.teal,
 			borderLeftColor: colors.teal,
+			marginRight: border_width,
+			marginBottom: border_width,
 		},
 	},
 });
@@ -173,7 +179,11 @@ globalStyle(`${image} img`, {
 });
 
 globalStyle(dark(`${image} img`), {
-	borderColor: colors.light_teal,
+	borderColor: colors.teal,
+	boxShadow: [
+		`0 0 0 ${border_width}px ${colors.light_teal}`,
+		`0 0 ${spacing['1']} 0 ${colors.black}`,
+	].join(','),
 });
 
 export const button_more = style({

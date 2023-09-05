@@ -15,9 +15,9 @@ export const divider = style({
 	selectors: {
 		[dark()]: {
 			vars: assignVars(divider_colors, {
-				from: colors.espresso,
+				from: colors.black,
 				to: colors.espresso,
-				stroke: colors.milk,
+				stroke: colors.espresso,
 			}),
 		},
 	},
@@ -71,10 +71,16 @@ export const next_event = style({
 		[dark('&::before')]: {
 			backgroundColor: colors.creme,
 			backgroundBlendMode: 'multiply',
+			boxShadow: `inset 0 0 0 ${border_width}px ${colors.espresso}`,
+			borderWidth: border_width,
+			borderStyle: border_style,
+			borderColor: colors.creme,
 		},
 		[dark('&::after')]: {
 			borderTopColor: colors.espresso,
 			borderRightColor: colors.espresso,
+			marginLeft: border_width,
+			marginBottom: border_width,
 		},
 	},
 });
@@ -171,7 +177,11 @@ globalStyle(`${image} img`, {
 });
 
 globalStyle(dark(`${image} img`), {
-	borderColor: colors.creme,
+	borderColor: colors.espresso,
+	boxShadow: [
+		`0 0 0 ${border_width}px ${colors.creme}`,
+		`0 0 ${spacing['1']} 0 ${colors.black}`,
+	].join(','),
 });
 
 export const button_more = style({

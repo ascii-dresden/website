@@ -17,7 +17,7 @@ export const divider = style({
 			vars: assignVars(divider_colors, {
 				from: colors.teal,
 				to: colors.espresso,
-				stroke: colors.milk,
+				stroke: colors.black,
 			}),
 		},
 	},
@@ -56,11 +56,13 @@ export const become_member = style({
 		},
 
 		[dark('&::before')]: {
-			borderStyle: 'none',
 			backgroundColor: colors.creme,
 			backgroundImage: `url(src/assets/grain.svg)`,
 			backgroundBlendMode: 'multiply',
 			backgroundSize: '256px',
+
+			borderColor: colors.creme,
+			boxShadow: `inset 0 0 0 ${border_width}px ${colors.black}`,
 		},
 	},
 });

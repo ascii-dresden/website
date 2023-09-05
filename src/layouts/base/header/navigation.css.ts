@@ -31,7 +31,7 @@ export const navigation = style([
 				display: 'grid',
 				gridTemplateColumns: `1fr max-content`,
 				gridTemplateRows: `${spacing['4']} 1fr`,
-				gridTemplateAreas: `"button button" "links links" "socials theme"`,
+				gridTemplateAreas: `". button" "links links" "socials theme"`,
 
 				backgroundColor: colors.milk,
 				color: colors.espresso,
@@ -57,10 +57,10 @@ export const navigation = style([
 
 export const navigation_button = style({
 	gridArea: 'button',
+
 	aspectRatio: '1',
 	display: 'grid',
 	placeItems: 'center',
-	justifySelf: 'end',
 
 	transitionProperty: 'transform',
 	transitionDuration: durations.medium,
@@ -130,7 +130,8 @@ export const navigation_link_label = style({
 			lineHeight: '2em',
 		},
 		...enumerate(5, (i) => [
-			`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${i + 1
+			`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${
+				i + 1
 			}) ${navigation_link} &`,
 			{
 				animationName: animation_link_label_in,

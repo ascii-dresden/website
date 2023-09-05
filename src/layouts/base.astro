@@ -32,6 +32,7 @@ import Footer from './base/footer.astro';
 </html>
 
 <script>
-	import { loadTheme, setTheme } from 'src/theme.ts';
+	import { loadTheme, setTheme, onPreferenceChange } from 'src/theme.ts';
 	setTheme(loadTheme());
+	onPreferenceChange(setTheme);
 </script>

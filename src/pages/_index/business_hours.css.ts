@@ -16,8 +16,8 @@ export const divider = style({
 		[dark()]: {
 			vars: assignVars(divider_colors, {
 				from: colors.espresso,
-				to: colors.espresso,
-				stroke: colors.milk,
+				to: colors.black,
+				stroke: colors.espresso,
 			}),
 		},
 	},
@@ -38,7 +38,7 @@ export const business_hours = style({
 	selectors: {
 		[dark()]: {
 			color: colors.creme,
-			backgroundColor: colors.espresso,
+			backgroundColor: colors.black,
 		},
 	},
 });
@@ -66,6 +66,10 @@ export const card = style({
 			color: colors.espresso,
 			backgroundColor: colors.creme,
 			backgroundBlendMode: 'multiply',
+			borderStyle: border_style,
+			borderWidth: border_width,
+			borderColor: colors.creme,
+			boxShadow: `inset 0 0 0 ${border_width}px ${colors.espresso}`,
 		},
 	},
 });

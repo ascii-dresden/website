@@ -15,9 +15,9 @@ export const divider = style({
 	selectors: {
 		[dark()]: {
 			vars: assignVars(divider_colors, {
-				from: colors.espresso,
-				to: colors.espresso,
-				stroke: colors.milk,
+				from: colors.black,
+				to: colors.black,
+				stroke: colors.espresso,
 			}),
 		},
 	},
@@ -37,7 +37,7 @@ export const footer = style({
 
 	selectors: {
 		[dark()]: {
-			backgroundColor: colors.espresso,
+			backgroundColor: colors.black,
 			color: colors.creme,
 		},
 	},
@@ -73,6 +73,10 @@ globalStyle(`${sub_tree} > ul > li > p, ${sub_tree} > ul > li > ${text_link}`, {
 
 globalStyle(`${sub_tree} > ul > li > ${text_link}:hover`, {
 	borderBottomColor: colors.espresso,
+});
+
+globalStyle(dark(`${sub_tree} > ul > li > ${text_link}:hover`), {
+	borderBottomColor: colors.creme,
 });
 
 export const contact = style([

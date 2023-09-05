@@ -30,7 +30,7 @@
 	],
 	"dependencies": {
 		"@astrojs/solid-js": "^2.2.1",
-		"astro": "^2.10.12",
+		"astro": "^2.10.15",
 		"solid-js": "^1.7.11"
 	},
 	"devDependencies": {
@@ -38,22 +38,22 @@
 		"@fontsource-variable/jetbrains-mono": "^5.0.9",
 		"@fontsource-variable/nunito": "^5.0.9",
 		"@fontsource-variable/recursive": "^5.0.8",
-		"@fontsource/concert-one": "^5.0.8",
-		"@types/node": "^20.5.1",
-		"@typescript-eslint/eslint-plugin": "^6.4.0",
-		"@typescript-eslint/parser": "^6.4.0",
+		"@fontsource/concert-one": "^5.0.11",
+		"@types/node": "^20.5.9",
+		"@typescript-eslint/eslint-plugin": "^6.6.0",
+		"@typescript-eslint/parser": "^6.6.0",
 		"@vanilla-extract/css": "^1.13.0",
 		"@vanilla-extract/vite-plugin": "^3.9.0",
 		"csstype": "^3.1.2",
 		"deepmerge": "^4.3.1",
-		"eslint": "^8.47.0",
+		"eslint": "^8.48.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-astro": "^0.28.0",
 		"eslint-plugin-jsx-a11y": "^6.7.1",
 		"eslint-plugin-solid": "^0.13.0",
-		"prettier": "^3.0.2",
+		"prettier": "^3.0.3",
 		"prettier-plugin-astro": "^0.11.1",
 		"sass": "^1.66.1",
-		"typescript": "^5.1.6"
+		"typescript": "^5.2.2"
 	}
 }

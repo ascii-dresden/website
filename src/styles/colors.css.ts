@@ -6,6 +6,7 @@ export const colors = createGlobalTheme(':root', {
 	teal: '#133038',
 	light_teal: '#e1f1f4',
 	milk: '#ffffff',
+	black: '#000000',
 
 	green: '#26c485',
 	red: '#ff3366',

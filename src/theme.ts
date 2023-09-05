@@ -21,6 +21,13 @@ export function loadTheme(): Theme {
 	return 'light';
 }
 
+// TODO: Is it possible to make this work in pure CSS?
+export function onPreferenceChange(callback: (theme: Theme) => void) {
+	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
+		callback(matches ? 'dark' : 'light');
+	});
+}
+
 export function setTheme(theme: Theme) {
 	const html = document.documentElement;
 	html.setAttribute(THEME_ATTRIBUTE, theme);
