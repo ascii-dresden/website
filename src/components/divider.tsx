@@ -17,7 +17,7 @@ export type DividerProps = {
 	class: string;
 };
 
-export const Divider: Component<DividerProps> = function(props) {
+export const Divider: Component<DividerProps> = function (props) {
 	const id = createMemo(() => `pattern-${btoa(props.class)}`);
 
 	return (

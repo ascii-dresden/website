@@ -53,8 +53,5 @@ export const header = style([
 export const header_logo = style({
 	alignSelf: 'center',
 	height: '100%',
-
-	display: 'flex',
-
 	padding: spacing['2'],
 });

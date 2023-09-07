@@ -60,7 +60,7 @@ export const navigation_button = style({
 
 	aspectRatio: '1',
 	display: 'grid',
-	placeItems: 'center',
+	placeContent: 'center',
 
 	transitionProperty: 'transform',
 	transitionDuration: durations.medium,

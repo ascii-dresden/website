@@ -2,9 +2,10 @@
 
 import { Component } from 'solid-js';
 
-export const SvgInstagram: Component = function() {
+export const SvgInstagram: Component = function () {
 	return (
 		<svg
+			version="1.1"
 			xmlns="http://www.w3.org/2000/svg"
 			width="32"
 			height="32"
@@ -23,9 +24,10 @@ export const SvgInstagram: Component = function() {
 	);
 };
 
-export const SvgGithub: Component = function() {
+export const SvgGithub: Component = function () {
 	return (
 		<svg
+			version="1.1"
 			xmlns="http://www.w3.org/2000/svg"
 			width="32"
 			height="32"

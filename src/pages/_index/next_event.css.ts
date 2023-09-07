@@ -44,9 +44,8 @@ export const next_event = style({
 		gridRow: '2 / 5',
 
 		backgroundColor: colors.espresso,
-		backgroundImage: `url(src/assets/grain.svg)`,
+		backgroundImage: 'url("src/assets/grain.svg")',
 		backgroundBlendMode: 'soft-light',
-		backgroundSize: '256px',
 
 		borderRadius: border_radius,
 	},

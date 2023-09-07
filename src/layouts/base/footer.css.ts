@@ -86,13 +86,6 @@ export const contact = style([
 	},
 ]);
 
-export const location = style([
-	sub_tree,
-	{
-		gridColumn: '1 / 3',
-	},
-]);
-
 export const legal = style([sub_tree, {}]);
 
 export const social = style([sub_tree]);

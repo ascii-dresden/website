@@ -57,9 +57,8 @@ export const become_member = style({
 
 		[dark('&::before')]: {
 			backgroundColor: colors.creme,
-			backgroundImage: `url(src/assets/grain.svg)`,
+			backgroundImage: 'url("src/assets/grain.svg")',
 			backgroundBlendMode: 'multiply',
-			backgroundSize: '256px',
 
 			borderColor: colors.creme,
 			boxShadow: `inset 0 0 0 ${border_width}px ${colors.black}`,
@@ -105,7 +104,6 @@ export const image = style({
 
 globalStyle(`${image} svg`, {
 	flex: '1 0 0',
-	height: 0,
 	width: 'auto',
 
 	filter: `drop-shadow(0 1px 2px ${colors.espresso})`,

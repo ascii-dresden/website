@@ -27,7 +27,7 @@ const ROUTES = [
 	{ name: 'öffnung', path: '/öffnung' },
 ] as const;
 
-export const Navigation: Component = function() {
+export const Navigation: Component = function () {
 	let dialog: HTMLDialogElement;
 
 	function open() {

@@ -7,14 +7,14 @@ import { SETTLE, header, header_logo } from './header.css.ts';
 import { Navigation } from './header/navigation.tsx';
 import { Status } from './header/status.tsx';
 
-export const Header: Component = function() {
+export const Header: Component = function () {
 	const [settle, setSettle] = createSignal(false);
 
 	onMount(() => {
 		const html = document.documentElement;
-		setSettle(html.scrollTop === 0);
+		setSettle(html.scrollTop <= 0);
 		document.addEventListener('scroll', () => {
-			setSettle(html.scrollTop === 0);
+			setSettle(html.scrollTop <= 0);
 		});
 	});
 
