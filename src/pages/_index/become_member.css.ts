@@ -57,7 +57,7 @@ export const become_member = style({
 
 		[dark('&::before')]: {
 			backgroundColor: colors.creme,
-			backgroundImage: 'url("src/assets/grain.svg")',
+			backgroundImage: `url("../../assets/grain.svg")`,
 			backgroundBlendMode: 'multiply',
 
 			borderColor: colors.creme,

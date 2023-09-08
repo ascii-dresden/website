@@ -44,7 +44,7 @@ export const angebot = style({
 		gridRow: '2 / 5',
 
 		backgroundColor: colors.teal,
-		backgroundImage: 'url("src/assets/grain.svg")',
+		backgroundImage: 'url("../../assets/grain.svg")',
 		backgroundBlendMode: 'soft-light',
 
 		borderRadius: border_radius,
