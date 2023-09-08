@@ -45,6 +45,7 @@ export const next_event = style({
 
 		backgroundColor: colors.espresso,
 		backgroundImage: 'url("../../assets/grain.svg")',
+		backgroundSize: '256px',
 		backgroundBlendMode: 'soft-light',
 
 		borderRadius: border_radius,

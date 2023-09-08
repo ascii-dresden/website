@@ -45,6 +45,7 @@ export const angebot = style({
 
 		backgroundColor: colors.teal,
 		backgroundImage: 'url("../../assets/grain.svg")',
+		backgroundSize: '256px',
 		backgroundBlendMode: 'soft-light',
 
 		borderRadius: border_radius,

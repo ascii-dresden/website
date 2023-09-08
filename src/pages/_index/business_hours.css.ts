@@ -56,6 +56,7 @@ export const card = style({
 	color: colors.milk,
 	backgroundColor: colors.espresso,
 	backgroundImage: 'url("../../assets/grain.svg")',
+	backgroundSize: '256px',
 	backgroundBlendMode: 'soft-light',
 
 	borderRadius: border_radius,

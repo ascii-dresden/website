@@ -58,7 +58,7 @@ export const sub_tree = style({});
 globalStyle(`${sub_tree} > ul`, {
 	display: 'flex',
 	flexDirection: 'column',
-	alignItems: 'start',
+	alignItems: 'flex-start',
 	gap: spacing['1'],
 });
 
