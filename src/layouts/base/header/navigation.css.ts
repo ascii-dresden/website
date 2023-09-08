@@ -1,4 +1,4 @@
-import { keyframes, style } from '@vanilla-extract/css';
+import { globalStyle, keyframes, style } from '@vanilla-extract/css';
 
 import { colors } from 'src/styles/colors.css.ts';
 import { durations, ease } from 'src/styles/motion.css.ts';
@@ -20,6 +20,7 @@ const animation_out = keyframes({
 
 export const navigation = style([
 	{
+		willChange: 'clip-path',
 		'::backdrop': {
 			backgroundColor: 'transparent',
 		},
@@ -61,13 +62,17 @@ export const navigation_button = style({
 	aspectRatio: '1',
 	display: 'grid',
 	placeContent: 'center',
+});
 
-	transitionProperty: 'transform',
+globalStyle(`${navigation_button} > svg`, {
+	willChange: 'rotate',
+	transitionProperty: 'rotate',
 	transitionDuration: durations.medium,
 	transitionTimingFunction: ease.standard,
-	':hover': {
-		transform: 'rotate(180deg)',
-	},
+});
+
+globalStyle(`${navigation_button}:hover > svg`, {
+	rotate: '180deg',
 });
 
 export const navigation_links = style({
@@ -91,6 +96,7 @@ export const navigation_link = style({
 	textAlign: 'end',
 	borderBottomWidth: 2,
 	borderBottomColor: colors.espresso,
+	willChange: 'clip-path',
 	selectors: {
 		[dark()]: {
 			borderBottomColor: colors.creme,
@@ -110,11 +116,13 @@ export const navigation_link = style({
 
 const animation_link_label_in = keyframes({
 	'0%': {
-		transform: 'translateY(100%)',
+		translate: '0 100%',
+		// transform: 'translateY(100%)',
 		clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
 	},
 	'100%': {
-		transform: 'translateY(0%)',
+		translate: '0 0',
+		// transform: 'translateY(0%)',
 		clipPath: 'polygon(0 -100%, 100% -100%, 100% 200%, 0 200%)',
 	},
 });
@@ -123,6 +131,7 @@ export const navigation_link_label = style({
 	transitionProperty: 'font-size, font-weight, line-height',
 	transitionDuration: durations.short,
 	transitionTimingFunction: ease.standard,
+	willChange: 'translate, clip-path',
 	selectors: {
 		[`${navigation_link}:hover &`]: {
 			fontSize: '2rem',
@@ -130,8 +139,7 @@ export const navigation_link_label = style({
 			lineHeight: '2em',
 		},
 		...enumerate(5, (i) => [
-			`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${
-				i + 1
+			`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${i + 1
 			}) ${navigation_link} &`,
 			{
 				animationName: animation_link_label_in,
