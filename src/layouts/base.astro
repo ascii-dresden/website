@@ -1,0 +1,38 @@
+---
+import '@fontsource/concert-one';
+import '@fontsource-variable/jetbrains-mono';
+
+import 'src/styles/global/mod.css.ts';
+
+import { main, body } from './base.css.ts';
+
+import { Header } from './base/header.tsx';
+import Footer from './base/footer.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ascii</title>
+		<!-- TODO: self-host -->
+		<link
+			href="https://api.fontshare.com/v2/css?f[]=pilcrow-rounded@1&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class={body}>
+		<Header client:load />
+		<main class={main}>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<script>
+	import { loadTheme, setTheme, onPreferenceChange } from 'src/theme.ts';
+	setTheme(loadTheme());
+	onPreferenceChange(setTheme);
+</script>

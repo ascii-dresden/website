@@ -1,0 +1,23 @@
+{
+	"useTabs": true,
+	"singleQuote": true,
+	"trailingComma": "es5",
+	"printWidth": 100,
+	"plugins": ["prettier-plugin-astro"],
+	"proseWrap": "always",
+	"overrides": [
+		{
+			"files": ["*.yml", "*.yaml"],
+			"options": {
+				"useTabs": false,
+				"tabWidth": 4
+			}
+		},
+		{
+			"files": "*.svg",
+			"options": {
+				"parser": "html"
+			}
+		}
+	]
+}

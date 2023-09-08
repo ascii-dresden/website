@@ -1,0 +1,40 @@
+---
+import { Divider } from 'src/components/divider.tsx';
+import { body_large, body_small } from 'src/styles/atomic/fonts.css.ts';
+
+import {
+	divider,
+	business_hours,
+	card,
+	hr,
+	dl,
+	dt,
+	dd,
+	head,
+	footnote,
+} from './business_hours.css.ts';
+---
+
+<section class={business_hours}>
+	<Divider class={divider} />
+	<h2 class={head}>Öffnungszeiten</h2>
+	<div class={card}>
+		<h6>Während der Vorlesungszeit</h6>
+		<dl class={dl}>
+			<dt class:list={[body_large, dt]}>Montag bis Donnerstag</dt>
+			<dd class:list={[body_large, dd]}>
+				<time datetime="9:00">9:00 Uhr</time> bis <time datetime="17:00">17:00 Uhr</time>
+			</dd>
+			<dt class:list={[body_large, dt]}>Freitag</dt>
+			<dd class:list={[body_large, dd]}>
+				<time datetime="9:00">9:00 Uhr</time> bis <time datetime="15:00">15:00 Uhr</time>
+			</dd>
+			<dt class:list={[body_large, dt]}>Wochenende</dt>
+			<dd class:list={[body_large, dd]}>Geschlossen</dd>
+		</dl>
+		<hr class={hr} />
+		<h6>Vorlesungsfreie Zeit</h6>
+		<p>It's open when it's open</p>
+	</div>
+	<p class:list={[body_small, footnote]}>Öffnungszeiten können abweichen</p>
+</section>
