@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 import asset_img_cafe from 'src/assets/ascii_hero.jpg';
 import { Divider } from 'src/components/divider.tsx';
 
@@ -12,7 +14,7 @@ import { divider, angebot, button_more, head, image, title, summary, date } from
 	<p class={summary}>Wostok Wostok Wostok Wostok</p>
 	<p class={date}>Oktober 2023</p>
 	<div class={image}>
-		<img src={asset_img_cafe} alt="Event" />
+		<Image src={asset_img_cafe} alt="Angebot" />
 	</div>
 	<a href="/angebot" class={button_more}>
 		<p>Mehr...</p>

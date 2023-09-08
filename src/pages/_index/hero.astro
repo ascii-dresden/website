@@ -1,11 +1,13 @@
 ---
+import { Image } from 'astro:assets';
+
 import asset_img_cafe from 'src/assets/ascii_hero.jpg';
 
 import { hero, hero_image, hero_summary } from './hero.css.ts';
 ---
 
 <section class={hero}>
-	<img class={hero_image} src={asset_img_cafe} alt="ascii Theke" />
+	<Image class={hero_image} src={asset_img_cafe} alt="ascii Theke" />
 	<div class={hero_summary}>
 		<h2>Studentisches Café der Informatik Fakultät der TUD</h2>
 		<p>

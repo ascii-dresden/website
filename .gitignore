@@ -23,6 +23,10 @@ pnpm-debug.log*
 # local environment variables
 *.local
 
+# certificates
+*.key
+*.pem
+
 # macOS-specific files
 .DS_Store
 

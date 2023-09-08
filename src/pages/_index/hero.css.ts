@@ -26,6 +26,7 @@ export const hero = style({
 
 export const hero_image = style({
 	objectFit: 'cover',
+	width: 'auto',
 	aspectRatio: '1.5',
 	marginInline: spacing['2'],
 	zIndex: 1,

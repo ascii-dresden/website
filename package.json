@@ -6,6 +6,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "astro dev",
+		"dev:https": "cross-env HTTPS=true astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
@@ -44,6 +45,7 @@
 		"@typescript-eslint/parser": "^6.6.0",
 		"@vanilla-extract/css": "^1.13.0",
 		"@vanilla-extract/vite-plugin": "^3.9.0",
+		"cross-env": "^7.0.3",
 		"csstype": "^3.1.2",
 		"deepmerge": "^4.3.1",
 		"eslint": "^8.48.0",
