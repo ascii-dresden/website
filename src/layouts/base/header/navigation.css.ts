@@ -20,7 +20,6 @@ const animation_out = keyframes({
 
 export const navigation = style([
 	{
-		willChange: 'clip-path',
 		'::backdrop': {
 			backgroundColor: 'transparent',
 		},
@@ -45,12 +44,14 @@ export const navigation = style([
 				animationName: animation_in,
 				animationDuration: durations.long,
 				animationTimingFunction: ease.standard,
+				willChange: 'clip-path',
 			},
 			[`&[${ANIMATION_OUT_ACTIVE}]`]: {
 				animationName: animation_out,
 				animationDuration: durations.long,
 				animationTimingFunction: ease.standard,
 				pointerEvents: 'none',
+				willChange: 'clip-path',
 			},
 		},
 	},
@@ -65,13 +66,13 @@ export const navigation_button = style({
 });
 
 globalStyle(`${navigation_button} > svg`, {
-	willChange: 'rotate',
 	transitionProperty: 'rotate',
 	transitionDuration: durations.medium,
 	transitionTimingFunction: ease.standard,
 });
 
 globalStyle(`${navigation_button}:hover > svg`, {
+	willChange: 'rotate',
 	rotate: '180deg',
 });
 
@@ -96,7 +97,6 @@ export const navigation_link = style({
 	textAlign: 'end',
 	borderBottomWidth: 2,
 	borderBottomColor: colors.espresso,
-	willChange: 'clip-path',
 	selectors: {
 		[dark()]: {
 			borderBottomColor: colors.creme,
@@ -109,6 +109,7 @@ export const navigation_link = style({
 				animationDuration: durations.long,
 				animationTimingFunction: ease.standard,
 				animationFillMode: 'both',
+				willChange: 'clip-path',
 			},
 		]),
 	},
@@ -131,15 +132,16 @@ export const navigation_link_label = style({
 	transitionProperty: 'font-size, font-weight, line-height',
 	transitionDuration: durations.short,
 	transitionTimingFunction: ease.standard,
-	willChange: 'translate, clip-path',
 	selectors: {
 		[`${navigation_link}:hover &`]: {
 			fontSize: '2rem',
 			fontWeight: 300,
 			lineHeight: '2em',
+			willChange: 'font-size, line-height',
 		},
 		...enumerate(5, (i) => [
-			`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${i + 1
+			`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${
+				i + 1
 			}) ${navigation_link} &`,
 			{
 				animationName: animation_link_label_in,
@@ -147,6 +149,7 @@ export const navigation_link_label = style({
 				animationDuration: durations.medium,
 				animationTimingFunction: ease.standard,
 				animationFillMode: 'both',
+				willChange: 'translate, clip-path',
 			},
 		]),
 	},

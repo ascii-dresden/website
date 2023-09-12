@@ -9,11 +9,6 @@ import autoprefixer from 'autoprefixer';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// FIXME: Astro Dev doesn't support HTTPS yet
-// const isHttps = Boolean(process.env.HTTPS);
-// const key = readFileSync(resolve(__dirname, 'localhost-key.pem'));
-// const cert = readFileSync(resolve(__dirname, 'localhost.pem'));
-
 // https://astro.build/config
 export default defineConfig({
 	output: 'static',
@@ -37,6 +32,5 @@ export default defineConfig({
 				},
 			],
 		},
-		// server: isHttps ? { https: { key, cert } } : {},
 	},
 });

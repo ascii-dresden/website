@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
@@ -25,11 +25,9 @@ export const hero = style({
 });
 
 export const hero_image = style({
-	objectFit: 'cover',
-	width: 'auto',
 	aspectRatio: '1.5',
 	marginInline: spacing['2'],
-	zIndex: 1,
+	overflow: 'hidden',
 
 	borderRadius: border_radius,
 	borderWidth: border_width,
@@ -38,10 +36,22 @@ export const hero_image = style({
 
 	selectors: {
 		[dark()]: {
-			borderColor: colors.black,
-			boxShadow: `0 0 0 ${border_width}px ${colors.creme}`,
+			borderColor: colors.creme,
 		},
 	},
+});
+
+globalStyle(`${hero_image} img`, {
+	objectFit: 'cover',
+	width: '100%',
+	height: '100%',
+});
+
+globalStyle(dark(`${hero_image} img`), {
+	borderRadius: `calc(${border_radius} - ${border_width}px)`,
+	borderWidth: border_width,
+	borderStyle: border_style,
+	borderColor: colors.black,
 });
 
 export const hero_summary = style({
@@ -65,10 +75,13 @@ export const hero_summary = style({
 
 	selectors: {
 		[dark()]: {
+			marginLeft: `-${border_width}px`,
+			paddingLeft: `calc(${spacing['3']} + ${border_width}px)`,
+
 			backgroundColor: colors.espresso,
 			color: colors.creme,
-			borderColor: colors.black,
-			boxShadow: `0 0 0 ${border_width}px ${colors.espresso}`,
+			borderColor: colors.espresso,
+			boxShadow: `inset 0 0 0 ${border_width}px ${colors.black}`,
 		},
 	},
 });

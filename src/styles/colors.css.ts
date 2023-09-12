@@ -8,6 +8,6 @@ export const colors = createGlobalTheme(':root', {
 	milk: '#ffffff',
 	black: '#000000',
 
-	green: '#26c485',
-	red: '#ff3366',
+	green: '#00c381',
+	red: '#ff6c91',
 });

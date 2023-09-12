@@ -18,7 +18,7 @@ export const header = style([
 		justifyContent: 'space-between',
 		gap: spacing['1'],
 
-		backgroundColor: colors.milk,
+		backgroundColor: colors.creme,
 		color: colors.espresso,
 		boxShadow: `0 0 ${spacing['1']} 0 rgba(0, 0, 0, 0.5)`,
 
