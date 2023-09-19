@@ -90,16 +90,29 @@ export const navigation_link = style({
 	display: 'flex',
 	justifyContent: 'flex-end',
 	alignItems: 'center',
-	// TODO: fixed height conflicts with the hover effect
-	// height: spacing['4'],
-	paddingBlock: spacing['2'],
-	marginInline: spacing['2'],
 	textAlign: 'end',
+
+	height: spacing['4'],
+	marginInline: spacing['2'],
+
 	borderBottomWidth: 2,
 	borderBottomColor: colors.espresso,
+
+	transitionProperty: 'background-color, color',
+	transitionDuration: durations.short,
+	transitionTimingFunction: ease.standard,
+
 	selectors: {
+		'&:hover': {
+			backgroundColor: colors.espresso,
+			color: colors.milk,
+		},
 		[dark()]: {
 			borderBottomColor: colors.creme,
+		},
+		[dark('&:hover')]: {
+			backgroundColor: colors.creme,
+			color: colors.espresso,
 		},
 		...enumerate(5, (i) => [
 			`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${i + 1}) &`,
@@ -118,56 +131,40 @@ export const navigation_link = style({
 const animation_link_label_in = keyframes({
 	'0%': {
 		translate: '0 100%',
-		// transform: 'translateY(100%)',
 		clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
 	},
 	'100%': {
 		translate: '0 0',
-		// transform: 'translateY(0%)',
 		clipPath: 'polygon(0 -100%, 100% -100%, 100% 200%, 0 200%)',
 	},
 });
 
 export const navigation_link_label = style({
-	transitionProperty: 'font-size, font-weight, line-height',
-	transitionDuration: durations.short,
-	transitionTimingFunction: ease.standard,
-	selectors: {
-		[`${navigation_link}:hover &`]: {
-			fontSize: '2rem',
-			fontWeight: 300,
-			lineHeight: '2em',
-			willChange: 'font-size, line-height',
+	selectors: enumerate(5, (i) => [
+		`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${
+			i + 1
+		}) ${navigation_link} &`,
+		{
+			animationName: animation_link_label_in,
+			animationDelay: `${i * 0.1 + 0.25}s`,
+			animationDuration: durations.medium,
+			animationTimingFunction: ease.standard,
+			animationFillMode: 'both',
+			willChange: 'translate, clip-path',
 		},
-		...enumerate(5, (i) => [
-			`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${
-				i + 1
-			}) ${navigation_link} &`,
-			{
-				animationName: animation_link_label_in,
-				animationDelay: `${i * 0.1 + 0.25}s`,
-				animationDuration: durations.medium,
-				animationTimingFunction: ease.standard,
-				animationFillMode: 'both',
-				willChange: 'translate, clip-path',
-			},
-		]),
-	},
+	]),
 });
 
-export const navigation_link_label_hover = style({
+export const navigation_link_label_slash = style({
 	width: '0rem',
 	transitionProperty: 'font-size, font-weight, line-height, width',
 	transitionDuration: durations.medium,
 	transitionTimingFunction: ease.standard,
 	textAlign: 'center',
-	opacity: 0.3,
+	opacity: 0.5,
 	overflow: 'hidden',
 	selectors: {
 		[`${navigation_link}:hover &`]: {
-			fontSize: '2rem',
-			fontWeight: 300,
-			lineHeight: '2em',
 			width: spacing['3'],
 		},
 	},

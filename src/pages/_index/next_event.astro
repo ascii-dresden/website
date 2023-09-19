@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 
 import asset_img_cafe from 'src/assets/ascii_hero.jpg';
 import { Divider } from 'src/components/divider.tsx';
+import { ButtonMore } from 'src/components/button_more.tsx';
 
 import {
 	button_more,
@@ -28,7 +29,5 @@ import {
 	<div class={image}>
 		<Image src={asset_img_cafe} alt="Event" />
 	</div>
-	<a href="/events" class={button_more}>
-		<p>Mehr...</p>
-	</a>
+	<ButtonMore client:load href="/events" class={button_more}>Events</ButtonMore>
 </section>

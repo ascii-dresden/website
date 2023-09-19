@@ -115,8 +115,8 @@ export const button_more = style({
 	gridRow: '4 / 5',
 	alignSelf: 'start',
 
-	padding: spacing['2'],
-	textAlign: 'center',
+	// HACK: The animation might change the size of the button
+	minWidth: 120,
 
 	color: colors.espresso,
 
@@ -127,9 +127,17 @@ export const button_more = style({
 	borderTopLeftRadius: 0,
 
 	selectors: {
+		['&:hover']: {
+			color: colors.creme,
+			backgroundColor: colors.espresso,
+		},
 		[dark()]: {
 			color: colors.creme,
 			borderColor: colors.creme,
+		},
+		[dark('&:hover')]: {
+			color: colors.espresso,
+			backgroundColor: colors.creme,
 		},
 	},
 });

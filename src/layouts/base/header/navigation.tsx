@@ -12,7 +12,7 @@ import {
 	navigation_button,
 	navigation_link,
 	navigation_link_label,
-	navigation_link_label_hover,
+	navigation_link_label_slash,
 	navigation_links,
 	navigation_social,
 	navigation_socials,
@@ -62,7 +62,7 @@ export const Navigation: Component = function () {
 								<li>
 									<a href={path} class={navigation_link}>
 										<p class={navigation_link_label}>{name}</p>
-										<p class={navigation_link_label_hover}>/</p>
+										<p class={navigation_link_label_slash}>/</p>
 									</a>
 								</li>
 							)}

@@ -19,11 +19,7 @@ export default defineConfig({
 				plugins: [autoprefixer()],
 			},
 		},
-		plugins: [
-			vanillaExtractPlugin({
-				emitCssInSsr: true,
-			}),
-		],
+		plugins: [vanillaExtractPlugin()],
 		resolve: {
 			alias: [
 				{

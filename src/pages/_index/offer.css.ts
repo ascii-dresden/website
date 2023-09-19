@@ -3,6 +3,7 @@ import { assignVars, globalStyle, style } from '@vanilla-extract/css';
 import { divider_colors } from 'src/components/divider.css.ts';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
+import { durations, ease } from 'src/styles/motion.css';
 import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 
@@ -197,21 +198,27 @@ export const button_more = style({
 	gridRow: '5 / 6',
 	alignSelf: 'start',
 
-	padding: spacing['2'],
-	textAlign: 'center',
-
 	color: colors.teal,
 
-	borderRadius: border_radius,
-	borderTopRightRadius: 0,
 	borderStyle: border_style,
 	borderWidth: border_width,
 	borderColor: colors.teal,
+	borderTopRightRadius: 0,
+
+	transitionProperty: 'color, background-color',
 
 	selectors: {
+		'&:hover, &:focus-visible': {
+			color: colors.light_teal,
+			backgroundColor: colors.teal,
+		},
 		[dark()]: {
 			color: colors.light_teal,
 			borderColor: colors.light_teal,
+		},
+		[dark('&:hover, &:focus-visible')]: {
+			color: colors.teal,
+			backgroundColor: colors.light_teal,
 		},
 	},
 });

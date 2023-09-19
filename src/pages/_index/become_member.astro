@@ -10,6 +10,7 @@ import {
 	head,
 	image,
 } from './become_member.css.ts';
+import { ButtonMore } from 'src/components/button_more';
 ---
 
 <section class={become_member}>
@@ -22,7 +23,5 @@ import {
 	<div class={image}>
 		<SvgSticker />
 	</div>
-	<a href="/events" class={button_more}>
-		<p>Mehr...</p>
-	</a>
+	<ButtonMore client:load href="/verein" class={button_more}>Mehr</ButtonMore>
 </section>

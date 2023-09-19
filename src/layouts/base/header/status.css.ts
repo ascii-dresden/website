@@ -1,13 +1,13 @@
 import { ComplexStyleRule, globalStyle, style, styleVariants } from '@vanilla-extract/css';
 
+import { business_hours } from 'src/components/business_hours.css.ts';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
+import { durations, ease } from 'src/styles/motion.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 
 import { Status } from './status.tsx';
-import { durations, ease } from 'src/styles/motion.css.ts';
-import { business_hours } from 'src/components/business_hours.css.ts';
 
 const status_base = style({
 	width: '100%',

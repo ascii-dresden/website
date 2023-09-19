@@ -195,21 +195,30 @@ export const button_more = style({
 	gridRow: '5 / 6',
 	alignSelf: 'start',
 
-	padding: spacing['2'],
-	textAlign: 'center',
+	// HACK: The animation might change the size of the button
+	minWidth: 136,
 
 	color: colors.espresso,
 
-	borderRadius: border_radius,
 	borderStyle: border_style,
 	borderWidth: border_width,
 	borderColor: colors.espresso,
 	borderTopLeftRadius: 0,
 
+	transitionProperty: 'color, background-color',
+
 	selectors: {
+		'&:hover, &:focus-visible': {
+			color: colors.milk,
+			backgroundColor: colors.espresso,
+		},
 		[dark()]: {
 			color: colors.creme,
 			borderColor: colors.creme,
+		},
+		[dark('&:hover, &:focus-visible')]: {
+			color: colors.espresso,
+			backgroundColor: colors.creme,
 		},
 	},
 });

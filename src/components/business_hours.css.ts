@@ -14,7 +14,7 @@ export const business_hours = style({
 
 	color: colors.milk,
 	backgroundColor: colors.espresso,
-	backgroundImage: 'url("../../assets/grain.svg")',
+	backgroundImage: 'url("../assets/grain.svg")',
 	backgroundSize: '256px',
 	backgroundBlendMode: 'soft-light',
 
