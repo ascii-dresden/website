@@ -16,18 +16,6 @@ const metrics_jetbrains_mono: FontMetrics = {
 	xWidthAvg: 600,
 };
 
-// const metrics_concert_one: FontMetrics = {
-// 	familyName: 'Concert One',
-// 	category: 'display',
-// 	capHeight: 1400, // 1470
-// 	ascent: 2005, // 2100
-// 	descent: 410, // 450
-// 	lineGap: 0,
-// 	unitsPerEm: 2048,
-// 	xHeight: 1004,
-// 	xWidthAvg: 930,
-// };
-
 const metrics_pilcrow_rounded: FontMetrics = {
 	familyName: 'Pilcrow Rounded',
 	category: 'sans-serif',

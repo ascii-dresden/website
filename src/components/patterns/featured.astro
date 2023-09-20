@@ -1,0 +1,55 @@
+---
+import { AnchorButton } from 'src/components/button.tsx';
+
+import {
+	featured,
+	featured_title,
+	featured_description,
+	featured_date,
+	featured_image,
+	featured_button,
+} from './featured.css.ts';
+
+type Props = {
+	class: string;
+	href?: string;
+	mirror?: boolean;
+	noImageBorder?: boolean;
+	outline?: boolean;
+};
+
+const href: string | undefined = Astro.props.href;
+const mirror: boolean = Astro.props.mirror ?? false;
+const noImageBorder: boolean = Astro.props.noImageBorder ?? false;
+const outline: boolean = Astro.props.outline ?? false;
+---
+
+<section class:list={[Astro.props.class, featured({ mirror, noImageBorder, outline })]}>
+	{
+		Astro.slots.has('title') && (
+			<h3 class={featured_title({ mirror })}>
+				<slot name="title" />
+			</h3>
+		)
+	}
+	<p class={featured_description({ mirror, noImageBorder })}>
+		<slot name="description" />
+	</p>
+	{
+		Astro.slots.has('date') && (
+			<p class={featured_date({ mirror })}>
+				<slot name="date" />
+			</p>
+		)
+	}
+	<div class={featured_image({ mirror, noImageBorder })}>
+		<slot name="image" />
+	</div>
+	{
+		href && (
+			<AnchorButton client:load {href} class={featured_button({ mirror, outline })}>
+				<slot name="button" />
+			</AnchorButton>
+		)
+	}
+</section>

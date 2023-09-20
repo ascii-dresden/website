@@ -22,7 +22,7 @@
 		"allowImportingTsExtensions": true,
 		"allowUnreachableCode": false,
 		"allowUnusedLabels": false,
-		"allowJs": false,
+		"allowJs": true,
 		// Solid specific settings
 		"jsx": "preserve",
 		"jsxImportSource": "solid-js",

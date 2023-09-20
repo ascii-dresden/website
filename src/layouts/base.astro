@@ -2,9 +2,10 @@
 import '@fontsource/concert-one';
 import '@fontsource-variable/jetbrains-mono';
 
+import { Divider } from 'src/components/divider.tsx';
 import 'src/styles/global/mod.css.ts';
 
-import { main, body } from './base.css.ts';
+import { main, body, divider } from './base.css.ts';
 import { Header } from './base/header.tsx';
 import Footer from './base/footer.astro';
 ---
@@ -26,6 +27,7 @@ import Footer from './base/footer.astro';
 		<main class={main}>
 			<slot />
 		</main>
+		<Divider class={divider} />
 		<Footer />
 	</body>
 </html>

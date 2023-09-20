@@ -1,6 +1,7 @@
-import { style } from '@vanilla-extract/css';
+import { assignVars, style } from '@vanilla-extract/css';
 
 import { colors } from 'src/styles/colors.css.ts';
+import { divider_colors } from 'src/components/divider.css';
 import { dark } from 'src/styles/themes.css.ts';
 
 export const body = style({
@@ -13,3 +14,20 @@ export const body = style({
 });
 
 export const main = style({});
+
+export const divider = style({
+	vars: assignVars(divider_colors, {
+		from: colors.milk,
+		to: colors.creme,
+		stroke: colors.espresso,
+	}),
+	selectors: {
+		[dark()]: {
+			vars: assignVars(divider_colors, {
+				from: colors.black,
+				to: colors.black,
+				stroke: colors.espresso,
+			}),
+		},
+	},
+});

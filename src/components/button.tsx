@@ -1,4 +1,4 @@
-import { ParentComponent, onMount } from 'solid-js';
+import { JSX, ParentComponent, onMount } from 'solid-js';
 
 import { SvgWaveArrowRight } from 'src/svg/arrows.tsx';
 
@@ -9,14 +9,11 @@ import {
 	button_more,
 	icon,
 	text,
-} from './button_more.css.ts';
+} from './button.css.ts';
 
-export type ButtonMoreProps = {
-	href: string;
-	class?: string;
-};
+export type AnchorButtonProps = JSX.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-export const ButtonMore: ParentComponent<ButtonMoreProps> = function (props) {
+export const AnchorButton: ParentComponent<AnchorButtonProps> = function (props) {
 	let ref: HTMLAnchorElement;
 
 	onMount(() => {
@@ -34,11 +31,7 @@ export const ButtonMore: ParentComponent<ButtonMoreProps> = function (props) {
 	});
 
 	return (
-		<a
-			ref={ref!}
-			href={props.href}
-			class={props.class ? `${props.class} ${button_more}` : button_more}
-		>
+		<a ref={ref!} {...props} class={props.class ? `${props.class} ${button_more}` : button_more}>
 			<div class={icon}>
 				<SvgWaveArrowRight />
 			</div>

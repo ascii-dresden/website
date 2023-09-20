@@ -1,6 +1,6 @@
 import { createThemeContract, style } from '@vanilla-extract/css';
 
-import { border_width } from 'src/styles/border.css';
+import { border_width } from 'src/styles/border.css.ts';
 
 export type DividerRule = {
 	from: string;
