@@ -1,4 +1,5 @@
-import { globalStyle, keyframes, style } from '@vanilla-extract/css';
+import { assignVars, globalStyle, keyframes, style } from '@vanilla-extract/css';
+import { vars_button } from 'src/components/button.css';
 
 import { colors } from 'src/styles/colors.css.ts';
 import { durations, ease } from 'src/styles/motion.css.ts';
@@ -20,25 +21,28 @@ const animation_out = keyframes({
 
 export const navigation = style([
 	{
+		height: '100%',
+		width: '100%',
+
+		gridTemplateColumns: `1fr ${spacing['4']} ${spacing['2']}`,
+		gridTemplateRows: `${spacing['4']} 1fr ${spacing['4']}`,
+		gridTemplateAreas: `". . toggle" "links links links" "socials theme theme"`,
+		paddingBottom: spacing['2'],
+
+		backgroundColor: colors.milk,
+		color: colors.espresso,
+
 		'::backdrop': {
 			backgroundColor: 'transparent',
 		},
+
 		selectors: {
-			'&[open]': {
-				height: '100%',
-				width: '100%',
-
-				display: 'grid',
-				gridTemplateColumns: `1fr max-content`,
-				gridTemplateRows: `${spacing['4']} 1fr`,
-				gridTemplateAreas: `". button" "links links" "socials theme"`,
-
-				backgroundColor: colors.milk,
-				color: colors.espresso,
-			},
-			[dark('&[open]')]: {
+			[dark()]: {
 				backgroundColor: colors.espresso,
 				color: colors.creme,
+			},
+			'&[open]': {
+				display: 'grid',
 			},
 			[`&[open]:not([${ANIMATION_OUT_ACTIVE}])`]: {
 				animationName: animation_in,
@@ -57,21 +61,22 @@ export const navigation = style([
 	},
 ]);
 
-export const navigation_button = style({
-	gridArea: 'button',
+export const navigation_toggle = style({
+	gridArea: 'toggle',
+	justifySelf: 'end',
 
 	aspectRatio: '1',
 	display: 'grid',
 	placeContent: 'center',
 });
 
-globalStyle(`${navigation_button} > svg`, {
+globalStyle(`${navigation_toggle} > svg`, {
 	transitionProperty: 'rotate',
 	transitionDuration: durations.medium,
 	transitionTimingFunction: ease.standard,
 });
 
-globalStyle(`${navigation_button}:hover > svg`, {
+globalStyle(`${navigation_toggle}:hover > svg`, {
 	willChange: 'rotate',
 	rotate: '180deg',
 });
@@ -170,20 +175,50 @@ export const navigation_link_label_slash = style({
 	},
 });
 
-export const navigation_theme = style({
-	gridArea: 'theme',
-	margin: spacing['2'],
+const navigation_button = style({
+	// override button.css.ts
+	height: '100%',
+	width: 'auto',
+	borderRadius: 0,
+
+	vars: assignVars(vars_button, {
+		backgroundColor: colors.milk,
+		color: colors.espresso,
+	}),
+	selectors: {
+		[dark()]: {
+			vars: assignVars(vars_button, {
+				backgroundColor: colors.espresso,
+				color: colors.creme,
+			}),
+		},
+	},
 });
+
+export const navigation_button_theme = style([
+	navigation_button,
+	{
+		gridArea: 'theme',
+		marginRight: spacing['2'],
+	},
+]);
 
 export const navigation_socials = style({
 	gridArea: 'socials',
 	display: 'flex',
-	gap: spacing['2'],
-	padding: spacing['2'],
+	paddingLeft: spacing['2'],
 });
 
-export const navigation_social = style({
-	display: 'grid',
-	aspectRatio: '1',
-	placeItems: 'center',
-});
+export const navigation_button_social = style([
+	navigation_button,
+	{
+		display: 'grid',
+		aspectRatio: '1',
+		placeItems: 'center',
+
+		// override button.css.ts
+		height: '100%',
+		width: 'auto',
+		borderRadius: 0,
+	},
+]);

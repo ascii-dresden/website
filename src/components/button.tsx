@@ -1,4 +1,4 @@
-import { JSX, ParentComponent, onMount } from 'solid-js';
+import { Component, JSX, ParentComponent, createMemo, onMount, splitProps } from 'solid-js';
 
 import { SvgWaveArrowRight } from 'src/svg/arrows.tsx';
 
@@ -6,14 +6,17 @@ import {
 	ANIMATION_OUT_ACTIVE,
 	animation_in,
 	animation_out,
-	button_more,
-	icon,
-	text,
+	anchor_button,
+	anchor_button_icon,
+	anchor_button_text,
+	icon_button,
 } from './button.css.ts';
 
 export type AnchorButtonProps = JSX.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const AnchorButton: ParentComponent<AnchorButtonProps> = function (props) {
+	const [childrenProps, anchorProps] = splitProps(props, ['children']);
+
 	let ref: HTMLAnchorElement;
 
 	onMount(() => {
@@ -31,11 +34,36 @@ export const AnchorButton: ParentComponent<AnchorButtonProps> = function (props)
 	});
 
 	return (
-		<a ref={ref!} {...props} class={props.class ? `${props.class} ${button_more}` : button_more}>
-			<div class={icon}>
+		<a
+			ref={ref!}
+			{...anchorProps}
+			class={anchorProps.class ? `${anchorProps.class} ${anchor_button}` : anchor_button}
+		>
+			<div class={anchor_button_icon}>
 				<SvgWaveArrowRight />
 			</div>
-			<p class={text}>{props.children}</p>
+			<p class={anchor_button_text}>{childrenProps.children}</p>
 		</a>
+	);
+};
+
+export type IconButtonProps =
+	| (JSX.ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined; children: JSX.Element })
+	| (JSX.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string; children: JSX.Element });
+
+export const IconButton: Component<IconButtonProps> = function (props) {
+	const clazz = createMemo(() => (props.class ? `${props.class} ${icon_button}` : icon_button));
+	return (
+		<>
+			{props.href !== undefined ? (
+				<a {...props} class={clazz()}>
+					{props.children}
+				</a>
+			) : (
+				<button {...props} class={clazz()}>
+					{props.children}
+				</button>
+			)}
+		</>
 	);
 };
