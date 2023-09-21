@@ -20,11 +20,6 @@ export const header = style([
 
 		backgroundColor: colors.creme,
 		color: colors.espresso,
-		boxShadow: `0 0 ${spacing['1']} 0 rgba(0, 0, 0, 0.5)`,
-
-		borderBottomStyle: border_style,
-		borderBottomWidth: border_width,
-		borderBottomColor: colors.espresso,
 
 		zIndex: 2,
 
@@ -35,16 +30,15 @@ export const header = style([
 		selectors: {
 			[dark()]: {
 				backgroundColor: colors.black,
+			},
+			[`&:not([${SETTLE}])`]: {
+				boxShadow: `0 0 ${spacing['1']} 0 rgba(0, 0, 0, 0.5)`,
+				borderBottomStyle: border_style,
+				borderBottomWidth: border_width,
+				borderBottomColor: colors.espresso,
+			},
+			[dark(`&:not([${SETTLE}])`)]: {
 				borderBottomColor: colors.creme,
-			},
-			[`&[${SETTLE}]`]: {
-				backgroundColor: 'transparent',
-				borderBottomColor: 'transparent',
-				boxShadow: 'none',
-			},
-			[dark(`&[${SETTLE}]`)]: {
-				backgroundColor: 'transparent',
-				borderBottomColor: 'transparent',
 			},
 		},
 	},

@@ -89,11 +89,14 @@ export const status_expand = style({
 	height: '100%',
 	width: '100%',
 	display: 'flex',
-	justifyContent: 'center',
 	alignItems: 'center',
+	paddingLeft: 2,
 
 	borderTopRightRadius: border_radius,
 	borderBottomRightRadius: border_radius,
+	borderLeftStyle: border_style,
+	borderLeftWidth: border_width,
+	borderLeftColor: colors.espresso,
 
 	transitionProperty: 'background-color, color',
 	transitionDuration: durations.short,
@@ -103,6 +106,12 @@ export const status_expand = style({
 		[`${status_base}:hover &`]: {
 			backgroundColor: colors.espresso,
 			color: colors.milk,
+		},
+		[dark()]: {
+			paddingLeft: 1,
+		},
+		[dark(`${status_base}:hover &`)]: {
+			color: colors.creme,
 		},
 	},
 });
@@ -127,4 +136,27 @@ export const status_collapse = style({
 	borderTopRightRadius: border_radius,
 	borderStyle: border_style,
 	borderWidth: border_width,
+
+	transitionProperty: 'background-color, color',
+	transitionDuration: durations.short,
+	transitionTimingFunction: ease.standard,
+
+	selectors: {
+		[`&:hover`]: {
+			backgroundColor: colors.milk,
+			color: colors.espresso,
+		},
+		[dark()]: {
+			marginTop: border_width,
+			marginRight: border_width,
+			color: colors.espresso,
+			borderColor: colors.espresso,
+			borderTopStyle: 'none',
+			borderRightStyle: 'none',
+		},
+		[dark('&:hover')]: {
+			backgroundColor: colors.espresso,
+			color: colors.creme,
+		},
+	},
 });
