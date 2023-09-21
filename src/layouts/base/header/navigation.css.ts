@@ -48,14 +48,14 @@ export const navigation = style([
 				animationName: animation_in,
 				animationDuration: durations.long,
 				animationTimingFunction: ease.standard,
-				// willChange: 'clip-path',
+				willChange: 'clip-path',
 			},
 			[`&[${ANIMATION_OUT_ACTIVE}]`]: {
 				animationName: animation_out,
 				animationDuration: durations.long,
 				animationTimingFunction: ease.standard,
 				pointerEvents: 'none',
-				// willChange: 'clip-path',
+				willChange: 'clip-path',
 			},
 		},
 	},
@@ -86,10 +86,10 @@ export const navigation_links = style({
 	flex: 1,
 });
 
-// const animation_link_in = keyframes({
-// 	'0%': { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' },
-// 	'100%': { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' },
-// });
+const animation_link_in = keyframes({
+	'0%': { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' },
+	'100%': { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' },
+});
 
 export const navigation_link = style({
 	display: 'flex',
@@ -119,45 +119,45 @@ export const navigation_link = style({
 			backgroundColor: colors.creme,
 			color: colors.espresso,
 		},
-		// ...enumerate(5, (i) => [
-		// 	`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${i + 1}) &`,
-		// 	{
-		// 		animationName: animation_link_in,
-		// 		animationDelay: `${i * 0.1}s`,
-		// 		animationDuration: durations.long,
-		// 		animationTimingFunction: ease.standard,
-		// 		animationFillMode: 'both',
-		// 		willChange: 'clip-path',
-		// 	},
-		// ]),
+		...enumerate(5, (i) => [
+			`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${i + 1}) &`,
+			{
+				animationName: animation_link_in,
+				animationDelay: `${i * 0.1}s`,
+				animationDuration: durations.long,
+				animationTimingFunction: ease.standard,
+				animationFillMode: 'both',
+				willChange: 'clip-path',
+			},
+		]),
 	},
 });
 
-// const animation_link_label_in = keyframes({
-// 	'0%': {
-// 		translate: '0 100%',
-// 		clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
-// 	},
-// 	'100%': {
-// 		translate: '0 0',
-// 		clipPath: 'polygon(0 -100%, 100% -100%, 100% 200%, 0 200%)',
-// 	},
-// });
+const animation_link_label_in = keyframes({
+	'0%': {
+		translate: '0 100%',
+		clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
+	},
+	'100%': {
+		translate: '0 0',
+		clipPath: 'polygon(0 -100%, 100% -100%, 100% 200%, 0 200%)',
+	},
+});
 
 export const navigation_link_label = style({
-	// selectors: enumerate(5, (i) => [
-	// 	`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${
-	// 		i + 1
-	// 	}) ${navigation_link} &`,
-	// 	{
-	// 		animationName: animation_link_label_in,
-	// 		animationDelay: `${i * 0.1 + 0.25}s`,
-	// 		animationDuration: durations.medium,
-	// 		animationTimingFunction: ease.standard,
-	// 		animationFillMode: 'both',
-	// 		willChange: 'translate, clip-path',
-	// 	},
-	// ]),
+	selectors: enumerate(5, (i) => [
+		`${navigation}[open]:not([${ANIMATION_OUT_ACTIVE}]) ul li:nth-child(${
+			i + 1
+		}) ${navigation_link} &`,
+		{
+			animationName: animation_link_label_in,
+			animationDelay: `${i * 0.1 + 0.25}s`,
+			animationDuration: durations.medium,
+			animationTimingFunction: ease.standard,
+			animationFillMode: 'both',
+			willChange: 'translate, clip-path',
+		},
+	]),
 });
 
 export const navigation_link_label_slash = style({
