@@ -1,10 +1,18 @@
+import { Collapsible } from '@kobalte/core';
 import { Accessor, Component, Match, Switch, createSignal, onMount } from 'solid-js';
 import { Output, enumType, object, safeParse, transform } from 'valibot';
 
 import { BusinessHours } from 'src/components/business_hours.tsx';
-import { SvgCollapse, SvgExpand } from 'src/svg/chevron.tsx';
+import { SvgExpand } from 'src/svg/chevron.tsx';
 
-import { status as _status, status_collapse, status_dialog, status_expand } from './status.css.ts';
+import {
+	STATUS,
+	status_root,
+	status_trigger,
+	status_content,
+	status_trigger_text as status_trigger_text,
+	status_trigger_icon,
+} from './status.css.ts';
 
 const STATUS_STREAM_URL = 'https://status.ascii.coffee/api/stream/status';
 
@@ -45,35 +53,24 @@ function useStatus(): Accessor<Status | undefined> {
 export const Status: Component = function () {
 	const status = useStatus();
 
-	let dialog: HTMLDialogElement;
-
-	function open() {
-		dialog.showModal();
-	}
-
-	function close() {
-		dialog.close();
-	}
-
 	return (
-		<>
-			<dialog class={status_dialog} ref={dialog!} onCancel={close}>
-				<button class={status_collapse} onClick={close}>
-					<SvgCollapse />
-				</button>
-				<BusinessHours />
-			</dialog>
-			<button class={_status[status() ?? 'fallback']} onClick={open}>
-				<p>
-					<Switch fallback="Öffnungszeiten">
-						<Match when={status() === 'on'}>Geöffnet</Match>
-						<Match when={status() === 'off'}>Geschlossen</Match>
-					</Switch>
-				</p>
-				<div class={status_expand}>
+		<Collapsible.Root class={status_root} {...{ [STATUS]: status() }}>
+			<Collapsible.Trigger class={status_trigger}>
+				<div class={status_trigger_text}>
+					<p>
+						<Switch fallback="Öffnungszeiten">
+							<Match when={status() === 'on'}>Geöffnet</Match>
+							<Match when={status() === 'off'}>Geschlossen</Match>
+						</Switch>
+					</p>
+				</div>
+				<div class={status_trigger_icon}>
 					<SvgExpand />
 				</div>
-			</button>
-		</>
+			</Collapsible.Trigger>
+			<Collapsible.Content class={status_content}>
+				<BusinessHours />
+			</Collapsible.Content>
+		</Collapsible.Root>
 	);
 };

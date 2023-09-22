@@ -14,12 +14,16 @@ export const header = style([
 		top: 0,
 		height: spacing['4'],
 
-		display: 'flex',
-		justifyContent: 'space-between',
-		gap: spacing['1'],
+		display: 'grid',
+		gridTemplateColumns: 'max-content 1fr max-content',
+		gridTemplateAreas: '"logo status toggle"',
 
 		backgroundColor: colors.creme,
 		color: colors.espresso,
+
+		borderBottomStyle: border_style,
+		borderBottomWidth: border_width,
+		borderBottomColor: 'trnasparent',
 
 		zIndex: 2,
 
@@ -33,8 +37,6 @@ export const header = style([
 			},
 			[`&:not([${SETTLE}])`]: {
 				boxShadow: `0 0 ${spacing['1']} 0 rgba(0, 0, 0, 0.5)`,
-				borderBottomStyle: border_style,
-				borderBottomWidth: border_width,
 				borderBottomColor: colors.espresso,
 			},
 			[dark(`&:not([${SETTLE}])`)]: {
@@ -45,7 +47,13 @@ export const header = style([
 ]);
 
 export const header_logo = style({
-	alignSelf: 'center',
+	gridArea: 'logo',
 	height: '100%',
 	padding: spacing['2'],
+});
+
+export const header_status = style({
+	gridArea: 'status',
+	height: `calc(${spacing['4']} - (2 * ${spacing['2']}))`,
+	alignSelf: 'center',
 });

@@ -8,6 +8,11 @@ import { dark } from 'src/styles/themes.css.ts';
 export const business_hours = style({
 	position: 'relative',
 	display: 'grid',
+	gap: border_width,
+});
+
+export const business_hours_section = style({
+	display: 'grid',
 	gap: spacing['3'],
 
 	padding: spacing['3'],

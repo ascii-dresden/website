@@ -12,7 +12,6 @@ export const hero = style({
 	flexDirection: 'column',
 
 	gap: spacing['2'],
-	paddingTop: spacing['2'],
 	paddingBottom: spacing['4'],
 
 	backgroundColor: colors.creme,

@@ -64,6 +64,7 @@ export const navigation = style([
 export const navigation_toggle = style({
 	gridArea: 'toggle',
 	justifySelf: 'end',
+	alignSelf: 'stretch',
 
 	aspectRatio: '1',
 	display: 'grid',

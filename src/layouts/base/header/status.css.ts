@@ -1,6 +1,6 @@
-import { ComplexStyleRule, globalStyle, style, styleVariants } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 
-import { business_hours } from 'src/components/business_hours.css.ts';
+import { business_hours_section } from 'src/components/business_hours.css.ts';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { durations, ease } from 'src/styles/motion.css.ts';
@@ -8,132 +8,62 @@ import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 
 import { Status } from './status.tsx';
+import { create_selector } from 'src/styles/util/create_selector.css.ts';
 
-const status_base = style({
-	width: '100%',
-	maxWidth: '16rem',
-	alignSelf: 'center',
-	height: spacing['3'],
+export const EXPANDED = 'data-expanded';
+const select_expanded = create_selector(`[${EXPANDED}]`);
 
+export const STATUS = 'data-status';
+const select_status = (status: Status, selector?: string) =>
+	create_selector(`[${STATUS}="${status}"]`)(selector);
+
+export const status_root = style({
+	minHeight: '100%',
 	display: 'grid',
-	gridTemplateColumns: `1fr ${spacing['3']}`,
-	paddingLeft: spacing['2'],
-	alignItems: 'center',
-	justifyItems: 'center',
-
-	color: colors.espresso,
-
-	borderColor: colors.espresso,
-	borderRadius: border_radius,
-	borderStyle: border_style,
-	borderWidth: border_width,
-
+	gap: border_width,
 	selectors: {
-		[dark()]: {
-			color: colors.black,
-			borderColor: colors.creme,
-			boxShadow: `inset 0 0 0 ${border_width}px ${colors.black}`,
+		[select_expanded()]: {
+			gridArea: 'auto',
+			position: 'absolute',
+			top: 0,
+			left: 0,
+			right: 0,
+			zIndex: 1,
+			padding: spacing['1'],
 		},
 	},
 });
 
-export const status = styleVariants<Record<Status | 'fallback', ComplexStyleRule>>({
-	on: [
-		status_base,
-		{
-			backgroundColor: colors.green,
-		},
-	],
-	off: [
-		status_base,
-		{
-			backgroundColor: colors.red,
-		},
-	],
-	fallback: [
-		status_base,
-		{
-			color: colors.milk,
-			backgroundColor: colors.espresso,
-			boxShadow: `0 2px 4px 0 ${colors.espresso}`,
+export const status_content = style({});
 
-			selectors: {
-				[dark()]: {
-					color: colors.espresso,
-					backgroundColor: colors.creme,
-				},
-			},
-		},
-	],
-});
-
-// TODO: Animations
-
-export const status_dialog = style({
-	width: '100%',
-	padding: spacing['2'],
-
-	backgroundColor: 'transparent',
-});
-
-globalStyle(`${status_dialog} ${business_hours}`, {
-	borderColor: colors.milk,
-	borderRadius: border_radius,
-	borderStyle: border_style,
-	borderWidth: border_width,
-
+globalStyle(`${status_content} ${business_hours_section}`, {
 	boxShadow: `0 0 ${spacing['2']} 0 ${colors.espresso}`,
 });
 
-export const status_expand = style({
+export const status_trigger = style({
 	height: '100%',
 	width: '100%',
+	overflow: 'hidden',
 	display: 'flex',
-	alignItems: 'center',
-	paddingLeft: 2,
-
-	borderTopRightRadius: border_radius,
-	borderBottomRightRadius: border_radius,
-	borderLeftStyle: border_style,
-	borderLeftWidth: border_width,
-	borderLeftColor: colors.espresso,
-
-	transitionProperty: 'background-color, color',
-	transitionDuration: durations.short,
-	transitionTimingFunction: ease.standard,
+	alignItems: 'stretch',
+	zIndex: 1,
 
 	selectors: {
-		[`${status_base}:hover &`]: {
-			backgroundColor: colors.espresso,
-			color: colors.milk,
-		},
-		[dark()]: {
-			paddingLeft: 1,
-		},
-		[dark(`${status_base}:hover &`)]: {
-			color: colors.creme,
+		[select_expanded()]: {
+			height: `calc(${spacing['4']} - ${spacing['1']} - ${spacing['2']})`,
 		},
 	},
 });
 
-export const status_collapse = style({
-	position: 'absolute',
-	top: spacing['2'],
-	right: spacing['2'],
-	zIndex: 1,
-
-	width: spacing['4'],
-	height: spacing['3'],
-
-	display: 'flex',
-	justifyContent: 'center',
-	alignItems: 'center',
+const status_trigger_child = style({
+	height: '100%',
+	display: 'grid',
+	placeContent: 'center',
 
 	color: colors.milk,
+	backgroundColor: colors.espresso,
 
-	borderColor: colors.milk,
-	borderBottomLeftRadius: border_radius,
-	borderTopRightRadius: border_radius,
+	borderColor: colors.espresso,
 	borderStyle: border_style,
 	borderWidth: border_width,
 
@@ -142,21 +72,57 @@ export const status_collapse = style({
 	transitionTimingFunction: ease.standard,
 
 	selectors: {
-		[`&:hover`]: {
-			backgroundColor: colors.milk,
-			color: colors.espresso,
-		},
+		// themes
 		[dark()]: {
-			marginTop: border_width,
-			marginRight: border_width,
 			color: colors.espresso,
-			borderColor: colors.espresso,
-			borderTopStyle: 'none',
-			borderRightStyle: 'none',
+			backgroundColor: colors.creme,
+			borderColor: colors.creme,
+			boxShadow: `inset 0 0 0 ${border_width}px ${colors.black}`,
 		},
-		[dark('&:hover')]: {
+		// status
+		[select_status('on', status_root)]: {
+			color: colors.espresso,
+			backgroundColor: colors.green,
+		},
+		[select_status('off', status_root)]: {
+			color: colors.espresso,
+			backgroundColor: colors.red,
+		},
+		// hover
+		[`${status_trigger}:hover &`]: {
 			backgroundColor: colors.espresso,
+			color: colors.milk,
+		},
+		[dark(`${status_trigger}:hover &`)]: {
 			color: colors.creme,
 		},
 	},
 });
+
+export const status_trigger_text = style([
+	status_trigger_child,
+	{
+		flex: '1 0 0',
+		borderRightStyle: 'none',
+		borderTopLeftRadius: border_radius,
+		borderBottomLeftRadius: border_radius,
+	},
+]);
+
+export const status_trigger_icon = style([
+	status_trigger_child,
+	{
+		aspectRatio: '1',
+		paddingRight: 1, // shift visual center
+
+		borderTopRightRadius: border_radius,
+		borderBottomRightRadius: border_radius,
+
+		selectors: {
+			[`${status_trigger}:hover &`]: {
+				borderLeftStyle: 'dotted',
+				borderLeftColor: colors.creme,
+			},
+		},
+	},
+]);
