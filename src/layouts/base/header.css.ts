@@ -14,16 +14,14 @@ export const header = style([
 		top: 0,
 		height: spacing['4'],
 
-		display: 'grid',
-		gridTemplateColumns: 'max-content 1fr max-content',
-		gridTemplateAreas: '"logo status toggle"',
+		display: 'flex',
 
 		backgroundColor: colors.creme,
 		color: colors.espresso,
 
 		borderBottomStyle: border_style,
 		borderBottomWidth: border_width,
-		borderBottomColor: 'trnasparent',
+		borderBottomColor: 'transparent',
 
 		zIndex: 2,
 
@@ -53,6 +51,7 @@ export const header_logo = style({
 });
 
 export const header_status = style({
+	flex: '1 0 0',
 	gridArea: 'status',
 	height: `calc(${spacing['4']} - (2 * ${spacing['2']}))`,
 	alignSelf: 'center',

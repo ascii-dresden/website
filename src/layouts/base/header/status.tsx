@@ -12,6 +12,7 @@ import {
 	status_content,
 	status_trigger_text as status_trigger_text,
 	status_trigger_icon,
+	status_trigger_icon_svg,
 } from './status.css.ts';
 
 const STATUS_STREAM_URL = 'https://status.ascii.coffee/api/stream/status';
@@ -65,7 +66,7 @@ export const Status: Component = function () {
 					</p>
 				</div>
 				<div class={status_trigger_icon}>
-					<SvgExpand />
+					<SvgExpand class={status_trigger_icon_svg} />
 				</div>
 			</Collapsible.Trigger>
 			<Collapsible.Content class={status_content}>

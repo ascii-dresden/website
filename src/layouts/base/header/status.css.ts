@@ -7,22 +7,15 @@ import { durations, ease } from 'src/styles/motion.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 
-import { Status } from './status.tsx';
-import { create_selector } from 'src/styles/util/create_selector.css.ts';
-
 export const EXPANDED = 'data-expanded';
-const select_expanded = create_selector(`[${EXPANDED}]`);
-
 export const STATUS = 'data-status';
-const select_status = (status: Status, selector?: string) =>
-	create_selector(`[${STATUS}="${status}"]`)(selector);
 
 export const status_root = style({
 	minHeight: '100%',
 	display: 'grid',
 	gap: border_width,
 	selectors: {
-		[select_expanded()]: {
+		[`&[${EXPANDED}]`]: {
 			gridArea: 'auto',
 			position: 'absolute',
 			top: 0,
@@ -41,15 +34,17 @@ globalStyle(`${status_content} ${business_hours_section}`, {
 });
 
 export const status_trigger = style({
-	height: '100%',
-	width: '100%',
-	overflow: 'hidden',
+	height: `calc(${spacing['4']} - (2 * ${spacing['2']}))`,
 	display: 'flex',
 	alignItems: 'stretch',
 	zIndex: 1,
 
+	transitionProperty: 'height',
+	transitionDuration: durations.long,
+	transitionTimingFunction: ease.standard,
+
 	selectors: {
-		[select_expanded()]: {
+		[`${status_root}[${EXPANDED}] &`]: {
 			height: `calc(${spacing['4']} - ${spacing['1']} - ${spacing['2']})`,
 		},
 	},
@@ -67,7 +62,7 @@ const status_trigger_child = style({
 	borderStyle: border_style,
 	borderWidth: border_width,
 
-	transitionProperty: 'background-color, color',
+	transitionProperty: 'background-color, color, box-shadow, border-color',
 	transitionDuration: durations.short,
 	transitionTimingFunction: ease.standard,
 
@@ -80,11 +75,11 @@ const status_trigger_child = style({
 			boxShadow: `inset 0 0 0 ${border_width}px ${colors.black}`,
 		},
 		// status
-		[select_status('on', status_root)]: {
+		[`${status_root}[${STATUS}="on"] &`]: {
 			color: colors.espresso,
 			backgroundColor: colors.green,
 		},
-		[select_status('off', status_root)]: {
+		[`${status_root}[${STATUS}="off"] &`]: {
 			color: colors.espresso,
 			backgroundColor: colors.red,
 		},
@@ -92,6 +87,7 @@ const status_trigger_child = style({
 		[`${status_trigger}:hover &`]: {
 			backgroundColor: colors.espresso,
 			color: colors.milk,
+			boxShadow: `0 1px 4px 0 ${colors.espresso}`,
 		},
 		[dark(`${status_trigger}:hover &`)]: {
 			color: colors.creme,
@@ -119,10 +115,25 @@ export const status_trigger_icon = style([
 		borderBottomRightRadius: border_radius,
 
 		selectors: {
-			[`${status_trigger}:hover &`]: {
+			[[
+				`${status_trigger}:hover &`,
+				`${status_root}:not([${STATUS}="on"], [${STATUS}="off"]) &`,
+			].join(',')]: {
 				borderLeftStyle: 'dotted',
 				borderLeftColor: colors.creme,
 			},
 		},
 	},
 ]);
+
+export const status_trigger_icon_svg = style({
+	transitionProperty: 'rotate',
+	transitionDuration: durations.long,
+	transitionTimingFunction: ease.standard,
+
+	selectors: {
+		[`${status_root}[${EXPANDED}] &`]: {
+			rotate: '180deg',
+		},
+	},
+});
