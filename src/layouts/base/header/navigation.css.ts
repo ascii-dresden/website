@@ -214,12 +214,11 @@ export const navigation_button_social = style([
 	navigation_button,
 	{
 		display: 'grid',
-		aspectRatio: '1',
 		placeItems: 'center',
 
 		// override button.css.ts
 		height: '100%',
-		width: 'auto',
+		width: '4rem',
 		borderRadius: 0,
 	},
 ]);

@@ -1,6 +1,6 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { globalStyle, keyframes, style } from '@vanilla-extract/css';
 
-import { business_hours_section } from 'src/components/business_hours.css.ts';
+import { business_hours, business_hours_section } from 'src/components/business_hours.css.ts';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { durations, ease } from 'src/styles/motion.css.ts';
@@ -14,23 +14,68 @@ export const status_root = style({
 	minHeight: '100%',
 	display: 'grid',
 	gap: border_width,
+});
+
+const animation_in = keyframes({
+	from: {
+		opacity: 0,
+		rotate: 'x -90deg',
+	},
+	to: {
+		opacity: 1,
+		rotate: 'x 0',
+	},
+});
+
+const animation_out = keyframes({
+	from: {
+		opacity: 1,
+		rotate: 'x 0deg',
+	},
+	to: {
+		opacity: 0,
+		rotate: 'x -90deg',
+	},
+});
+
+const animation_none = keyframes({});
+
+export const status_content = style({
+	position: 'absolute',
+	left: 0,
+	right: 0,
+	top: `calc(100% - ${spacing['1']})`,
+	paddingInline: spacing['2'],
+
+	perspective: '32rem',
+	perspectiveOrigin: 'center',
+
 	selectors: {
-		[`&[${EXPANDED}]`]: {
-			gridArea: 'auto',
-			position: 'absolute',
-			top: 0,
-			left: 0,
-			right: 0,
-			zIndex: 1,
-			padding: spacing['1'],
+		// HACK: duplicate animation duration to prevent early unmount
+		[`&:not([${EXPANDED}])`]: {
+			animationName: animation_none,
+			animationDuration: durations.medium,
 		},
 	},
 });
 
-export const status_content = style({});
-
-globalStyle(`${status_content} ${business_hours_section}`, {
+globalStyle(`${status_content} ${business_hours} ${business_hours_section}`, {
 	boxShadow: `0 0 ${spacing['2']} 0 ${colors.espresso}`,
+});
+
+globalStyle(`${status_content} ${business_hours}`, {
+	transformOrigin: 'top center',
+
+	animationName: animation_out,
+	animationDuration: durations.medium,
+	animationTimingFunction: ease.standard_accelerate,
+	animationFillMode: 'forwards',
+});
+
+globalStyle(`${status_content}[${EXPANDED}] ${business_hours}`, {
+	animationName: animation_in,
+	animationDuration: durations.long,
+	animationTimingFunction: ease.emphasize_decelerate,
 });
 
 export const status_trigger = style({
@@ -42,12 +87,6 @@ export const status_trigger = style({
 	transitionProperty: 'height',
 	transitionDuration: durations.long,
 	transitionTimingFunction: ease.standard,
-
-	selectors: {
-		[`${status_root}[${EXPANDED}] &`]: {
-			height: `calc(${spacing['4']} - ${spacing['1']} - ${spacing['2']})`,
-		},
-	},
 });
 
 const status_trigger_child = style({
