@@ -1,12 +1,12 @@
-import { Component } from 'solid-js';
+import { Component, JSX } from 'solid-js';
 
 import { body_large } from 'src/styles/atomic/fonts.css.ts';
 
 import { business_hours, business_hours_section, dd, dl, dt } from './business_hours.css.ts';
 
-export const BusinessHours: Component = function () {
+export const BusinessHours: Component<JSX.HTMLAttributes<HTMLDivElement>> = function (props) {
 	return (
-		<div class={business_hours}>
+		<div {...props} class={props.class ? `${props.class} ${business_hours}` : business_hours}>
 			<div class={business_hours_section}>
 				<h6>Während der Vorlesungszeit</h6>
 				<dl class={dl}>

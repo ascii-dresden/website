@@ -13,41 +13,41 @@ import {
 type Props = {
 	class: string;
 	href?: string;
-	mirror?: boolean;
+	layout?: 'left' | 'right' | 'center';
 	noImageBorder?: boolean;
 	outline?: boolean;
 };
 
 const href: string | undefined = Astro.props.href;
-const mirror: boolean = Astro.props.mirror ?? false;
+const layout: 'left' | 'right' | 'center' = Astro.props.layout ?? 'center';
 const noImageBorder: boolean = Astro.props.noImageBorder ?? false;
 const outline: boolean = Astro.props.outline ?? false;
 ---
 
-<section class:list={[Astro.props.class, featured({ mirror, noImageBorder, outline })]}>
+<section class:list={[Astro.props.class, featured({ layout, noImageBorder, outline })]}>
 	{
 		Astro.slots.has('title') && (
-			<h3 class={featured_title({ mirror })}>
+			<h3 class={featured_title({ layout })}>
 				<slot name="title" />
 			</h3>
 		)
 	}
-	<p class={featured_description({ mirror, noImageBorder })}>
+	<p class={featured_description({ layout, noImageBorder })}>
 		<slot name="description" />
 	</p>
 	{
 		Astro.slots.has('date') && (
-			<p class={featured_date({ mirror })}>
+			<p class={featured_date({ layout })}>
 				<slot name="date" />
 			</p>
 		)
 	}
-	<div class={featured_image({ mirror, noImageBorder })}>
+	<div class={featured_image({ layout, noImageBorder })}>
 		<slot name="image" />
 	</div>
 	{
 		href && (
-			<AnchorButton client:load {href} class={featured_button({ mirror, outline })}>
+			<AnchorButton client:load {href} class={featured_button({ layout, outline })}>
 				<slot name="button" />
 			</AnchorButton>
 		)

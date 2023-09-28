@@ -224,9 +224,8 @@ export const divider_3 = style({
 });
 
 export const become_member = style({
-	display: 'grid',
-	gridTemplateColumns: `calc(${spacing['4']} - ${spacing['2']}) 1fr`,
-	gridAutoRows: 'max-content',
+	display: 'flex',
+	flexDirection: 'column',
 	gap: spacing['2'],
 	paddingBlock: spacing['4'],
 	paddingInline: spacing['2'],
@@ -241,7 +240,6 @@ export const become_member = style({
 });
 
 export const become_member_head = style({
-	gridColumn: '2 / 3',
 	paddingBottom: spacing['2'],
 
 	color: colors.espresso,

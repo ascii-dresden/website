@@ -13,6 +13,9 @@ import {
 	status_trigger_text as status_trigger_text,
 	status_trigger_icon,
 	status_trigger_icon_svg,
+	status_business_hours,
+	animation_in,
+	animation_out,
 } from './status.css.ts';
 
 const STATUS_STREAM_URL = 'https://status.ascii.coffee/api/stream/status';
@@ -54,8 +57,23 @@ function useStatus(): Accessor<Status | undefined> {
 export const Status: Component = function () {
 	const status = useStatus();
 
+	const [forceMount, setForceMount] = createSignal(false);
+
+	function onAnimationEnd(e: AnimationEvent) {
+		switch (e.animationName) {
+			case animation_in: {
+				setForceMount(true);
+				break;
+			}
+			case animation_out: {
+				setForceMount(false);
+				break;
+			}
+		}
+	}
+
 	return (
-		<Collapsible.Root class={status_root} {...{ [STATUS]: status() }}>
+		<Collapsible.Root class={status_root} {...{ [STATUS]: status() }} forceMount={forceMount()}>
 			<Collapsible.Trigger class={status_trigger}>
 				<div class={status_trigger_text}>
 					<p>
@@ -70,7 +88,7 @@ export const Status: Component = function () {
 				</div>
 			</Collapsible.Trigger>
 			<Collapsible.Content class={status_content}>
-				<BusinessHours />
+				<BusinessHours class={status_business_hours} onAnimationEnd={onAnimationEnd} />
 			</Collapsible.Content>
 		</Collapsible.Root>
 	);

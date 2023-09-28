@@ -1,6 +1,6 @@
 import { globalStyle, keyframes, style } from '@vanilla-extract/css';
 
-import { business_hours, business_hours_section } from 'src/components/business_hours.css.ts';
+import { business_hours_section } from 'src/components/business_hours.css.ts';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { durations, ease } from 'src/styles/motion.css.ts';
@@ -16,7 +16,7 @@ export const status_root = style({
 	gap: border_width,
 });
 
-const animation_in = keyframes({
+export const animation_in = keyframes({
 	from: {
 		opacity: 0,
 		rotate: 'x -90deg',
@@ -27,7 +27,7 @@ const animation_in = keyframes({
 	},
 });
 
-const animation_out = keyframes({
+export const animation_out = keyframes({
 	from: {
 		opacity: 1,
 		rotate: 'x 0deg',
@@ -38,8 +38,6 @@ const animation_out = keyframes({
 	},
 });
 
-const animation_none = keyframes({});
-
 export const status_content = style({
 	position: 'absolute',
 	left: 0,
@@ -49,33 +47,27 @@ export const status_content = style({
 
 	perspective: '32rem',
 	perspectiveOrigin: 'center',
-
-	selectors: {
-		// HACK: duplicate animation duration to prevent early unmount
-		[`&:not([${EXPANDED}])`]: {
-			animationName: animation_none,
-			animationDuration: durations.medium,
-		},
-	},
 });
 
-globalStyle(`${status_content} ${business_hours} ${business_hours_section}`, {
-	boxShadow: `0 0 ${spacing['2']} 0 ${colors.espresso}`,
-});
-
-globalStyle(`${status_content} ${business_hours}`, {
+export const status_business_hours = style({
 	transformOrigin: 'top center',
 
 	animationName: animation_out,
 	animationDuration: durations.medium,
 	animationTimingFunction: ease.standard_accelerate,
 	animationFillMode: 'forwards',
+
+	selectors: {
+		[`${status_root}[${EXPANDED}] &`]: {
+			animationName: animation_in,
+			animationDuration: durations.long,
+			animationTimingFunction: ease.emphasize_decelerate,
+		},
+	},
 });
 
-globalStyle(`${status_content}[${EXPANDED}] ${business_hours}`, {
-	animationName: animation_in,
-	animationDuration: durations.long,
-	animationTimingFunction: ease.emphasize_decelerate,
+globalStyle(`${status_business_hours} ${business_hours_section}`, {
+	boxShadow: `0 0 ${spacing['2']} 0 ${colors.espresso}`,
 });
 
 export const status_trigger = style({

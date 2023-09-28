@@ -12,9 +12,10 @@ export const vars_featured = createThemeContract({
 });
 
 type RecipeVariants = {
-	mirror: {
-		false: ComplexStyleRule;
-		true: ComplexStyleRule;
+	layout: {
+		left: ComplexStyleRule;
+		right: ComplexStyleRule;
+		center: ComplexStyleRule;
 	};
 	outline: {
 		false: ComplexStyleRule;
@@ -26,14 +27,15 @@ type RecipeVariants = {
 	};
 };
 
-type RecipeVariantsOnlyMirror = Pick<RecipeVariants, 'mirror'>;
+type RecipeVariantsOnlyLayout = Pick<RecipeVariants, 'layout'>;
 
-type RecipeVariantsOnlyMirrorAndNoImageBorder = Pick<RecipeVariants, 'mirror' | 'noImageBorder'>;
+type RecipeVariantsOnlyLayoutAndNoImageBorder = Pick<RecipeVariants, 'layout' | 'noImageBorder'>;
 
 export const featured = recipe<RecipeVariants>({
 	base: {
 		display: 'grid',
 		gridTemplateRows: `repeat(2, max-content) repeat(3, calc(${spacing['4']} - ${spacing['2']}))`,
+		// gridTemplateColumns is set by the layout variant
 		gap: spacing['2'],
 
 		position: 'relative',
@@ -80,8 +82,8 @@ export const featured = recipe<RecipeVariants>({
 		},
 	},
 	variants: {
-		mirror: {
-			false: {
+		layout: {
+			left: {
 				gridTemplateColumns: `calc(${spacing['4']} - ${spacing['2']}) 1fr max-content`,
 				'::before': {
 					gridColumn: '2 / 4',
@@ -92,7 +94,7 @@ export const featured = recipe<RecipeVariants>({
 					borderLeftStyle: 'none',
 				},
 			},
-			true: {
+			right: {
 				gridTemplateColumns: `max-content 1fr calc(${spacing['4']} - ${spacing['2']})`,
 				'::before': {
 					gridColumn: '1 / 3',
@@ -101,6 +103,12 @@ export const featured = recipe<RecipeVariants>({
 					borderTopStyle: border_style,
 					borderRightStyle: 'none',
 					borderLeftStyle: border_style,
+				},
+			},
+			center: {
+				gridTemplateColumns: `max-content 1fr`,
+				'::before': {
+					gridColumn: '1 / 3',
 				},
 			},
 		},
@@ -125,7 +133,7 @@ export const featured = recipe<RecipeVariants>({
 	},
 });
 
-export const featured_title = recipe<RecipeVariantsOnlyMirror>({
+export const featured_title = recipe<RecipeVariantsOnlyLayout>({
 	base: {
 		gridRow: '1 / 2',
 
@@ -136,18 +144,21 @@ export const featured_title = recipe<RecipeVariantsOnlyMirror>({
 		color: vars_featured.color,
 	},
 	variants: {
-		mirror: {
-			false: {
+		layout: {
+			left: {
 				gridColumn: '2 / 4',
 			},
-			true: {
+			right: {
+				gridColumn: '1 / 3',
+			},
+			center: {
 				gridColumn: '1 / 3',
 			},
 		},
 	},
 });
 
-export const featured_description = recipe<RecipeVariantsOnlyMirrorAndNoImageBorder>({
+export const featured_description = recipe<RecipeVariantsOnlyLayoutAndNoImageBorder>({
 	base: {
 		gridRow: '2 / 3',
 
@@ -164,18 +175,21 @@ export const featured_description = recipe<RecipeVariantsOnlyMirrorAndNoImageBor
 				paddingBottom: 0,
 			},
 		},
-		mirror: {
-			false: {
+		layout: {
+			left: {
 				gridColumn: '2 / 4',
 			},
-			true: {
+			right: {
+				gridColumn: '1 / 3',
+			},
+			center: {
 				gridColumn: '1 / 3',
 			},
 		},
 	},
 });
 
-export const featured_date = recipe<RecipeVariantsOnlyMirror>({
+export const featured_date = recipe<RecipeVariantsOnlyLayout>({
 	base: {
 		gridRow: '3 / 4',
 
@@ -199,18 +213,21 @@ export const featured_date = recipe<RecipeVariantsOnlyMirror>({
 		},
 	},
 	variants: {
-		mirror: {
-			false: {
+		layout: {
+			left: {
 				gridColumn: '3 / 4',
 			},
-			true: {
+			right: {
+				gridColumn: '1 / 2',
+			},
+			center: {
 				gridColumn: '1 / 2',
 			},
 		},
 	},
 });
 
-export const featured_image = recipe<RecipeVariantsOnlyMirrorAndNoImageBorder>({
+export const featured_image = recipe<RecipeVariantsOnlyLayoutAndNoImageBorder>({
 	base: {
 		gridRow: '3 / 6',
 		display: 'flex',
@@ -244,19 +261,20 @@ export const featured_image = recipe<RecipeVariantsOnlyMirrorAndNoImageBorder>({
 					},
 				},
 			},
-			true: {
-				// HACK: take priority over `mirror` variant
-				gridColumn: '2 / 3 !important',
-			},
+			true: [],
 		},
-		mirror: {
-			false: {
+		layout: {
+			left: {
 				gridColumn: '1 / 3',
 				borderTopRightRadius: 0,
 			},
-			true: {
+			right: {
 				gridColumn: '2 / 4',
 				borderTopLeftRadius: 0,
+			},
+			center: {
+				gridColumn: '1 / 2',
+				borderTopRightRadius: 0,
 			},
 		},
 	},
@@ -281,7 +299,7 @@ globalStyle(
 	}
 );
 
-type RecipeVariantsButton = Pick<RecipeVariants, 'mirror' | 'outline'>;
+type RecipeVariantsButton = Pick<RecipeVariants, 'layout' | 'outline'>;
 
 export const featured_button = recipe<RecipeVariantsButton>({
 	base: {
@@ -307,14 +325,17 @@ export const featured_button = recipe<RecipeVariantsButton>({
 		},
 	},
 	variants: {
-		mirror: {
-			false: {
+		layout: {
+			left: {
 				gridColumn: '3 / 4',
 				borderTopLeftRadius: 0,
 			},
-			true: {
+			right: {
 				gridColumn: '1 / 2',
 				borderTopRightRadius: 0,
+			},
+			center: {
+				gridColumn: '2 / 3',
 			},
 		},
 		outline: {

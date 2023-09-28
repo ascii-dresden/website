@@ -35,7 +35,7 @@ export const animation_out = keyframes({
 export const anchor_button = componentStyle({
 	display: 'flex',
 	alignItems: 'center',
-	justifyContent: 'flex-start',
+	justifyContent: 'center',
 	gap: ICON_GAP,
 	paddingInline: spacing['2'],
 
