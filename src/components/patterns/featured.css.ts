@@ -231,6 +231,7 @@ export const featured_image = recipe<RecipeVariantsOnlyLayoutAndNoImageBorder>({
 	base: {
 		gridRow: '3 / 6',
 		display: 'flex',
+		flexDirection: 'column',
 		position: 'relative',
 	},
 	variants: {
