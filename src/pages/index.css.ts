@@ -26,6 +26,8 @@ export const hero = style({
 });
 
 export const hero_image = style({
+	display: 'flex',
+	flexDirection: 'column',
 	aspectRatio: '1.5',
 	marginInline: spacing['2'],
 	overflow: 'hidden',
@@ -43,6 +45,7 @@ export const hero_image = style({
 });
 
 globalStyle(`${hero_image} img`, {
+	flexGrow: 1,
 	objectFit: 'cover',
 	width: '100%',
 	height: '100%',
