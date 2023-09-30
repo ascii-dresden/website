@@ -32,18 +32,14 @@
 	"dependencies": {
 		"@astrojs/check": "^0.2.0",
 		"@astrojs/solid-js": "^3.0.1",
-		"astro": "^3.1.4",
+		"astro": "^3.2.0",
 		"solid-js": "^1.7.12",
 		"typescript": "^5.2.2"
 	},
 	"devDependencies": {
 		"@capsizecss/core": "^3.1.1",
-		"@fontsource-variable/jetbrains-mono": "^5.0.13",
-		"@fontsource-variable/nunito": "^5.0.9",
-		"@fontsource-variable/recursive": "^5.0.8",
-		"@fontsource/concert-one": "^5.0.12",
 		"@kobalte/core": "^0.11.0",
-		"@types/node": "^18.18.0",
+		"@types/node": "^18.18.1",
 		"@typescript-eslint/eslint-plugin": "^6.7.3",
 		"@typescript-eslint/parser": "^6.7.3",
 		"@vanilla-extract/css": "^1.13.0",

@@ -66,6 +66,7 @@ export const featured = recipe<RecipeVariants>({
 			borderColor: vars_featured.color,
 			borderWidth: border_width,
 			borderBottomStyle: 'none',
+			zIndex: 1,
 		},
 
 		selectors: {
@@ -243,9 +244,11 @@ export const featured_image = recipe<RecipeVariantsOnlyLayoutAndNoImageBorder>({
 				borderStyle: border_style,
 				borderWidth: border_width,
 				borderColor: vars_featured.background_color,
-				boxShadow: `0 0 ${spacing['1']} 0 ${colors.black}`,
 
 				selectors: {
+					[dark()]: {
+						boxShadow: `0 0 ${spacing['1']} 0 ${colors.black}`,
+					},
 					[dark('&::after')]: {
 						content: '""',
 						display: 'block',

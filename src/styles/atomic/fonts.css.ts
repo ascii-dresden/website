@@ -11,7 +11,7 @@ import {
 	label_medium_rule,
 	label_small_rule,
 	title_large_rule,
-	titleMediumRule,
+	title_medium_rule,
 	title_small_rule,
 } from 'src/styles/fonts.css.ts';
 
@@ -20,7 +20,7 @@ export const display_medium = style(display_medium_rule);
 export const display_small = style(display_small_rule);
 
 export const title_large = style(title_large_rule);
-export const title_medium = style(titleMediumRule);
+export const title_medium = style(title_medium_rule);
 export const title_small = style(title_small_rule);
 
 export const label_large = style(label_large_rule);

@@ -9,7 +9,7 @@ import {
 	display_medium_rule,
 	display_small_rule,
 	title_large_rule,
-	titleMediumRule,
+	title_medium_rule,
 	title_small_rule,
 } from 'src/styles/fonts.css.ts';
 
@@ -17,7 +17,7 @@ globalStyleWithPseudos('h1', display_large_rule);
 globalStyleWithPseudos('h2', display_medium_rule);
 globalStyleWithPseudos('h3', display_small_rule);
 globalStyleWithPseudos('h4', title_large_rule);
-globalStyleWithPseudos('h5', titleMediumRule);
+globalStyleWithPseudos('h5', title_medium_rule);
 globalStyleWithPseudos('h6', title_small_rule);
 
 globalStyleWithPseudos('p', body_large_rule);

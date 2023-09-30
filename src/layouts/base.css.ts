@@ -6,9 +6,11 @@ import { dark } from 'src/styles/themes.css.ts';
 
 export const body = style({
 	backgroundColor: colors.creme,
+	color: colors.espresso,
 	selectors: {
 		[dark()]: {
 			backgroundColor: colors.black,
+			color: colors.milk,
 		},
 	},
 });
