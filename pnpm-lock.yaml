@@ -25,9 +25,15 @@ devDependencies:
   '@capsizecss/core':
     specifier: ^3.1.1
     version: 3.1.1
+  '@js-temporal/polyfill':
+    specifier: ^0.4.4
+    version: 0.4.4
   '@kobalte/core':
     specifier: ^0.11.0
     version: 0.11.0(solid-js@1.7.12)
+  '@types/js-yaml':
+    specifier: ^4.0.6
+    version: 4.0.6
   '@types/node':
     specifier: ^18.18.1
     version: 18.18.1
@@ -73,6 +79,9 @@ devDependencies:
   eslint-plugin-solid:
     specifier: ^0.13.0
     version: 0.13.0(eslint@8.50.0)(typescript@5.2.2)
+  js-yaml:
+    specifier: ^4.1.0
+    version: 4.1.0
   prettier:
     specifier: ^3.0.3
     version: 3.0.3
@@ -82,6 +91,9 @@ devDependencies:
   sharp:
     specifier: ^0.32.6
     version: 0.32.6
+  temporal-polyfill:
+    specifier: ^0.1.1
+    version: 0.1.1
   valibot:
     specifier: ^0.17.1
     version: 0.17.1
@@ -1295,6 +1307,14 @@ packages:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
 
+  /@js-temporal/polyfill@0.4.4:
+    resolution: {integrity: sha512-2X6bvghJ/JAoZO52lbgyAPFj8uCflhTo2g7nkFzEQdXd/D8rEeD4HtmTEpmtGCva260fcd66YNXBOYdnmHqSOg==}
+    engines: {node: '>=12'}
+    dependencies:
+      jsbi: 4.3.0
+      tslib: 2.6.2
+    dev: true
+
   /@kobalte/core@0.11.0(solid-js@1.7.12):
     resolution: {integrity: sha512-KflwKawdAXv1/W1Eh88SPTwpxGTVs7bAGkkW72w6pnRI3hcFWXEH+E/9CojoFrIc3WVBUT+y7GzaYLOKCailDw==}
     peerDependencies:
@@ -1494,6 +1514,10 @@ packages:
     dependencies:
       '@types/unist': 2.0.8
     dev: false
+
+  /@types/js-yaml@4.0.6:
+    resolution: {integrity: sha512-ACTuifTSIIbyksx2HTon3aFtCKWcID7/h3XEmRpDYdMCXxPbl+m9GteOJeaAkiAta/NJaSFuA7ahZ0NkwajDSw==}
+    dev: true
 
   /@types/json-schema@7.0.13:
     resolution: {integrity: sha512-RbSSoHliUbnXj3ny0CNFOoxrIDV6SUGyStHsvDqosw6CkdPV8TtWGlfecuK4ToyMEAql6pzNxgCFKanovUzlgQ==}
@@ -3778,6 +3802,10 @@ packages:
     dependencies:
       argparse: 2.0.1
 
+  /jsbi@4.3.0:
+    resolution: {integrity: sha512-SnZNcinB4RIcnEyZqFPdGPVgrg2AcnykiBy0sHVJQKHYeaLUvi3Exj+iaPpLnFVkDPZIV4U0yvgC9/R4uEAZ9g==}
+    dev: true
+
   /jsesc@2.5.2:
     resolution: {integrity: sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==}
     engines: {node: '>=4'}
@@ -5446,6 +5474,16 @@ packages:
       b4a: 1.6.4
       fast-fifo: 1.3.2
       streamx: 2.15.1
+
+  /temporal-polyfill@0.1.1:
+    resolution: {integrity: sha512-/5e4EVRA0wBI/bEhWLirSjwUg1lELhQyTXxw9zNbVhqjKvI9BLczs+3wtsoD9sn3HN2ImAMW5XJQwAiXgWT+GA==}
+    dependencies:
+      temporal-spec: 0.1.0
+    dev: true
+
+  /temporal-spec@0.1.0:
+    resolution: {integrity: sha512-sMNggMeS6trCgMQuudgFHhX1gtBK3e+AT1zGrMsFYG1wlqtRT5E9rcvm3I1iNlvHpJX/3DO6L4qtWAuEl/T04Q==}
+    dev: true
 
   /text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}

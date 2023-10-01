@@ -147,9 +147,8 @@ export const icon_button = componentStyle({
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'center',
-	width: '3rem',
-	height: '3rem',
-	borderRadius: '3rem',
+	width: spacing['4'],
+	height: spacing['4'],
 
 	color: vars_button.color,
 

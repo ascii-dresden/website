@@ -4,6 +4,7 @@ import { main } from 'src/layouts/base.css.ts';
 import { border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';
+import { dark } from 'src/styles/themes.css';
 
 globalStyle(main, {
 	display: 'flex',
@@ -14,13 +15,24 @@ globalStyle(main, {
 	paddingBlock: spacing['4'],
 	gap: spacing['3'],
 
-	borderTopWidth: border_width,
-	borderTopStyle: border_style,
-	borderTopColor: colors.espresso,
+	borderBlockWidth: border_width,
+	borderBlockStyle: border_style,
+	borderBlockColor: colors.espresso,
+});
+
+globalStyle(dark(main), {
+	color: colors.creme,
+	backgroundColor: colors.black,
+	borderTopColor: colors.black,
 });
 
 globalStyle(`${main} > ul`, {
 	display: 'flex',
 	flexDirection: 'column',
 	gap: spacing['3'],
+});
+
+globalStyle(`${main} a:hover`, {
+	textDecoration: 'underline',
+	textUnderlineOffset: '0.25rem',
 });

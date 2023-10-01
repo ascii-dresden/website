@@ -165,6 +165,7 @@ export const featured_description = recipe<RecipeVariantsOnlyLayoutAndNoImageBor
 
 		paddingInline: spacing['3'],
 		paddingBlock: spacing['2'],
+		whiteSpace: 'pre-line',
 
 		color: vars_featured.color,
 	},
@@ -195,9 +196,8 @@ export const featured_date = recipe<RecipeVariantsOnlyLayout>({
 		gridRow: '3 / 4',
 
 		textAlign: 'center',
-		padding: spacing['2'],
+		paddingTop: spacing['2'],
 		paddingBottom: `calc(${spacing['2']} + ${border_width}px)`,
-		paddingRight: `calc(${spacing['2']} + ${border_width}px)`,
 
 		color: vars_featured.color,
 
@@ -207,7 +207,6 @@ export const featured_date = recipe<RecipeVariantsOnlyLayout>({
 
 		selectors: {
 			[dark()]: {
-				padding: spacing['2'],
 				marginBottom: border_width,
 				marginRight: border_width,
 			},
@@ -217,9 +216,12 @@ export const featured_date = recipe<RecipeVariantsOnlyLayout>({
 		layout: {
 			left: {
 				gridColumn: '3 / 4',
+				paddingRight: `calc(${spacing['2']} + ${border_width}px)`,
 			},
 			right: {
 				gridColumn: '1 / 2',
+				paddingLeft: spacing['3'],
+				// paddingLeft: `calc(${spacing['2']} + ${border_width}px)`,
 			},
 			center: {
 				gridColumn: '1 / 2',
@@ -311,7 +313,7 @@ export const featured_button = recipe<RecipeVariantsButton>({
 		alignSelf: 'start',
 
 		// HACK: The animation might change the size of the button
-		minWidth: 136,
+		minWidth: 140,
 
 		color: vars_featured.background_color,
 

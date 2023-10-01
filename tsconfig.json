@@ -11,6 +11,7 @@
 		"isolatedModules": true,
 		// Strict typing
 		"strict": true,
+		"strictNullChecks": true,
 		"skipLibCheck": true,
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitOverride": true,

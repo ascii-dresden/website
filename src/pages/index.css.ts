@@ -107,10 +107,6 @@ export const divider_1 = style({
 });
 
 export const next_event = style({
-	display: 'grid',
-	gridTemplateColumns: `calc(${spacing['4']} - ${spacing['2']}) 1fr`,
-	gridAutoRows: 'max-content',
-	gap: spacing['2'],
 	paddingBlock: spacing['4'],
 	paddingInline: spacing['2'],
 
@@ -123,7 +119,7 @@ export const next_event = style({
 });
 
 export const next_event_head = style({
-	gridColumn: '2 / 3',
+	paddingLeft: spacing['4'],
 	paddingBottom: spacing['3'],
 
 	color: colors.espresso,
@@ -151,6 +147,10 @@ export const next_event_featured = style({
 	},
 });
 
+export const next_event_date_separator = style({
+	opacity: 0.5,
+});
+
 export const divider_2 = style({
 	vars: assignVars(divider_colors, {
 		from: colors.milk,
@@ -169,7 +169,6 @@ export const divider_2 = style({
 });
 
 export const offer = style({
-	display: 'grid',
 	paddingBlock: spacing['4'],
 	paddingInline: spacing['2'],
 
@@ -227,9 +226,6 @@ export const divider_3 = style({
 });
 
 export const become_member = style({
-	display: 'flex',
-	flexDirection: 'column',
-	gap: spacing['2'],
 	paddingBlock: spacing['4'],
 	paddingInline: spacing['2'],
 
@@ -243,7 +239,7 @@ export const become_member = style({
 });
 
 export const become_member_head = style({
-	paddingBottom: spacing['2'],
+	paddingBottom: spacing['3'],
 
 	color: colors.espresso,
 
@@ -288,8 +284,6 @@ export const divider_4 = style({
 });
 
 export const business_hours = style({
-	display: 'grid',
-	gap: spacing['2'],
 	paddingBlock: spacing['4'],
 	paddingInline: spacing['2'],
 
@@ -305,9 +299,10 @@ export const business_hours = style({
 });
 
 export const business_hours_head = style({
-	paddingBottom: spacing['2'],
+	paddingBottom: spacing['3'],
 });
 
 export const business_hours_footnote = style({
-	marginLeft: spacing['3'],
+	paddingTop: spacing['2'],
+	paddingLeft: spacing['3'],
 });

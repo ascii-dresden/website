@@ -2,8 +2,17 @@
 import { SvgCopyright } from 'src/svg/copyright.tsx';
 import { SvgInstagram, SvgGithub } from 'src/svg/socials.tsx';
 
-import { footer, tree, contact, legal, social, text_link, copyright } from './footer.css.ts';
-import { body_medium } from 'src/styles/atomic/fonts.css';
+import {
+	footer,
+	tree,
+	contact,
+	socials,
+	social_button,
+	text_link,
+	copyright,
+} from './footer.css.ts';
+import { body_medium } from 'src/styles/atomic/fonts.css.ts';
+import { IconButton } from 'src/components/button';
 ---
 
 <footer class={footer}>
@@ -30,7 +39,7 @@ import { body_medium } from 'src/styles/atomic/fonts.css';
 				</li>
 			</ul>
 		</li>
-		<li class={legal}>
+		<li>
 			<ul>
 				<li>
 					<a href="/datenschutz" class={text_link}>
@@ -44,17 +53,17 @@ import { body_medium } from 'src/styles/atomic/fonts.css';
 				</li>
 			</ul>
 		</li>
-		<li class={social}>
-			<ul>
+		<li>
+			<ul class={socials}>
 				<li>
-					<a href="https://www.instagram.com/asciidresden/">
+					<IconButton class={social_button} href="https://www.instagram.com/asciidresden/">
 						<SvgInstagram />
-					</a>
+					</IconButton>
 				</li>
 				<li>
-					<a href="https://github.com/ascii-dresden">
+					<IconButton class={social_button} href="https://github.com/ascii-dresden">
 						<SvgGithub />
-					</a>
+					</IconButton>
 				</li>
 			</ul>
 		</li>

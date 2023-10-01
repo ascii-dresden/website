@@ -5,6 +5,10 @@ import 'src/styles/global/mod.css.ts';
 import { main, body, divider } from './base.css.ts';
 import { Header } from './base/header.tsx';
 import Footer from './base/footer.astro';
+
+export type Props = {
+	hideFooter?: boolean;
+};
 ---
 
 <!doctype html>
@@ -19,8 +23,14 @@ import Footer from './base/footer.astro';
 		<main class={main}>
 			<slot />
 		</main>
-		<Divider class={divider} />
-		<Footer />
+		{
+			!Astro.props.hideFooter && (
+				<>
+					<Divider class={divider} />
+					<Footer />
+				</>
+			)
+		}
 	</body>
 </html>
 
