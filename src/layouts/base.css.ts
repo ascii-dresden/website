@@ -1,8 +1,13 @@
-import { assignVars, style } from '@vanilla-extract/css';
+import { assignVars, globalStyle, style } from '@vanilla-extract/css';
 
 import { colors } from 'src/styles/colors.css.ts';
-import { divider_colors } from 'src/components/divider.css';
+import { divider_colors } from 'src/components/divider.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
+import { spacing } from 'src/styles/spacing.css.ts';
+
+globalStyle('html', {
+	scrollPaddingTop: spacing['4'],
+});
 
 export const body = style({
 	backgroundColor: colors.creme,

@@ -20,11 +20,11 @@ import {
 } from './navigation.css.ts';
 
 const ROUTES = [
-	{ name: 'ascii', path: '/' },
+	{ name: 'home', path: '/' },
 	{ name: 'events', path: '/events' },
 	{ name: 'angebot', path: '/angebot' },
 	{ name: 'verein', path: '/verein' },
-	{ name: 'öffnung', path: '/öffnung' },
+	{ name: 'öffnung', path: '/#business_hours' },
 ] as const;
 
 export const Navigation: Component = function () {
@@ -34,8 +34,7 @@ export const Navigation: Component = function () {
 		dialog.showModal();
 	}
 
-	function close(event: Event) {
-		event.preventDefault();
+	function close() {
 		dialog.setAttribute(ANIMATION_OUT_ACTIVE, '');
 		function listener(event: Event) {
 			if (event.target !== dialog) return;
@@ -60,9 +59,9 @@ export const Navigation: Component = function () {
 						<For each={ROUTES}>
 							{({ name, path }) => (
 								<li>
-									<a href={path} class={navigation_link}>
+									<a href={path} class={navigation_link} onClick={close}>
 										<p class={navigation_link_label}>{name}</p>
-										<p class={navigation_link_label_slash}>/</p>
+										<p class={navigation_link_label_slash}>{path === '/' ? '~' : '/'}</p>
 									</a>
 								</li>
 							)}

@@ -57,7 +57,7 @@ function useStatus(): Accessor<Status | undefined> {
 export const Status: Component = function () {
 	const status = useStatus();
 
-	const [forceMount, setForceMount] = createSignal(false);
+	const [forceMount, setForceMount] = createSignal<boolean>(false);
 
 	function onAnimationEnd(e: AnimationEvent) {
 		switch (e.animationName) {
@@ -73,7 +73,7 @@ export const Status: Component = function () {
 	}
 
 	return (
-		<Collapsible.Root class={status_root} {...{ [STATUS]: status() }} forceMount={forceMount()}>
+		<Collapsible.Root class={status_root} forceMount={forceMount()} {...{ [STATUS]: status() }}>
 			<Collapsible.Trigger class={status_trigger}>
 				<div class={status_trigger_text}>
 					<p>
