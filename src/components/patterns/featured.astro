@@ -46,10 +46,12 @@ const outline: boolean = Astro.props.outline ?? false;
 		<slot name="image" />
 	</div>
 	{
+		/* TODO: Include once other pages are done
 		href && (
 			<AnchorButton client:load {href} class={featured_button({ layout, outline })}>
 				<slot name="button" />
 			</AnchorButton>
 		)
+		*/
 	}
 </section>
