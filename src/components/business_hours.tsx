@@ -1,8 +1,11 @@
-import { Component, JSX } from 'solid-js';
+import { Component, For, JSX } from 'solid-js';
 
+import { fetchOpeningHours, daysToLocaleString } from 'src/content/_opening_hours.ts';
 import { body_large } from 'src/styles/atomic/fonts.css.ts';
 
 import { business_hours, business_hours_section, dd, dl, dt } from './business_hours.css.ts';
+
+const openingHours = fetchOpeningHours();
 
 export const BusinessHours: Component<JSX.HTMLAttributes<HTMLDivElement>> = function (props) {
 	return (
@@ -10,16 +13,32 @@ export const BusinessHours: Component<JSX.HTMLAttributes<HTMLDivElement>> = func
 			<div class={business_hours_section}>
 				<h6>Während der Vorlesungszeit</h6>
 				<dl class={dl}>
-					<dt class={`${body_large} ${dt}`}>Montag bis Donnerstag</dt>
-					<dd class={`${body_large} ${dd}`}>
-						<time datetime="9:00">9:00 Uhr</time> bis <time datetime="17:00">17:00 Uhr</time>
-					</dd>
-					<dt class={`${body_large} ${dt}`}>Freitag</dt>
-					<dd class={`${body_large} ${dd}`}>
-						<time datetime="9:00">9:00 Uhr</time> bis <time datetime="15:00">15:00 Uhr</time>
-					</dd>
-					<dt class={`${body_large} ${dt}`}>Wochenende</dt>
-					<dd class={`${body_large} ${dd}`}>Geschlossen</dd>
+					<For each={openingHours}>
+						{({ days, opens, closes }) => (
+							<>
+								<dt class={`${body_large} ${dt}`}>{daysToLocaleString(days)}</dt>
+								<dd class={`${body_large} ${dd}`}>
+									<time datetime={opens.toString()}>
+										{opens.toLocaleString('de-DE', {
+											hour: 'numeric',
+											minute: 'numeric',
+											second: undefined,
+										})}
+										<span> Uhr</span>
+									</time>
+									<span> bis </span>
+									<time datetime={closes.toString()}>
+										{closes.toLocaleString('de-DE', {
+											hour: 'numeric',
+											minute: 'numeric',
+											second: undefined,
+										})}
+										<span> Uhr</span>
+									</time>
+								</dd>
+							</>
+						)}
+					</For>
 				</dl>
 			</div>
 			<div class={business_hours_section}>

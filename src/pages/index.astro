@@ -1,13 +1,11 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
-
-import asset_img_cafe from 'src/assets/ascii_hero.jpg';
-import { useAngebot } from 'src/data/angebot.ts';
-import BaseLayout from 'src/layouts/base.astro';
 import { BusinessHours } from 'src/components/business_hours.tsx';
 import { Divider } from 'src/components/divider';
+import Image from 'src/components/image.astro';
 import Featured from 'src/components/patterns/featured.astro';
+import { fetchDrinkOfMonth } from 'src/content/_drink_of_month.ts';
+import { fetchNextEvent } from 'src/content/_events.ts';
+import BaseLayout from 'src/layouts/base.astro';
 import { body_small } from 'src/styles/atomic/fonts.css';
 import { SvgSticker } from 'src/svg/sticker';
 
@@ -15,6 +13,7 @@ import {
 	become_member,
 	become_member_featured,
 	become_member_head,
+	become_member_sticker,
 	business_hours,
 	business_hours_footnote,
 	business_hours_head,
@@ -34,16 +33,14 @@ import {
 	offer_head,
 } from './index.css.ts';
 
-const events = await getCollection('events', ({ data }) => new Date(data.datetime) >= new Date());
-const nextEvent = events.at(0)?.data;
-
-const angebot = useAngebot();
+const drinkOfMonth = fetchDrinkOfMonth();
+const nextEvent = await fetchNextEvent();
 ---
 
 <BaseLayout>
 	<section class={hero}>
 		<div class={hero_image}>
-			<Image src={asset_img_cafe} alt="ascii Theke" />
+			<Image file="cafe.webp" alt="Interior des „Ascii“ Cafés" />
 		</div>
 		<div class={hero_summary}>
 			<h1>Willkommen!</h1>
@@ -57,43 +54,39 @@ const angebot = useAngebot();
 	<Divider class={divider_1} />
 	<section class={next_event}>
 		<h2 class={next_event_head}>Nächstes Event</h2>
-		{
-			nextEvent ? (
-				<Featured class={next_event_featured} layout="left" href="/events">
-					<Fragment slot="title">{nextEvent.title}</Fragment>
-					<Fragment slot="description">{nextEvent.summary}</Fragment>
-					<Fragment slot="date">
-						<time datetime={nextEvent.datetime.toISOString()}>
-							{nextEvent.datetime.toLocaleString('de-DE', {
-								year: '2-digit',
-								month: '2-digit',
-								day: '2-digit',
-							})}
-							<span class={next_event_date_separator}> / </span>
-							{nextEvent.datetime.toLocaleString('de-DE', { hour: 'numeric', minute: 'numeric' })}
-						</time>
-					</Fragment>
-					<Fragment slot="image">
-						<Image src={asset_img_cafe} alt="Event" />
-					</Fragment>
-					<Fragment slot="button">Events</Fragment>
-				</Featured>
-			) : (
-				<p>Keine Events in Planung</p>
-			)
-		}
+		<Featured class={next_event_featured} layout="left" preLine href="/events">
+			<Fragment slot="title">{nextEvent.title}</Fragment>
+			<Fragment slot="description">{nextEvent.summary}</Fragment>
+			<Fragment slot="date">
+				<time datetime={nextEvent.date_time.toString()}>
+					{
+						nextEvent.date_time.toLocaleString('de-DE', {
+							year: '2-digit',
+							month: '2-digit',
+							day: '2-digit',
+						})
+					}
+					<span class={next_event_date_separator}> / </span>
+					{nextEvent.date_time.toLocaleString('de-DE', { hour: 'numeric', minute: 'numeric' })}
+				</time>
+			</Fragment>
+			<Fragment slot="image">
+				<Image file={nextEvent.image} alt={nextEvent.image_alt} />
+			</Fragment>
+			<Fragment slot="button">Events</Fragment>
+		</Featured>
 	</section>
 	<Divider class={divider_2} />
 	<section class={offer}>
-		<h2 class={offer_head}>Angebot</h2>
-		<Featured class={offer_featured} layout="right" href="/events">
-			<Fragment slot="title">{angebot.title}</Fragment>
-			<Fragment slot="description">{angebot.description}</Fragment>
+		<h2 class={offer_head}>Getränk des Monats</h2>
+		<Featured class={offer_featured} layout="right" preLine href="/events">
+			<Fragment slot="title">{drinkOfMonth.title}</Fragment>
+			<Fragment slot="description">{drinkOfMonth.description}</Fragment>
 			<Fragment slot="date">
-				{angebot.year_month.toLocaleString('de-DE', { month: 'long', year: 'numeric' })}
+				{drinkOfMonth.year_month.toLocaleString('de-DE', { month: 'long', year: 'numeric' })}
 			</Fragment>
 			<Fragment slot="image">
-				<Image src={asset_img_cafe} alt="Angebot" />
+				<Image file={drinkOfMonth.image} alt={drinkOfMonth.image_alt} />
 			</Fragment>
 			<Fragment slot="button">Angebot</Fragment>
 		</Featured>
@@ -108,7 +101,7 @@ const angebot = useAngebot();
 				organisieren und Teil eines lebendigen Netzwerks sein.
 			</Fragment>
 			<Fragment slot="image">
-				<SvgSticker />
+				<SvgSticker class={become_member_sticker} />
 			</Fragment>
 			<Fragment slot="button">Mitmachen</Fragment>
 		</Featured>

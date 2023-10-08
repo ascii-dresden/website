@@ -7,7 +7,7 @@ import { SETTLE, header, header_logo, header_status } from './header.css.ts';
 // import { Navigation } from './header/navigation.tsx';
 import { Status } from './header/status.tsx';
 
-export const Header: Component = function() {
+export const Header: Component = function () {
 	const [settle, setSettle] = createSignal(false);
 
 	onMount(() => {

@@ -1,0 +1,39 @@
+---
+import { getImage } from 'astro:assets';
+
+import { fetchImage } from 'src/content/_images.ts';
+
+import { pic } from './image.css.ts';
+
+const WIDTHS = [320, 640, 960, 1200, 1440, 1680, 1920] as const;
+const FORMATS = ['avif', 'webp'] as const;
+
+type Props = {
+	file: string;
+	alt: string;
+};
+
+type Format = (typeof FORMATS)[number];
+
+const imageMetadata = fetchImage(Astro.props.file);
+
+async function generateImage(format: Format, width: number): Promise<string> {
+	const src = await getImage({ src: imageMetadata, format, width });
+	return `${src.src} ${width}w`;
+}
+
+async function generateSrcset(format: Format): Promise<string> {
+	return (await Promise.all(WIDTHS.map(async (width) => await generateImage(format, width)))).join(
+		', '
+	);
+}
+
+const srcset: Record<Format, string> = Object.fromEntries(
+	await Promise.all(FORMATS.map(async (format) => [format, await generateSrcset(format)]))
+);
+---
+
+<picture class={pic}>
+	{FORMATS.map((format) => <source srcset={srcset[format]} type={`image/${format}`} />)}
+	<img src={(await imageMetadata).default.src} alt={Astro.props.alt} />
+</picture>

@@ -1,5 +1,5 @@
 ---
-import { AnchorButton } from 'src/components/button.tsx';
+// import { AnchorButton } from 'src/components/button.tsx';
 
 import {
 	featured,
@@ -7,7 +7,7 @@ import {
 	featured_description,
 	featured_date,
 	featured_image,
-	featured_button,
+	// featured_button,
 } from './featured.css.ts';
 
 type Props = {
@@ -16,12 +16,14 @@ type Props = {
 	layout?: 'left' | 'right' | 'center';
 	noImageBorder?: boolean;
 	outline?: boolean;
+	preLine?: boolean;
 };
 
 const href: string | undefined = Astro.props.href;
 const layout: 'left' | 'right' | 'center' = Astro.props.layout ?? 'center';
 const noImageBorder: boolean = Astro.props.noImageBorder ?? false;
 const outline: boolean = Astro.props.outline ?? false;
+const preLine: boolean = Astro.props.preLine ?? false;
 ---
 
 <section class:list={[Astro.props.class, featured({ layout, noImageBorder, outline })]}>
@@ -32,7 +34,7 @@ const outline: boolean = Astro.props.outline ?? false;
 			</h3>
 		)
 	}
-	<p class={featured_description({ layout, noImageBorder })}>
+	<p class={featured_description({ layout, noImageBorder, preLine })}>
 		<slot name="description" />
 	</p>
 	{

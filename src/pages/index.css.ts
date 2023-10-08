@@ -26,9 +26,11 @@ export const hero = style({
 });
 
 export const hero_image = style({
-	display: 'flex',
-	flexDirection: 'column',
-	aspectRatio: '1.5',
+	display: 'grid',
+	gridTemplateColumns: 'minmax(0, 1fr)',
+	gridTemplateRows: 'minmax(0, 1fr)',
+
+	aspectRatio: '3 / 2',
 	marginInline: spacing['2'],
 	overflow: 'hidden',
 
@@ -264,6 +266,10 @@ export const become_member_featured = style({
 			}),
 		},
 	},
+});
+
+export const become_member_sticker = style({
+	filter: `drop-shadow(0 1px 2px ${colors.black})`,
 });
 
 export const divider_4 = style({

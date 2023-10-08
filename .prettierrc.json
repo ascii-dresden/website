@@ -10,7 +10,7 @@
 			"files": ["*.yml", "*.yaml"],
 			"options": {
 				"useTabs": false,
-				"tabWidth": 4
+				"tabWidth": 2
 			}
 		},
 		{

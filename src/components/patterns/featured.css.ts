@@ -25,13 +25,13 @@ type RecipeVariants = {
 		false: ComplexStyleRule;
 		true: ComplexStyleRule;
 	};
+	preLine: {
+		false: ComplexStyleRule;
+		true: ComplexStyleRule;
+	};
 };
 
-type RecipeVariantsOnlyLayout = Pick<RecipeVariants, 'layout'>;
-
-type RecipeVariantsOnlyLayoutAndNoImageBorder = Pick<RecipeVariants, 'layout' | 'noImageBorder'>;
-
-export const featured = recipe<RecipeVariants>({
+export const featured = recipe<Omit<RecipeVariants, 'preLine'>>({
 	base: {
 		display: 'grid',
 		gridTemplateRows: `repeat(2, max-content) repeat(3, calc(${spacing['4']} - ${spacing['2']}))`,
@@ -134,7 +134,7 @@ export const featured = recipe<RecipeVariants>({
 	},
 });
 
-export const featured_title = recipe<RecipeVariantsOnlyLayout>({
+export const featured_title = recipe<Pick<RecipeVariants, 'layout'>>({
 	base: {
 		gridRow: '1 / 2',
 
@@ -159,18 +159,25 @@ export const featured_title = recipe<RecipeVariantsOnlyLayout>({
 	},
 });
 
-export const featured_description = recipe<RecipeVariantsOnlyLayoutAndNoImageBorder>({
+export const featured_description = recipe<
+	Pick<RecipeVariants, 'layout' | 'noImageBorder' | 'preLine'>
+>({
 	base: {
 		gridRow: '2 / 3',
 
 		paddingInline: spacing['3'],
 		paddingBlock: spacing['2'],
-		whiteSpace: 'pre-line',
 
 		color: vars_featured.color,
 	},
 
 	variants: {
+		preLine: {
+			false: [],
+			true: {
+				whiteSpace: 'pre-line',
+			},
+		},
 		noImageBorder: {
 			false: [],
 			true: {
@@ -191,7 +198,7 @@ export const featured_description = recipe<RecipeVariantsOnlyLayoutAndNoImageBor
 	},
 });
 
-export const featured_date = recipe<RecipeVariantsOnlyLayout>({
+export const featured_date = recipe<Pick<RecipeVariants, 'layout'>>({
 	base: {
 		gridRow: '3 / 4',
 
@@ -230,11 +237,9 @@ export const featured_date = recipe<RecipeVariantsOnlyLayout>({
 	},
 });
 
-export const featured_image = recipe<RecipeVariantsOnlyLayoutAndNoImageBorder>({
+export const featured_image = recipe<Pick<RecipeVariants, 'noImageBorder' | 'layout'>>({
 	base: {
 		gridRow: '3 / 6',
-		display: 'flex',
-		flexDirection: 'column',
 		position: 'relative',
 	},
 	variants: {
@@ -285,25 +290,6 @@ export const featured_image = recipe<RecipeVariantsOnlyLayoutAndNoImageBorder>({
 		},
 	},
 });
-
-globalStyle(
-	['img', 'svg']
-		.map((tag) => `${featured_image.classNames.variants.noImageBorder.false} ${tag}`)
-		.join(','),
-	{
-		flex: '1 0 0',
-		objectFit: 'cover',
-	}
-);
-
-globalStyle(
-	['img', 'svg']
-		.map((tag) => `${featured_image.classNames.variants.noImageBorder.true} ${tag}`)
-		.join(','),
-	{
-		filter: `drop-shadow(0 1px 2px ${colors.black})`,
-	}
-);
 
 type RecipeVariantsButton = Pick<RecipeVariants, 'layout' | 'outline'>;
 

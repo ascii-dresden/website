@@ -1,13 +1,11 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+
+import { eventSchema } from './_events.ts';
 
 export const collections = {
 	events: defineCollection({
 		type: 'content',
-		schema: z.object({
-			datetime: z.date(),
-			title: z.string(),
-			summary: z.string(),
-		}),
+		schema: eventSchema,
 	}),
 };
 
