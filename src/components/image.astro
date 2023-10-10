@@ -11,6 +11,11 @@ const FORMATS = ['avif', 'webp'] as const;
 type Props = {
 	file: string;
 	alt: string;
+
+	/**
+	 * {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#sizes}
+	 */
+	sizes: string;
 };
 
 type Format = (typeof FORMATS)[number];
@@ -34,6 +39,16 @@ const srcset: Record<Format, string> = Object.fromEntries(
 ---
 
 <picture class={pic}>
-	{FORMATS.map((format) => <source srcset={srcset[format]} type={`image/${format}`} />)}
-	<img src={(await imageMetadata).default.src} alt={Astro.props.alt} />
+	{
+		FORMATS.map((format) => (
+			<source
+				srcset={srcset[format]}
+				type={`image/${format}`}
+			/>
+		))
+	}
+	<img
+		src={(await imageMetadata).default.src}
+		alt={Astro.props.alt}
+	/>
 </picture>

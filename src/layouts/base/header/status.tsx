@@ -73,7 +73,11 @@ export const Status: Component = function () {
 	}
 
 	return (
-		<Collapsible.Root class={status_root} forceMount={forceMount()} {...{ [STATUS]: status() }}>
+		<Collapsible.Root
+			class={status_root}
+			forceMount={forceMount()}
+			{...{ [STATUS]: status() }}
+		>
 			<Collapsible.Trigger class={status_trigger}>
 				<div class={status_trigger_text}>
 					<p>
@@ -88,7 +92,10 @@ export const Status: Component = function () {
 				</div>
 			</Collapsible.Trigger>
 			<Collapsible.Content class={status_content}>
-				<BusinessHours class={status_business_hours} onAnimationEnd={onAnimationEnd} />
+				<BusinessHours
+					class={status_business_hours}
+					onAnimationEnd={onAnimationEnd}
+				/>
 			</Collapsible.Content>
 		</Collapsible.Root>
 	);

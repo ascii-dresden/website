@@ -47,11 +47,23 @@ export const Navigation: Component = function () {
 
 	return (
 		<>
-			<button class={navigation_toggle} type="button" onClick={open}>
+			<button
+				class={navigation_toggle}
+				type="button"
+				onClick={open}
+			>
 				<SvgMenu />
 			</button>
-			<dialog class={navigation} ref={dialog!} onCancel={close}>
-				<button type="submit" class={navigation_toggle} onClick={close}>
+			<dialog
+				class={navigation}
+				ref={dialog!}
+				onCancel={close}
+			>
+				<button
+					type="submit"
+					class={navigation_toggle}
+					onClick={close}
+				>
 					<SvgClose />
 				</button>
 				<nav class={navigation_links}>
@@ -59,7 +71,11 @@ export const Navigation: Component = function () {
 						<For each={ROUTES}>
 							{({ name, path }) => (
 								<li>
-									<a href={path} class={navigation_link} onClick={close}>
+									<a
+										href={path}
+										class={navigation_link}
+										onClick={close}
+									>
 										<p class={navigation_link_label}>{name}</p>
 										<p class={navigation_link_label_slash}>{path === '/' ? '~' : '/'}</p>
 									</a>
@@ -84,7 +100,10 @@ export const Navigation: Component = function () {
 						</IconButton>
 					</li>
 					<li>
-						<IconButton href="https://github.com/ascii-dresden" class={navigation_button_social}>
+						<IconButton
+							href="https://github.com/ascii-dresden"
+							class={navigation_button_social}
+						>
 							<SvgGithub />
 						</IconButton>
 					</li>

@@ -9,7 +9,7 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"fmt": "prettier --write .",
+		"fmt": "prettier --write . --plugin=prettier-plugin-astro",
 		"lint": "eslint --ext .js,.jsx,.ts,.tsx,.astro .",
 		"lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx,.astro .",
 		"check": "astro check"
