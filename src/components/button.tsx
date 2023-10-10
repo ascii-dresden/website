@@ -56,11 +56,17 @@ export const IconButton: Component<IconButtonProps> = function (props) {
 	return (
 		<>
 			{props.href !== undefined ? (
-				<a {...props} class={clazz()}>
+				<a
+					{...props}
+					class={clazz()}
+				>
 					{props.children}
 				</a>
 			) : (
-				<button {...props} class={clazz()}>
+				<button
+					{...props}
+					class={clazz()}
+				>
 					{props.children}
 				</button>
 			)}

@@ -21,7 +21,12 @@ export const Divider: Component<DividerProps> = function (props) {
 	const id = createMemo(() => `pattern-${btoa(props.class)}`);
 
 	return (
-		<svg class={props.class} preserve-aspect-ratio="none" width="100%" height={height}>
+		<svg
+			class={props.class}
+			preserve-aspect-ratio="none"
+			width="100%"
+			height={height}
+		>
 			<defs>
 				<pattern
 					id={id()}
@@ -31,7 +36,10 @@ export const Divider: Component<DividerProps> = function (props) {
 					height={height}
 				>
 					{/* from */}
-					<path class={gap_filler_from} d={`M0,${startY} L${width},${startY}`} />
+					<path
+						class={gap_filler_from}
+						d={`M0,${startY} L${width},${startY}`}
+					/>
 					<path
 						class={filler_from}
 						d={[
@@ -44,7 +52,10 @@ export const Divider: Component<DividerProps> = function (props) {
 					/>
 
 					{/* to */}
-					<path class={gap_filler_to} d={`M0,${endY} L${width},${endY}`}>
+					<path
+						class={gap_filler_to}
+						d={`M0,${endY} L${width},${endY}`}
+					>
 						{' '}
 					</path>
 					<path
@@ -58,7 +69,11 @@ export const Divider: Component<DividerProps> = function (props) {
 					/>
 				</pattern>
 			</defs>
-			<rect width="100%" height="100%" fill={`url(#${id()})`} />
+			<rect
+				width="100%"
+				height="100%"
+				fill={`url(#${id()})`}
+			/>
 		</svg>
 	);
 };

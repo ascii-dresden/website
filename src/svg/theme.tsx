@@ -18,7 +18,11 @@ export const SvgTheme: Component = function () {
 			stroke-linecap="round"
 			stroke-linejoin="round"
 		>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+			<path
+				stroke="none"
+				d="M0 0h24v24H0z"
+				fill="none"
+			/>
 			{/* Sun */}
 			<g class={light_mode}>
 				<path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />

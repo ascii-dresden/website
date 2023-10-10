@@ -19,8 +19,14 @@ export const Header: Component = function () {
 	});
 
 	return (
-		<header class={header} {...{ [SETTLE]: settle() ? '' : undefined }}>
-			<a class={header_logo} href="/">
+		<header
+			class={header}
+			{...{ [SETTLE]: settle() ? '' : undefined }}
+		>
+			<a
+				class={header_logo}
+				href="/"
+			>
 				<SvgLogo />
 			</a>
 			<div class={header_status}>
