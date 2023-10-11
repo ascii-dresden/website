@@ -4,47 +4,98 @@ import { divider_colors } from 'src/components/divider.css.ts';
 import { vars_featured } from 'src/components/patterns/featured.css.ts';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
+import { bonbance } from 'src/styles/fonts.css';
+import { FontRule } from 'src/styles/internal/font.css';
+import { lg, lt_lg, xl } from 'src/styles/screens.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 
-export const hero = style({
-	display: 'flex',
-	flexDirection: 'column',
+export const hero = style([
+	{
+		display: 'grid',
 
-	gap: spacing['2'],
-	paddingBottom: spacing['4'],
+		gap: spacing['2'],
+		paddingBottom: spacing['4'],
 
-	backgroundColor: colors.creme,
-	color: colors.espresso,
+		backgroundColor: colors.creme,
+		color: colors.espresso,
 
-	selectors: {
-		[dark()]: {
-			backgroundColor: colors.black,
-			color: colors.creme,
+		selectors: {
+			[dark()]: {
+				backgroundColor: colors.black,
+				color: colors.creme,
+			},
 		},
 	},
-});
+	lt_lg({
+		'::before': {
+			display: 'block',
+			content: '""',
+			gridRow: '2 / 4',
+			gridColumn: '1 / 2',
+			marginRight: spacing['2'],
 
-export const hero_image = style({
-	display: 'grid',
-	gridTemplateColumns: 'minmax(0, 1fr)',
-	gridTemplateRows: 'minmax(0, 1fr)',
+			backgroundColor: colors.milk,
+			color: colors.espresso,
 
-	aspectRatio: '3 / 2',
-	marginInline: spacing['2'],
-	overflow: 'hidden',
+			borderTopRightRadius: border_radius,
+			borderBottomRightRadius: border_radius,
+			borderWidth: border_width,
+			borderStyle: border_style,
+			borderColor: colors.espresso,
+			borderLeft: 'none',
+		},
+		selectors: {
+			[dark('&::before')]: {
+				marginLeft: `-${border_width}px`,
+				paddingLeft: `calc(${spacing['3']} + ${border_width}px)`,
 
-	borderRadius: border_radius,
-	borderWidth: border_width,
-	borderStyle: border_style,
-	borderColor: colors.espresso,
+				backgroundColor: colors.espresso,
+				color: colors.creme,
+				borderColor: colors.espresso,
+				boxShadow: `inset 0 0 0 ${border_width}px ${colors.black}`,
+			},
+		},
+	}),
+	lg({
+		gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
+		gridTemplateRows: 'minmax(0, 1fr) max-content',
+		paddingInline: spacing['2'],
+		gap: spacing['3'],
+	}),
+]);
 
-	selectors: {
-		[dark()]: {
-			borderColor: colors.creme,
+export const hero_image = style([
+	{
+		display: 'grid',
+		gridTemplateColumns: 'minmax(0, 1fr)',
+		gridTemplateRows: 'minmax(0, 1fr)',
+
+		aspectRatio: '3 / 2',
+		overflow: 'hidden',
+
+		borderRadius: border_radius,
+		borderWidth: border_width,
+		borderStyle: border_style,
+		borderColor: colors.espresso,
+
+		selectors: {
+			[dark()]: {
+				borderColor: colors.creme,
+			},
 		},
 	},
-});
+	lt_lg({
+		gridColumn: '1 / 2',
+		gridRow: '1 / 2',
+		marginInline: spacing['2'],
+	}),
+	lg({
+		gridRow: '1 / 3',
+		gridColumn: '4 / 7',
+		alignSelf: 'start',
+	}),
+]);
 
 globalStyle(`${hero_image} img`, {
 	flexGrow: 1,
@@ -60,36 +111,73 @@ globalStyle(dark(`${hero_image} img`), {
 	borderColor: colors.black,
 });
 
-export const hero_summary = style({
-	display: 'flex',
-	flexDirection: 'column',
+export const hero_title = style([
+	lt_lg({
+		gridColumn: '1 / 2',
+		gridRow: '2 / 3',
 
-	gap: spacing['3'],
-	padding: spacing['3'],
-	marginRight: spacing['2'],
+		paddingTop: spacing['3'],
+		paddingLeft: spacing['3'],
+		paddingRight: spacing['3'],
+	}),
+	bonbance([
+		lg<FontRule>({
+			gridColumn: '2 / 6',
+			gridRow: '1 / 2',
+			marginTop: spacing['4'],
+			justifySelf: 'start',
+			alignSelf: 'end',
 
-	backgroundColor: colors.milk,
-	color: colors.espresso,
+			// paddingTop: spacing['3'],
+			// paddingBottom: spacing['3'],
+			// paddingRight: spacing['3'],
+			padding: border_width * 2,
+			borderRadius: border_width * 2,
 
-	borderTopRightRadius: border_radius,
-	borderBottomRightRadius: border_radius,
-	borderWidth: border_width,
-	borderStyle: border_style,
-	borderColor: colors.espresso,
-	borderLeft: 'none',
-
-	selectors: {
-		[dark()]: {
-			marginLeft: `-${border_width}px`,
-			paddingLeft: `calc(${spacing['3']} + ${border_width}px)`,
-
+			// backgroundColor: `color-mix(in srgb, ${colors.creme}, transparent)`,
 			backgroundColor: colors.espresso,
-			color: colors.creme,
-			borderColor: colors.espresso,
-			boxShadow: `inset 0 0 0 ${border_width}px ${colors.black}`,
+			color: colors.milk,
+			// backdropFilter: `blur(4px)`,
+			// borderWidth: border_width,
+			// borderColor: colors.espresso,
+			// borderTopRightRadius: border_radius,
+			// borderBottomRightRadius: border_radius,
+			// borderLeftStyle: 'none',
+
+			fontOptions: {
+				capHeight: 72,
+				lineGap: 16,
+			},
+		}),
+		xl<FontRule>({
+			fontOptions: {
+				capHeight: 96,
+				lineGap: 16,
+			},
+		}),
+	]),
+]);
+
+export const hero_summary = style([
+	lt_lg({
+		gridColumn: '1 / 2',
+		gridRow: '3 / 4',
+
+		paddingLeft: spacing['3'],
+		paddingRight: spacing['3'],
+		paddingBottom: spacing['3'],
+		paddingTop: spacing['2'],
+		marginRight: spacing['2'],
+
+		selectors: {
+			[dark()]: {},
 		},
-	},
-});
+	}),
+	lg({
+		gridColumn: '2 / 4',
+		gridRow: '2 / 3',
+	}),
+]);
 
 export const divider_1 = style({
 	vars: assignVars(divider_colors, {

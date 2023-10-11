@@ -41,8 +41,8 @@ const metrics_bonbance: FontMetrics = {
 	xWidthAvg: 346,
 };
 
-const bonbance = createFont(metrics_bonbance);
-const jetbrains_mono = createFont(metrics_jetbrains_mono);
+export const bonbance = createFont(metrics_bonbance);
+export const jetbrains_mono = createFont(metrics_jetbrains_mono);
 
 export const display_large_rule = bonbance([
 	{
