@@ -1,5 +1,5 @@
 # Derived from https://schema.org/openingHours
-- days: Mo,Th,Fr
+- days: Mo-Th
   opens: 09:00
   closes: 17:00
 - days: Fr
