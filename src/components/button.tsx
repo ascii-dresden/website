@@ -1,6 +1,6 @@
 import { Component, JSX, ParentComponent, createMemo, onMount, splitProps } from 'solid-js';
 
-import { SvgWaveArrowRight } from 'src/svg/arrows.tsx';
+import { SvgWaveArrowRight } from 'src/components/svg/arrows.tsx';
 
 import {
 	ANIMATION_OUT_ACTIVE,

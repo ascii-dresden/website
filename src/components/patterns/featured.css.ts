@@ -1,4 +1,4 @@
-import { ComplexStyleRule, createThemeContract, globalStyle } from '@vanilla-extract/css';
+import { ComplexStyleRule, createThemeContract } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
@@ -50,7 +50,7 @@ export const featured = recipe<Omit<RecipeVariants, 'preLine'>>({
 			backgroundColor: vars_featured.background_color,
 			backgroundImage: 'url("../../assets/grain.svg")',
 			backgroundSize: '256px',
-			backgroundBlendMode: 'soft-light',
+			backgroundBlendMode: 'overlay',
 
 			borderRadius: border_radius,
 		},
@@ -71,7 +71,6 @@ export const featured = recipe<Omit<RecipeVariants, 'preLine'>>({
 
 		selectors: {
 			[dark('&::before')]: {
-				backgroundBlendMode: 'multiply',
 				boxShadow: `inset 0 0 0 ${border_width}px ${vars_featured.color}`,
 				borderWidth: border_width,
 				borderStyle: border_style,

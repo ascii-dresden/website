@@ -1,6 +1,6 @@
 import { StyleRule } from '@vanilla-extract/css';
 
-import { mapObject, mapObjectWithKeys } from 'src/util/map_object.ts';
+import { mapObject, mapObjectWithKeys } from 'src/map_object.ts';
 
 // Extracted from @vanilla-extract/css/src/types.ts
 type Query<TKey extends string, TStyle> = {

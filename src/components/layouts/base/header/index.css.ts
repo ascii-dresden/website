@@ -3,7 +3,7 @@ import { globalStyle, style } from '@vanilla-extract/css';
 import { border_style, border_width } from 'src/styles/border.css';
 import { colors } from 'src/styles/colors.css.ts';
 import { durations, ease } from 'src/styles/motion.css';
-import { lg } from 'src/styles/screens.css.ts';
+import { lg, xl } from 'src/styles/screens.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 
@@ -18,6 +18,10 @@ export const header = style([
 		display: 'flex',
 
 		backgroundColor: colors.creme,
+		backgroundImage: 'url("../../../../assets/grain.svg")',
+		backgroundBlendMode: 'overlay',
+		backgroundSize: '256px',
+
 		color: colors.espresso,
 
 		borderBottomStyle: border_style,
@@ -26,7 +30,7 @@ export const header = style([
 
 		zIndex: 2,
 
-		transitionProperty: 'background-color, color, border-bottom-color',
+		transitionProperty: 'background-color, color, border-bottom-color, grid-template-columns',
 		transitionDuration: durations.medium,
 		transitionTimingFunction: ease.standard,
 
@@ -35,6 +39,9 @@ export const header = style([
 				backgroundColor: colors.black,
 			},
 			[`&:not([${SETTLE}])`]: {
+				backgroundImage: 'none',
+				backgroundColor: `color-mix(in srgb, ${colors.creme}, transparent)`,
+				backdropFilter: 'blur(0.5rem)',
 				boxShadow: `0 0 ${spacing['1']} 0 rgba(0, 0, 0, 0.5)`,
 				borderBottomColor: colors.espresso,
 			},
@@ -45,10 +52,21 @@ export const header = style([
 	},
 	lg({
 		display: 'grid',
+		gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 4.75fr) minmax(0, 1fr)',
+		gridTemplateRows: 'minmax(0, 1fr)',
+		paddingInline: spacing['4'],
+		gap: spacing['3'],
+
+		selectors: {
+			[`&[${SETTLE}]`]: {
+				gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)',
+			},
+		},
+	}),
+	xl({
 		gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
 		gridTemplateRows: 'minmax(0, 1fr)',
 		paddingInline: spacing['2'],
-		gap: spacing['3'],
 	}),
 ]);
 
@@ -59,6 +77,10 @@ export const header_logo = style([
 		justifySelf: 'start',
 	},
 	lg({
+		gridColumn: '1 / 2',
+		paddingLeft: 0,
+	}),
+	xl({
 		gridColumn: '2 / 3',
 		paddingLeft: 0,
 	}),
@@ -75,8 +97,10 @@ export const header_status = style([
 		height: `calc(${spacing['4']} - (2 * ${spacing['2']}))`,
 		alignSelf: 'center',
 	},
-
 	lg({
+		gridColumn: '2 / 3',
+	}),
+	xl({
 		gridColumn: '4 / 6',
 	}),
 ]);

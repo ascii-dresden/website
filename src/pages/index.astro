@@ -3,11 +3,11 @@ import { BusinessHours } from 'src/components/business_hours.tsx';
 import { Divider } from 'src/components/divider';
 import Image from 'src/components/image.astro';
 import Featured from 'src/components/patterns/featured.astro';
-import { fetchDrinkOfMonth } from 'src/content/_drink_of_month.ts';
-import { fetchNextEvent } from 'src/content/_events.ts';
-import BaseLayout from 'src/layouts/base.astro';
+import BaseLayout from 'src/components/layouts/base/index.astro';
+import { SvgSticker } from 'src/components/svg/sticker';
+import { fetchCurrentDrinkOfMonth } from 'src/data/drink_of_month.ts';
+import { fetchNextEvent } from 'src/data/events.ts';
 import { body_small } from 'src/styles/atomic/fonts.css';
-import { SvgSticker } from 'src/svg/sticker';
 
 import {
 	become_member,
@@ -34,7 +34,7 @@ import {
 	offer_head,
 } from './index.css.ts';
 
-const drinkOfMonth = fetchDrinkOfMonth();
+const drinkOfMonth = await fetchCurrentDrinkOfMonth();
 const nextEvent = await fetchNextEvent();
 ---
 
@@ -49,9 +49,11 @@ const nextEvent = await fetchNextEvent();
 		</div>
 		<h1 class={hero_title}>Willkommen!</h1>
 		<p class={hero_summary}>
-			Wir sind ein studentisch geführtes Café in der Fakultät Informatik der TU Dresden. Bei uns
-			gibt es Snacks, Kalt- und Heißgetränke, sowie Sofas als idealen Ort zum Verweilen und
-			Austauschen mit anderen Studierenden.
+			Wir sind das studentische Café der Fakultät Informatik. Hier gibt es Kaffee, Tee, Snacks und
+			gaaaanz viel Mate.
+			<!-- Wir sind ein studentisch geführtes Café in der Fakultät Informatik der TU Dresden. Bei uns -->
+			<!-- gibt es Snacks, Kalt- und Heißgetränke, sowie Sofas als idealen Ort zum Verweilen und -->
+			<!-- Austauschen mit anderen Studierenden. -->
 		</p>
 	</section>
 	<Divider class={divider_1} />
@@ -97,15 +99,16 @@ const nextEvent = await fetchNextEvent();
 			preLine
 			href="/events"
 		>
-			<Fragment slot="title">{drinkOfMonth.title}</Fragment>
-			<Fragment slot="description">{drinkOfMonth.description}</Fragment>
+			<!-- TODO: drinkOfMonth might be undefined -->
+			<Fragment slot="title">{drinkOfMonth!.title}</Fragment>
+			<Fragment slot="description">{drinkOfMonth!.description}</Fragment>
 			<Fragment slot="date">
-				{drinkOfMonth.year_month.toLocaleString('de-DE', { month: 'long', year: 'numeric' })}
+				{drinkOfMonth!.year_month.toLocaleString('de-DE', { month: 'long', year: 'numeric' })}
 			</Fragment>
 			<Fragment slot="image">
 				<Image
-					file={drinkOfMonth.image}
-					alt={drinkOfMonth.image_alt}
+					file={drinkOfMonth!.image}
+					alt={drinkOfMonth!.image_alt}
 					sizes="66vw"
 				/>
 			</Fragment>

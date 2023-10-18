@@ -1,6 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css';
 
-import { main } from 'src/layouts/base.css.ts';
+import { main } from 'src/components/layouts/base/index.css.ts';
 import { border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';

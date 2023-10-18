@@ -17,11 +17,11 @@ export const business_hours_section = style({
 
 	padding: spacing['3'],
 
-	color: colors.milk,
 	backgroundColor: colors.espresso,
 	backgroundImage: 'url("../assets/grain.svg")',
 	backgroundSize: '256px',
-	backgroundBlendMode: 'soft-light',
+	backgroundBlendMode: 'overlay',
+	color: colors.milk,
 
 	borderRadius: border_radius,
 
@@ -29,7 +29,6 @@ export const business_hours_section = style({
 		[dark()]: {
 			color: colors.black,
 			backgroundColor: colors.creme,
-			backgroundBlendMode: 'multiply',
 			borderStyle: border_style,
 			borderWidth: border_width,
 			borderColor: colors.creme,

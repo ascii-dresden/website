@@ -1,11 +1,11 @@
 import { Component, createSignal, onMount } from 'solid-js';
 
-import { SvgLogo } from 'src/svg/header.tsx';
+import { SvgLogo } from 'src/components/svg/header.tsx';
 
-import { SETTLE, header, header_logo, header_status } from './header.css.ts';
+import { SETTLE, header, header_logo, header_status } from './index.css.ts';
 
 // import { Navigation } from './header/navigation.tsx';
-import { Status } from './header/status.tsx';
+import { Status } from './status.tsx';
 
 export const Header: Component = function () {
 	const [settle, setSettle] = createSignal(false);

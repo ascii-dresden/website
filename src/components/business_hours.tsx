@@ -1,6 +1,6 @@
 import { Component, For, JSX } from 'solid-js';
 
-import { fetchOpeningHours, daysToLocaleString } from 'src/content/_opening_hours.ts';
+import { fetchOpeningHours, daysToLocaleString } from 'src/data/opening_hours.ts';
 import { body_large } from 'src/styles/atomic/fonts.css.ts';
 
 import { business_hours, business_hours_section, dd, dl, dt } from './business_hours.css.ts';

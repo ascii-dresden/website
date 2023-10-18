@@ -19,7 +19,15 @@ export default defineConfig({
 				plugins: [autoprefixer()],
 			},
 		},
-		plugins: [vanillaExtractPlugin()],
+		plugins: [
+			vanillaExtractPlugin({
+				esbuildOptions: {
+					loader: {
+						'.svg': 'dataurl',
+					},
+				},
+			}),
+		],
 		resolve: {
 			alias: [
 				{

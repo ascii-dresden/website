@@ -3,7 +3,7 @@ import { Accessor, Component, Match, Switch, createSignal, onMount } from 'solid
 import { Output, enumType, object, safeParse, transform } from 'valibot';
 
 import { BusinessHours } from 'src/components/business_hours.tsx';
-import { SvgExpand } from 'src/svg/chevron.tsx';
+import { SvgExpand } from 'src/components/svg/chevron.tsx';
 
 import {
 	STATUS,

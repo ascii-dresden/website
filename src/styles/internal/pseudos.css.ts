@@ -2,7 +2,7 @@ import { GlobalStyleRule, StyleRule, globalStyle } from '@vanilla-extract/css';
 import { SimplePseudos } from 'csstype';
 import deepmerge from 'deepmerge';
 
-import { filterWithRemainder } from 'src/util/filter_with_remainder.ts';
+import { filterWithRemainder } from 'src/filter_with_remainder.ts';
 
 // Extracted from @vanilla-extract/css/src/simplePseudos.ts
 export const SIMPLE_PSEUDOS: readonly SimplePseudos[] = [

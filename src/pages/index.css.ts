@@ -18,6 +18,9 @@ export const hero = style([
 		paddingBottom: spacing['4'],
 
 		backgroundColor: colors.creme,
+		backgroundImage: 'url("../assets/grain.svg")',
+		backgroundBlendMode: 'overlay',
+		backgroundSize: '256px',
 		color: colors.espresso,
 
 		selectors: {
@@ -59,9 +62,14 @@ export const hero = style([
 	}),
 	lg({
 		gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
-		gridTemplateRows: 'minmax(0, 1fr) max-content',
-		paddingInline: spacing['2'],
+		gridTemplateRows: '1fr 1fr',
+		paddingInline: spacing['4'],
 		gap: spacing['3'],
+	}),
+	xl({
+		gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
+		gridTemplateRows: '1fr 1fr',
+		paddingInline: spacing['2'],
 	}),
 ]);
 
@@ -91,6 +99,11 @@ export const hero_image = style([
 		marginInline: spacing['2'],
 	}),
 	lg({
+		gridRow: '1 / 3',
+		gridColumn: '3 / 7',
+		alignSelf: 'start',
+	}),
+	xl({
 		gridRow: '1 / 3',
 		gridColumn: '4 / 7',
 		alignSelf: 'start',
@@ -122,38 +135,30 @@ export const hero_title = style([
 	}),
 	bonbance([
 		lg<FontRule>({
-			gridColumn: '2 / 6',
+			fontOptions: {
+				capHeight: 80,
+				lineGap: 16,
+			},
+			gridColumn: '1 / 7',
 			gridRow: '1 / 2',
-			marginTop: spacing['4'],
 			justifySelf: 'start',
 			alignSelf: 'end',
 
-			// paddingTop: spacing['3'],
-			// paddingBottom: spacing['3'],
-			// paddingRight: spacing['3'],
-			padding: border_width * 2,
-			borderRadius: border_width * 2,
-
-			// backgroundColor: `color-mix(in srgb, ${colors.creme}, transparent)`,
-			backgroundColor: colors.espresso,
 			color: colors.milk,
-			// backdropFilter: `blur(4px)`,
-			// borderWidth: border_width,
-			// borderColor: colors.espresso,
-			// borderTopRightRadius: border_radius,
-			// borderBottomRightRadius: border_radius,
-			// borderLeftStyle: 'none',
 
-			fontOptions: {
-				capHeight: 72,
-				lineGap: 16,
-			},
+			WebkitTextStrokeWidth: border_width,
+			WebkitTextStrokeColor: colors.espresso,
+			textShadow: Array.from({ length: 3 })
+				.map((_, i) => `-${border_width * i}px ${border_width * i}px 0 ${colors.espresso}`)
+				.join(', '),
 		}),
 		xl<FontRule>({
 			fontOptions: {
 				capHeight: 96,
 				lineGap: 16,
 			},
+			gridColumn: '2 / 6',
+			gridRow: '1 / 2',
 		}),
 	]),
 ]);
@@ -174,6 +179,10 @@ export const hero_summary = style([
 		},
 	}),
 	lg({
+		gridColumn: '1 / span 2',
+		gridRow: '2 / 3',
+	}),
+	xl({
 		gridColumn: '2 / 4',
 		gridRow: '2 / 3',
 	}),

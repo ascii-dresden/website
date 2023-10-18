@@ -1,8 +1,10 @@
 import { Temporal } from 'temporal-polyfill';
 import { getCollection, z } from 'astro:content';
 
+import { checkTemporal } from 'src/check_temporal.ts';
+
 export const eventSchema = z.object({
-	date_time: z.string(),
+	date_time: z.coerce.string().refine((value) => checkTemporal(value, Temporal.PlainDateTime)),
 	title: z.string(),
 	image: z.string(),
 	image_alt: z.string(),
