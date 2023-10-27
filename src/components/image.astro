@@ -9,6 +9,8 @@ const WIDTHS = [320, 640, 960, 1200, 1440, 1680, 1920] as const;
 const FORMATS = ['avif', 'webp'] as const;
 
 type Props = {
+	class?: string;
+
 	file: string;
 	alt: string;
 
@@ -38,7 +40,7 @@ const srcset: Record<Format, string> = Object.fromEntries(
 );
 ---
 
-<picture class={pic}>
+<picture class:list={[pic, Astro.props.class]}>
 	{
 		FORMATS.map((format) => (
 			<source

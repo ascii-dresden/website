@@ -10,6 +10,8 @@ import { lg, lt_lg, xl } from 'src/styles/screens.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 
+import pattern from 'src/assets/pattern.svg?raw';
+
 export const hero = style([
 	{
 		display: 'grid',
@@ -78,20 +80,7 @@ export const hero_image = style([
 		display: 'grid',
 		gridTemplateColumns: 'minmax(0, 1fr)',
 		gridTemplateRows: 'minmax(0, 1fr)',
-
 		aspectRatio: '3 / 2',
-		overflow: 'hidden',
-
-		borderRadius: border_radius,
-		borderWidth: border_width,
-		borderStyle: border_style,
-		borderColor: colors.espresso,
-
-		selectors: {
-			[dark()]: {
-				borderColor: colors.creme,
-			},
-		},
 	},
 	lt_lg({
 		gridColumn: '1 / 2',
@@ -102,6 +91,20 @@ export const hero_image = style([
 		gridRow: '1 / 3',
 		gridColumn: '3 / 7',
 		alignSelf: 'start',
+		position: 'relative',
+		'::after': {
+			display: 'block',
+			content: '""',
+			position: 'absolute',
+			top: spacing['1'],
+			left: `calc(-1 * ${spacing['1']})`,
+			bottom: `calc(-1 * ${spacing['1']})`,
+			right: spacing['1'],
+
+			backgroundImage: `url(${pattern})`,
+			backgroundRepeat: 'repeat',
+			backgroundSize: '8px 8px',
+		},
 	}),
 	xl({
 		gridRow: '1 / 3',
@@ -115,6 +118,7 @@ globalStyle(`${hero_image} img`, {
 	objectFit: 'cover',
 	width: '100%',
 	height: '100%',
+	backgroundColor: colors.creme,
 });
 
 globalStyle(dark(`${hero_image} img`), {
@@ -122,6 +126,21 @@ globalStyle(dark(`${hero_image} img`), {
 	borderWidth: border_width,
 	borderStyle: border_style,
 	borderColor: colors.black,
+});
+
+export const hero_image_pic = style({
+	overflow: 'hidden',
+	borderRadius: border_radius,
+	borderWidth: border_width,
+	borderStyle: border_style,
+	borderColor: colors.espresso,
+	zIndex: 1,
+
+	selectors: {
+		[dark()]: {
+			borderColor: colors.creme,
+		},
+	},
 });
 
 export const hero_title = style([
@@ -143,6 +162,8 @@ export const hero_title = style([
 			gridRow: '1 / 2',
 			justifySelf: 'start',
 			alignSelf: 'end',
+			paddingBottom: border_width * 3,
+			zIndex: 1,
 
 			color: colors.milk,
 

@@ -129,6 +129,8 @@ const status_trigger_child = style({
 export const status_trigger_text = style([
 	status_trigger_child,
 	{
+		textTransform: 'uppercase',
+		fontWeight: 700,
 		flex: '1 0 0',
 		borderRightStyle: 'none',
 		borderTopLeftRadius: border_radius,

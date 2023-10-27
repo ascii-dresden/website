@@ -32,14 +32,14 @@
 	"dependencies": {
 		"@astrojs/check": "^0.2.1",
 		"@astrojs/solid-js": "^3.0.2",
-		"astro": "^3.3.2",
+		"astro": "^3.3.3",
 		"solid-js": "^1.8.3",
 		"typescript": "^5.2.2"
 	},
 	"devDependencies": {
 		"@capsizecss/core": "^3.1.1",
 		"@js-temporal/polyfill": "^0.4.4",
-		"@kobalte/core": "^0.11.0",
+		"@kobalte/core": "^0.11.2",
 		"@types/js-yaml": "^4.0.8",
 		"@types/node": "^18.18.6",
 		"@typescript-eslint/eslint-plugin": "^6.8.0",
@@ -51,7 +51,7 @@
 		"cross-env": "^7.0.3",
 		"csstype": "^3.1.2",
 		"deepmerge": "^4.3.1",
-		"eslint": "^8.51.0",
+		"eslint": "^8.52.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-astro": "^0.29.1",
 		"eslint-plugin-jsx-a11y": "^6.7.1",
