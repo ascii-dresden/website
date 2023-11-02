@@ -34,7 +34,7 @@ export const Header: Component = function () {
 			</div>
 			{/* TODO: Include once other pages are done */}
 			{/* <Navigation /> */}
-			<div style="aspect-ratio: 1" />
+			<div style="aspect-ratio: 1; justify-self: end;" />
 		</header>
 	);
 };

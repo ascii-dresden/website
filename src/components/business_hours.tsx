@@ -1,7 +1,7 @@
 import { Component, For, JSX } from 'solid-js';
 
 import { fetchOpeningHours, daysToLocaleString } from 'src/data/opening_hours.ts';
-import { body_large } from 'src/styles/atomic/fonts.css.ts';
+import { body_large, title_small } from 'src/styles/atomic/fonts.css.ts';
 
 import { business_hours, business_hours_section, dd, dl, dt } from './business_hours.css.ts';
 
@@ -14,7 +14,7 @@ export const BusinessHours: Component<JSX.HTMLAttributes<HTMLDivElement>> = func
 			class={props.class ? `${props.class} ${business_hours}` : business_hours}
 		>
 			<div class={business_hours_section}>
-				<h6>Während der Vorlesungszeit</h6>
+				<p class={title_small}>Während der Vorlesungszeit</p>
 				<dl class={dl}>
 					<For each={openingHours}>
 						{({ days, opens, closes }) => (
@@ -45,8 +45,8 @@ export const BusinessHours: Component<JSX.HTMLAttributes<HTMLDivElement>> = func
 				</dl>
 			</div>
 			<div class={business_hours_section}>
-				<h6>Vorlesungsfreie Zeit</h6>
-				<p>It's open when it's open</p>
+				<p class={title_small}>Vorlesungsfreie Zeit</p>
+				<p class={body_large}>It's open when it's open</p>
 			</div>
 		</div>
 	);

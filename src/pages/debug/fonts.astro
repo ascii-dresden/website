@@ -1,19 +1,35 @@
 ---
 import { main } from './fonts.css.ts';
 
-import BaseLayout from 'src/components/layouts/base.astro';
-import { body_medium, body_small } from 'src/styles/atomic/fonts.css.ts';
+import BaseLayout from 'src/components/layouts/base/index.astro';
+import {
+	body_large,
+	body_medium,
+	body_small,
+	display_large,
+	display_medium,
+	display_small,
+	label_large,
+	label_medium,
+	label_small,
+	title_large,
+	title_medium,
+	title_small,
+} from 'src/styles/atomic/fonts.css.ts';
 ---
 
 <BaseLayout>
 	<main class={main}>
-		<h1>Lorem Ipsum</h1>
-		<h2>Lorem Ipsum</h2>
-		<h3>Lorem Ipsum</h3>
-		<h4>Lorem Ipsum</h4>
-		<h5>Lorem Ipsum</h5>
-		<h6>Lorem Ipsum</h6>
-		<p>Lorem Ipsum</p>
+		<h1 class={display_large}>Lorem Ipsum</h1>
+		<h2 class={display_medium}>Lorem Ipsum</h2>
+		<h3 class={display_small}>Lorem Ipsum</h3>
+		<h4 class={title_large}>Lorem Ipsum</h4>
+		<h5 class={title_medium}>Lorem Ipsum</h5>
+		<h6 class={title_small}>Lorem Ipsum</h6>
+		<p class={label_large}>Lorem Ipsum</p>
+		<p class={label_medium}>Lorem Ipsum</p>
+		<p class={label_small}>Lorem Ipsum</p>
+		<p class={body_large}>Lorem Ipsum</p>
 		<p class={body_medium}>Lorem Ipsum</p>
 		<p class={body_small}>Lorem Ipsum</p>
 	</main>

@@ -5,33 +5,33 @@ import { FontRule, createFont } from 'src/styles/internal/font.css.ts';
 
 import { sm, xl } from './screens.css.ts';
 
-const font_face_jetbrains_mono = fontFace({
-	src: 'url("../assets/fonts/jetbrains_mono/JetBrainsMono[wght].woff2") format("woff2")',
-	fontWeight: '100 800',
+const font_face_geist_mono = fontFace({
+	src: 'url("../assets/fonts/GeistMono-Variable.woff2") format("woff2")',
+	fontWeight: '100 900',
 	fontStyle: 'normal',
 });
 
 const font_face_bonbance = fontFace({
-	src: 'url("../assets/fonts/bonbance/Bonbance-BoldCondensed.woff2") format("woff2")',
+	src: 'url("../assets/fonts/Bonbance-BoldCondensed.woff2") format("woff2")',
 	fontWeight: 'bold',
 	fontStyle: 'normal',
 });
 
-const font_face_apl333 = fontFace({
-	src: 'url("../assets/fonts/apl333/APL333.ttf") format("truetype")',
-	fontWeight: 'bold',
+const font_face_array = fontFace({
+	src: 'url("../assets/fonts/Array-Regular.woff2") format("woff2")',
+	fontWeight: 'normal',
 	fontStyle: 'normal',
 });
 
-const metrics_jetbrains_mono: FontMetrics = {
-	familyName: font_face_jetbrains_mono.slice(1, -1),
+const metrics_geist_mono: FontMetrics = {
+	familyName: font_face_geist_mono.slice(1, -1),
 	category: 'monospace',
-	capHeight: 730,
-	ascent: 1020,
-	descent: 300,
-	lineGap: 0,
+	capHeight: 710,
+	ascent: 920,
+	descent: -220,
+	lineGap: 100,
 	unitsPerEm: 1000,
-	xHeight: 550,
+	xHeight: 530,
 	xWidthAvg: 600,
 };
 
@@ -47,21 +47,20 @@ const metrics_bonbance: FontMetrics = {
 	xWidthAvg: 346,
 };
 
-const metrics_apl333: FontMetrics = {
-	familyName: font_face_apl333.slice(1, -1),
-	category: 'sans-serif',
-	capHeight: 680,
-	ascent: 910,
-	descent: -221,
-	lineGap: 0,
-	unitsPerEm: 1000,
-	xHeight: 475,
-	xWidthAvg: 441,
+const metrics_array: FontMetrics = {
+	familyName: font_face_array.slice(1, -1),
+	capHeight: 1000,
+	ascent: 1400,
+	descent: -300,
+	lineGap: 140,
+	unitsPerEm: 1600,
+	xHeight: 800,
+	xWidthAvg: 666,
 };
 
 export const bonbance = createFont(metrics_bonbance);
-export const apl333 = createFont(metrics_apl333);
-export const jetbrains_mono = createFont(metrics_jetbrains_mono);
+export const array = createFont(metrics_array);
+export const geist_mono = createFont(metrics_geist_mono);
 
 export const display_large_rule = bonbance([
 	{
@@ -127,9 +126,8 @@ export const display_small_rule = bonbance([
 	}),
 ]);
 
-export const title_large_rule = jetbrains_mono([
+export const title_large_rule = array([
 	{
-		fontWeight: 670,
 		fontOptions: {
 			capHeight: 18,
 			lineGap: 12,
@@ -143,9 +141,8 @@ export const title_large_rule = jetbrains_mono([
 	}),
 ]);
 
-export const title_medium_rule = jetbrains_mono([
+export const title_medium_rule = array([
 	{
-		fontWeight: 685,
 		fontOptions: {
 			capHeight: 15,
 			lineGap: 12,
@@ -159,9 +156,8 @@ export const title_medium_rule = jetbrains_mono([
 	}),
 ]);
 
-export const title_small_rule = jetbrains_mono([
+export const title_small_rule = array([
 	{
-		fontWeight: 700,
 		fontOptions: {
 			capHeight: 13,
 			lineGap: 12,
@@ -175,8 +171,10 @@ export const title_small_rule = jetbrains_mono([
 	}),
 ]);
 
-export const label_large_rule = apl333([
+export const label_large_rule = geist_mono([
 	{
+		fontWeight: 500,
+		fontFeatureSettings: '"ss09"',
 		fontOptions: {
 			capHeight: 12,
 			lineGap: 12,
@@ -190,8 +188,10 @@ export const label_large_rule = apl333([
 	}),
 ]);
 
-export const label_medium_rule = apl333([
+export const label_medium_rule = geist_mono([
 	{
+		fontWeight: 500,
+		fontFeatureSettings: '"ss09"',
 		fontOptions: {
 			capHeight: 10,
 			lineGap: 8,
@@ -199,8 +199,10 @@ export const label_medium_rule = apl333([
 	},
 ]);
 
-export const label_small_rule = apl333([
+export const label_small_rule = geist_mono([
 	{
+		fontWeight: 500,
+		fontFeatureSettings: '"ss09"',
 		fontOptions: {
 			capHeight: 8,
 			lineGap: 8,
@@ -208,26 +210,10 @@ export const label_small_rule = apl333([
 	},
 ]);
 
-export const body_large_rule = apl333([
+export const body_large_rule = geist_mono([
 	{
-		fontOptions: {
-			capHeight: 11,
-			lineGap: 11,
-		},
-	},
-	sm<FontRule>({
-		fontOptions: {
-			capHeight: 12,
-			lineGap: 12,
-		},
-	}),
-]);
-
-export const body_large_mono_rule = jetbrains_mono([
-	{
-		fontVariantNumeric: 'slashed-zero',
-		fontFeatureSettings: '"zero"',
 		fontWeight: 500,
+		fontFeatureSettings: '"ss09"',
 		fontOptions: {
 			capHeight: 11,
 			lineGap: 11,
@@ -241,8 +227,10 @@ export const body_large_mono_rule = jetbrains_mono([
 	}),
 ]);
 
-export const body_medium_rule = apl333([
+export const body_medium_rule = geist_mono([
 	{
+		fontWeight: 500,
+		fontFeatureSettings: '"ss09"',
 		fontOptions: {
 			capHeight: 10,
 			lineGap: 10,
@@ -256,8 +244,10 @@ export const body_medium_rule = apl333([
 	}),
 ]);
 
-export const body_small_rule = apl333([
+export const body_small_rule = geist_mono([
 	{
+		fontWeight: 500,
+		fontFeatureSettings: '"ss09"',
 		fontOptions: {
 			capHeight: 9,
 			lineGap: 9,

@@ -17,6 +17,7 @@ import {
 	animation_in,
 	animation_out,
 } from './status.css.ts';
+import { label_large } from 'src/styles/atomic/fonts.css.ts';
 
 const STATUS_STREAM_URL = 'https://status.ascii.coffee/api/stream/status';
 
@@ -80,7 +81,7 @@ export const Status: Component = function () {
 		>
 			<Collapsible.Trigger class={status_trigger}>
 				<div class={status_trigger_text}>
-					<p>
+					<p class={label_large}>
 						<Switch fallback="Öffnungszeiten">
 							<Match when={status() === 'on'}>Geöffnet</Match>
 							<Match when={status() === 'off'}>Geschlossen</Match>

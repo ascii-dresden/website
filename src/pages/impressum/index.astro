@@ -2,31 +2,32 @@
 import BaseLayout from 'src/components/layouts/base/index.astro';
 
 import '../datenschutz/index.css.ts';
+import { body_large, display_large, title_small } from 'src/styles/atomic/fonts.css';
 ---
 
 <BaseLayout hideFooter>
-	<h1>Impressum</h1>
-	<h5>Adresse</h5>
-	<p>
+	<h1 class={display_large}>Impressum</h1>
+	<h2 class={title_small}>Adresse</h2>
+	<p class={body_large}>
 		Studentencafé ASCII<br />
 		 Andreas-Pfitzmann-Bau, Raum E016<br />
 		 Nöthnitzer Strasse 46<br />
 		 01187 Dresden
 	</p>
-	<h5>E-Mail-Adresse</h5>
+	<h2 class={title_small}>E-Mail-Adresse</h2>
 	<a href="mailto:info@ascii-dresden.de">
-		<p>info@ascii-dresden.de</p>
+		<p class={body_large}>info@ascii-dresden.de</p>
 	</a>
-	<h5>Telefonnummer</h5>
+	<h2 class={title_small}>Telefonnummer</h2>
 	<a href="tel:+4935146342221">
-		<p>+49 351 46342221</p>
+		<p class={body_large}>+49 351 46342221</p>
 	</a>
-	<h5>GitHub</h5>
+	<h2 class={title_small}>GitHub</h2>
 	<a href="https://github.com/ascii-dresden">
-		<p>ascii-dresden</p>
+		<p class={body_large}>ascii-dresden</p>
 	</a>
-	<h5>Instagram</h5>
+	<h2 class={title_small}>Instagram</h2>
 	<a href="https://www.instagram.com/asciidresden/">
-		<p>@asciidresden</p>
+		<p class={body_large}>@asciidresden</p>
 	</a>
 </BaseLayout>

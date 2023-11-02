@@ -1,9 +1,9 @@
 import { Component, For } from 'solid-js';
 
 import { IconButton } from 'src/components/button.tsx';
-import { SvgClose, SvgMenu } from 'src/svg/header.tsx';
-import { SvgInstagram, SvgGithub } from 'src/svg/socials.tsx';
-import { SvgTheme } from 'src/svg/theme.tsx';
+import { SvgClose, SvgMenu } from 'src/components/svg/header.tsx';
+import { SvgInstagram, SvgGithub } from 'src/components/svg/socials.tsx';
+import { SvgTheme } from 'src/components/svg/theme.tsx';
 import { getTheme, setTheme } from 'src/theme.ts';
 
 import {

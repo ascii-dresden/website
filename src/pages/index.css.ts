@@ -152,34 +152,38 @@ export const hero_title = style([
 		paddingLeft: spacing['3'],
 		paddingRight: spacing['3'],
 	}),
+	lg({
+		gridColumn: '1 / 7',
+		gridRow: '1 / 2',
+		justifySelf: 'start',
+		alignSelf: 'end',
+		paddingBottom: border_width * 3,
+		zIndex: 1,
+
+		color: colors.milk,
+
+		WebkitTextStrokeWidth: border_width,
+		WebkitTextStrokeColor: colors.espresso,
+		textShadow: Array.from({ length: 3 })
+			.map((_, i) => `-${border_width * i}px ${border_width * i}px 0 ${colors.espresso}`)
+			.join(', '),
+	}),
+	xl({
+		gridColumn: '2 / 6',
+		gridRow: '1 / 2',
+	}),
 	bonbance([
 		lg<FontRule>({
 			fontOptions: {
 				capHeight: 80,
 				lineGap: 16,
 			},
-			gridColumn: '1 / 7',
-			gridRow: '1 / 2',
-			justifySelf: 'start',
-			alignSelf: 'end',
-			paddingBottom: border_width * 3,
-			zIndex: 1,
-
-			color: colors.milk,
-
-			WebkitTextStrokeWidth: border_width,
-			WebkitTextStrokeColor: colors.espresso,
-			textShadow: Array.from({ length: 3 })
-				.map((_, i) => `-${border_width * i}px ${border_width * i}px 0 ${colors.espresso}`)
-				.join(', '),
 		}),
 		xl<FontRule>({
 			fontOptions: {
 				capHeight: 96,
 				lineGap: 16,
 			},
-			gridColumn: '2 / 6',
-			gridRow: '1 / 2',
 		}),
 	]),
 ]);

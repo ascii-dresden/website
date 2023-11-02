@@ -7,7 +7,13 @@ import BaseLayout from 'src/components/layouts/base/index.astro';
 import { SvgSticker } from 'src/components/svg/sticker';
 import { fetchCurrentDrinkOfMonth } from 'src/data/drink_of_month.ts';
 import { fetchNextEvent } from 'src/data/events.ts';
-import { body_small } from 'src/styles/atomic/fonts.css';
+import {
+	body_large,
+	body_small,
+	display_medium,
+	display_small,
+	title_large,
+} from 'src/styles/atomic/fonts.css.ts';
 
 import {
 	become_member,
@@ -50,7 +56,7 @@ const nextEvent = await fetchNextEvent();
 			/>
 		</div>
 		<h1 class={hero_title}>Willkommen!</h1>
-		<p class={hero_summary}>
+		<p class:list={[hero_summary, body_large]}>
 			Wir sind das studentische Café der Fakultät Informatik. Hier gibt es Kaffee, Tee, Snacks und
 			gaaaanz viel Mate. Kommt vorbei!
 			<!-- Wir sind ein studentisch geführtes Café in der Fakultät Informatik der TU Dresden. Bei uns -->
@@ -60,7 +66,7 @@ const nextEvent = await fetchNextEvent();
 	</section>
 	<Divider class={divider_1} />
 	<section class={next_event}>
-		<h2 class={next_event_head}>Nächstes Event</h2>
+		<h2 class:list={[next_event_head, display_medium]}>Nächstes Event</h2>
 		<Featured
 			class={next_event_featured}
 			layout="left"
@@ -94,7 +100,7 @@ const nextEvent = await fetchNextEvent();
 	</section>
 	<Divider class={divider_2} />
 	<section class={offer}>
-		<h2 class={offer_head}>Getränk des Monats</h2>
+		<h2 class:list={[offer_head, display_medium]}>Getränk des Monats</h2>
 		<Featured
 			class={offer_featured}
 			layout="right"
@@ -119,7 +125,7 @@ const nextEvent = await fetchNextEvent();
 	</section>
 	<Divider class={divider_3} />
 	<section class={become_member}>
-		<h2 class={become_member_head}>Werde Mitglied</h2>
+		<h2 class:list={[become_member_head, display_medium]}>Werde Mitglied</h2>
 		<Featured
 			class={become_member_featured}
 			href="/verein"
@@ -142,7 +148,7 @@ const nextEvent = await fetchNextEvent();
 		class={business_hours}
 		id="business_hours"
 	>
-		<h2 class={business_hours_head}>Öffnungszeiten</h2>
+		<h2 class:list={[business_hours_head, display_medium]}>Öffnungszeiten</h2>
 		<BusinessHours />
 		<p class:list={[body_small, business_hours_footnote]}>Öffnungszeiten können abweichen</p>
 	</section>
