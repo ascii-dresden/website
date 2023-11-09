@@ -1,6 +1,6 @@
 import { Collapsible } from '@kobalte/core';
 import { Accessor, Component, Match, Switch, createSignal, onMount } from 'solid-js';
-import { Output, enumType, object, safeParse, transform } from 'valibot';
+import { Output, object, picklist, safeParse, transform } from 'valibot';
 
 import { BusinessHours } from 'src/components/business_hours.tsx';
 import { SvgExpand } from 'src/components/svg/chevron.tsx';
@@ -23,7 +23,7 @@ const STATUS_STREAM_URL = 'https://status.ascii.coffee/api/stream/status';
 
 const StatusSchema = transform(
 	object({
-		Classification: enumType(['on', 'off']),
+		Classification: picklist(['on', 'off']),
 	}),
 	(input) => input.Classification
 );
