@@ -11,7 +11,7 @@ import {
 	text_link,
 	copyright,
 } from './footer.css.ts';
-import { body_medium } from 'src/styles/atomic/fonts.css.ts';
+import { body_large, body_medium } from 'src/styles/atomic/fonts.css.ts';
 import { IconButton } from 'src/components/button';
 ---
 
@@ -22,21 +22,21 @@ import { IconButton } from 'src/components/button';
 				<li>
 					<a
 						href="mailto:info@ascii-dresden.de"
-						class={text_link}
+						class:list={[text_link, body_large]}
 					>
-						<p>info@ascii-dresden.de</p>
+						info@ascii-dresden.de
 					</a>
 				</li>
 				<li>
 					<a
 						href="tel:+4935146342221"
-						class={text_link}
+						class:list={[text_link, body_large]}
 					>
-						<p>+49 351 46342221</p>
+						+49 351 46342221
 					</a>
 				</li>
 				<li>
-					<p>
+					<p class={body_large}>
 						Studentencafé ASCII<br />
 						 Andreas-Pfitzmann-Bau, Raum E016<br />
 						 Nöthnitzer Strasse 46<br />
@@ -50,17 +50,17 @@ import { IconButton } from 'src/components/button';
 				<li>
 					<a
 						href="/datenschutz"
-						class={text_link}
+						class:list={[text_link, body_large]}
 					>
-						<p>Datenschutz</p>
+						Datenschutz
 					</a>
 				</li>
 				<li>
 					<a
 						href="/impressum"
-						class={text_link}
+						class:list={[text_link, body_large]}
 					>
-						<p>Impressum</p>
+						Impressum
 					</a>
 				</li>
 			</ul>

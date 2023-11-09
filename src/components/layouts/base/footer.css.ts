@@ -1,9 +1,7 @@
 import { assignVars, globalStyle, style } from '@vanilla-extract/css';
 import { vars_button } from 'src/components/button.css';
-import { border_style, border_width } from 'src/styles/border.css';
 
 import { colors } from 'src/styles/colors.css.ts';
-import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 
 export const footer = style({
@@ -11,9 +9,9 @@ export const footer = style({
 
 	position: 'relative',
 
-	paddingInline: spacing['2'],
-	paddingTop: spacing['4'],
-	paddingBottom: spacing['3'],
+	paddingInline: '1rem',
+	paddingTop: '4rem',
+	paddingBottom: '2rem',
 
 	backgroundColor: colors.creme,
 	color: colors.espresso,
@@ -29,17 +27,15 @@ export const footer = style({
 export const tree = style({
 	display: 'grid',
 	gridTemplateColumns: '1fr 1fr',
-	gap: spacing['3'],
+	gap: '2rem',
 });
 
 export const text_link = style({
 	display: 'flex',
 	selectors: {
 		[`${tree} > li > ul > li > &:hover`]: {
-			borderBottomColor: colors.espresso,
-		},
-		[dark(`${tree} > li > ul > li > &:hover`)]: {
-			borderBottomColor: colors.creme,
+			textDecoration: 'underline',
+			textUnderlineOffset: '0.25rem',
 		},
 	},
 });
@@ -74,21 +70,14 @@ export const copyright = style({
 	display: 'flex',
 	justifyContent: 'center',
 	alignItems: 'center',
-	gap: spacing['1'],
+	gap: '0.5rem',
 });
 
 globalStyle(`${tree} > li > ul:not(${socials})`, {
 	display: 'flex',
 	flexDirection: 'column',
 	alignItems: 'flex-start',
-	rowGap: spacing['1'],
+	rowGap: '0.5rem',
 });
 
-globalStyle(`${tree} p:not(${text_link} > p), ${tree} ${text_link}`, {
-	paddingTop: spacing['1'],
-	paddingBottom: spacing['1'],
-
-	borderBlockWidth: border_width,
-	borderBlockStyle: border_style,
-	borderBlockColor: 'transparent',
-});
+globalStyle(`${tree} p:not(${text_link} > p), ${tree} ${text_link}`, {});

@@ -3,11 +3,10 @@ import { createThemeContract, keyframes } from '@vanilla-extract/css';
 import { border_radius } from 'src/styles/border.css.ts';
 import { componentStyle } from 'src/styles/layers.css.ts';
 import { durations, ease } from 'src/styles/motion.css.ts';
-import { spacing } from 'src/styles/spacing.css.ts';
 
 export const ANIMATION_OUT_ACTIVE = 'data-animation-out-active';
 const ANIMATION_DURATION = durations.medium;
-const ICON_GAP = spacing['2'];
+const ICON_GAP = '1rem';
 
 export const vars_button = createThemeContract({
 	backgroundColor: null,
@@ -37,7 +36,7 @@ export const anchor_button = componentStyle({
 	alignItems: 'center',
 	justifyContent: 'center',
 	gap: ICON_GAP,
-	paddingInline: spacing['2'],
+	paddingInline: '1rem',
 
 	borderRadius: border_radius,
 
@@ -123,7 +122,7 @@ const animation_text_out = keyframes({
 });
 
 export const anchor_button_text = componentStyle({
-	marginBlock: spacing['2'],
+	marginBlock: '1rem',
 	textAlign: 'center',
 	selectors: {
 		[`${anchor_button}:hover &`]: {
@@ -147,8 +146,8 @@ export const icon_button = componentStyle({
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'center',
-	width: spacing['4'],
-	height: spacing['4'],
+	width: '4rem',
+	height: '4rem',
 
 	color: vars_button.color,
 

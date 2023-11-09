@@ -1,7 +1,7 @@
 import { FontMetrics, createStyleObject } from '@capsizecss/core';
 import { StyleRule } from '@vanilla-extract/css';
 
-import { fonts } from './layers.css.ts';
+import { font } from './layers.css.ts';
 import { merge } from './merge.css.ts';
 import { MediaQueries } from './screens.css.ts';
 
@@ -74,6 +74,6 @@ export function createFont(metrics: FontMetrics): (rule: ComplexFontRule) => Sty
 			}
 		});
 
-		return { '@layer': { [fonts]: merge(styleRules) } };
+		return { '@layer': { [font]: merge(styleRules) } };
 	};
 }

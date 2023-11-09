@@ -3,7 +3,6 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
-import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 
 export const vars_featured = createThemeContract({
@@ -34,9 +33,9 @@ type RecipeVariants = {
 export const featured = recipe<Omit<RecipeVariants, 'preLine'>>({
 	base: {
 		display: 'grid',
-		gridTemplateRows: `repeat(2, max-content) repeat(3, calc(${spacing['4']} - ${spacing['2']}))`,
+		gridTemplateRows: `repeat(2, max-content) repeat(3, 3rem)`,
 		// gridTemplateColumns is set by the layout variant
-		gap: spacing['2'],
+		gap: '1rem',
 
 		position: 'relative',
 
@@ -84,7 +83,7 @@ export const featured = recipe<Omit<RecipeVariants, 'preLine'>>({
 	variants: {
 		layout: {
 			left: {
-				gridTemplateColumns: `calc(${spacing['4']} - ${spacing['2']}) 1fr max-content`,
+				gridTemplateColumns: `3rem 1fr max-content`,
 				'::before': {
 					gridColumn: '2 / 4',
 				},
@@ -95,7 +94,7 @@ export const featured = recipe<Omit<RecipeVariants, 'preLine'>>({
 				},
 			},
 			right: {
-				gridTemplateColumns: `max-content 1fr calc(${spacing['4']} - ${spacing['2']})`,
+				gridTemplateColumns: `max-content 1fr 3rem`,
 				'::before': {
 					gridColumn: '1 / 3',
 				},
@@ -137,9 +136,9 @@ export const featured_title = recipe<Pick<RecipeVariants, 'layout'>>({
 	base: {
 		gridRow: '1 / 2',
 
-		paddingTop: spacing['3'],
-		paddingLeft: spacing['3'],
-		paddingRight: spacing['3'],
+		paddingTop: '2rem',
+		paddingLeft: '2rem',
+		paddingRight: '2rem',
 
 		color: vars_featured.color,
 	},
@@ -164,8 +163,8 @@ export const featured_description = recipe<
 	base: {
 		gridRow: '2 / 3',
 
-		paddingInline: spacing['3'],
-		paddingBlock: spacing['2'],
+		paddingInline: '2rem',
+		paddingBlock: '1rem',
 
 		color: vars_featured.color,
 	},
@@ -202,8 +201,8 @@ export const featured_date = recipe<Pick<RecipeVariants, 'layout'>>({
 		gridRow: '3 / 4',
 
 		textAlign: 'center',
-		paddingTop: spacing['2'],
-		paddingBottom: `calc(${spacing['2']} + ${border_width}px)`,
+		paddingTop: '1rem',
+		paddingBottom: `calc(1rem + ${border_width}px)`,
 
 		color: vars_featured.color,
 
@@ -222,12 +221,12 @@ export const featured_date = recipe<Pick<RecipeVariants, 'layout'>>({
 		layout: {
 			left: {
 				gridColumn: '3 / 4',
-				paddingRight: `calc(${spacing['2']} + ${border_width}px)`,
+				paddingRight: `calc(1rem + ${border_width}px)`,
 			},
 			right: {
 				gridColumn: '1 / 2',
-				paddingLeft: spacing['3'],
-				// paddingLeft: `calc(${spacing['2']} + ${border_width}px)`,
+				paddingLeft: '2rem',
+				// paddingLeft: `calc(${'1rem'} + ${border_width}px)`,
 			},
 			center: {
 				gridColumn: '1 / 2',
@@ -253,7 +252,7 @@ export const featured_image = recipe<Pick<RecipeVariants, 'noImageBorder' | 'lay
 
 				selectors: {
 					[dark()]: {
-						boxShadow: `0 0 ${spacing['1']} 0 ${colors.black}`,
+						boxShadow: `0 0 0.5rem 0 ${colors.black}`,
 					},
 					[dark('&::after')]: {
 						content: '""',

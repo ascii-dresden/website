@@ -17,9 +17,9 @@ const font_face_bonbance = fontFace({
 	fontStyle: 'normal',
 });
 
-const font_face_array = fontFace({
-	src: 'url("../assets/fonts/Array-Regular.woff2") format("woff2")',
-	fontWeight: 'normal',
+const font_face_chubbo = fontFace({
+	src: 'url("../assets/fonts/Chubbo-Variable.woff2") format("woff2")',
+	fontWeight: '200 700',
 	fontStyle: 'normal',
 });
 
@@ -47,8 +47,8 @@ const metrics_bonbance: FontMetrics = {
 	xWidthAvg: 346,
 };
 
-const metrics_array: FontMetrics = {
-	familyName: font_face_array.slice(1, -1),
+const metrics_chubbo: FontMetrics = {
+	familyName: font_face_chubbo.slice(1, -1),
 	capHeight: 1000,
 	ascent: 1400,
 	descent: -300,
@@ -59,7 +59,7 @@ const metrics_array: FontMetrics = {
 };
 
 export const bonbance = createFont(metrics_bonbance);
-export const array = createFont(metrics_array);
+export const chubbo = createFont(metrics_chubbo);
 export const geist_mono = createFont(metrics_geist_mono);
 
 export const display_large_rule = bonbance([
@@ -126,8 +126,9 @@ export const display_small_rule = bonbance([
 	}),
 ]);
 
-export const title_large_rule = array([
+export const title_large_rule = chubbo([
 	{
+		fontWeight: 500,
 		fontOptions: {
 			capHeight: 18,
 			lineGap: 12,
@@ -141,8 +142,9 @@ export const title_large_rule = array([
 	}),
 ]);
 
-export const title_medium_rule = array([
+export const title_medium_rule = chubbo([
 	{
+		fontWeight: 520,
 		fontOptions: {
 			capHeight: 15,
 			lineGap: 12,
@@ -156,8 +158,9 @@ export const title_medium_rule = array([
 	}),
 ]);
 
-export const title_small_rule = array([
+export const title_small_rule = chubbo([
 	{
+		fontWeight: 540,
 		fontOptions: {
 			capHeight: 13,
 			lineGap: 12,
@@ -170,44 +173,61 @@ export const title_small_rule = array([
 		},
 	}),
 ]);
-
 export const label_large_rule = geist_mono([
 	{
-		fontWeight: 500,
+		textTransform: 'uppercase',
+		letterSpacing: 1,
+		fontWeight: 600,
 		fontFeatureSettings: '"ss09"',
 		fontOptions: {
-			capHeight: 12,
-			lineGap: 12,
+			capHeight: 10,
+			lineGap: 10,
 		},
 	},
 	sm<FontRule>({
 		fontOptions: {
-			capHeight: 12,
-			lineGap: 12,
+			capHeight: 11,
+			lineGap: 11,
 		},
 	}),
 ]);
 
 export const label_medium_rule = geist_mono([
 	{
-		fontWeight: 500,
+		textTransform: 'uppercase',
+		letterSpacing: 1,
+		fontWeight: 600,
 		fontFeatureSettings: '"ss09"',
 		fontOptions: {
-			capHeight: 10,
-			lineGap: 8,
+			capHeight: 9,
+			lineGap: 9,
 		},
 	},
+	sm<FontRule>({
+		fontOptions: {
+			capHeight: 10,
+			lineGap: 10,
+		},
+	}),
 ]);
 
 export const label_small_rule = geist_mono([
 	{
-		fontWeight: 500,
+		textTransform: 'uppercase',
+		letterSpacing: 1,
+		fontWeight: 600,
 		fontFeatureSettings: '"ss09"',
 		fontOptions: {
 			capHeight: 8,
 			lineGap: 8,
 		},
 	},
+	sm<FontRule>({
+		fontOptions: {
+			capHeight: 9,
+			lineGap: 9,
+		},
+	}),
 ]);
 
 export const body_large_rule = geist_mono([

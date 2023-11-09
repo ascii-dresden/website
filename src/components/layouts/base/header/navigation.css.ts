@@ -3,7 +3,6 @@ import { vars_button } from 'src/components/button.css';
 
 import { colors } from 'src/styles/colors.css.ts';
 import { durations, ease } from 'src/styles/motion.css.ts';
-import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 import { enumerate } from 'src/styles/util/enumerate.css.ts';
 
@@ -24,10 +23,10 @@ export const navigation = style([
 		height: '100%',
 		width: '100%',
 
-		gridTemplateColumns: `1fr ${spacing['4']} ${spacing['2']}`,
-		gridTemplateRows: `${spacing['4']} 1fr ${spacing['4']}`,
+		gridTemplateColumns: `1fr 4rem 1rem`,
+		gridTemplateRows: `4rem 1fr 4rem`,
 		gridTemplateAreas: `". . toggle" "links links links" "socials theme theme"`,
-		paddingBottom: spacing['2'],
+		paddingBottom: '1rem',
 
 		backgroundColor: colors.milk,
 		color: colors.espresso,
@@ -98,8 +97,8 @@ export const navigation_link = style({
 	alignItems: 'center',
 	textAlign: 'end',
 
-	height: spacing['4'],
-	marginInline: spacing['2'],
+	height: '4rem',
+	marginInline: '1rem',
 
 	borderBottomWidth: 2,
 	borderBottomColor: colors.espresso,
@@ -171,7 +170,7 @@ export const navigation_link_label_slash = style({
 	overflow: 'hidden',
 	selectors: {
 		[`${navigation_link}:hover &`]: {
-			width: spacing['3'],
+			width: '2rem',
 		},
 	},
 });
@@ -200,14 +199,14 @@ export const navigation_button_theme = style([
 	navigation_button,
 	{
 		gridArea: 'theme',
-		marginRight: spacing['2'],
+		marginRight: '1rem',
 	},
 ]);
 
 export const navigation_socials = style({
 	gridArea: 'socials',
 	display: 'flex',
-	paddingLeft: spacing['2'],
+	paddingLeft: '1rem',
 });
 
 export const navigation_button_social = style([

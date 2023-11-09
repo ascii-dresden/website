@@ -4,7 +4,6 @@ import { border_style, border_width } from 'src/styles/border.css';
 import { colors } from 'src/styles/colors.css.ts';
 import { durations, ease } from 'src/styles/motion.css';
 import { lg, xl } from 'src/styles/screens.css.ts';
-import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 
 export const SETTLE = 'data-settle';
@@ -13,7 +12,7 @@ export const header = style([
 	{
 		position: 'sticky',
 		top: 0,
-		height: spacing['4'],
+		height: '4rem',
 
 		display: 'flex',
 
@@ -42,7 +41,7 @@ export const header = style([
 				backgroundImage: 'none',
 				backgroundColor: `color-mix(in srgb, ${colors.creme}, transparent)`,
 				backdropFilter: 'blur(0.5rem)',
-				boxShadow: `0 0 ${spacing['1']} 0 rgba(0, 0, 0, 0.5)`,
+				boxShadow: `0 0 0.5rem 0 rgba(0, 0, 0, 0.5)`,
 				borderBottomColor: colors.espresso,
 			},
 			[dark(`&:not([${SETTLE}])`)]: {
@@ -54,8 +53,8 @@ export const header = style([
 		display: 'grid',
 		gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 4.75fr) minmax(0, 1fr)',
 		gridTemplateRows: 'minmax(0, 1fr)',
-		paddingInline: spacing['4'],
-		gap: spacing['3'],
+		paddingInline: '4rem',
+		gap: '2rem',
 
 		selectors: {
 			[`&[${SETTLE}]`]: {
@@ -66,14 +65,14 @@ export const header = style([
 	xl({
 		gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
 		gridTemplateRows: 'minmax(0, 1fr)',
-		paddingInline: spacing['2'],
+		paddingInline: '1rem',
 	}),
 ]);
 
 export const header_logo = style([
 	{
 		height: '100%',
-		padding: spacing['2'],
+		padding: '1rem',
 		justifySelf: 'start',
 	},
 	lg({
@@ -94,7 +93,7 @@ globalStyle(`${header_logo} svg`, {
 export const header_status = style([
 	{
 		flex: '1 0 0',
-		height: `calc(${spacing['4']} - (2 * ${spacing['2']}))`,
+		height: '2rem',
 		alignSelf: 'center',
 	},
 	lg({

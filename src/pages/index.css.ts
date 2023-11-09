@@ -7,7 +7,6 @@ import { colors } from 'src/styles/colors.css.ts';
 import { bonbance } from 'src/styles/fonts.css';
 import { FontRule } from 'src/styles/internal/font.css';
 import { lg, lt_lg, xl } from 'src/styles/screens.css.ts';
-import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 
 import pattern from 'src/assets/pattern.svg?raw';
@@ -16,8 +15,8 @@ export const hero = style([
 	{
 		display: 'grid',
 
-		gap: spacing['2'],
-		paddingBottom: spacing['4'],
+		gap: '1rem',
+		paddingBottom: '4rem',
 
 		backgroundColor: colors.creme,
 		backgroundImage: 'url("../assets/grain.svg")',
@@ -38,7 +37,7 @@ export const hero = style([
 			content: '""',
 			gridRow: '2 / 4',
 			gridColumn: '1 / 2',
-			marginRight: spacing['2'],
+			marginRight: '1rem',
 
 			backgroundColor: colors.milk,
 			color: colors.espresso,
@@ -53,7 +52,7 @@ export const hero = style([
 		selectors: {
 			[dark('&::before')]: {
 				marginLeft: `-${border_width}px`,
-				paddingLeft: `calc(${spacing['3']} + ${border_width}px)`,
+				paddingLeft: `calc(2rem + ${border_width}px)`,
 
 				backgroundColor: colors.espresso,
 				color: colors.creme,
@@ -63,15 +62,13 @@ export const hero = style([
 		},
 	}),
 	lg({
-		gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
-		gridTemplateRows: '1fr 1fr',
-		paddingInline: spacing['4'],
-		gap: spacing['3'],
+		gridTemplateRows: 'repeat(2, 1fr)',
+		paddingInline: '4rem',
+		gap: '2rem',
 	}),
 	xl({
-		gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
-		gridTemplateRows: '1fr 1fr',
-		paddingInline: spacing['2'],
+		gridTemplateRows: 'repeat(2, 1fr)',
+		paddingInline: '1rem',
 	}),
 ]);
 
@@ -85,7 +82,7 @@ export const hero_image = style([
 	lt_lg({
 		gridColumn: '1 / 2',
 		gridRow: '1 / 2',
-		marginInline: spacing['2'],
+		marginInline: '1rem',
 	}),
 	lg({
 		gridRow: '1 / 3',
@@ -96,10 +93,10 @@ export const hero_image = style([
 			display: 'block',
 			content: '""',
 			position: 'absolute',
-			top: spacing['1'],
-			left: `calc(-1 * ${spacing['1']})`,
-			bottom: `calc(-1 * ${spacing['1']})`,
-			right: spacing['1'],
+			top: '0.5rem',
+			left: `-0.5rem`,
+			bottom: `-0.5rem`,
+			right: '0.5rem',
 
 			backgroundImage: `url(${pattern})`,
 			backgroundRepeat: 'repeat',
@@ -148,9 +145,9 @@ export const hero_title = style([
 		gridColumn: '1 / 2',
 		gridRow: '2 / 3',
 
-		paddingTop: spacing['3'],
-		paddingLeft: spacing['3'],
-		paddingRight: spacing['3'],
+		paddingTop: '2rem',
+		paddingLeft: '2rem',
+		paddingRight: '2rem',
 	}),
 	lg({
 		gridColumn: '1 / 7',
@@ -193,11 +190,11 @@ export const hero_summary = style([
 		gridColumn: '1 / 2',
 		gridRow: '3 / 4',
 
-		paddingLeft: spacing['3'],
-		paddingRight: spacing['3'],
-		paddingBottom: spacing['3'],
-		paddingTop: spacing['2'],
-		marginRight: spacing['2'],
+		paddingLeft: '2rem',
+		paddingRight: '2rem',
+		paddingBottom: '2rem',
+		paddingTop: '1rem',
+		marginRight: '1rem',
 
 		selectors: {
 			[dark()]: {},
@@ -231,8 +228,8 @@ export const divider_1 = style({
 });
 
 export const next_event = style({
-	paddingBlock: spacing['4'],
-	paddingInline: spacing['2'],
+	paddingBlock: '4rem',
+	paddingInline: '1rem',
 
 	backgroundColor: colors.milk,
 	selectors: {
@@ -243,8 +240,8 @@ export const next_event = style({
 });
 
 export const next_event_head = style({
-	paddingLeft: spacing['4'],
-	paddingBottom: spacing['3'],
+	paddingLeft: '4rem',
+	paddingBottom: '2rem',
 
 	color: colors.espresso,
 
@@ -293,8 +290,8 @@ export const divider_2 = style({
 });
 
 export const offer = style({
-	paddingBlock: spacing['4'],
-	paddingInline: spacing['2'],
+	paddingBlock: '4rem',
+	paddingInline: '1rem',
 
 	backgroundColor: colors.light_teal,
 
@@ -306,7 +303,7 @@ export const offer = style({
 });
 
 export const offer_head = style({
-	paddingBottom: spacing['3'],
+	paddingBottom: '2rem',
 
 	color: colors.teal,
 
@@ -350,8 +347,8 @@ export const divider_3 = style({
 });
 
 export const become_member = style({
-	paddingBlock: spacing['4'],
-	paddingInline: spacing['2'],
+	paddingBlock: '4rem',
+	paddingInline: '1rem',
 
 	backgroundColor: colors.creme,
 
@@ -363,7 +360,7 @@ export const become_member = style({
 });
 
 export const become_member_head = style({
-	paddingBottom: spacing['3'],
+	paddingBottom: '2rem',
 
 	color: colors.espresso,
 
@@ -412,8 +409,8 @@ export const divider_4 = style({
 });
 
 export const business_hours = style({
-	paddingBlock: spacing['4'],
-	paddingInline: spacing['2'],
+	paddingBlock: '4rem',
+	paddingInline: '1rem',
 
 	color: colors.espresso,
 	backgroundColor: colors.milk,
@@ -427,10 +424,10 @@ export const business_hours = style({
 });
 
 export const business_hours_head = style({
-	paddingBottom: spacing['3'],
+	paddingBottom: '2rem',
 });
 
 export const business_hours_footnote = style({
-	paddingTop: spacing['2'],
-	paddingLeft: spacing['3'],
+	paddingTop: '1rem',
+	paddingLeft: '2rem',
 });

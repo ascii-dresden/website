@@ -4,7 +4,6 @@ import { business_hours_section } from 'src/components/business_hours.css.ts';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { durations, ease } from 'src/styles/motion.css.ts';
-import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 
 export const EXPANDED = 'data-expanded';
@@ -42,8 +41,8 @@ export const status_content = style({
 	position: 'absolute',
 	left: 0,
 	right: 0,
-	top: `calc(100% - ${spacing['1']})`,
-	paddingInline: spacing['2'],
+	top: `calc(100% - 0.5rem)`,
+	paddingInline: '1rem',
 
 	perspective: '32rem',
 	perspectiveOrigin: 'center',
@@ -67,11 +66,11 @@ export const status_business_hours = style({
 });
 
 globalStyle(`${status_business_hours} ${business_hours_section}`, {
-	boxShadow: `0 0 ${spacing['2']} 0 ${colors.espresso}`,
+	boxShadow: `0 0 1rem 0 ${colors.espresso}`,
 });
 
 export const status_trigger = style({
-	height: `calc(${spacing['4']} - (2 * ${spacing['2']}))`,
+	height: '2rem',
 	display: 'flex',
 	alignItems: 'stretch',
 	zIndex: 1,

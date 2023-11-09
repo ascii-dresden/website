@@ -2,7 +2,6 @@ import { style } from '@vanilla-extract/css';
 
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
-import { spacing } from 'src/styles/spacing.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 
 export const business_hours = style({
@@ -13,9 +12,9 @@ export const business_hours = style({
 
 export const business_hours_section = style({
 	display: 'grid',
-	gap: spacing['3'],
+	gap: '2rem',
 
-	padding: spacing['3'],
+	padding: '2rem',
 
 	backgroundColor: colors.espresso,
 	backgroundImage: 'url("../assets/grain.svg")',
@@ -38,7 +37,7 @@ export const business_hours_section = style({
 });
 
 export const hr = style({
-	marginInline: `calc(-1 * ${spacing['3']})`,
+	marginInline: '-2rem',
 	borderTopWidth: border_width,
 	borderTopStyle: border_style,
 	borderTopColor: colors.milk,
@@ -52,7 +51,7 @@ export const hr = style({
 
 export const dl = style({
 	display: 'grid',
-	gap: spacing['2'],
+	gap: '1rem',
 });
 
 export const dt = style({
@@ -62,7 +61,7 @@ export const dt = style({
 export const dd = style({
 	selectors: {
 		'&:not(:last-child)': {
-			marginBottom: spacing['2'],
+			marginBottom: '1rem',
 		},
 	},
 });
