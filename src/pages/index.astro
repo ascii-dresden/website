@@ -7,7 +7,12 @@ import BaseLayout from 'src/components/layouts/base/index.astro';
 import { SvgSticker } from 'src/components/svg/sticker';
 import { fetchCurrentDrinkOfMonth } from 'src/data/drink_of_month.ts';
 import { fetchNextEvent } from 'src/data/events.ts';
-import { body_large, body_small, display_medium } from 'src/styles/atomic/fonts.css.ts';
+import {
+	body_large,
+	body_small,
+	display_medium,
+	title_large,
+} from 'src/styles/atomic/fonts.css.ts';
 import { grid } from 'src/styles/atomic/layouts.css.ts';
 
 import {
@@ -28,13 +33,21 @@ import {
 	hero_summary,
 	hero_title,
 	next_event,
+	next_event_button,
+	next_event_date_time,
 	next_event_date_separator,
-	next_event_featured,
+	next_event_description,
 	next_event_head,
+	next_event_image,
+	next_event_title,
 	offer,
 	offer_featured,
 	offer_head,
+	next_event_time,
+	next_event_date,
 } from './index.css.ts';
+import { AnchorButton } from 'src/components/button';
+import { screens } from 'src/styles/atomic/screens.css';
 
 const drinkOfMonth = await fetchCurrentDrinkOfMonth();
 const nextEvent = await fetchNextEvent();
@@ -60,41 +73,51 @@ const nextEvent = await fetchNextEvent();
 		</p>
 	</section>
 	<Divider class={divider_1} />
-	<section class={next_event}>
+	<section class:list={[next_event, grid]}>
 		<h2 class:list={[next_event_head, display_medium]}>Nächstes Event</h2>
-		<Featured
-			class={next_event_featured}
-			layout="left"
-			preLine
+		<h3 class:list={[next_event_title, title_large]}>{nextEvent.title}</h3>
+		<p class:list={[next_event_description, body_large]}>
+			{nextEvent.summary}
+		</p>
+		<p class={next_event_date_time}>
+			<time
+				class:list={[next_event_date, body_large]}
+				datetime={nextEvent.date_time.toPlainDate().toString()}
+			>
+				{
+					nextEvent.date_time.toLocaleString('de-DE', {
+						year: '2-digit',
+						month: '2-digit',
+						day: '2-digit',
+					})
+				}
+			</time>
+			<span class:list={[next_event_date_separator, body_large, screens.lt_lg]}>&nbsp;/&nbsp;</span>
+			<span class:list={[next_event_date_separator, body_large, screens.lg]}>└─&nbsp;</span>
+			<time
+				class:list={[next_event_time, body_large]}
+				datetime={nextEvent.date_time.toPlainTime().toString()}
+			>
+				{nextEvent.date_time.toLocaleString('de-DE', { hour: 'numeric', minute: 'numeric' })}
+			</time>
+		</p>
+		<div class={next_event_image}>
+			<Image
+				file={nextEvent.image}
+				alt={nextEvent.image_alt}
+				sizes="66vw"
+			/>
+		</div>
+		<AnchorButton
+			class={next_event_button}
+			client:load
 			href="/events"
 		>
-			<Fragment slot="title">{nextEvent.title}</Fragment>
-			<Fragment slot="description">{nextEvent.summary}</Fragment>
-			<Fragment slot="date">
-				<time datetime={nextEvent.date_time.toString()}>
-					{
-						nextEvent.date_time.toLocaleString('de-DE', {
-							year: '2-digit',
-							month: '2-digit',
-							day: '2-digit',
-						})
-					}
-					<span class={next_event_date_separator}>&nbsp;/&nbsp;</span>
-					{nextEvent.date_time.toLocaleString('de-DE', { hour: 'numeric', minute: 'numeric' })}
-				</time>
-			</Fragment>
-			<Fragment slot="image">
-				<Image
-					file={nextEvent.image}
-					alt={nextEvent.image_alt}
-					sizes="66vw"
-				/>
-			</Fragment>
-			<Fragment slot="button">Events</Fragment>
-		</Featured>
+			<p class={body_large}>Events</p>
+		</AnchorButton>
 	</section>
 	<Divider class={divider_2} />
-	<section class={offer}>
+	<section class:list={[offer, grid]}>
 		<h2 class:list={[offer_head, display_medium]}>Getränk des Monats</h2>
 		<Featured
 			class={offer_featured}
@@ -119,7 +142,7 @@ const nextEvent = await fetchNextEvent();
 		</Featured>
 	</section>
 	<Divider class={divider_3} />
-	<section class={become_member}>
+	<section class:list={[become_member, grid]}>
 		<h2 class:list={[become_member_head, display_medium]}>Werde Mitglied</h2>
 		<Featured
 			class={become_member_featured}
@@ -140,7 +163,7 @@ const nextEvent = await fetchNextEvent();
 	</section>
 	<Divider class={divider_4} />
 	<section
-		class={business_hours}
+		class:list={[business_hours, grid]}
 		id="business_hours"
 	>
 		<h2 class:list={[business_hours_head, display_medium]}>Öffnungszeiten</h2>

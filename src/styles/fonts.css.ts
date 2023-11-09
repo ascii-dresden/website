@@ -49,13 +49,13 @@ const metrics_bonbance: FontMetrics = {
 
 const metrics_chubbo: FontMetrics = {
 	familyName: font_face_chubbo.slice(1, -1),
-	capHeight: 1000,
-	ascent: 1400,
-	descent: -300,
-	lineGap: 140,
-	unitsPerEm: 1600,
-	xHeight: 800,
-	xWidthAvg: 666,
+	capHeight: 706,
+	ascent: 1050,
+	descent: -320,
+	lineGap: 100,
+	unitsPerEm: 1000,
+	xHeight: 484,
+	xWidthAvg: 444,
 };
 
 export const bonbance = createFont(metrics_bonbance);

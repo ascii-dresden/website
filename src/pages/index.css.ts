@@ -89,6 +89,7 @@ export const hero_image = style([
 		gridColumn: '3 / 7',
 		alignSelf: 'start',
 		position: 'relative',
+
 		'::after': {
 			display: 'block',
 			content: '""',
@@ -229,7 +230,6 @@ export const divider_1 = style({
 
 export const next_event = style({
 	paddingBlock: '4rem',
-	paddingInline: '1rem',
 
 	backgroundColor: colors.milk,
 	selectors: {
@@ -237,40 +237,166 @@ export const next_event = style({
 			backgroundColor: colors.espresso,
 		},
 	},
-});
 
-export const next_event_head = style({
-	paddingLeft: '4rem',
-	paddingBottom: '2rem',
+	// grainy background
+	'::before': {
+		content: '""',
+		display: 'block',
 
-	color: colors.espresso,
+		gridRow: '2 / 5',
+		gridColumn: '3 / 6',
 
-	selectors: {
-		[dark()]: {
-			color: colors.creme,
-		},
+		backgroundColor: colors.espresso,
+		backgroundImage: 'url("../assets/grain.svg")',
+		backgroundSize: '256px',
+		backgroundBlendMode: 'overlay',
+
+		borderRadius: border_radius,
 	},
 });
 
-export const next_event_featured = style({
-	gridColumn: '1 / 3',
-	vars: assignVars(vars_featured, {
-		background_color: colors.espresso,
-		color: colors.milk,
+export const next_event_head = style([
+	{
+		color: colors.espresso,
+
+		selectors: {
+			[dark()]: {
+				color: colors.creme,
+			},
+		},
+	},
+	lt_lg({
+		paddingLeft: '4rem',
+		paddingBottom: '2rem',
 	}),
-	selectors: {
-		[dark()]: {
-			vars: assignVars(vars_featured, {
-				background_color: colors.creme,
-				color: colors.espresso,
-			}),
+	lg({
+		gridRow: '1',
+		gridColumn: '3 / 6',
+	}),
+]);
+
+export const next_event_title = style([
+	{
+		paddingTop: '2rem',
+		paddingLeft: '2rem',
+		paddingRight: '2rem',
+
+		color: colors.milk,
+
+		selectors: {
+			[dark()]: {
+				color: colors.creme,
+			},
 		},
 	},
-});
+	lg({
+		gridRow: '2',
+		gridColumn: '3 / 6',
+	}),
+]);
 
-export const next_event_date_separator = style({
-	opacity: 0.5,
-});
+export const next_event_description = style([
+	{
+		paddingInline: '2rem',
+
+		color: colors.milk,
+
+		selectors: {
+			[dark()]: {
+				color: colors.creme,
+			},
+		},
+	},
+	lg({
+		gridRow: '3',
+		gridColumn: '3 / 6',
+	}),
+]);
+
+export const next_event_date_time = style([
+	{
+		paddingBlock: '1rem',
+		paddingRight: '2rem',
+
+		color: colors.milk,
+
+		selectors: {
+			[dark()]: {
+				color: colors.creme,
+			},
+		},
+	},
+	lg({
+		gridRow: '4',
+		gridColumn: '5 / 6',
+
+		display: 'grid',
+		gridTemplateColumns: 'auto auto',
+		gridTemplateRows: 'auto auto',
+		alignItems: 'center',
+		justifyItems: 'end',
+		justifyContent: 'center',
+		rowGap: '1rem',
+		paddingBlock: '2rem',
+	}),
+]);
+
+export const next_event_date = style([
+	lg({
+		gridRow: '1',
+		gridColumn: '1 / 3',
+	}),
+]);
+
+export const next_event_time = style([
+	lg({
+		gridRow: '2',
+		gridColumn: '2 / 3',
+	}),
+]);
+
+export const next_event_date_separator = style([
+	{
+		opacity: 0.5,
+	},
+]);
+
+export const next_event_image = style([
+	{
+		borderRadius: border_radius,
+		borderTopRightRadius: 0,
+		borderWidth: border_width,
+		borderStyle: border_style,
+		borderColor: colors.espresso,
+	},
+	lg({
+		gridRow: '4 / 7',
+		gridColumn: '2 / 5',
+
+		position: 'relative',
+
+		'::after': {
+			display: 'block',
+			content: '""',
+			position: 'absolute',
+			top: '0.5rem',
+			left: `-0.5rem`,
+			bottom: `-0.5rem`,
+			right: '0.5rem',
+
+			backgroundImage: `url(${pattern})`,
+			backgroundRepeat: 'repeat',
+			backgroundSize: '8px 8px',
+		},
+	}),
+]);
+
+export const next_event_button = style([
+	{
+		gridRow: '5',
+		gridColumn: '5 / 6',
+	},
+]);
 
 export const divider_2 = style({
 	vars: assignVars(divider_colors, {
