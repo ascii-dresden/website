@@ -55,7 +55,7 @@ function useStatus(): Accessor<Status | undefined> {
 	return status;
 }
 
-export const Status: Component = function () {
+export const Status: Component = function() {
 	const status = useStatus();
 
 	const [forceMount, setForceMount] = createSignal<boolean>(false);

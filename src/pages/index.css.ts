@@ -1,7 +1,6 @@
 import { assignVars, globalStyle, style } from '@vanilla-extract/css';
 
 import { divider_colors } from 'src/components/divider.css.ts';
-import { vars_featured } from 'src/components/patterns/featured.css.ts';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { bonbance } from 'src/styles/fonts.css';
@@ -11,6 +10,8 @@ import { dark } from 'src/styles/themes.css.ts';
 
 import pattern from 'src/assets/pattern.svg?raw';
 import { durations, ease } from 'src/styles/motion.css';
+
+export const EVENTS_PAGER_ITEM_SELECTED = 'data-events-pager-item-selected';
 
 export const hero = style([
 	{
@@ -242,6 +243,12 @@ export const events = style([
 	lg({}),
 ]);
 
+export const events_title = style([
+	lg({
+		gridColumn: '3 / 7',
+	}),
+]);
+
 export const events_head = style([
 	{},
 	lg({
@@ -263,11 +270,11 @@ export const events_pager_item = style([
 	{
 		height: '2rem',
 		width: '2rem',
+		flexGrow: 1,
 
 		selectors: {
-			['&:first-child']: {
-				width: 'calc(50%)',
-				// flexGrow: 1,
+			[`&[${EVENTS_PAGER_ITEM_SELECTED}]`]: {
+				flexGrow: 3,
 			},
 		},
 	},
@@ -282,23 +289,28 @@ export const events_pager_button = style([
 		justifyContent: 'center',
 
 		borderBottomWidth: border_width,
-		borderBottomStyle: border_style,
+		borderBottomStyle: 'dotted',
 		borderBottomColor: colors.espresso,
 	},
 	lg({}),
 ]);
 
-export const events_carousel = style([
+export const events_slider = style([
 	{
 		display: 'flex',
 		overflowX: 'auto',
 		overflowY: 'hidden',
 		padding: '4rem',
 		gap: '6rem',
+		scrollSnapType: 'x mandatory',
+		scrollSnapStop: 'normal',
 	},
 ]);
 
 export const event = style([
+	{
+		scrollSnapAlign: 'center',
+	},
 	lt_lg({
 		// grainy background
 		'::before': {
@@ -559,20 +571,7 @@ export const offer_head = style({
 	},
 });
 
-export const offer_featured = style({
-	vars: assignVars(vars_featured, {
-		background_color: colors.teal,
-		color: colors.light_teal,
-	}),
-	selectors: {
-		[dark()]: {
-			vars: assignVars(vars_featured, {
-				background_color: colors.light_teal,
-				color: colors.teal,
-			}),
-		},
-	},
-});
+export const offer_featured = style({});
 
 export const divider_3 = style({
 	vars: assignVars(divider_colors, {
@@ -618,18 +617,6 @@ export const become_member_head = style({
 
 export const become_member_featured = style({
 	gridColumn: '1 / 3',
-	vars: assignVars(vars_featured, {
-		background_color: colors.milk,
-		color: colors.espresso,
-	}),
-	selectors: {
-		[dark()]: {
-			vars: assignVars(vars_featured, {
-				background_color: colors.creme,
-				color: colors.espresso,
-			}),
-		},
-	},
 });
 
 export const become_member_sticker = style({

@@ -2,7 +2,6 @@
 import { BusinessHours } from 'src/components/business_hours.tsx';
 import { Divider } from 'src/components/divider';
 import Image from 'src/components/image.astro';
-import Featured from 'src/components/patterns/featured.astro';
 import BaseLayout from 'src/components/layouts/base/index.astro';
 import { SvgSticker } from 'src/components/svg/sticker';
 import { fetchCurrentDrinkOfMonth } from 'src/data/drink_of_month.ts';
@@ -34,7 +33,7 @@ import {
 	hero_summary,
 	hero_title,
 	events as events_class,
-	events_carousel,
+	events_slider,
 	events_head,
 	event as event_class,
 	event_button,
@@ -51,8 +50,8 @@ import {
 	events_pager_button,
 	events_pager_item,
 	event_column,
+	events_title,
 } from './index.css.ts';
-import { AnchorButton } from 'src/components/button';
 import { SvgWaveArrowRight } from 'src/components/svg/arrows';
 
 const drinkOfMonth = await fetchCurrentDrinkOfMonth();
@@ -92,9 +91,9 @@ const events = await fetchUpcomingEvents();
 					))
 				}
 			</ol>
-			<h2 class={display_medium}>Events</h2>
+			<h2 class:list={[display_medium, events_title]}>Events</h2>
 		</div>
-		<div class={events_carousel}>
+		<div class={events_slider}>
 			{
 				events.map((event) => (
 					<article class={event_class}>
@@ -104,7 +103,7 @@ const events = await fetchUpcomingEvents();
 									class={event_image_picture}
 									file={event.image}
 									alt={event.image_alt}
-									sizes="66vw"
+									sizes="66vw, (min-width: 1024px) 33vw"
 								/>
 							</div>
 							<a
@@ -140,13 +139,13 @@ const events = await fetchUpcomingEvents();
 	<Divider class={divider_2} />
 	<section class:list={[offer, grid]}>
 		<h2 class:list={[offer_head, display_medium]}>Getränk des Monats</h2>
-		<Featured
+		<!--Featured
 			class={offer_featured}
 			layout="right"
 			preLine
 			href="/events"
 		>
-			<!-- TODO: drinkOfMonth might be undefined -->
+			 TODO: drinkOfMonth might be undefined 
 			<Fragment slot="title">{drinkOfMonth!.title}</Fragment>
 			<Fragment slot="description">{drinkOfMonth!.description}</Fragment>
 			<Fragment slot="date">
@@ -160,12 +159,12 @@ const events = await fetchUpcomingEvents();
 				/>
 			</Fragment>
 			<Fragment slot="button">Angebot</Fragment>
-		</Featured>
+		</Featured-->
 	</section>
 	<Divider class={divider_3} />
 	<section class:list={[become_member, grid]}>
 		<h2 class:list={[become_member_head, display_medium]}>Werde Mitglied</h2>
-		<Featured
+		<!--Featured
 			class={become_member_featured}
 			href="/verein"
 			noImageBorder
@@ -180,7 +179,7 @@ const events = await fetchUpcomingEvents();
 				<SvgSticker class={become_member_sticker} />
 			</Fragment>
 			<Fragment slot="button">Mitmachen</Fragment>
-		</Featured>
+		</Featured-->
 	</section>
 	<Divider class={divider_4} />
 	<section
