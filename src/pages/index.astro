@@ -6,11 +6,12 @@ import Featured from 'src/components/patterns/featured.astro';
 import BaseLayout from 'src/components/layouts/base/index.astro';
 import { SvgSticker } from 'src/components/svg/sticker';
 import { fetchCurrentDrinkOfMonth } from 'src/data/drink_of_month.ts';
-import { fetchNextEvent } from 'src/data/events.ts';
+import { fetchUpcomingEvents } from 'src/data/events.ts';
 import {
 	body_large,
 	body_small,
 	display_medium,
+	label_large,
 	title_large,
 } from 'src/styles/atomic/fonts.css.ts';
 import { grid } from 'src/styles/atomic/layouts.css.ts';
@@ -32,25 +33,30 @@ import {
 	hero_image_pic,
 	hero_summary,
 	hero_title,
-	next_event,
-	next_event_button,
-	next_event_date_time,
-	next_event_date_separator,
-	next_event_description,
-	next_event_head,
-	next_event_image,
-	next_event_title,
+	events as events_class,
+	events_carousel,
+	events_head,
+	event as event_class,
+	event_button,
+	event_date_time,
+	event_date_separator,
+	event_description,
+	event_image,
+	event_image_picture,
+	event_title,
 	offer,
 	offer_featured,
 	offer_head,
-	next_event_time,
-	next_event_date,
+	events_pager,
+	events_pager_button,
+	events_pager_item,
+	event_column,
 } from './index.css.ts';
 import { AnchorButton } from 'src/components/button';
-import { screens } from 'src/styles/atomic/screens.css';
+import { SvgWaveArrowRight } from 'src/components/svg/arrows';
 
 const drinkOfMonth = await fetchCurrentDrinkOfMonth();
-const nextEvent = await fetchNextEvent();
+const events = await fetchUpcomingEvents();
 ---
 
 <BaseLayout>
@@ -73,48 +79,63 @@ const nextEvent = await fetchNextEvent();
 		</p>
 	</section>
 	<Divider class={divider_1} />
-	<section class:list={[next_event, grid]}>
-		<h2 class:list={[next_event_head, display_medium]}>Nächstes Event</h2>
-		<h3 class:list={[next_event_title, title_large]}>{nextEvent.title}</h3>
-		<p class:list={[next_event_description, body_large]}>
-			{nextEvent.summary}
-		</p>
-		<p class={next_event_date_time}>
-			<time
-				class:list={[next_event_date, body_large]}
-				datetime={nextEvent.date_time.toPlainDate().toString()}
-			>
+	<section class={events_class}>
+		<div class:list={[grid, events_head]}>
+			<ol class={events_pager}>
 				{
-					nextEvent.date_time.toLocaleString('de-DE', {
-						year: '2-digit',
-						month: '2-digit',
-						day: '2-digit',
-					})
+					events.map((_, i) => (
+						<li class={events_pager_item}>
+							<button class={events_pager_button}>
+								<p class={body_large}>{i + 1}</p>
+							</button>
+						</li>
+					))
 				}
-			</time>
-			<span class:list={[next_event_date_separator, body_large, screens.lt_lg]}>&nbsp;/&nbsp;</span>
-			<span class:list={[next_event_date_separator, body_large, screens.lg]}>└─&nbsp;</span>
-			<time
-				class:list={[next_event_time, body_large]}
-				datetime={nextEvent.date_time.toPlainTime().toString()}
-			>
-				{nextEvent.date_time.toLocaleString('de-DE', { hour: 'numeric', minute: 'numeric' })}
-			</time>
-		</p>
-		<div class={next_event_image}>
-			<Image
-				file={nextEvent.image}
-				alt={nextEvent.image_alt}
-				sizes="66vw"
-			/>
+			</ol>
+			<h2 class={display_medium}>Events</h2>
 		</div>
-		<AnchorButton
-			class={next_event_button}
-			client:load
-			href="/events"
-		>
-			<p class={body_large}>Events</p>
-		</AnchorButton>
+		<div class={events_carousel}>
+			{
+				events.map((event) => (
+					<article class={event_class}>
+						<div class={event_column}>
+							<div class={event_image}>
+								<Image
+									class={event_image_picture}
+									file={event.image}
+									alt={event.image_alt}
+									sizes="66vw"
+								/>
+							</div>
+							<a
+								class={event_button}
+								href="/events"
+							>
+								<div>
+									<SvgWaveArrowRight />
+								</div>
+								<p class={label_large}>mehr lesen</p>
+							</a>
+						</div>
+						<div class={event_column}>
+							<p class:list={[event_date_time, body_large]}>
+								<time datetime={event.date_time.toString()}>
+									{event.date_time.toLocaleString('de-DE', {
+										year: '2-digit',
+										month: '2-digit',
+										day: '2-digit',
+									})}
+									<span class={event_date_separator}>&nbsp;/&nbsp;</span>
+									{event.date_time.toLocaleString('de-DE', { hour: 'numeric', minute: 'numeric' })}
+								</time>
+							</p>
+							<h3 class:list={[title_large, event_title]}>{event.title}</h3>
+							<p class:list={[event_description, body_large]}>{event.summary}</p>
+						</div>
+					</article>
+				))
+			}
+		</div>
 	</section>
 	<Divider class={divider_2} />
 	<section class:list={[offer, grid]}>

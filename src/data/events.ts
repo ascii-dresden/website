@@ -15,17 +15,11 @@ export type Event = Omit<z.infer<typeof eventSchema>, 'date_time'> & {
 	date_time: Temporal.PlainDateTime;
 };
 
-export async function fetchNextEvent(): Promise<Event> {
+export async function fetchUpcomingEvents(): Promise<Event[]> {
 	const events = await getCollection('events');
 
-	const nextEvent = events.at(0)?.data;
-
-	if (!nextEvent) {
-		throw new Error('No events found');
-	}
-
-	return {
-		...nextEvent,
-		date_time: Temporal.PlainDateTime.from(nextEvent.date_time),
-	};
+	return events.map(({ data }) => ({
+		...data,
+		date_time: Temporal.PlainDateTime.from(data.date_time),
+	}));
 }

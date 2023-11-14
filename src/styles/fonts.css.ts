@@ -3,7 +3,7 @@ import { fontFace } from '@vanilla-extract/css';
 
 import { FontRule, createFont } from 'src/styles/internal/font.css.ts';
 
-import { sm, xl } from './screens.css.ts';
+import { lg, sm, xl } from './screens.css.ts';
 
 const font_face_geist_mono = fontFace({
 	src: 'url("../assets/fonts/GeistMono-Variable.woff2") format("woff2")',
@@ -97,10 +97,16 @@ export const display_medium_rule = bonbance([
 			lineGap: 16,
 		},
 	}),
+	lg<FontRule>({
+		fontOptions: {
+			capHeight: 48,
+			lineGap: 24,
+		},
+	}),
 	xl<FontRule>({
 		fontOptions: {
-			capHeight: 32,
-			lineGap: 16,
+			capHeight: 64,
+			lineGap: 32,
 		},
 	}),
 ]);
