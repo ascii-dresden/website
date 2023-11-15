@@ -2,6 +2,8 @@ import { Collapsible } from '@kobalte/core';
 import { Accessor, Component, Match, Switch, createSignal, onMount } from 'solid-js';
 import { Output, object, picklist, safeParse, transform } from 'valibot';
 
+import { STATUS_STREAM_URL } from 'ascii.config.ts';
+
 import { BusinessHours } from 'src/components/business_hours.tsx';
 import { SvgExpand } from 'src/components/svg/chevron.tsx';
 
@@ -18,8 +20,6 @@ import {
 	animation_out,
 } from './status.css.ts';
 import { label_large } from 'src/styles/atomic/fonts.css.ts';
-
-const STATUS_STREAM_URL = 'https://status.ascii.coffee/api/stream/status';
 
 const StatusSchema = transform(
 	object({
