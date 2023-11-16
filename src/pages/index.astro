@@ -3,23 +3,13 @@ import { BusinessHours } from 'src/components/business_hours.tsx';
 import { Divider } from 'src/components/divider';
 import Image from 'src/components/image.astro';
 import BaseLayout from 'src/components/layouts/base/index.astro';
-import { SvgSticker } from 'src/components/svg/sticker';
 import { fetchCurrentDrinkOfMonth } from 'src/data/drink_of_month.ts';
-import { fetchUpcomingEvents } from 'src/data/events.ts';
-import {
-	body_large,
-	body_small,
-	display_medium,
-	label_large,
-	title_large,
-} from 'src/styles/atomic/fonts.css.ts';
+import { body_large, body_small, display_medium } from 'src/styles/atomic/fonts.css.ts';
 import { grid } from 'src/styles/atomic/layouts.css.ts';
 
 import {
 	become_member,
-	become_member_featured,
 	become_member_head,
-	become_member_sticker,
 	business_hours,
 	business_hours_footnote,
 	business_hours_head,
@@ -33,29 +23,14 @@ import {
 	hero_summary,
 	hero_title,
 	events as events_class,
-	events_slider,
 	events_head,
-	event as event_class,
-	event_button,
-	event_date_time,
-	event_date_separator,
-	event_description,
-	event_image,
-	event_image_picture,
-	event_title,
 	offer,
-	offer_featured,
 	offer_head,
-	events_pager,
-	events_pager_button,
-	events_pager_item,
-	event_column,
 	events_title,
 } from './index.css.ts';
-import { SvgWaveArrowRight } from 'src/components/svg/arrows';
+import { EventsCarousel, EventsPager } from './index.events.tsx';
 
 const drinkOfMonth = await fetchCurrentDrinkOfMonth();
-const events = await fetchUpcomingEvents();
 ---
 
 <BaseLayout>
@@ -80,61 +55,10 @@ const events = await fetchUpcomingEvents();
 	<Divider class={divider_1} />
 	<section class={events_class}>
 		<div class:list={[grid, events_head]}>
-			<ol class={events_pager}>
-				{
-					events.map((_, i) => (
-						<li class={events_pager_item}>
-							<button class={events_pager_button}>
-								<p class={body_large}>{i + 1}</p>
-							</button>
-						</li>
-					))
-				}
-			</ol>
+			<EventsPager client:load />
 			<h2 class:list={[display_medium, events_title]}>Events</h2>
 		</div>
-		<div class={events_slider}>
-			{
-				events.map((event) => (
-					<article class={event_class}>
-						<div class={event_column}>
-							<div class={event_image}>
-								<Image
-									class={event_image_picture}
-									file={event.image}
-									alt={event.image_alt}
-									sizes="66vw, (min-width: 1024px) 33vw"
-								/>
-							</div>
-							<a
-								class={event_button}
-								href="/events"
-							>
-								<div>
-									<SvgWaveArrowRight />
-								</div>
-								<p class={label_large}>mehr lesen</p>
-							</a>
-						</div>
-						<div class={event_column}>
-							<p class:list={[event_date_time, body_large]}>
-								<time datetime={event.date_time.toString()}>
-									{event.date_time.toLocaleString('de-DE', {
-										year: '2-digit',
-										month: '2-digit',
-										day: '2-digit',
-									})}
-									<span class={event_date_separator}>&nbsp;/&nbsp;</span>
-									{event.date_time.toLocaleString('de-DE', { hour: 'numeric', minute: 'numeric' })}
-								</time>
-							</p>
-							<h3 class:list={[title_large, event_title]}>{event.title}</h3>
-							<p class:list={[event_description, body_large]}>{event.summary}</p>
-						</div>
-					</article>
-				))
-			}
-		</div>
+		<EventsCarousel client:load />
 	</section>
 	<Divider class={divider_2} />
 	<section class:list={[offer, grid]}>

@@ -272,6 +272,10 @@ export const events_pager_item = style([
 		width: '2rem',
 		flexGrow: 1,
 
+		transitionDuration: durations.short,
+		transitionTimingFunction: ease.standard,
+		transitionProperty: 'flex-grow',
+
 		selectors: {
 			[`&[${EVENTS_PAGER_ITEM_SELECTED}]`]: {
 				flexGrow: 3,
@@ -291,11 +295,17 @@ export const events_pager_button = style([
 		borderBottomWidth: border_width,
 		borderBottomStyle: 'dotted',
 		borderBottomColor: colors.espresso,
+
+		selectors: {
+			[`${events_pager_item}[${EVENTS_PAGER_ITEM_SELECTED}] &`]: {
+				borderBottomStyle: border_style,
+			},
+		},
 	},
 	lg({}),
 ]);
 
-export const events_slider = style([
+export const events_carousel = style([
 	{
 		display: 'flex',
 		overflowX: 'auto',
@@ -304,6 +314,7 @@ export const events_slider = style([
 		gap: '6rem',
 		scrollSnapType: 'x mandatory',
 		scrollSnapStop: 'normal',
+		scrollBehavior: 'smooth',
 	},
 ]);
 
