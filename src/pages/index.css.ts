@@ -314,7 +314,6 @@ export const events_carousel = style([
 		gap: '6rem',
 		scrollSnapType: 'x mandatory',
 		scrollSnapStop: 'normal',
-		scrollBehavior: 'smooth',
 	},
 ]);
 

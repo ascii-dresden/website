@@ -27,24 +27,23 @@ import {
 } from './index.css.ts';
 
 const events = await fetchUpcomingEvents();
-const eventsCarousel = createCarousel('events', events);
+const eventsCarousel = createCarousel(events);
 
-export const EventsPager: Component = function() {
+export const EventsPager: Component = function () {
 	return (
 		<ol class={events_pager}>
 			<CarouselPager carousel={eventsCarousel}>
-				{(_, i, href) => (
+				{(_, i, onClick) => (
 					<li
 						class={events_pager_item}
 						{...{ [EVENTS_PAGER_ITEM_SELECTED]: eventsCarousel.selected() === i ? '' : undefined }}
 					>
-						{/* TODO: Using anchors is clunky. Use buttons with `onClick` instead*/}
-						<a
-							href={href}
+						<button
+							onClick={onClick}
 							class={events_pager_button}
 						>
 							<p class={body_large}>{i + 1}</p>
-						</a>
+						</button>
 					</li>
 				)}
 			</CarouselPager>
@@ -52,7 +51,7 @@ export const EventsPager: Component = function() {
 	);
 };
 
-export const EventsCarousel: Component = function() {
+export const EventsCarousel: Component = function () {
 	return (
 		<Carousel
 			carousel={eventsCarousel}
