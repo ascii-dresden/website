@@ -29,7 +29,7 @@ import {
 const events = await fetchUpcomingEvents();
 const eventsCarousel = createCarousel(events);
 
-export const EventsPager: Component = function () {
+export const EventsCarouselPager: Component = function () {
 	return (
 		<ol class={events_pager}>
 			<CarouselPager carousel={eventsCarousel}>

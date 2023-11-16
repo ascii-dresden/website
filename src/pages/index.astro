@@ -28,7 +28,7 @@ import {
 	offer_head,
 	events_title,
 } from './index.css.ts';
-import { EventsCarousel, EventsPager } from './index.events.tsx';
+import { EventsCarousel, EventsCarouselPager } from './index.events.tsx';
 
 const drinkOfMonth = await fetchCurrentDrinkOfMonth();
 ---
@@ -47,15 +47,12 @@ const drinkOfMonth = await fetchCurrentDrinkOfMonth();
 		<p class:list={[hero_summary, body_large]}>
 			Wir sind das studentische Café der Fakultät Informatik. Hier gibt es Kaffee, Tee, Snacks und
 			gaaaanz viel Mate. Kommt vorbei!
-			<!-- Wir sind ein studentisch geführtes Café in der Fakultät Informatik der TU Dresden. Bei uns -->
-			<!-- gibt es Snacks, Kalt- und Heißgetränke, sowie Sofas als idealen Ort zum Verweilen und -->
-			<!-- Austauschen mit anderen Studierenden. -->
 		</p>
 	</section>
 	<Divider class={divider_1} />
 	<section class={events_class}>
 		<div class:list={[grid, events_head]}>
-			<EventsPager client:load />
+			<EventsCarouselPager client:load />
 			<h2 class:list={[display_medium, events_title]}>Events</h2>
 		</div>
 		<EventsCarousel client:load />

@@ -10,7 +10,7 @@ import {
 	onMount,
 } from 'solid-js';
 
-export type ICarousel<TItem> = {
+export type CarouselState<TItem> = {
 	items: TItem[];
 	itemRefs: Accessor<HTMLLIElement[]>;
 	setItemRefs: Setter<HTMLLIElement[]>;
@@ -20,7 +20,20 @@ export type ICarousel<TItem> = {
 	setScrollTo: Setter<((i: number) => void) | undefined>;
 };
 
-export function createCarousel<TItem>(items: TItem[]): ICarousel<TItem> {
+export type CarouselMeta = {
+	observer: IntersectionObserver | undefined;
+	setItemRefs: Setter<HTMLLIElement[]>;
+};
+
+export type CarouselItemMeta = {
+	carousel: CarouselMeta;
+	i: number;
+};
+
+/**
+ *
+ */
+export function createCarousel<TItem>(items: TItem[]): CarouselState<TItem> {
 	const [itemRefs, setItemRefs] = createSignal<HTMLLIElement[]>([]);
 	const [selected, setSelected] = createSignal<number>();
 	const [scrollTo, setScrollTo] = createSignal<(i: number) => void>();
@@ -36,24 +49,22 @@ export function createCarousel<TItem>(items: TItem[]): ICarousel<TItem> {
 	};
 }
 
-export type CarouselMeta = {
-	observer: IntersectionObserver | undefined;
-	setItemRefs: Setter<HTMLLIElement[]>;
-};
-
 export type CarouselProps<TItem> = Omit<JSX.IntrinsicElements['ol'], 'children'> & {
-	carousel: ICarousel<TItem>;
+	carousel: CarouselState<TItem>;
 	children: (item: TItem, meta: CarouselItemMeta) => JSX.Element;
 };
 
+/**
+ *
+ */
 export function Carousel<TItem>(props: CarouselProps<TItem>): JSX.Element {
 	const [observer, setObserver] = createSignal<IntersectionObserver>();
 
 	let ref: HTMLOListElement;
 
 	onMount(() => {
-		// initialize IntersectionObserver
-		const onObserve: IntersectionObserverCallback = function (entries) {
+		// initialize IntersectionObserver `observer`
+		const onObserve: IntersectionObserverCallback = function(entries) {
 			entries.forEach(({ target, isIntersecting }) => {
 				if (!isIntersecting) {
 					return;
@@ -72,9 +83,13 @@ export function Carousel<TItem>(props: CarouselProps<TItem>): JSX.Element {
 		setObserver(observer);
 
 		// initialize `scrollTo` function
-		const scrollTo = function (i: number): void {
+		const scrollTo = function(i: number): void {
 			const itemRef = props.carousel.itemRefs().at(i);
-			const left = itemRef?.offsetLeft ?? 0;
+			if (!itemRef) {
+				console.error('No `CarouselItem` at index', i);
+				return;
+			}
+			const left = itemRef.offsetLeft;
 			ref.scrollTo({ left, behavior: 'smooth' });
 		};
 		props.carousel.setScrollTo(() => scrollTo);
@@ -104,17 +119,15 @@ export function Carousel<TItem>(props: CarouselProps<TItem>): JSX.Element {
 	);
 }
 
-export type CarouselItemMeta = {
-	carousel: CarouselMeta;
-	i: number;
-};
-
 export type CarouselItemProps = Omit<JSX.IntrinsicElements['li'], 'children'> & {
 	meta: CarouselItemMeta;
 	children: JSX.Element;
 };
 
-export const CarouselItem: Component<CarouselItemProps> = function (props) {
+/**
+ *
+ */
+export const CarouselItem: Component<CarouselItemProps> = function(props) {
 	let ref: HTMLLIElement;
 
 	createEffect(() => {
@@ -142,15 +155,18 @@ export const CarouselItem: Component<CarouselItemProps> = function (props) {
 };
 
 export type CarouselPagerProps<TItem> = {
-	carousel: ICarousel<TItem>;
+	carousel: CarouselState<TItem>;
 	children: (item: TItem, i: number, onClick: () => void) => JSX.Element;
 };
 
+/**
+ *
+ */
 export function CarouselPager<TItem>(props: CarouselPagerProps<TItem>): JSX.Element {
 	function onClick(i: number) {
 		const scrollTo = props.carousel.scrollTo();
 		if (!scrollTo) {
-			console.error('No Carousel attached to CarouselPager');
+			console.error('No `Carousel` attached to `CarouselPager`');
 			return;
 		}
 		scrollTo(i);
