@@ -1,8 +1,9 @@
 ---
 import { BusinessHours } from 'src/components/business_hours.tsx';
-import { Divider } from 'src/components/divider';
-import Image from 'src/components/image.astro';
+import { Divider } from 'src/components/divider.tsx';
+import Picture from 'src/components/picture.astro';
 import BaseLayout from 'src/components/layouts/base/index.astro';
+import assetCafe from 'src/content/_images/cafe.webp';
 import { fetchCurrentDrinkOfMonth } from 'src/data/drink_of_month.ts';
 import { body_large, body_small, display_medium } from 'src/styles/atomic/fonts.css.ts';
 import { grid } from 'src/styles/atomic/layouts.css.ts';
@@ -36,9 +37,9 @@ const drinkOfMonth = await fetchCurrentDrinkOfMonth();
 <BaseLayout>
 	<section class:list={[hero, grid]}>
 		<div class={hero_image}>
-			<Image
+			<Picture
 				class={hero_image_pic}
-				file="cafe.webp"
+				src={assetCafe}
 				alt="Interior des „Ascii“ Cafés"
 				sizes="100vw"
 			/>

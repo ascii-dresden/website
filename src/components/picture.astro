@@ -1,0 +1,90 @@
+---
+/**
+ * TODO: support art direction
+ */
+
+import { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+
+type PictureFormat = 'apng' | 'avif' | 'gif' | 'jpeg' | 'png' | 'svg' | 'webp';
+
+type PictureSize =
+	| string
+	| number
+	| {
+			mediaQuery: string;
+			width: string | number;
+	  };
+
+type Props = {
+	class?: string;
+
+	src: ImageMetadata;
+	alt: string;
+
+	widths?: number[];
+	formats?: PictureFormat[];
+
+	/**
+	 * {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#sizes}
+	 */
+	sizes: PictureSize | PictureSize[];
+};
+
+const DEFAULT_WIDTHS: number[] = [320, 640, 960, 1200, 1440, 1680, 1920];
+const DEFAULT_FORMATS: PictureFormat[] = ['avif', 'webp'];
+
+const formats = Astro.props.formats ?? DEFAULT_FORMATS;
+const widths = Astro.props.widths ?? DEFAULT_WIDTHS;
+const sizes = Astro.props.sizes;
+
+async function generateSrcsetFromFormat(format: PictureFormat): Promise<string> {
+	const entries = await Promise.all(
+		widths.map(async (width) => {
+			const src = await getImage({ src: Astro.props.src, format, width });
+			return `${src.src} ${width}w`;
+		})
+	);
+	return entries.join(', ');
+}
+
+function stringFromPictureSize(value: PictureSize): string {
+	switch (typeof value) {
+		case 'string':
+			return value;
+		case 'number':
+			return `${value}px`;
+		default:
+			return `${value.mediaQuery} ${value.width}px`;
+	}
+}
+
+function generateSizes(): string {
+	if (Array.isArray(sizes)) {
+		return sizes.map(stringFromPictureSize).join(', ');
+	}
+	return stringFromPictureSize(sizes);
+}
+---
+
+<picture class={Astro.props.class}>
+	<!-- generate sources -->
+	{
+		await Promise.all(
+			formats.map(async (format) => (
+				<source
+					srcset={await generateSrcsetFromFormat(format)}
+					sizes={generateSizes()}
+					type={`image/${format}`}
+				/>
+			))
+		)
+	}
+	<!-- fallback -->
+	<img
+		src={Astro.props.src.src}
+		width={Astro.props.src.width}
+		height={Astro.props.src.height}
+		alt={Astro.props.alt}
+	/>
+</picture>
