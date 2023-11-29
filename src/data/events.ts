@@ -12,14 +12,18 @@ export const eventSchema = z.object({
 });
 
 export type Event = Omit<z.infer<typeof eventSchema>, 'date_time'> & {
+	id: string;
+	slug: string;
 	date_time: Temporal.PlainDateTime;
 };
 
 export async function fetchUpcomingEvents(): Promise<Event[]> {
 	const events = await getCollection('events');
 
-	return events.map(({ data }) => ({
+	return events.map(({ data, slug, collection }) => ({
 		...data,
+		id: `${collection}_${slug}`,
+		slug,
 		date_time: Temporal.PlainDateTime.from(data.date_time),
 	}));
 }

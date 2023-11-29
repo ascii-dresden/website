@@ -5,7 +5,14 @@ import Picture from 'src/components/picture.astro';
 import BaseLayout from 'src/components/layouts/base/index.astro';
 import assetCafe from 'src/content/_images/cafe.webp';
 import { fetchCurrentDrinkOfMonth } from 'src/data/drink_of_month.ts';
-import { body_large, body_small, display_medium } from 'src/styles/atomic/fonts.css.ts';
+import { fetchUpcomingEvents } from 'src/data/events.ts';
+import {
+	body_large,
+	body_small,
+	display_medium,
+	label_large,
+	title_large,
+} from 'src/styles/atomic/fonts.css.ts';
 import { grid } from 'src/styles/atomic/layouts.css.ts';
 
 import {
@@ -28,9 +35,24 @@ import {
 	offer,
 	offer_head,
 	events_title,
+	events_pager,
+	events_carousel,
+	event as event_class,
+	event_column,
+	event_image,
+	event_image_picture,
+	events_pager_button,
+	events_pager_item,
+	event_button,
+	event_date_separator,
+	event_date_time,
+	event_description,
+	event_title,
 } from './index.css.ts';
-import { EventsCarousel, EventsCarouselPager } from './index.events.tsx';
+import { fetchImage } from 'src/data/images';
+import { SvgWaveArrowRight } from 'src/components/svg/arrows';
 
+const events = await fetchUpcomingEvents();
 const drinkOfMonth = await fetchCurrentDrinkOfMonth();
 ---
 
@@ -53,10 +75,67 @@ const drinkOfMonth = await fetchCurrentDrinkOfMonth();
 	<Divider class={divider_1} />
 	<section class={events_class}>
 		<div class:list={[grid, events_head]}>
-			<EventsCarouselPager client:load />
+			<ol class={events_pager}>
+				{
+					events.map((event, i) => (
+						<li
+							class={events_pager_item}
+							id={event.id}
+						>
+							<button class={events_pager_button}>
+								<p class={body_large}>{i + 1}</p>
+							</button>
+						</li>
+					))
+				}
+			</ol>
 			<h2 class:list={[display_medium, events_title]}>Events</h2>
 		</div>
-		<EventsCarousel client:load />
+		<ol class={events_carousel}>
+			{
+				events.map(async (event) => (
+					<li
+						class={event_class}
+						id={event.id}
+					>
+						<div class={event_column}>
+							<div class={event_image}>
+								<Picture
+									class={event_image_picture}
+									src={(await fetchImage(event.image)).default}
+									alt={event.image_alt}
+									sizes={['66vw', { mediaQuery: 'min-width: 1024px', width: '33vw' }]}
+								/>
+							</div>
+							<a
+								class={event_button}
+								href={`/events/${event.slug}`}
+							>
+								<div>
+									<SvgWaveArrowRight />
+								</div>
+								<p class={label_large}>mehr lesen</p>
+							</a>
+						</div>
+						<div class={event_column}>
+							<p class:list={[event_date_time, body_large]}>
+								<time datetime={event.date_time.toString()}>
+									{event.date_time.toLocaleString('de-DE', {
+										year: '2-digit',
+										month: '2-digit',
+										day: '2-digit',
+									})}
+									<span class={event_date_separator}>&nbsp;/&nbsp;</span>
+									{event.date_time.toLocaleString('de-DE', { hour: 'numeric', minute: 'numeric' })}
+								</time>
+							</p>
+							<h3 class:list={[title_large, event_title]}>{event.title}</h3>
+							<p class:list={[event_description, body_large]}>{event.summary}</p>
+						</div>
+					</li>
+				))
+			}
+		</ol>
 	</section>
 	<Divider class={divider_2} />
 	<section class:list={[offer, grid]}>

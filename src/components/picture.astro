@@ -55,7 +55,7 @@ function stringFromPictureSize(value: PictureSize): string {
 		case 'number':
 			return `${value}px`;
 		default:
-			return `${value.mediaQuery} ${value.width}px`;
+			return `(${value.mediaQuery}) ${stringFromPictureSize(value.width)}`;
 	}
 }
 

@@ -1,0 +1,21 @@
+---
+import { GetStaticPaths } from 'astro';
+
+import BaseLayout from 'src/components/layouts/base/index.astro';
+import { Event, fetchUpcomingEvents } from 'src/data/events.ts';
+
+export const getStaticPaths: GetStaticPaths = async function () {
+	const events = await fetchUpcomingEvents();
+	return events.map((event) => ({ params: { slug: event.slug }, props: { event } }));
+};
+
+type Props = {
+	event: Event;
+};
+
+const event = Astro.props.event;
+---
+
+<BaseLayout>
+	<h1>{event.title}</h1>
+</BaseLayout>
