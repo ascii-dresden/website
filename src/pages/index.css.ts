@@ -8,7 +8,7 @@ import { FontRule } from 'src/styles/internal/font.css';
 import { lg, lt_lg, xl } from 'src/styles/screens.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 
-import pattern from 'src/assets/pattern.svg?raw';
+import pattern from 'src/assets/pattern.svg';
 import { durations, ease } from 'src/styles/motion.css';
 
 export const EVENTS_PAGER_ITEM_SELECTED = 'data-events-pager-item-selected';
@@ -101,7 +101,7 @@ export const hero_image = style([
 			bottom: `-0.5rem`,
 			right: '0.5rem',
 
-			backgroundImage: `url(${pattern})`,
+			backgroundImage: `url(${pattern.src})`,
 			backgroundRepeat: 'repeat',
 			backgroundSize: '8px 8px',
 		},
@@ -468,7 +468,7 @@ export const event_image = style([
 			bottom: `-0.5rem`,
 			right: '0.5rem',
 
-			backgroundImage: `url(${pattern})`,
+			backgroundImage: `url(${pattern.src})`,
 			backgroundRepeat: 'repeat',
 			backgroundSize: '8px 8px',
 		},

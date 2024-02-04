@@ -1,4 +1,3 @@
-// import { readFileSync } from 'fs';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -19,15 +18,7 @@ export default defineConfig({
 				plugins: [autoprefixer()],
 			},
 		},
-		plugins: [
-			vanillaExtractPlugin({
-				esbuildOptions: {
-					loader: {
-						'.svg': 'dataurl',
-					},
-				},
-			}),
-		],
+		plugins: [vanillaExtractPlugin()],
 		resolve: {
 			alias: [
 				{
