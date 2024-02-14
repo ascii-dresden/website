@@ -1,5 +1,7 @@
 import { assignVars, globalStyle, style } from '@vanilla-extract/css';
 
+import grain from 'src/assets/grain.svg';
+import pattern from 'src/assets/pattern.svg';
 import { divider_colors } from 'src/components/divider.css.ts';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
@@ -8,8 +10,6 @@ import { FontRule } from 'src/styles/internal/font.css.ts';
 import { lg, lt_lg, xl } from 'src/styles/screens.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 import { durations, ease } from 'src/styles/motion.css.ts';
-
-import pattern from 'src/assets/pattern.svg';
 
 export const EVENTS_PAGER_ITEM_SELECTED = 'data-events-pager-item-selected';
 
@@ -21,7 +21,7 @@ export const hero = style([
 		paddingBottom: '4rem',
 
 		backgroundColor: colors.creme,
-		backgroundImage: 'url("../assets/grain.svg")',
+		backgroundImage: `url(${grain})`,
 		backgroundBlendMode: 'overlay',
 		backgroundSize: '256px',
 		color: colors.espresso,
@@ -101,7 +101,7 @@ export const hero_image = style([
 			bottom: `-0.5rem`,
 			right: '0.5rem',
 
-			backgroundImage: `url(${pattern.src})`,
+			backgroundImage: `url(${pattern})`,
 			backgroundRepeat: 'repeat',
 			backgroundSize: '8px 8px',
 		},
@@ -331,7 +331,7 @@ export const event = style([
 			gridColumn: '3 / 6',
 
 			backgroundColor: colors.espresso,
-			backgroundImage: 'url("../assets/grain.svg")',
+			backgroundImage: `url(${grain})`,
 			backgroundSize: '256px',
 			backgroundBlendMode: 'overlay',
 
@@ -468,7 +468,7 @@ export const event_image = style([
 			bottom: `-0.5rem`,
 			right: '0.5rem',
 
-			backgroundImage: `url(${pattern.src})`,
+			backgroundImage: `url(${pattern})`,
 			backgroundRepeat: 'repeat',
 			backgroundSize: '8px 8px',
 		},
