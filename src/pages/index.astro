@@ -4,7 +4,7 @@ import { Divider } from 'src/components/divider.tsx';
 import Picture from 'src/components/picture.astro';
 import BaseLayout from 'src/components/layouts/base/index.astro';
 import assetCafe from 'src/content/_images/cafe.webp';
-import { fetchCurrentDrinkOfMonth } from 'src/data/drink_of_month.ts';
+// import { fetchCurrentDrinkOfMonth } from 'src/data/drink_of_month.ts';
 import { fetchUpcomingEvents } from 'src/data/events.ts';
 import {
 	body_large,
@@ -53,7 +53,7 @@ import { fetchImage } from 'src/data/images';
 import { SvgWaveArrowRight } from 'src/components/svg/arrows';
 
 const events = await fetchUpcomingEvents();
-const drinkOfMonth = await fetchCurrentDrinkOfMonth();
+// const drinkOfMonth = await fetchCurrentDrinkOfMonth();
 ---
 
 <BaseLayout>
@@ -75,6 +75,7 @@ const drinkOfMonth = await fetchCurrentDrinkOfMonth();
 	<Divider class={divider_1} />
 	<section class={events_class}>
 		<div class:list={[grid, events_head]}>
+			<!-- TODO: reconstruct interacive pager from solid primitives -->
 			<ol class={events_pager}>
 				{
 					events.map((event, i) => (
@@ -91,6 +92,7 @@ const drinkOfMonth = await fetchCurrentDrinkOfMonth();
 			</ol>
 			<h2 class:list={[display_medium, events_title]}>Events</h2>
 		</div>
+		<!-- TODO: reconstruct interactive carousel from solid primitives -->
 		<ol class={events_carousel}>
 			{
 				events.map(async (event) => (
@@ -102,8 +104,8 @@ const drinkOfMonth = await fetchCurrentDrinkOfMonth();
 							<div class={event_image}>
 								<Picture
 									class={event_image_picture}
-									src={(await fetchImage(event.image)).default}
-									alt={event.image_alt}
+									src={(await fetchImage(event.data.image)).default}
+									alt={event.data.image_alt}
 									sizes={['66vw', { mediaQuery: 'min-width: 1024px', width: '33vw' }]}
 								/>
 							</div>
@@ -118,19 +120,23 @@ const drinkOfMonth = await fetchCurrentDrinkOfMonth();
 							</a>
 						</div>
 						<div class={event_column}>
-							<p class:list={[event_date_time, body_large]}>
-								<time datetime={event.date_time.toString()}>
-									{event.date_time.toLocaleString('de-DE', {
-										year: '2-digit',
-										month: '2-digit',
-										day: '2-digit',
-									})}
-									<span class={event_date_separator}>&nbsp;/&nbsp;</span>
-									{event.date_time.toLocaleString('de-DE', { hour: 'numeric', minute: 'numeric' })}
-								</time>
-							</p>
-							<h3 class:list={[title_large, event_title]}>{event.title}</h3>
-							<p class:list={[event_description, body_large]}>{event.summary}</p>
+							<time
+								class:list={[event_date_time, body_large]}
+								datetime={event.data.date_time.toString()}
+							>
+								{event.data.date_time.toLocaleString('de-DE', {
+									year: '2-digit',
+									month: '2-digit',
+									day: '2-digit',
+								})}
+								<span class={event_date_separator}>/</span>
+								{event.data.date_time.toLocaleString('de-DE', {
+									hour: 'numeric',
+									minute: 'numeric',
+								})}
+							</time>
+							<h3 class:list={[title_large, event_title]}>{event.data.title}</h3>
+							<p class:list={[event_description, body_large]}>{event.data.summary}</p>
 						</div>
 					</li>
 				))
@@ -192,7 +198,3 @@ const drinkOfMonth = await fetchCurrentDrinkOfMonth();
 		<p class:list={[body_small, business_hours_footnote]}>Öffnungszeiten können abweichen</p>
 	</section>
 </BaseLayout>
-
-<script>
-	console.log();
-</script>

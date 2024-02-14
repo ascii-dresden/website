@@ -3,7 +3,7 @@ import { globalStyle } from '@vanilla-extract/css';
 import { main } from 'src/components/layouts/base/index.css.ts';
 import { border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
-import { dark } from 'src/styles/themes.css';
+import { dark } from 'src/styles/themes.css.ts';
 
 globalStyle(main, {
 	display: 'flex',

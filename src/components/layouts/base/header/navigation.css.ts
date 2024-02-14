@@ -1,5 +1,5 @@
 import { assignVars, globalStyle, keyframes, style } from '@vanilla-extract/css';
-import { vars_button } from 'src/components/button.css';
+import { vars_button } from 'src/components/button.css.ts';
 
 import { colors } from 'src/styles/colors.css.ts';
 import { durations, ease } from 'src/styles/motion.css.ts';

@@ -2,7 +2,7 @@
 import BaseLayout from 'src/components/layouts/base/index.astro';
 
 import '../datenschutz/index.css.ts';
-import { body_large, display_large, title_small } from 'src/styles/atomic/fonts.css';
+import { body_large, display_large, title_small } from 'src/styles/atomic/fonts.css.ts';
 ---
 
 <BaseLayout hideFooter>
@@ -10,9 +10,9 @@ import { body_large, display_large, title_small } from 'src/styles/atomic/fonts.
 	<h2 class={title_small}>Adresse</h2>
 	<p class={body_large}>
 		Studentencafé ASCII<br />
-		 Andreas-Pfitzmann-Bau, Raum E016<br />
-		 Nöthnitzer Strasse 46<br />
-		 01187 Dresden
+		Andreas-Pfitzmann-Bau, Raum E016<br />
+		Nöthnitzer Strasse 46<br />
+		01187 Dresden
 	</p>
 	<h2 class={title_small}>E-Mail-Adresse</h2>
 	<a href="mailto:info@ascii-dresden.de">

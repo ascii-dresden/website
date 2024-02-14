@@ -30,22 +30,23 @@
 		}
 	],
 	"dependencies": {
-		"@astrojs/check": "^0.4.1",
+		"@astrojs/check": "^0.5.4",
 		"@astrojs/solid-js": "^4.0.1",
-		"astro": "^4.3.2",
-		"solid-js": "^1.8.12",
+		"astro": "^4.3.7",
+		"solid-js": "^1.8.14",
 		"typescript": "^5.3.3"
 	},
 	"devDependencies": {
+		"@astrojs/language-server": "^2.7.4",
 		"@capsizecss/core": "^3.1.1",
 		"@kobalte/core": "^0.12.1",
 		"@types/js-yaml": "^4.0.9",
-		"@types/node": "^20.11.16",
-		"@typescript-eslint/eslint-plugin": "^6.20.0",
-		"@typescript-eslint/parser": "^6.20.0",
+		"@types/node": "^20.11.17",
+		"@typescript-eslint/eslint-plugin": "^7.0.1",
+		"@typescript-eslint/parser": "^7.0.1",
 		"@vanilla-extract/css": "^1.14.1",
 		"@vanilla-extract/recipes": "^0.5.1",
-		"@vanilla-extract/vite-plugin": "^4.0.2",
+		"@vanilla-extract/vite-plugin": "^4.0.4",
 		"autoprefixer": "^10.4.17",
 		"deepmerge": "^4.3.1",
 		"eslint": "^8.56.0",
@@ -57,7 +58,7 @@
 		"prettier": "^3.2.5",
 		"prettier-plugin-astro": "^0.13.0",
 		"sharp": "^0.33.2",
-		"temporal-polyfill": "^0.2.0",
-		"valibot": "^0.27.1"
+		"temporal-polyfill": "^0.2.1",
+		"valibot": "^0.28.1"
 	}
 }

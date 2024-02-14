@@ -3,13 +3,13 @@ import { assignVars, globalStyle, style } from '@vanilla-extract/css';
 import { divider_colors } from 'src/components/divider.css.ts';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
-import { bonbance } from 'src/styles/fonts.css';
-import { FontRule } from 'src/styles/internal/font.css';
+import { bonbance } from 'src/styles/fonts.css.ts';
+import { FontRule } from 'src/styles/internal/font.css.ts';
 import { lg, lt_lg, xl } from 'src/styles/screens.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
+import { durations, ease } from 'src/styles/motion.css.ts';
 
 import pattern from 'src/assets/pattern.svg';
-import { durations, ease } from 'src/styles/motion.css';
 
 export const EVENTS_PAGER_ITEM_SELECTED = 'data-events-pager-item-selected';
 

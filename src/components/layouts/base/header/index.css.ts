@@ -1,8 +1,8 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
-import { border_style, border_width } from 'src/styles/border.css';
+import { border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
-import { durations, ease } from 'src/styles/motion.css';
+import { durations, ease } from 'src/styles/motion.css.ts';
 import { lg, xl } from 'src/styles/screens.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
 

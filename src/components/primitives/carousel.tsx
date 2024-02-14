@@ -64,7 +64,7 @@ export function Carousel<TItem>(props: CarouselProps<TItem>): JSX.Element {
 
 	onMount(() => {
 		// initialize IntersectionObserver `observer`
-		const onObserve: IntersectionObserverCallback = function(entries) {
+		const onObserve: IntersectionObserverCallback = function (entries) {
 			entries.forEach(({ target, isIntersecting }) => {
 				if (!isIntersecting) {
 					return;
@@ -83,7 +83,7 @@ export function Carousel<TItem>(props: CarouselProps<TItem>): JSX.Element {
 		setObserver(observer);
 
 		// initialize `scrollTo` function
-		const scrollTo = function(i: number): void {
+		const scrollTo = function (i: number): void {
 			const itemRef = props.carousel.itemRefs().at(i);
 			if (!itemRef) {
 				console.error('No `CarouselItem` at index', i);
@@ -127,7 +127,7 @@ export type CarouselItemProps = Omit<JSX.IntrinsicElements['li'], 'children'> & 
 /**
  *
  */
-export const CarouselItem: Component<CarouselItemProps> = function(props) {
+export const CarouselItem: Component<CarouselItemProps> = function (props) {
 	let ref: HTMLLIElement;
 
 	createEffect(() => {

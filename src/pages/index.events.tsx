@@ -1,6 +1,5 @@
 import { Component } from 'solid-js';
 
-import { fetchUpcomingEvents } from 'src/data/events.ts';
 import { body_large, label_large, title_large } from 'src/styles/atomic/fonts.css.ts';
 import {
 	Carousel,
@@ -25,8 +24,9 @@ import {
 	event_description,
 	EVENTS_PAGER_ITEM_SELECTED,
 } from './index.css.ts';
+import { getCollection } from 'astro:content';
 
-const events = await fetchUpcomingEvents();
+const events = await getCollection('events');
 const eventsCarousel = createCarousel(events);
 
 export const EventsCarouselPager: Component = function () {
