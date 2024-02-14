@@ -1,51 +1,59 @@
 import { FontMetrics } from '@capsizecss/core';
 import { fontFace } from '@vanilla-extract/css';
 
+import asset_bonbance from 'src/assets/fonts/Bonbance-BoldCondensed.woff2';
+import asset_chubbo from 'src/assets/fonts/Chubbo-Variable.woff2';
+import asset_maple_mono_200 from 'src/assets/fonts/MapleMono/MapleMono-Light.woff2';
+import asset_maple_mono_200i from 'src/assets/fonts/MapleMono/MapleMono-LightItalic.woff2';
+import asset_maple_mono_400 from 'src/assets/fonts/MapleMono/MapleMono-Regular.woff2';
+import asset_maple_mono_400i from 'src/assets/fonts/MapleMono/MapleMono-Italic.woff2';
+import asset_maple_mono_700 from 'src/assets/fonts/MapleMono/MapleMono-Bold.woff2';
+import asset_maple_mono_700i from 'src/assets/fonts/MapleMono/MapleMono-BoldItalic.woff2';
 import { FontRule, createFont } from 'src/styles/internal/font.css.ts';
 
 import { lg, md, sm, xl } from './screens.css.ts';
 
 const font_face_bonbance = fontFace({
-	src: 'url("../assets/fonts/Bonbance-BoldCondensed.woff2") format("woff2")',
+	src: `url(${asset_bonbance}) format("woff2")`,
 	fontWeight: 'bold',
 	fontStyle: 'normal',
 });
 
 const font_face_chubbo = fontFace({
-	src: 'url("../assets/fonts/Chubbo-Variable.woff2") format("woff2")',
+	src: `url(${asset_chubbo}) format("woff2")`,
 	fontWeight: '200 700',
 	fontStyle: 'normal',
 });
 
 const font_face_maple = fontFace([
 	{
-		src: 'url("../assets/fonts/MapleMono/MapleMono-Regular.woff2") format("woff2")',
-		fontWeight: '400',
-		fontStyle: 'normal',
-	},
-	{
-		src: 'url("../assets/fonts/MapleMono/MapleMono-Italic.woff2") format("woff2")',
-		fontWeight: '400',
-		fontStyle: 'italic',
-	},
-	{
-		src: 'url("../assets/fonts/MapleMono/MapleMono-Bold.woff2") format("woff2")',
-		fontWeight: '700',
-		fontStyle: 'normal',
-	},
-	{
-		src: 'url("../assets/fonts/MapleMono/MapleMono-BoldItalic.woff2") format("woff2")',
-		fontWeight: '700',
-		fontStyle: 'italic',
-	},
-	{
-		src: 'url("../assets/fonts/MapleMono/MapleMono-Light.woff2") format("woff2")',
+		src: `url(${asset_maple_mono_200}) format("woff2")`,
 		fontWeight: '200',
 		fontStyle: 'normal',
 	},
 	{
-		src: 'url("../assets/fonts/MapleMono/MapleMono-LightItalic.woff2") format("woff2")',
+		src: `url(${asset_maple_mono_200i}) format("woff2")`,
 		fontWeight: '200',
+		fontStyle: 'italic',
+	},
+	{
+		src: `url(${asset_maple_mono_400}) format("woff2")`,
+		fontWeight: '400',
+		fontStyle: 'normal',
+	},
+	{
+		src: `url(${asset_maple_mono_400i}) format("woff2")`,
+		fontWeight: '400',
+		fontStyle: 'italic',
+	},
+	{
+		src: `url(${asset_maple_mono_700}) format("woff2")`,
+		fontWeight: '700',
+		fontStyle: 'normal',
+	},
+	{
+		src: `url(${asset_maple_mono_700i}) format("woff2")`,
+		fontWeight: '700',
 		fontStyle: 'italic',
 	},
 ]);

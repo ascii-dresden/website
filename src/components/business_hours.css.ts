@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
+import grain from 'src/assets/grain.svg';
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { dark } from 'src/styles/themes.css.ts';
@@ -17,7 +18,7 @@ export const business_hours_section = style({
 	padding: '2rem',
 
 	backgroundColor: colors.espresso,
-	backgroundImage: 'url("../assets/grain.svg")',
+	backgroundImage: `url(${grain})`,
 	backgroundSize: '256px',
 	backgroundBlendMode: 'overlay',
 	color: colors.milk,

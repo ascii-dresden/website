@@ -1,5 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
+import grain from 'src/assets/grain.svg';
 import { border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { durations, ease } from 'src/styles/motion.css.ts';
@@ -17,7 +18,7 @@ export const header = style([
 		display: 'flex',
 
 		backgroundColor: colors.creme,
-		backgroundImage: 'url("../../../../assets/grain.svg")',
+		backgroundImage: `url(${grain})`,
 		backgroundBlendMode: 'overlay',
 		backgroundSize: '256px',
 
