@@ -49,45 +49,50 @@ const nextEvent = await fetchNextEvent();
 		<div class={hero_summary}>
 			<h1>Willkommen!</h1>
 			<p>
-				Wir sind ein studentisch geführtes Café in der Fakultät Informatik der TU Dresden. Bei uns
-				gibt es Snacks, Kalt- und Heißgetränke, sowie Sofas als idealen Ort zum Verweilen und
-				Austauschen mit anderen Studierenden.
+				Wir sind ein studentisch geführtes Café in der Fakultät Informatik der TU Dresden.
+				Bei uns gibt es Snacks, Kalt- und Heißgetränke, sowie Sofas als idealen Ort zum
+				Verweilen und Austauschen mit anderen Studierenden.
 			</p>
 		</div>
 	</section>
 	<Divider class={divider_1} />
 	<section class={next_event}>
 		<h2 class={next_event_head}>Nächstes Event</h2>
-		<Featured
-			class={next_event_featured}
-			layout="left"
-			preLine
-			href="/events"
-		>
-			<Fragment slot="title">{nextEvent.title}</Fragment>
-			<Fragment slot="description">{nextEvent.summary}</Fragment>
-			<Fragment slot="date">
-				<time datetime={nextEvent.date_time.toString()}>
-					{
-						nextEvent.date_time.toLocaleString('de-DE', {
-							year: '2-digit',
-							month: '2-digit',
-							day: '2-digit',
-						})
-					}
-					<span class={next_event_date_separator}>&nbsp;/&nbsp;</span>
-					{nextEvent.date_time.toLocaleString('de-DE', { hour: 'numeric', minute: 'numeric' })}
-				</time>
-			</Fragment>
-			<Fragment slot="image">
-				<Image
-					file={nextEvent.image}
-					alt={nextEvent.image_alt}
-					sizes="66vw"
-				/>
-			</Fragment>
-			<Fragment slot="button">Events</Fragment>
-		</Featured>
+		{
+			nextEvent && (
+				<Featured
+					class={next_event_featured}
+					layout="left"
+					preLine
+					href="/events"
+				>
+					<Fragment slot="title">{nextEvent.title}</Fragment>
+					<Fragment slot="description">{nextEvent.summary}</Fragment>
+					<Fragment slot="date">
+						<time datetime={nextEvent.date_time.toString()}>
+							{nextEvent.date_time.toLocaleString('de-DE', {
+								year: '2-digit',
+								month: '2-digit',
+								day: '2-digit',
+							})}
+							<span class={next_event_date_separator}>&nbsp;/&nbsp;</span>
+							{nextEvent.date_time.toLocaleString('de-DE', {
+								hour: 'numeric',
+								minute: 'numeric',
+							})}
+						</time>
+					</Fragment>
+					<Fragment slot="image">
+						<Image
+							file={nextEvent.image}
+							alt={nextEvent.image_alt}
+							sizes="66vw"
+						/>
+					</Fragment>
+					<Fragment slot="button">Events</Fragment>
+				</Featured>
+			)
+		}
 	</section>
 	<Divider class={divider_2} />
 	<section class={offer}>
@@ -101,7 +106,12 @@ const nextEvent = await fetchNextEvent();
 			<Fragment slot="title">{drinkOfMonth.title}</Fragment>
 			<Fragment slot="description">{drinkOfMonth.description}</Fragment>
 			<Fragment slot="date">
-				{drinkOfMonth.year_month.toLocaleString('de-DE', { month: 'long', year: 'numeric' })}
+				{
+					drinkOfMonth.year_month.toLocaleString('de-DE', {
+						month: 'long',
+						year: 'numeric',
+					})
+				}
 			</Fragment>
 			<Fragment slot="image">
 				<Image
@@ -123,9 +133,9 @@ const nextEvent = await fetchNextEvent();
 			outline
 		>
 			<Fragment slot="description">
-				Möchtest du Teil eines bunten Haufens werden und die Campus-Community bereichern? Bei uns
-				kannst du nicht nur Kaffee brauen, sondern auch neue Freundschaften knüpfen, Events
-				organisieren und Teil eines lebendigen Netzwerks sein.
+				Möchtest du Teil eines bunten Haufens werden und die Campus-Community bereichern?
+				Bei uns kannst du nicht nur Kaffee brauen, sondern auch neue Freundschaften knüpfen,
+				Events organisieren und Teil eines lebendigen Netzwerks sein.
 			</Fragment>
 			<Fragment slot="image">
 				<SvgSticker class={become_member_sticker} />

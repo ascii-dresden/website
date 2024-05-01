@@ -1,4 +1,4 @@
-import { Temporal } from 'temporal-polyfill';
+import { Intl, Temporal } from 'temporal-polyfill';
 import { parse, object, string, array, coerce, regex, transform, Output } from 'valibot';
 import { load } from 'js-yaml';
 

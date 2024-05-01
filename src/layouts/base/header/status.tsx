@@ -1,6 +1,6 @@
 import { Collapsible } from '@kobalte/core';
 import { Accessor, Component, Match, Switch, createSignal, onMount } from 'solid-js';
-import { Output, enumType, object, safeParse, transform } from 'valibot';
+import { Output, object, picklist, safeParse, transform } from 'valibot';
 
 import { STATUS_STREAM_URL } from 'ascii.config.ts';
 
@@ -22,7 +22,7 @@ import {
 
 const StatusSchema = transform(
 	object({
-		Classification: enumType(['on', 'off']),
+		Classification: picklist(['on', 'off']),
 	}),
 	(input) => input.Classification
 );
@@ -54,7 +54,7 @@ function useStatus(): Accessor<Status | undefined> {
 	return status;
 }
 
-export const Status: Component = function() {
+export const Status: Component = function () {
 	const status = useStatus();
 
 	const [forceMount, setForceMount] = createSignal<boolean>(false);

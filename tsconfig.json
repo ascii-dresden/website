@@ -30,7 +30,7 @@
 		// Resolve path aliases
 		"baseUrl": ".",
 		"paths": {
-			"src/*": ["./src/*"]
+			"src/*": ["src/*"]
 		}
 	}
 }

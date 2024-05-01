@@ -1,4 +1,4 @@
-import { ComplexStyleRule, createThemeContract, globalStyle } from '@vanilla-extract/css';
+import { ComplexStyleRule, createThemeContract } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { border_radius, border_style, border_width } from 'src/styles/border.css.ts';

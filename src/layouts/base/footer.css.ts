@@ -1,6 +1,6 @@
 import { assignVars, globalStyle, style } from '@vanilla-extract/css';
 import { vars_button } from 'src/components/button.css';
-import { border_style, border_width } from 'src/styles/border.css';
+import { border_style, border_width } from 'src/styles/border.css.ts';
 
 import { colors } from 'src/styles/colors.css.ts';
 import { spacing } from 'src/styles/spacing.css.ts';

@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { border_style, border_width } from 'src/styles/border.css';
+import { border_style, border_width } from 'src/styles/border.css.ts';
 import { colors } from 'src/styles/colors.css.ts';
 import { durations, ease } from 'src/styles/motion.css';
 import { spacing } from 'src/styles/spacing.css.ts';
