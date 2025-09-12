@@ -1,2 +1,6 @@
+import { globalStyle } from '@vanilla-extract/css';
 import './_preflight.css.ts';
-import './_fonts.css.ts';
+
+globalStyle('html', {
+	scrollBehavior: 'smooth',
+});

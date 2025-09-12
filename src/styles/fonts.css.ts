@@ -1,33 +1,62 @@
 import { FontMetrics } from '@capsizecss/core';
 import { fontFace } from '@vanilla-extract/css';
 
+import asset_bonbance from 'src/assets/fonts/Bonbance-BoldCondensed.woff2';
+import asset_chubbo from 'src/assets/fonts/Chubbo-Variable.woff2';
+import asset_maple_mono_200 from 'src/assets/fonts/MapleMono/MapleMono-Light.woff2';
+import asset_maple_mono_200i from 'src/assets/fonts/MapleMono/MapleMono-LightItalic.woff2';
+import asset_maple_mono_400 from 'src/assets/fonts/MapleMono/MapleMono-Regular.woff2';
+import asset_maple_mono_400i from 'src/assets/fonts/MapleMono/MapleMono-Italic.woff2';
+import asset_maple_mono_700 from 'src/assets/fonts/MapleMono/MapleMono-Bold.woff2';
+import asset_maple_mono_700i from 'src/assets/fonts/MapleMono/MapleMono-BoldItalic.woff2';
 import { FontRule, createFont } from 'src/styles/internal/font.css.ts';
 
-import { sm, xl } from './screens.css.ts';
-
-const font_face_jetbrains_mono = fontFace({
-	src: `url("../assets/fonts/jetbrains_mono/JetBrainsMono[wght].woff2") format("woff2")`,
-	fontWeight: '100 800',
-	fontStyle: 'normal',
-});
+import { lg, md, sm, xl } from './screens.css.ts';
 
 const font_face_bonbance = fontFace({
-	src: `url("../assets/fonts/bonbance/Bonbance-BoldCondensed.woff2") format("woff2")`,
+	src: `url(${asset_bonbance}) format("woff2")`,
 	fontWeight: 'bold',
 	fontStyle: 'normal',
 });
 
-const metrics_jetbrains_mono: FontMetrics = {
-	familyName: font_face_jetbrains_mono.slice(1, -1),
-	category: 'monospace',
-	capHeight: 730,
-	ascent: 1020,
-	descent: 300,
-	lineGap: 0,
-	unitsPerEm: 1000,
-	xHeight: 550,
-	xWidthAvg: 600,
-};
+const font_face_chubbo = fontFace({
+	src: `url(${asset_chubbo}) format("woff2")`,
+	fontWeight: '200 700',
+	fontStyle: 'normal',
+});
+
+const font_face_maple = fontFace([
+	{
+		src: `url(${asset_maple_mono_200}) format("woff2")`,
+		fontWeight: '200',
+		fontStyle: 'normal',
+	},
+	{
+		src: `url(${asset_maple_mono_200i}) format("woff2")`,
+		fontWeight: '200',
+		fontStyle: 'italic',
+	},
+	{
+		src: `url(${asset_maple_mono_400}) format("woff2")`,
+		fontWeight: '400',
+		fontStyle: 'normal',
+	},
+	{
+		src: `url(${asset_maple_mono_400i}) format("woff2")`,
+		fontWeight: '400',
+		fontStyle: 'italic',
+	},
+	{
+		src: `url(${asset_maple_mono_700}) format("woff2")`,
+		fontWeight: '700',
+		fontStyle: 'normal',
+	},
+	{
+		src: `url(${asset_maple_mono_700i}) format("woff2")`,
+		fontWeight: '700',
+		fontStyle: 'italic',
+	},
+]);
 
 const metrics_bonbance: FontMetrics = {
 	familyName: font_face_bonbance.slice(1, -1),
@@ -41,8 +70,31 @@ const metrics_bonbance: FontMetrics = {
 	xWidthAvg: 346,
 };
 
-const bonbance = createFont(metrics_bonbance);
-const jetbrains_mono = createFont(metrics_jetbrains_mono);
+const metrics_chubbo: FontMetrics = {
+	familyName: font_face_chubbo.slice(1, -1),
+	capHeight: 706,
+	ascent: 1050,
+	descent: -320,
+	lineGap: 100,
+	unitsPerEm: 1000,
+	xHeight: 484,
+	xWidthAvg: 444,
+};
+
+const metrics_maple: FontMetrics = {
+	familyName: font_face_maple.slice(1, -1),
+	capHeight: 1400,
+	ascent: 2000,
+	descent: -600,
+	lineGap: 0,
+	unitsPerEm: 2000,
+	xHeight: 1050,
+	xWidthAvg: 1200,
+};
+
+export const bonbance = createFont(metrics_bonbance);
+export const chubbo = createFont(metrics_chubbo);
+export const maple = createFont(metrics_maple);
 
 export const display_large_rule = bonbance([
 	{
@@ -52,15 +104,21 @@ export const display_large_rule = bonbance([
 			lineGap: 16,
 		},
 	},
-	sm<FontRule>({
+	md<FontRule>({
 		fontOptions: {
-			capHeight: 40,
+			capHeight: 52,
 			lineGap: 16,
+		},
+	}),
+	lg<FontRule>({
+		fontOptions: {
+			capHeight: 64,
+			lineGap: 24,
 		},
 	}),
 	xl<FontRule>({
 		fontOptions: {
-			capHeight: 40,
+			capHeight: 86,
 			lineGap: 16,
 		},
 	}),
@@ -69,20 +127,26 @@ export const display_large_rule = bonbance([
 export const display_medium_rule = bonbance([
 	{
 		fontOptions: {
-			capHeight: 30,
+			capHeight: 32,
 			lineGap: 16,
 		},
 	},
-	sm<FontRule>({
+	md<FontRule>({
 		fontOptions: {
-			capHeight: 32,
+			capHeight: 40,
 			lineGap: 16,
+		},
+	}),
+	lg<FontRule>({
+		fontOptions: {
+			capHeight: 48,
+			lineGap: 24,
 		},
 	}),
 	xl<FontRule>({
 		fontOptions: {
-			capHeight: 32,
-			lineGap: 16,
+			capHeight: 64,
+			lineGap: 32,
 		},
 	}),
 ]);
@@ -94,23 +158,29 @@ export const display_small_rule = bonbance([
 			lineGap: 16,
 		},
 	},
-	sm<FontRule>({
+	md<FontRule>({
 		fontOptions: {
-			capHeight: 24,
+			capHeight: 28,
+			lineGap: 16,
+		},
+	}),
+	lg<FontRule>({
+		fontOptions: {
+			capHeight: 32,
 			lineGap: 16,
 		},
 	}),
 	xl<FontRule>({
 		fontOptions: {
-			capHeight: 24,
+			capHeight: 48,
 			lineGap: 16,
 		},
 	}),
 ]);
 
-export const title_large_rule = bonbance([
+export const title_large_rule = chubbo([
 	{
-		letterSpacing: 0.6,
+		fontWeight: 600,
 		fontOptions: {
 			capHeight: 18,
 			lineGap: 12,
@@ -124,11 +194,12 @@ export const title_large_rule = bonbance([
 	}),
 ]);
 
-export const title_medium_rule = bonbance([
+export const title_medium_rule = chubbo([
 	{
-		letterSpacing: 0.8,
+		letterSpacing: 0.5,
+		fontWeight: 620,
 		fontOptions: {
-			capHeight: 15,
+			capHeight: 16,
 			lineGap: 12,
 		},
 	},
@@ -140,11 +211,12 @@ export const title_medium_rule = bonbance([
 	}),
 ]);
 
-export const title_small_rule = bonbance([
+export const title_small_rule = chubbo([
 	{
 		letterSpacing: 1,
+		fontWeight: 640,
 		fontOptions: {
-			capHeight: 13,
+			capHeight: 14,
 			lineGap: 12,
 		},
 	},
@@ -156,67 +228,11 @@ export const title_small_rule = bonbance([
 	}),
 ]);
 
-export const label_large_rule = jetbrains_mono([
+export const label_large_rule = maple([
 	{
-		fontVariantNumeric: 'slashed-zero',
-		fontWeight: 500,
-		fontOptions: {
-			capHeight: 12,
-			lineGap: 12,
-		},
-	},
-	sm<FontRule>({
-		fontOptions: {
-			capHeight: 12,
-			lineGap: 12,
-		},
-	}),
-]);
-
-export const label_medium_rule = jetbrains_mono([
-	{
-		fontVariantNumeric: 'slashed-zero',
-		fontWeight: 500,
-		fontOptions: {
-			capHeight: 10,
-			lineGap: 8,
-		},
-	},
-]);
-
-export const label_small_rule = jetbrains_mono([
-	{
-		fontVariantNumeric: 'slashed-zero',
-		fontWeight: 500,
-		fontOptions: {
-			capHeight: 8,
-			lineGap: 8,
-		},
-	},
-]);
-
-export const body_large_rule = jetbrains_mono([
-	{
-		fontVariantNumeric: 'slashed-zero',
-		fontFeatureSettings: '"zero"',
-		fontWeight: 500,
-		fontOptions: {
-			capHeight: 11,
-			lineGap: 11,
-		},
-	},
-	sm<FontRule>({
-		fontOptions: {
-			capHeight: 12,
-			lineGap: 12,
-		},
-	}),
-]);
-
-export const body_medium_rule = jetbrains_mono([
-	{
-		fontVariantNumeric: 'slashed-zero',
-		fontWeight: 500,
+		textTransform: 'uppercase',
+		letterSpacing: 1,
+		fontWeight: 700,
 		fontOptions: {
 			capHeight: 10,
 			lineGap: 10,
@@ -230,10 +246,74 @@ export const body_medium_rule = jetbrains_mono([
 	}),
 ]);
 
-export const body_small_rule = jetbrains_mono([
+export const label_medium_rule = maple([
 	{
-		fontVariantNumeric: 'slashed-zero',
-		fontWeight: 500,
+		textTransform: 'uppercase',
+		letterSpacing: 1,
+		fontWeight: 700,
+		fontOptions: {
+			capHeight: 9,
+			lineGap: 9,
+		},
+	},
+	sm<FontRule>({
+		fontOptions: {
+			capHeight: 10,
+			lineGap: 10,
+		},
+	}),
+]);
+
+export const label_small_rule = maple([
+	{
+		textTransform: 'uppercase',
+		letterSpacing: 1,
+		fontWeight: 700,
+		fontOptions: {
+			capHeight: 8,
+			lineGap: 8,
+		},
+	},
+	sm<FontRule>({
+		fontOptions: {
+			capHeight: 9,
+			lineGap: 9,
+		},
+	}),
+]);
+
+export const body_large_rule = maple([
+	{
+		fontOptions: {
+			capHeight: 11,
+			lineGap: 11,
+		},
+	},
+	sm<FontRule>({
+		fontOptions: {
+			capHeight: 12,
+			lineGap: 12,
+		},
+	}),
+]);
+
+export const body_medium_rule = maple([
+	{
+		fontOptions: {
+			capHeight: 10,
+			lineGap: 10,
+		},
+	},
+	sm<FontRule>({
+		fontOptions: {
+			capHeight: 11,
+			lineGap: 11,
+		},
+	}),
+]);
+
+export const body_small_rule = maple([
+	{
 		fontOptions: {
 			capHeight: 9,
 			lineGap: 9,

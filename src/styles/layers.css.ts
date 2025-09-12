@@ -1,13 +1,13 @@
 import { StyleRule, style } from '@vanilla-extract/css';
 
-import { components } from './internal/layers.css.ts';
+import { component } from './internal/layers.css.ts';
 
 export type ComponentStyleRule = Omit<StyleRule, '@layer'>;
 
 export function componentStyle(rule: ComponentStyleRule): string {
 	return style({
 		'@layer': {
-			[components]: rule,
+			[component]: rule,
 		},
 	});
 }

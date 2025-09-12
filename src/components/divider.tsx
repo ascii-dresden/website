@@ -1,7 +1,7 @@
 import { Component, createMemo } from 'solid-js';
 
 import { border_width } from 'src/styles/border.css.ts';
-import { stroke } from 'src/svg/header.css.ts';
+import { stroke } from 'src/components/svg/header.css.ts';
 
 import { filler_from, filler_to, gap_filler_from, gap_filler_to } from './divider.css.ts';
 
