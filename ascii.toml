@@ -1,0 +1,31 @@
+status_stream_url = "https://status.ascii.coffee/api/stream/status"
+
+# Opening hours are described as defined <https://schema.org/openingHours>
+
+[[opening_hours]]
+days = "Mo-Th"
+times = "09:00-17:00"
+
+[[opening_hours]]
+days = "Fr"
+times = "09:00-15:00"
+
+# Specials (e.g. Sales, Drink of Month)
+
+[special]
+title = "Mio Mio Mai"
+image = "getraenke.webp"
+image_alt = "Flaschen verschiedener Mate- und Colasorten auf einem Regal"
+description = "Mehr Mate im Mai. Mio Mio Getränke gibt es diesen Monat für 1.30€!"
+year_month = "2024-05"
+
+# Events
+
+[[events]]
+date_time = 2024-05-07T18:30:00
+title = "Spieleabend"
+image = "spieleabend.webp"
+image_alt = "Handkarten eines Spielers des Brettspiels „7 Wonders“"
+summary = """
+	Mit Brett, Karten, oder an der Leinwand. Wir treffen uns zum Essen, Quatschen,
+	und natürlich Spielen. Kommt vorbei!"""

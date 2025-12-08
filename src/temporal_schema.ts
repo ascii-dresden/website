@@ -1,6 +1,4 @@
-import { z } from 'astro:content';
-import { Temporal } from 'temporal-polyfill';
-import 'temporal-polyfill/global';
+import { z } from "astro:content";
 
 export const PlainDateSchema = z.union([z.string(), z.date()]).transform((value, ctx) => {
 	// convert `Date` to `Temporal.PlainDate`
