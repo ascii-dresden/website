@@ -1,6 +1,5 @@
+import deno from "@deno/vite-plugin";
 import { resolve } from "@std/path";
-
-import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import vike from "vike/plugin";
 import vikeSolid from "vike-solid/vite";
 import { defineConfig } from "vite";
@@ -13,7 +12,8 @@ export default defineConfig({
 	css: {
 		transformer: "lightningcss",
 	},
-	plugins: [vanillaExtractPlugin(), vike(), vikeSolid()],
+	// TODO: Reconsider if Vike and Deno is preferred over Astro and Node/PNPM.
+	plugins: [deno(), vike(), vikeSolid()],
 	resolve: {
 		alias: {
 			src: resolve(import.meta.dirname!, "src"),
