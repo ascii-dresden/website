@@ -12,7 +12,6 @@ export default defineConfig({
 	css: {
 		transformer: "lightningcss",
 	},
-	// TODO: Reconsider if Vike and Deno is preferred over Astro and Node/PNPM.
 	plugins: [deno(), vike(), vikeSolid()],
 	resolve: {
 		alias: {

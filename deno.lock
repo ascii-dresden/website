@@ -1,6 +1,7 @@
 {
   "version": "5",
   "specifiers": {
+    "jsr:@remeda/remeda@^2.32.0": "2.32.0",
     "jsr:@std/internal@^1.0.12": "1.0.12",
     "jsr:@std/path@^1.1.3": "1.1.3",
     "jsr:@valibot/valibot@^1.2.0": "1.2.0",
@@ -12,11 +13,18 @@
     "npm:solid-js@^1.9.10": "1.9.10_seroval@1.3.2",
     "npm:tailwindcss@^4.1.18": "4.1.18",
     "npm:toml@3": "3.0.0",
+    "npm:type-fest@^4.41.0": "4.41.0",
     "npm:vike-solid@~0.7.14": "0.7.14_solid-js@1.9.10__seroval@1.3.2_vike@0.4.249__vite@7.3.0___@types+node@24.2.0___lightningcss@1.30.2___picomatch@4.0.3__@types+node@24.2.0__lightningcss@1.30.2_vite@7.3.0__@types+node@24.2.0__lightningcss@1.30.2__picomatch@4.0.3_@types+node@24.2.0_lightningcss@1.30.2",
     "npm:vike@~0.4.249": "0.4.249_vite@7.3.0__@types+node@24.2.0__lightningcss@1.30.2__picomatch@4.0.3_@types+node@24.2.0_lightningcss@1.30.2",
     "npm:vite@^7.3.0": "7.3.0_@types+node@24.2.0_lightningcss@1.30.2_picomatch@4.0.3"
   },
   "jsr": {
+    "@remeda/remeda@2.32.0": {
+      "integrity": "f07d2b878c81ee973826299ff39effdb80b81d8bb6d54d690354a79a7ad4cdeb",
+      "dependencies": [
+        "npm:type-fest"
+      ]
+    },
     "@std/internal@1.0.12": {
       "integrity": "972a634fd5bc34b242024402972cd5143eac68d8dffaca5eaa4dba30ce17b027"
     },
@@ -885,6 +893,9 @@
     "totalist@3.0.1": {
       "integrity": "sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ=="
     },
+    "type-fest@4.41.0": {
+      "integrity": "sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA=="
+    },
     "undici-types@7.10.0": {
       "integrity": "sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag=="
     },
@@ -982,6 +993,7 @@
   },
   "workspace": {
     "dependencies": [
+      "jsr:@remeda/remeda@^2.32.0",
       "jsr:@std/path@^1.1.3",
       "jsr:@valibot/valibot@^1.2.0",
       "npm:@css-hooks/core@^3.0.4",

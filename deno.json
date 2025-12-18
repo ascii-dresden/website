@@ -12,6 +12,7 @@
 		"@css-hooks/core": "npm:@css-hooks/core@^3.0.4",
 		"@css-hooks/solid": "npm:@css-hooks/solid@^3.0.4",
 		"@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.5",
+		"@remeda/remeda": "jsr:@remeda/remeda@^2.32.0",
 		"@std/path": "jsr:@std/path@^1.1.3",
 		"@valibot/valibot": "jsr:@valibot/valibot@^1.2.0",
 		"lightningcss": "npm:lightningcss@^1.30.2",
@@ -25,7 +26,7 @@
 	},
 	"nodeModulesDir": "auto",
 	"compilerOptions": {
-		"lib": ["deno.ns", "dom", "dom.iterable", "dom.asynciterable"],
+		"lib": ["deno.ns", "deno.unstable", "dom", "dom.iterable", "dom.asynciterable"],
 		"jsx": "react-jsx",
 		"jsxImportSource": "solid-js"
 	}

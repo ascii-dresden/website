@@ -1,6 +1,7 @@
 import { createEffect, createSignal, onMount, type ParentComponent } from "solid-js";
 
-import { loadTheme, saveTheme, type Theme, ThemeContext } from "./theme.ts";
+import { Footer } from "src/components/footer.tsx";
+import { loadTheme, saveTheme, type Theme, ThemeContext } from "src/theme.ts";
 
 export const Layout: ParentComponent = function (props) {
 	const [theme, setTheme] = createSignal<Theme>("system");
@@ -13,5 +14,10 @@ export const Layout: ParentComponent = function (props) {
 		saveTheme(theme());
 	});
 
-	return <ThemeContext.Provider value={theme()}>{props.children}</ThemeContext.Provider>;
+	return (
+		<ThemeContext.Provider value={theme()}>
+			<div>{props.children}</div>
+			<Footer />
+		</ThemeContext.Provider>
+	);
 };
