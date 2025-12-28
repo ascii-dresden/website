@@ -1,7 +1,7 @@
 import { pipe } from "@remeda/remeda";
 import type { Component } from "solid-js";
 
-import { colors, dark, on } from "src/css.ts";
+import { and, colors, dark, on, transitionTimingFunction } from "src/css.ts";
 
 export const Footer: Component = function () {
 	return (
@@ -125,6 +125,7 @@ export const Footer: Component = function () {
 						style={{
 							display: "flex",
 							"flex-direction": "row",
+							gap: "16px",
 						}}
 					>
 						<li>
@@ -132,12 +133,24 @@ export const Footer: Component = function () {
 								href="https://www.instagram.com/asciidresden/"
 								style={pipe(
 									{
-										"background-color": colors.creme,
+										"border-radius": "8px",
 										color: colors.espresso,
+										display: "grid",
+										height: "3rem",
+										"place-items": "center",
+										"transition-duration": "100ms",
+										"transition-property": "background-color, color",
+										"transition-timing-function": transitionTimingFunction,
+										width: "3rem",
 									},
+									on("&:is(:hover, :focus-visible)", {
+										"background-color": colors.creme,
+									}),
 									on(dark, {
-										"background-color": colors.espresso,
 										color: colors.creme,
+									}),
+									on(and(dark, "&:is(:hover, :focus-visible)"), {
+										"background-color": colors.espresso,
 									})
 								)}
 							>
@@ -163,12 +176,24 @@ export const Footer: Component = function () {
 								href="https://github.com/ascii-dresden"
 								style={pipe(
 									{
-										"background-color": colors.creme,
+										"border-radius": "8px",
 										color: colors.espresso,
+										display: "grid",
+										height: "3rem",
+										"place-items": "center",
+										"transition-duration": "100ms",
+										"transition-property": "background-color, color",
+										"transition-timing-function": transitionTimingFunction,
+										width: "3rem",
 									},
+									on("&:is(:hover, :focus-visible)", {
+										"background-color": colors.creme,
+									}),
 									on(dark, {
-										"background-color": colors.espresso,
 										color: colors.creme,
+									}),
+									on(and(dark, "&:is(:hover, :focus-visible)"), {
+										"background-color": colors.espresso,
 									})
 								)}
 							>

@@ -43,3 +43,5 @@ export const colors = {
 	milk: "oklch(1 0 0)",
 	red: "oklch(0.72 0.18 7)",
 } as const;
+
+export const transitionTimingFunction = "cubic-bezier(0.2, 0.0, 0.2, 1.0)";
