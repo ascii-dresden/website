@@ -1,32 +1,35 @@
-# build output
+build/
+certs/
+data/
 dist/
-
-# generated files
-.astro/
-
-# dependencies
+media/
 node_modules/
-
-# temporary files
+out/
+secrets/
 temp/
+vendor/
 
-# non-pnpm lock files
+.devenv/
+.next/
+.pnpm/
+.vercel/
+.vite/
+.yarn/
+
+.idea/*
+!.idea/runConfigurations
+
+# non-Deno lock files
+bun.lock
 package-lock.json
+pnpm-lock.yaml
 yarn.lock
 
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# local environment variables
-*.local
-
-# certificates
-*.key
-*.pem
-
-# macOS-specific files
 .DS_Store
 result
+
+*.key
+*.local
+*.log
+*.pem
+*.tsbuildinfo

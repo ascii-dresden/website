@@ -1,17 +1,21 @@
-// TODO: delete this file when the following issue is resolved
-// https://github.com/vanilla-extract-css/vanilla-extract/issues/1336
-
-import { dirname, resolve } from 'path';
-import { fileURLToPath } from 'url';
-
-import { defineConfig } from 'vite';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import deno from "@deno/vite-plugin";
+import { resolve } from "@std/path";
+import vike from "vike/plugin";
+import vikeSolid from "vike-solid/vite";
+import { defineConfig } from "vite";
 
 export default defineConfig({
+	build: {
+		cssMinify: "lightningcss",
+		target: "esnext", // TODO: browser compatibility (e.g. using browserslist)
+	},
+	css: {
+		transformer: "lightningcss",
+	},
+	plugins: [deno(), vike(), vikeSolid()],
 	resolve: {
 		alias: {
-			src: resolve(__dirname, 'src'),
+			src: resolve(import.meta.dirname!, "src"),
 		},
 	},
 });

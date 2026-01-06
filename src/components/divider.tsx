@@ -1,79 +1,71 @@
-import { Component, createMemo } from 'solid-js';
+import { hash } from "node:crypto";
+import type { DataType, Globals } from "csstype";
+import { type Component, createMemo, type JSX, splitProps } from "solid-js";
 
-import { border_width } from 'src/styles/border.css.ts';
-import { stroke } from 'src/components/svg/header.css.ts';
+import { lineThicknessPx } from "src/css.ts";
 
-import { filler_from, filler_to, gap_filler_from, gap_filler_to } from './divider.css.ts';
+const SIZE_PX = 6;
 
-const SIZE = 8;
+const patternWidthPx = SIZE_PX * 4;
+const patternHeightPx = SIZE_PX + lineThicknessPx;
 
-const width = SIZE * 4;
-const height = SIZE + border_width;
-
-const startY = border_width / 2;
-const endY = SIZE + border_width / 2;
+const startY = lineThicknessPx / 2;
+const endY = SIZE_PX + lineThicknessPx / 2;
 
 export type DividerProps = {
-	class: string;
-};
+	backgroundColor?: Globals | DataType.Color;
+	lineColor: Globals | DataType.Color;
+	/**
+	 * TODO: Implement
+	 */
+	flip?: boolean;
+} & JSX.HTMLAttributes<HTMLDivElement>;
 
 export const Divider: Component<DividerProps> = function (props) {
-	const id = createMemo(() => `pattern-${btoa(props.class)}`);
+	const [local, others] = splitProps(props, ["backgroundColor", "lineColor"]);
+
+	const patternId = createMemo(() => hash("sha1", Object.values(local).join(";"), "hex"));
 
 	return (
-		<svg
-			class={props.class}
-			preserve-aspect-ratio="none"
-			width="100%"
-			height={height}
+		<div
+			style={{
+				height: 0,
+			}}
+			{...others}
 		>
-			<defs>
-				<pattern
-					id={id()}
-					patternUnits="userSpaceOnUse"
-					viewBox={`0 0 ${width} ${height}`}
-					width={width}
-					height={height}
-				>
-					{/* from */}
-					<path
-						class={gap_filler_from}
-						d={`M0,${startY} L${width},${startY}`}
-					/>
-					<path
-						class={filler_from}
-						d={[
-							`M0,${startY}`,
-							`L0,${endY}`,
-							`C${SIZE},${endY} ${SIZE},${startY} ${SIZE * 2},${startY}`,
-							`C${SIZE * 3},${startY} ${SIZE * 3},${endY} ${width},${endY}`,
-							`L${width},${startY}`,
-						].join(' ')}
-					/>
-
-					{/* to */}
-					<path
-						class={gap_filler_to}
-						d={`M0,${endY} L${width},${endY}`}
-					>
-						{' '}
-					</path>
-					<path
-						class={filler_to}
-						d={[
-							`M0,${endY}`,
-							`C${SIZE},${endY} ${SIZE},${startY} ${SIZE * 2},${startY}`,
-							`C${SIZE * 3},${startY} ${SIZE * 3},${endY} ${width},${endY}`,
-						].join(' ')}
-						stroke={stroke}
-					/>
-				</pattern>
-			</defs>
-			<rect
+			<svg
+				preserve-aspect-ratio="none"
 				width="100%"
-				height="100%"
-				fill={`url(#${id()})`}
-			/>
-		</svg>
+				height={patternHeightPx}
+				style={{
+					translate: `0 ${lineThicknessPx / 2 - patternHeightPx}px`,
+				}}
+			>
+				<title>Squiggle</title>
+				<defs>
+					<pattern
+						id={patternId()}
+						patternUnits="userSpaceOnUse"
+						viewBox={`0 0 ${patternWidthPx} ${patternHeightPx}`}
+						width={patternWidthPx}
+						height={patternHeightPx}
+					>
+						<path
+							style={{
+								fill: local.backgroundColor,
+								stroke: local.lineColor,
+								"stroke-width": lineThicknessPx,
+							}}
+							d={[
+								`M0,${endY}`,
+								`C${SIZE_PX},${endY} ${SIZE_PX},${startY} ${SIZE_PX * 2},${startY}`,
+								`C${SIZE_PX * 3},${startY} ${SIZE_PX * 3},${endY} ${patternWidthPx},${endY}`,
+							].join(" ")}
+						/>
+					</pattern>
+				</defs>
+				<rect width="100%" height="100%" fill={`url(#${patternId()})`} />
+			</svg>
+		</div>
 	);
 };

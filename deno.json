@@ -1,0 +1,35 @@
+{
+	"$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
+	"tasks": {
+		"build": "vike build",
+		"dev": "vike dev",
+		"preview": "vike preview",
+		"check": "biome check",
+		"fmt": "biome check --write"
+	},
+	"unstable": ["temporal"],
+	"imports": {
+		"@css-hooks/core": "npm:@css-hooks/core@^3.0.4",
+		"@css-hooks/solid": "npm:@css-hooks/solid@^3.0.4",
+		"@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.6",
+		"@fontsource/maple-mono": "npm:@fontsource/maple-mono@^5.2.6",
+		"@remeda/remeda": "jsr:@remeda/remeda@^2.33.1",
+		"@std/path": "jsr:@std/path@^1.1.4",
+		"@valibot/valibot": "jsr:@valibot/valibot@^1.2.0",
+		"csstype": "npm:csstype@^3.2.3",
+		"lightningcss": "npm:lightningcss@^1.30.2",
+		"solid-js": "npm:solid-js@^1.9.10",
+		"src/": "./src/",
+		"tailwindcss": "npm:tailwindcss@^4.1.18",
+		"toml": "npm:toml@^3.0.0",
+		"vike": "npm:vike@^0.4.250",
+		"vike-solid": "npm:vike-solid@^0.7.18",
+		"vite": "npm:vite@^7.3.0"
+	},
+	"nodeModulesDir": "auto",
+	"compilerOptions": {
+		"lib": ["deno.ns", "deno.unstable", "dom", "dom.iterable", "dom.asynciterable"],
+		"jsx": "react-jsx",
+		"jsxImportSource": "solid-js"
+	}
+}
