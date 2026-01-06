@@ -1,6 +1,6 @@
 status_stream_url = "https://status.ascii.coffee/api/stream/status"
 
-# Opening hours are described as defined <https://schema.org/openingHours>
+# Opening hours are described as defined at <https://schema.org/openingHours>
 
 [[opening_hours]]
 days = "Mo-Th"

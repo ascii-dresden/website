@@ -5,6 +5,7 @@
 	height="8"
 	viewBox="0 0 8 8"
 >
+	<title>Dithered pixel pattern</title>
 	<!-- TODO: Make recolorable for dark theme support -->
 	<rect
 		fill="#3f1a0d"

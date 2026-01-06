@@ -11,7 +11,8 @@ export const { styleSheet, and, not, on, or } = createHooks(
 	"@media (min-width: 1600px)",
 	// Color scheme
 	"@media (prefers-color-scheme: dark)",
-	"[data-theme=dark] &"
+	"[data-theme=dark] &",
+	"[data-theme=light] &"
 );
 
 /**
@@ -31,7 +32,10 @@ export const { styleSheet, and, not, on, or } = createHooks(
  * )}></div>
  * ```
  */
-export const dark = or("@media (prefers-color-scheme: dark)", "[data-theme=dark] &");
+export const dark = or(
+	"[data-theme=dark] &",
+	and(not("[data-theme=light] &"), "@media (prefers-color-scheme: dark)")
+);
 
 export const colors = {
 	black: "oklch(0 0 0)",
@@ -45,3 +49,27 @@ export const colors = {
 } as const;
 
 export const transitionTimingFunction = "cubic-bezier(0.2, 0.0, 0.2, 1.0)";
+
+/**
+ * Default thickness of lines and strokes
+ * @example
+ * ```tsx
+ * <div style={{
+ *     "border-width": `${lineThicknessPx}px`
+ * }} />
+ * ```
+ * @example
+ * ```tsx
+ * <a style={{
+ *     "text-decoration-line": underline;
+ *     "text-decoration-thickness": `${lineThicknessPx}px`
+ * }}>Hyperlink</a>
+ * ```
+ * @example
+ * ```tsx
+ * <svg style={{
+ *     "stroke-width": `${lineThicknessPx}px`
+ * }} />
+ * ```
+ */
+export const lineThicknessPx = 2;
