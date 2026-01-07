@@ -15,6 +15,7 @@
 		"@fontsource/maple-mono": "npm:@fontsource/maple-mono@^5.2.6",
 		"@remeda/remeda": "jsr:@remeda/remeda@^2.33.1",
 		"@std/path": "jsr:@std/path@^1.1.4",
+		"@std/toml": "jsr:@std/toml@^1.0.11",
 		"@valibot/valibot": "jsr:@valibot/valibot@^1.2.0",
 		"csstype": "npm:csstype@^3.2.3",
 		"lightningcss": "npm:lightningcss@^1.30.2",

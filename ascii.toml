@@ -1,16 +1,14 @@
-status_stream_url = "https://status.ascii.coffee/api/stream/status"
-
-# Opening hours are described as defined at <https://schema.org/openingHours>
-
-[[opening_hours]]
-days = "Mo-Th"
-times = "09:00-17:00"
-
-[[opening_hours]]
-days = "Fr"
-times = "09:00-15:00"
-
-# Specials (e.g. Sales, Drink of Month)
+[opening_hours]
+monday.open = 09:00
+monday.close = 17:00
+tuesday.open = 09:00
+tuesday.close = 17:00
+wednesday.open = 09:00
+wednesday.close = 17:00
+thursday.open = 09:00
+thursday.close = 17:00
+friday.open = 09:00
+friday.close = 17:00
 
 [special]
 title = "Mio Mio Mai"

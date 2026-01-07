@@ -29,6 +29,7 @@
             packages = [
               pkgs.deno
               pkgs.biome
+              pkgs.tombi
             ];
           };
         };

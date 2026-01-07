@@ -4,8 +4,7 @@
 	"assist": {
 		"actions": {
 			"source": {
-				"organizeImports": "on",
-				"useSortedKeys": "on"
+				"organizeImports": "on"
 			}
 		}
 	},
