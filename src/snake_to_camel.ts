@@ -2,6 +2,15 @@
  * @file Derived from <https://github.com/RossWilliams/ts-case-convert>
  */
 
+import { mapKeys } from "@remeda/remeda";
+
+/**
+ * Convert a given snake_case literal into camelCase.
+ * Passing in a string that isn't snake_case is undefined behavior.
+ * @example
+ * SnakeToCamel<"hello_world">
+ * // -> "helloWorld"
+ */
 export type SnakeToCamel<S> = S extends string
 	? S extends `${infer Head}_${infer Tail}`
 		? `${SnakeToCamel<Uncapitalize<Head>>}${Capitalize<SnakeToCamel<Tail>>}`
@@ -11,6 +20,9 @@ export type SnakeToCamel<S> = S extends string
 /**
  * Convert a given snake_case string into camelCase.
  * Passing in a string that isn't snake_case is undefined behavior.
+ * @example
+ * snakeToCamel("hello_world")
+ * // -> "helloWorld"
  */
 export function snakeToCamel<T extends string>(input: T): SnakeToCamel<T> {
 	return input
@@ -19,14 +31,29 @@ export function snakeToCamel<T extends string>(input: T): SnakeToCamel<T> {
 }
 
 /**
- * Map the keys of an object to camelCase.
- * Assumes the keys are snake_case.
- * Does **not** recursively enter nested objects.
+ * Map the keys of an object from snake_case to camelCase.
+ * Assumes that the keys are in snake_case.
+ * Does **not** recurse into nested objects.
+ * @example
+ * mapSnakeKeysToCamel({
+ *   hello_world: "foo",
+ *   nested: {
+ *     other_thing: "bar",
+ *   },
+ * });
+ * // -> {
+ *   helloWorld: "foo",
+ *   nested: {
+ *     other_thing: "bar",
+ *   },
+ * }
  */
-export function mapSnakeToCamel<K extends string, V>(
-	input: Record<K, V>
-): Record<SnakeToCamel<K>, V> {
-	return Object.fromEntries(
-		Object.entries(input).map(([key, value]) => [snakeToCamel(key), value])
-	) as Record<SnakeToCamel<K>, V>;
+export function mapSnakeKeysToCamel<T extends {}>(
+	input: T
+): {
+	[K in keyof T as SnakeToCamel<K>]: T[K];
+} {
+	return mapKeys(input, (key) => snakeToCamel(key)) as unknown as {
+		[K in keyof T as SnakeToCamel<K>]: T[K];
+	};
 }

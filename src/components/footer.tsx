@@ -44,7 +44,6 @@ export const Footer: Component = function () {
 								style={pipe(
 									{
 										display: "flex",
-										// TODO: Does this need `body_large` styles?
 									},
 									on("&:is(:hover, :focus-visible)", {
 										"text-decoration": "underline",
@@ -61,7 +60,6 @@ export const Footer: Component = function () {
 								style={pipe(
 									{
 										display: "flex",
-										// TODO: Does this need `body_large` styles?
 									},
 									on("&:is(:hover, :focus-visible)", {
 										"text-decoration": "underline",
@@ -93,7 +91,6 @@ export const Footer: Component = function () {
 								style={pipe(
 									{
 										display: "flex",
-										// TODO: Does this need `body_large` styles?
 									},
 									on("&:is(:hover, :focus-visible)", {
 										"text-decoration": "underline",
@@ -110,7 +107,6 @@ export const Footer: Component = function () {
 								style={pipe(
 									{
 										display: "flex",
-										// TODO: Does this need `body_large` styles?
 									},
 									on("&:is(:hover, :focus-visible)", {
 										"text-decoration": "underline",
@@ -218,7 +214,7 @@ export const Footer: Component = function () {
 					</ul>
 				</li>
 				<li style={{ "grid-column": "1 / 3" }}>
-					<p>&copy; ascii Dresden e.V. {Temporal.Now.plainDateISO().year}</p>
+					<p>&copy; ascii Dresden e.V. {new Date().getFullYear()}</p>
 				</li>
 			</ul>
 		</footer>

@@ -12,7 +12,9 @@ export const { styleSheet, and, not, on, or } = createHooks(
 	// Color scheme
 	"@media (prefers-color-scheme: dark)",
 	"[data-theme=dark] &",
-	"[data-theme=light] &"
+	"[data-theme=light] &",
+	// Component State
+	"&[data-state=open]"
 );
 
 /**

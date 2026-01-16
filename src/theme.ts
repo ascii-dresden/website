@@ -3,6 +3,14 @@ import { createContext, useContext } from "solid-js";
 
 export type Theme = "light" | "dark" | "system";
 
+export const DEFAULT_THEME: Theme = "system";
+const THEME_LOCAL_STORAGE_KEY = "theme";
+
+const ThemeSchema = optional(
+	union([literal("light"), literal("dark"), literal("system")]),
+	"system"
+);
+
 export const ThemeContext = createContext<Theme>("system");
 
 /**
@@ -12,20 +20,17 @@ export function useTheme() {
 	return useContext(ThemeContext);
 }
 
-const THEME_LOCAL_STORAGE_KEY = "theme";
-
-const ThemeSchema = optional(
-	union([literal("light"), literal("dark"), literal("system")]),
-	"system"
-);
-
 /**
  * Try to load theme from `localStorage`.
  * Returns `system` if its unspecified.
  * Throws an error if it contains gibberish.
  */
 export function loadTheme(): Theme {
-	return parse(ThemeSchema, localStorage.getItem(THEME_LOCAL_STORAGE_KEY));
+	const theme = localStorage.getItem(THEME_LOCAL_STORAGE_KEY);
+	if (!theme) {
+		return DEFAULT_THEME;
+	}
+	return parse(ThemeSchema, theme);
 }
 
 /**

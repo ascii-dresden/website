@@ -1,4 +1,3 @@
-import { hash } from "node:crypto";
 import type { DataType, Globals } from "csstype";
 import { type Component, createMemo, type JSX, splitProps } from "solid-js";
 
@@ -24,7 +23,9 @@ export type DividerProps = {
 export const Divider: Component<DividerProps> = function (props) {
 	const [local, others] = splitProps(props, ["backgroundColor", "lineColor"]);
 
-	const patternId = createMemo(() => hash("sha1", Object.values(local).join(";"), "hex"));
+	// TODO: Generate pattern ID
+	// const patternId = createMemo(() => hash("sha1", Object.values(local).join(";"), "hex"));
+	const patternId = createMemo(() => "foo");
 
 	return (
 		<div

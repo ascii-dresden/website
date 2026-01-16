@@ -1,6 +1,6 @@
-import { object, optional, pipe, string, transform } from "@valibot/valibot";
+import { type InferOutput, object, optional, pipe, string, transform } from "@valibot/valibot";
 
-import { mapSnakeToCamel } from "src/snake_to_camel.ts";
+import { mapSnakeKeysToCamel } from "src/snake_to_camel.ts";
 import { PlainDateTimeSchema, PlainTimeSchema, PlainYearMonthSchema } from "src/temporal.ts";
 
 export const OpeningHoursDaySchema = optional(
@@ -20,6 +20,8 @@ export const OpeningHoursSchema = object({
 	sunday: OpeningHoursDaySchema,
 });
 
+export type OpeningHours = InferOutput<typeof OpeningHoursSchema>;
+
 export const SpecialSchema = pipe(
 	object({
 		title: string(),
@@ -28,20 +30,26 @@ export const SpecialSchema = pipe(
 		description: string(),
 		year_month: PlainYearMonthSchema,
 	}),
-	transform(mapSnakeToCamel)
+	transform(mapSnakeKeysToCamel)
 );
+
+export type Special = InferOutput<typeof SpecialSchema>;
 
 export const EventSchema = pipe(
 	object({
 		date_time: PlainDateTimeSchema,
 	}),
-	transform(mapSnakeToCamel)
+	transform(mapSnakeKeysToCamel)
 );
+
+export type Event = InferOutput<typeof EventSchema>;
 
 export const ConfigSchema = pipe(
 	object({
 		opening_hours: OpeningHoursSchema,
 		special: SpecialSchema,
 	}),
-	transform(mapSnakeToCamel)
+	transform(mapSnakeKeysToCamel)
 );
+
+export type Config = InferOutput<typeof ConfigSchema>;

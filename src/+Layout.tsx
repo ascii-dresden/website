@@ -1,6 +1,8 @@
 import { createEffect, createSignal, onMount, type ParentComponent } from "solid-js";
 
 import { Footer } from "src/components/footer.tsx";
+import { Header } from "src/components/header.tsx";
+import { colors } from "src/css.ts";
 import { loadTheme, saveTheme, type Theme, ThemeContext } from "src/theme.ts";
 
 export const Layout: ParentComponent = function (props) {
@@ -18,6 +20,7 @@ export const Layout: ParentComponent = function (props) {
 		<ThemeContext.Provider value={theme()}>
 			<div
 				style={{
+					"background-color": colors.creme,
 					"font-family": "Maple Mono",
 					// See demo at <https://font.subf.dev/en/playground/>
 					"font-feature-settings": [
@@ -46,6 +49,7 @@ export const Layout: ParentComponent = function (props) {
 					].join(", "),
 				}}
 			>
+				<Header />
 				<div>{props.children}</div>
 				<Footer />
 			</div>

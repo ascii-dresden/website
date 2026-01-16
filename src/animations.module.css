@@ -1,0 +1,21 @@
+@keyframes flip-in {
+	from {
+		opacity: 0;
+		rotate: x -90deg;
+	}
+	to {
+		opacity: 1;
+		rotate: x 0;
+	}
+}
+
+@keyframes flip-out {
+	from {
+		opacity: 1;
+		rotate: x 0;
+	}
+	to {
+		opacity: 0;
+		rotate: x -90deg;
+	}
+}
