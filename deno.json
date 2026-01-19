@@ -7,7 +7,6 @@
 		"check": "biome check",
 		"fmt": "biome check --write --max-diagnostics 0"
 	},
-	"unstable": ["temporal"],
 	"imports": {
 		"@ark-ui/solid": "npm:@ark-ui/solid@^5.30.0",
 		"@css-hooks/core": "npm:@css-hooks/core@^3.0.4",
@@ -23,13 +22,14 @@
 		"solid-js": "npm:solid-js@^1.9.10",
 		"src/": "./src/",
 		"tailwindcss": "npm:tailwindcss@^4.1.18",
+		"temporal-polyfill": "npm:temporal-polyfill@^0.3.0",
 		"vike": "npm:vike@^0.4.252",
 		"vike-solid": "npm:vike-solid@^0.7.19",
 		"vite": "npm:vite@^7.3.1"
 	},
 	"nodeModulesDir": "auto",
 	"compilerOptions": {
-		"lib": ["deno.ns", "deno.unstable", "dom", "dom.iterable", "dom.asynciterable"],
+		"lib": ["deno.ns", "dom", "dom.iterable", "dom.asynciterable"],
 		"jsx": "react-jsx",
 		"jsxImportSource": "solid-js",
 		"types": ["vite/client"]

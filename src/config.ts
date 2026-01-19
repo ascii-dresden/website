@@ -1,7 +1,19 @@
-import { type InferOutput, object, optional, pipe, string, transform } from "@valibot/valibot";
+import { parse as parseToml } from "@std/toml";
+import {
+	array,
+	type InferOutput,
+	object,
+	optional,
+	parse,
+	pipe,
+	string,
+	transform,
+} from "@valibot/valibot";
 
 import { mapSnakeKeysToCamel } from "src/snake_to_camel.ts";
 import { PlainDateTimeSchema, PlainTimeSchema, PlainYearMonthSchema } from "src/temporal.ts";
+
+import config from "../ascii.toml?raw";
 
 export const OpeningHoursDaySchema = optional(
 	object({
@@ -48,8 +60,11 @@ export const ConfigSchema = pipe(
 	object({
 		opening_hours: OpeningHoursSchema,
 		special: SpecialSchema,
+		events: array(EventSchema),
 	}),
 	transform(mapSnakeKeysToCamel)
 );
 
 export type Config = InferOutput<typeof ConfigSchema>;
+
+export const CONFIG: Config = parse(ConfigSchema, parseToml(config));

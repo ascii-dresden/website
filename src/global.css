@@ -1,3 +1,10 @@
 html {
 	overscroll-behavior-y: none;
 }
+
+@font-face {
+	font-family: "Bonbance";
+	font-display: swap;
+	font-style: normal;
+	src: url("src/assets/fonts/Bonbance-BoldCondensed.woff2");
+}

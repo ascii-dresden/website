@@ -1,11 +1,14 @@
 import { date, pipe, string, transform, union } from "@valibot/valibot";
+// TODO: Remove polyfill once Temporal API is baseline
+// See: <https://caniuse.com/temporal>
+import "temporal-polyfill/global";
 
 export const LOCAL_TIME_ZONE = "Europe/Berlin";
 
 export const PlainDateTimeSchema = pipe(
 	union([string(), date()]),
 	transform((input) => {
-		if (typeof input == "string") {
+		if (typeof input === "string") {
 			// TODO: Error handling (`Temporal.PlainDateTime.from` throws an error on invalid inputs)
 			return Temporal.PlainDateTime.from(input);
 		}

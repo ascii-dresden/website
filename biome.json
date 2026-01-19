@@ -4,7 +4,20 @@
 	"assist": {
 		"actions": {
 			"source": {
-				"organizeImports": "on"
+				"organizeImports": {
+					"level": "on",
+					"options": {
+						"groups": [
+							":NODE:",
+							[":PACKAGE:", ":PACKAGE_WITH_PROTOCOL:", "!src/**"],
+							":URL:",
+							":BLANK_LINE:",
+							"src/**",
+							":BLANK_LINE:",
+							":PATH:"
+						]
+					}
+				}
 			}
 		}
 	},
@@ -34,6 +47,9 @@
 		"rules": {
 			"complexity": {
 				"useArrowFunction": "off"
+			},
+			"style": {
+				"useImportType": "error"
 			}
 		}
 	},

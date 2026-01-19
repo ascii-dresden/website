@@ -1,10 +1,12 @@
 import { pipe } from "@remeda/remeda";
-import type { Component } from "solid-js";
+import { type Component, For } from "solid-js";
 
 import dither from "src/assets/dither.svg?no-inline";
 // HACK: Inlined svg assets are broken in inline css styles
 import grain from "src/assets/grain.svg?no-inline";
-import { colors, lineThicknessPx, on } from "src/css.ts";
+import { Divider } from "src/components/divider.tsx";
+import { CONFIG } from "src/config.ts";
+import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
 
 export const Page: Component = function () {
 	return (
@@ -110,12 +112,103 @@ export const Page: Component = function () {
 						})
 					)}
 				>
-					<h1>Willkommen!</h1>
+					<h1
+						style={{
+							"font-family": "Bonbance",
+							"font-size": "3rem",
+							// Half of the stroke width is covered by the fill color
+							"-webkit-text-stroke-color": colors.espresso,
+							"-webkit-text-stroke-width": `6px`,
+							"paint-order": "markers stroke fill",
+							color: colors.milk,
+						}}
+					>
+						Willkommen!
+					</h1>
 					<p>
 						Wir sind ein studentisch geführtes Café in der Fakultät Informatik der TU
 						Dresden. Bei uns gibt es Snacks, Kalt- und Heißgetränke, sowie Sofas als
 						idealen Ort zum Verweilen und Austauschen mit anderen Studierenden.
 					</p>
+				</div>
+			</section>
+			<Divider lineColor={colors.black} backgroundColor={colors.milk} />
+			<section
+				style={{
+					"padding-top": "64px",
+					"background-color": colors.milk,
+				}}
+			>
+				<div
+					style={pipe(
+						{},
+						on("@media (min-width: 1024px)", {
+							"align-items": "end",
+						})
+					)}
+				>
+					{/* TODO: reconstruct interacive pager from solid primitives */}
+					<ol
+						style={pipe(
+							{
+								display: "flex",
+								gap: "16px",
+							},
+							on("@media (min-width: 1024px)", {
+								"grid-column": "1 / 3",
+							})
+						)}
+					>
+						<For each={CONFIG.events}>
+							{(event, i) => (
+								<li
+									style={pipe(
+										{
+											height: "32px",
+											width: "32px",
+											"flex-grow": "1",
+											"transition-duration": "100ms",
+											"transition-timing-function": transitionTimingFunction,
+											"transition-property": "flex-grow",
+										},
+										// TODO: This should query if pager item is selected
+										on("&[data-state=open]", {
+											"flex-grow": "3",
+										})
+									)}
+								>
+									<button
+										type="button"
+										style={{
+											height: "100%",
+											width: "100%",
+											display: "flex",
+											"align-items": "center",
+											"justify-content": "center",
+
+											"border-bottom-width": `${lineThicknessPx}px`,
+											"border-bottom-style": "dotted",
+											"border-bottom-color": colors.espresso,
+										}}
+									>
+										{i() + 1}
+									</button>
+								</li>
+							)}
+						</For>
+					</ol>
+					<h2
+						style={pipe(
+							{
+								"font-family": "Bonbance",
+							},
+							on("@media (min-width: 1024px)", {
+								"grid-column": "3 / 7",
+							})
+						)}
+					>
+						Events
+					</h2>
 				</div>
 			</section>
 		</>

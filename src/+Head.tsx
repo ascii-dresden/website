@@ -6,5 +6,13 @@ import "@fontsource/maple-mono";
 import "src/global.css";
 
 export const Head = function () {
-	return <style>{styleSheet()}</style>;
+	return (
+		<>
+			<link
+				href="https://api.fontshare.com/v2/css?f[]=chubbo@1,2&display=swap"
+				rel="stylesheet"
+			/>
+			<style>{styleSheet()}</style>
+		</>
+	);
 };

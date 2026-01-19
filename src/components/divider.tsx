@@ -53,7 +53,7 @@ export const Divider: Component<DividerProps> = function (props) {
 					>
 						<path
 							style={{
-								fill: local.backgroundColor,
+								fill: local.backgroundColor ?? "transparent",
 								stroke: local.lineColor,
 								"stroke-width": lineThicknessPx,
 							}}
