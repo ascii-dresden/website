@@ -22,12 +22,14 @@ export const Header: Component = function () {
 		<header
 			style={pipe(
 				{
+					"backdrop-filter": "blur(0.5rem)",
+					"background-color": `color-mix(in srgb, ${colors.creme}, transparent)`,
 					"border-bottom-color": colors.espresso,
 					"border-bottom-style": "solid",
 					"border-bottom-width": `${lineThicknessPx}px`,
+					"box-shadow": `0 0 0.5rem 0 rgba(0, 0, 0, 0.5)`,
 					"transition-duration": "100ms",
-					"transition-property":
-						"background-color, color, border-bottom-color, grid-template-columns",
+					"transition-property": "background-color, color, border-bottom-color",
 					"transition-timing-function": transitionTimingFunction,
 					"z-index": 2,
 					color: colors.espresso,
@@ -35,10 +37,6 @@ export const Header: Component = function () {
 					height: "4rem",
 					position: "sticky",
 					top: 0,
-
-					"background-color": `color-mix(in srgb, ${colors.creme}, transparent)`,
-					"backdrop-filter": "blur(0.5rem)",
-					"box-shadow": `0 0 0.5rem 0 rgba(0, 0, 0, 0.5)`,
 				} as const,
 				when(
 					settle,
@@ -50,7 +48,13 @@ export const Header: Component = function () {
 						"background-blend-mode": "overlay",
 						"background-size": "256px",
 					} as const)
-				)
+				),
+				on("@media (min-width: 1024px)", {
+					display: "grid",
+					"grid-template-columns": "repeat(6, minmax(0, 1fr))",
+					"column-gap": "32px",
+					"padding-inline": "64px",
+				})
 			)}
 		>
 			<a
@@ -83,11 +87,21 @@ export const Header: Component = function () {
 				</svg>
 			</a>
 			<div
-				style={pipe({
-					flex: "1 0 0",
-					height: "32px",
-					"align-self": "center",
-				})}
+				style={pipe(
+					{
+						flex: "1 0 0",
+						height: "32px",
+						"align-self": "center",
+						"background-color": colors.espresso,
+					},
+					on("@media (min-width: 1024px)", {
+						"grid-column-start": 3,
+						"grid-column-end": "span 2",
+					}),
+					on("@media (min-width: 1280px)", {
+						"grid-column-start": 4,
+					})
+				)}
 			>
 				{/* <OpeningHoursCollapsible /> */}
 			</div>
