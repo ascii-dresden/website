@@ -50,6 +50,10 @@ export type Special = InferOutput<typeof SpecialSchema>;
 export const EventSchema = pipe(
 	object({
 		date_time: PlainDateTimeSchema,
+		title: string(),
+		image: string(),
+		image_alt: string(),
+		summary: string(),
 	}),
 	transform(mapSnakeKeysToCamel)
 );

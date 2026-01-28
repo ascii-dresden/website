@@ -2,6 +2,7 @@ import { pipe } from "@remeda/remeda";
 import type { Component } from "solid-js";
 
 import { and, colors, dark, on, transitionTimingFunction } from "src/css.ts";
+
 import { Divider } from "./divider.tsx";
 
 export const Footer: Component = function () {
@@ -23,14 +24,20 @@ export const Footer: Component = function () {
 		>
 			<Divider lineColor={colors.espresso} backgroundColor={colors.creme} />
 			<ul
-				style={{
-					display: "grid",
-					gap: "32px",
-					"grid-template-columns": "1fr 2fr",
-					"padding-bottom": "32px",
-					"padding-inline": "16px",
-					"padding-top": "64px",
-				}}
+				style={pipe(
+					{
+						display: "grid",
+						gap: "32px",
+						"grid-template-columns": "1fr 2fr",
+						"padding-bottom": "32px",
+						"padding-inline": "16px",
+						"padding-top": "64px",
+					},
+					on("@media (min-width: 1024px)", {
+						"padding-inline": "64px",
+						"grid-template-columns": "repeat(6, minmax(0, 1fr))",
+					})
+				)}
 			>
 				<li
 					style={{
@@ -214,7 +221,7 @@ export const Footer: Component = function () {
 					</ul>
 				</li>
 				<li style={{ "grid-column": "1 / 3" }}>
-					<p>&copy; ascii Dresden e.V. {new Date().getFullYear()}</p>
+					&copy; ascii Dresden e.V. {new Date().getFullYear()}
 				</li>
 			</ul>
 		</footer>

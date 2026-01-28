@@ -1,10 +1,26 @@
-html {
-	overscroll-behavior-y: none;
-}
-
 @font-face {
-	font-family: "Bonbance";
 	font-display: swap;
+	font-family: "Bonbance";
 	font-style: normal;
 	src: url("src/assets/fonts/Bonbance-BoldCondensed.woff2");
+}
+
+html {
+	/* TODO: This should depend on `color` in `src/css.ts` */
+	background-color: oklch(0.75 0.1 57);
+	color: oklch(0.27 0.06 40);
+	font-family: "Maple Mono", sans-serif;
+	/* See demo at <https://font.subf.dev/en/playground/> */
+	font-feature-settings:
+		"calt" off, /* Disable default ligatures */
+		"cv01", /* Remove gaps */
+		"cv02", /* Alternative a */
+		"cv05", /* Alternative g */
+		"cv08", /* Alternative r */
+		"cv61", /* Alternative comma */
+		"cv31", /* Alternative italic a */
+		"cv33", /* Alternative italic i and j */
+		"cv35", /* Alternative italic l */
+		"cv38", /* Alternative italic g */
+		"cv41"; /* Alternative italic r */
 }

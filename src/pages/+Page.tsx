@@ -2,16 +2,17 @@ import { pipe } from "@remeda/remeda";
 import { type Component, For } from "solid-js";
 
 import assetCafe from "src/assets/cafe.webp";
-import assetDither from "src/assets/dither.svg?no-inline";
 // HACK: Inlined svg assets are broken in inline css styles
+import assetDither from "src/assets/dither.svg?no-inline";
 import assetGrain from "src/assets/grain.svg?no-inline";
 import { Divider } from "src/components/divider.tsx";
+import { H1, H2 } from "src/components/heading.tsx";
 import { CONFIG } from "src/config.ts";
 import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
 
 export const Page: Component = function () {
 	return (
-		<>
+		<main>
 			<section
 				style={pipe(
 					{
@@ -22,6 +23,7 @@ export const Page: Component = function () {
 						color: colors.espresso,
 						display: "grid",
 						gap: "16px",
+						"padding-inline": "16px",
 					},
 					on("@media (min-width: 1024px)", {
 						gap: "32px",
@@ -36,14 +38,12 @@ export const Page: Component = function () {
 					style={pipe(
 						{
 							"aspect-ratio": "3 / 2",
-							"padding-inline": "16px",
+							position: "relative",
 						},
 						on("@media (min-width: 1024px)", {
 							"grid-row": 1,
 							"grid-column-start": 3,
 							"grid-column-end": -1,
-							"padding-inline": 0,
-							position: "relative",
 						}),
 						on("@media (min-width: 1280px)", {
 							"grid-column-start": 4,
@@ -87,7 +87,9 @@ export const Page: Component = function () {
 				<div
 					style={pipe(
 						{
-							"margin-right": "16px",
+							display: "flex",
+							"flex-direction": "column",
+							"row-gap": "16px",
 							"padding-bottom": "32px",
 							"padding-inline": "32px",
 							"padding-top": "16px",
@@ -103,10 +105,10 @@ export const Page: Component = function () {
 						})
 					)}
 				>
-					<h1
+					<H1
 						style={{
-							"font-family": "Bonbance",
 							"font-size": "3rem",
+							"line-height": "3rem",
 							// Half of the stroke width is covered by the fill color
 							"-webkit-text-stroke-color": colors.espresso,
 							"-webkit-text-stroke-width": `6px`,
@@ -115,7 +117,7 @@ export const Page: Component = function () {
 						}}
 					>
 						Willkommen!
-					</h1>
+					</H1>
 					<p>
 						Wir sind ein studentisch ge&shy;führtes Café in der Fakultät Informatik der
 						TU Dresden. Bei uns gibt es Snacks, Kalt- und Heiß&shy;getränke, sowie Sofas
@@ -138,7 +140,7 @@ export const Page: Component = function () {
 						})
 					)}
 				>
-					{/* TODO: reconstruct interacive pager from solid primitives */}
+					{/* TODO: reconstruct interactive pager from solid primitives */}
 					<ol
 						style={pipe(
 							{
@@ -188,20 +190,18 @@ export const Page: Component = function () {
 							)}
 						</For>
 					</ol>
-					<h2
+					<H2
 						style={pipe(
-							{
-								"font-family": "Bonbance",
-							},
+							{},
 							on("@media (min-width: 1024px)", {
 								"grid-column": "3 / 7",
 							})
 						)}
 					>
 						Events
-					</h2>
+					</H2>
 				</div>
 			</section>
-		</>
+		</main>
 	);
 };

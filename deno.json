@@ -24,7 +24,7 @@
 		"tailwindcss": "npm:tailwindcss@^4.1.18",
 		"temporal-polyfill": "npm:temporal-polyfill@^0.3.0",
 		"vike": "npm:vike@^0.4.252",
-		"vike-solid": "npm:vike-solid@^0.7.20",
+		"vike-solid": "npm:vike-solid@^0.8.0",
 		"vite": "npm:vite@^7.3.1"
 	},
 	"nodeModulesDir": "auto",
