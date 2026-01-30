@@ -28,15 +28,20 @@ export const Header: Component = function () {
 					"border-bottom-style": "solid",
 					"border-bottom-width": `${lineThicknessPx}px`,
 					"box-shadow": `0 0 0.5rem 0 rgba(0, 0, 0, 0.5)`,
+					color: colors.espresso,
+					"column-gap": "16px",
+					display: "grid",
+					"grid-template-columns": "56px minmax(0, 1fr) 64px",
+					"justify-items": "center",
+					"align-items": "center",
+					height: "4rem",
+					"padding-inline": "16px",
+					position: "sticky",
 					"transition-duration": "100ms",
 					"transition-property": "background-color, color, border-bottom-color",
 					"transition-timing-function": transitionTimingFunction,
-					"z-index": 2,
-					color: colors.espresso,
-					display: "flex",
-					height: "4rem",
-					position: "sticky",
 					top: 0,
+					"z-index": 2,
 				} as const,
 				when(
 					settle,
@@ -49,24 +54,21 @@ export const Header: Component = function () {
 						"background-size": "256px",
 					} as const)
 				),
-				on("@media (min-width: 1024px)", {
-					display: "grid",
-					"grid-template-columns": "repeat(6, minmax(0, 1fr))",
-					"column-gap": "32px",
+				on("@media (min-width: 480px)", {
 					"padding-inline": "64px",
+				}),
+				on("@media (min-width: 1024px)", {
+					"column-gap": "32px",
+					"grid-template-columns": "repeat(6, minmax(0, 1fr))",
+					"justify-items": "start",
 				})
 			)}
 		>
 			<a
 				style={pipe(
-					{
-						height: "100%",
-						padding: "1rem",
-						"justify-self": "start",
-					},
+					{},
 					on("@media (min-width: 1024px)", {
 						"grid-column": "1 / 2",
-						"padding-left": 0,
 					}),
 					on("@media (min-width: 1280px)", {
 						"grid-column": "2 / 3",
@@ -74,7 +76,7 @@ export const Header: Component = function () {
 				)}
 				href="/"
 			>
-				<svg height="100%" viewBox="0 0 223 128" xmlns="http://www.w3.org/2000/svg">
+				<svg height="32" viewBox="0 0 223 128" xmlns="http://www.w3.org/2000/svg">
 					<title>Logo</title>
 					<path
 						style={{ fill: colors.milk }}
@@ -89,7 +91,7 @@ export const Header: Component = function () {
 			<div
 				style={pipe(
 					{
-						flex: "1 0 0",
+						width: "100%",
 						height: "32px",
 						"align-self": "center",
 						"background-color": colors.espresso,

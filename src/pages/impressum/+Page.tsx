@@ -1,6 +1,7 @@
 import { pipe } from "@remeda/remeda";
 import type { Component } from "solid-js";
 
+import { A } from "src/components/a.tsx";
 import { H1, H2 } from "src/components/heading.tsx";
 import { colors, lineThicknessPx, on } from "src/css.ts";
 
@@ -31,41 +32,72 @@ export const Page: Component = function () {
 					{
 						display: "flex",
 						"flex-direction": "column",
-						"row-gap": "32px",
-						"text-wrap": "balance",
+						"row-gap": "16px",
 					},
 					on("@media (min-width: 1280px)", {
 						"grid-column": "2 / -2",
 					})
 				)}
 			>
-				<H1>Impressum</H1>
-				<H2>Adresse</H2>
-				<p>
-					Studentencafé ASCII
-					<br />
-					Andreas-Pfitzmann-Bau, Raum E016
-					<br />
-					Nöthnitzer Strasse 46
-					<br />
-					01187 Dresden
-				</p>
-				<H2>E-Mail-Adresse</H2>
-				<a href="mailto:info@ascii-dresden.de">
-					<p>info@ascii-dresden.de</p>
-				</a>
-				<H2>Telefonnummer</H2>
-				<a href="tel:+4935146342221">
-					<p>+49 351 46342221</p>
-				</a>
-				<H2>GitHub</H2>
-				<a href="https://github.com/ascii-dresden">
-					<p>ascii-dresden</p>
-				</a>
-				<H2>Instagram</H2>
-				<a href="https://www.instagram.com/asciidresden/">
-					<p>@asciidresden</p>
-				</a>
+				<H1 style={{ "padding-bottom": "16px" }}>Impressum</H1>
+				<address
+					style={{
+						display: "flex",
+						"flex-direction": "column",
+						"row-gap": "16px",
+						"padding-bottom": "16px",
+					}}
+				>
+					<p>
+						ascii&nbsp;Dresden&nbsp;e.V.
+						<br />
+						Andreas-Pfitzmann-Bau, Raum&nbsp;E016
+						<br />
+						Nöthnitzer&nbsp;Strasse&nbsp;46
+						<br />
+						01187&nbsp;Dresden
+					</p>
+					<A href="mailto:info@ascii-dresden.de">
+						<p>info@ascii-dresden.de</p>
+					</A>
+					<A href="tel:+4935146342221">
+						<p>+49 351 46342221</p>
+					</A>
+				</address>
+				<H2 style={{ "padding-block": "16px" }}>Vorstand</H2>
+				<h3
+					style={{
+						"font-family": '"Chubbo", sans-serif',
+						"font-weight": "bold",
+						"font-size": "18px",
+						"line-height": "18px",
+					}}
+				>
+					Erster Vorstand
+				</h3>
+				<p>Johanna Berger</p>
+				<h3
+					style={{
+						"font-family": '"Chubbo", sans-serif',
+						"font-weight": "bold",
+						"font-size": "18px",
+						"line-height": "18px",
+					}}
+				>
+					Zweiter Vorstand
+				</h3>
+				<p>Maria Hampel</p>
+				<h3
+					style={{
+						"font-family": '"Chubbo", sans-serif',
+						"font-weight": "bold",
+						"font-size": "18px",
+						"line-height": "18px",
+					}}
+				>
+					Finanzen
+				</h3>
+				<p>Matthias Holthues</p>
 			</div>
 		</main>
 	);

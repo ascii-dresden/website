@@ -10,6 +10,8 @@ html {
 	background-color: oklch(0.75 0.1 57);
 	color: oklch(0.27 0.06 40);
 	font-family: "Maple Mono", sans-serif;
+	font-size: 16px;
+	line-height: 24px;
 	/* See demo at <https://font.subf.dev/en/playground/> */
 	font-feature-settings:
 		"calt" off, /* Disable default ligatures */
@@ -23,4 +25,8 @@ html {
 		"cv35", /* Alternative italic l */
 		"cv38", /* Alternative italic g */
 		"cv41"; /* Alternative italic r */
+}
+
+address {
+	font-style: normal;
 }

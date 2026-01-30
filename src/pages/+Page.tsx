@@ -5,7 +5,7 @@ import assetCafe from "src/assets/cafe.webp";
 // HACK: Inlined svg assets are broken in inline css styles
 import assetDither from "src/assets/dither.svg?no-inline";
 import assetGrain from "src/assets/grain.svg?no-inline";
-import { Divider } from "src/components/divider.tsx";
+import { Divider, dividerHeightPx } from "src/components/divider.tsx";
 import { H1, H2 } from "src/components/heading.tsx";
 import { CONFIG } from "src/config.ts";
 import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
@@ -23,13 +23,14 @@ export const Page: Component = function () {
 						color: colors.espresso,
 						display: "grid",
 						gap: "16px",
+						"padding-bottom": `${16 + dividerHeightPx}px`,
 						"padding-inline": "16px",
 					},
 					on("@media (min-width: 1024px)", {
 						gap: "32px",
 						"align-items": "center",
 						"grid-template-columns": "repeat(6, minmax(0, 1fr))",
-						"padding-bottom": "64px",
+						"padding-bottom": `${64 + dividerHeightPx}px`,
 						"padding-inline": "64px",
 					})
 				)}
@@ -53,19 +54,24 @@ export const Page: Component = function () {
 				>
 					{/* Dithered backdrop */}
 					<div
+						// preserveAspectRatio="none"
 						style={{
 							"background-image": `url(${assetDither})`,
 							"background-repeat": "repeat",
 							"background-size": "8px 8px",
-							bottom: "-8px",
-							content: '""',
+							"background-position": "bottom left",
+							"clip-path":
+								"polygon(0 4px, 4px 4px, 4px 0, 100% 0," +
+								"100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%," +
+								"4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px))",
+							bottom: "-6px",
 							display: "block",
-							left: "-8px",
+							left: "-6px",
 							position: "absolute",
-							right: "8px",
-							top: "8px",
+							right: "6px",
+							top: "6px",
 						}}
-					/>
+					></div>
 					<img
 						style={pipe({
 							position: "relative",
@@ -118,11 +124,40 @@ export const Page: Component = function () {
 					>
 						Willkommen!
 					</H1>
-					<p>
-						Wir sind ein studentisch ge&shy;führtes Café in der Fakultät Informatik der
-						TU Dresden. Bei uns gibt es Snacks, Kalt- und Heiß&shy;getränke, sowie Sofas
-						als idealen Ort zum Verweilen und Aus&shy;tauschen mit anderen Studierenden.
-					</p>
+					<div
+						style={{
+							"background-color": colors.milk,
+							padding: "16px",
+							"border-radius": "8px",
+							"border-bottom-right-radius": "16px",
+							"corner-bottom-right-shape": "bevel",
+							"border-color": colors.espresso,
+							"border-width": `${lineThicknessPx}px`,
+							position: "relative",
+						}}
+					>
+						<div
+							style={{
+								position: "absolute",
+								bottom: `-${lineThicknessPx}px`,
+								right: `-${lineThicknessPx}px`,
+								width: `${16 + lineThicknessPx}px`,
+								height: `${16 + lineThicknessPx}px`,
+								"border-top-left-radius": "6px",
+								"border-width": `${lineThicknessPx}px`,
+								"border-color": colors.espresso,
+								"border-bottom-right-radius": "16px",
+								"corner-bottom-right-shape": "bevel",
+								"background-color": colors.milk,
+							}}
+						/>
+						<p>
+							Wir sind ein studentisch ge&shy;führtes Café in der Fakultät Informatik
+							der TU Dresden. Bei uns gibt es Snacks, Kalt- und Heiß&shy;getränke,
+							so&shy;wie Sofas als idealen Ort zum Ver&shy;weilen und Aus&shy;tauschen
+							mit anderen Studie&shy;renden.
+						</p>
+					</div>
 				</div>
 			</section>
 			<Divider lineColor={colors.black} backgroundColor={colors.milk} />

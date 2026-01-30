@@ -3,6 +3,8 @@ import type { JSX, ParentComponent } from "solid-js";
 
 import { on } from "src/css.ts";
 
+// TODO: Polish typography
+
 export const H1: ParentComponent<JSX.HTMLAttributes<HTMLHeadingElement>> = function (props) {
 	return (
 		<h1

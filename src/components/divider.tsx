@@ -11,6 +11,8 @@ const patternHeightPx = SIZE_PX + lineThicknessPx;
 const startY = lineThicknessPx / 2;
 const endY = SIZE_PX + lineThicknessPx / 2;
 
+export const dividerHeightPx = patternHeightPx;
+
 export type DividerProps = {
 	backgroundColor?: Globals | DataType.Color;
 	lineColor: Globals | DataType.Color;
@@ -21,11 +23,12 @@ export type DividerProps = {
 } & JSX.HTMLAttributes<HTMLDivElement>;
 
 export const Divider: Component<DividerProps> = function (props) {
-	const [local, others] = splitProps(props, ["backgroundColor", "lineColor"]);
+	const [local, others] = splitProps(props, ["backgroundColor", "lineColor", "flip"]);
 
 	// TODO: Generate pattern ID
-	// const patternId = createMemo(() => hash("sha1", Object.values(local).join(";"), "hex"));
-	const patternId = createMemo(() => "foo");
+	const patternId = createMemo(() =>
+		btoa(`${local.lineColor}${local.backgroundColor ?? ""}${local.flip ? "flip" : ""}`)
+	);
 
 	return (
 		<div
