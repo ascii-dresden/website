@@ -7,7 +7,7 @@ import assetDither from "src/assets/dither.svg?no-inline";
 import assetGrain from "src/assets/grain.svg?no-inline";
 import { Divider, dividerHeightPx } from "src/components/divider.tsx";
 import { H1, H2 } from "src/components/heading.tsx";
-import { CONFIG } from "src/config.ts";
+import { CONFIG } from "src/config.ts" with { type: "macro" };
 import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
 
 export const Page: Component = function () {
@@ -127,12 +127,12 @@ export const Page: Component = function () {
 					<div
 						style={{
 							"background-color": colors.milk,
-							padding: "16px",
 							"border-radius": "8px",
 							"border-bottom-right-radius": "16px",
-							"corner-bottom-right-shape": "bevel",
 							"border-color": colors.espresso,
 							"border-width": `${lineThicknessPx}px`,
+							"corner-bottom-right-shape": "bevel",
+							padding: "16px",
 							position: "relative",
 						}}
 					>
@@ -143,12 +143,12 @@ export const Page: Component = function () {
 								right: `-${lineThicknessPx}px`,
 								width: `${16 + lineThicknessPx}px`,
 								height: `${16 + lineThicknessPx}px`,
+								"background-color": colors.milk,
 								"border-top-left-radius": "6px",
 								"border-width": `${lineThicknessPx}px`,
 								"border-color": colors.espresso,
 								"border-bottom-right-radius": "16px",
 								"corner-bottom-right-shape": "bevel",
-								"background-color": colors.milk,
 							}}
 						/>
 						<p>

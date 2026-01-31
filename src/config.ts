@@ -1,15 +1,21 @@
 import { parse as parseToml } from "@std/toml";
 import {
 	array,
+	arrayAsync,
+	awaitAsync,
 	type InferOutput,
+	number,
 	object,
+	objectAsync,
 	optional,
-	parse,
+	parseAsync,
 	pipe,
+	pipeAsync,
 	string,
 	transform,
 } from "@valibot/valibot";
 
+import { getImageUrl } from "src/image.ts";
 import { mapSnakeKeysToCamel } from "src/snake_to_camel.ts";
 import { PlainDateTimeSchema, PlainTimeSchema, PlainYearMonthSchema } from "src/temporal.ts";
 
@@ -60,15 +66,31 @@ export const EventSchema = pipe(
 
 export type Event = InferOutput<typeof EventSchema>;
 
-export const ConfigSchema = pipe(
-	object({
+export const DrinkSchema = pipeAsync(
+	objectAsync({
+		name: string(),
+		image: pipeAsync(
+			string(),
+			transform(async (input) => await getImageUrl(`./assets/drinks/${input}`)),
+			awaitAsync()
+		),
+		size_litres: number(),
+		price: number(),
+	})
+);
+
+export type Drink = InferOutput<typeof DrinkSchema>;
+
+export const ConfigSchema = pipeAsync(
+	objectAsync({
 		opening_hours: OpeningHoursSchema,
 		special: SpecialSchema,
 		events: array(EventSchema),
+		drinks: arrayAsync(DrinkSchema),
 	}),
 	transform(mapSnakeKeysToCamel)
 );
 
 export type Config = InferOutput<typeof ConfigSchema>;
 
-export const CONFIG: Config = parse(ConfigSchema, parseToml(config));
+export const CONFIG: Config = await parseAsync(ConfigSchema, parseToml(config));
