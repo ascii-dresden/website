@@ -2,7 +2,7 @@ import { pipe } from "@remeda/remeda";
 import type { Component } from "solid-js";
 
 import { Divider } from "src/components/divider.tsx";
-import { and, colors, dark, on, transitionTimingFunction } from "src/css.ts";
+import { colors, on } from "src/css.ts";
 
 import { A } from "./a.tsx";
 import ascii from "./footer_art.txt?raw";
@@ -18,21 +18,24 @@ export const Footer: Component = function () {
 						color: colors.creme,
 						display: "grid",
 						position: "relative",
-						padding: "32px",
+						"padding-block": "32px",
+						"padding-inline": "32px",
 						"grid-template-columns": "repeat(2, [main] minmax(0, 1fr)) [main]",
 						gap: "32px",
 					},
 					on("@media (min-width: 480px)", {}),
 					on("@media (min-width: 1024px)", {
 						"grid-template-columns": "repeat(6, [main] minmax(0, 1fr)) [main]",
-						padding: "64px",
+						"padding-block": "64px",
+						"padding-inline": "64px",
 					}),
 					on("@media (min-width: 1280px)", {
 						"grid-template-columns": [
 							"minmax(0, 1fr)",
-							"repeat(4, [main] minmax(0, 1fr))",
+							"repeat(6, [main] minmax(0, 1fr))",
 							"[main] minmax(0, 1fr)",
 						].join(" "),
+						"padding-inline": 0,
 					})
 					// TODO: Dark theme
 					// on(dark, {
@@ -86,13 +89,19 @@ export const Footer: Component = function () {
 					}}
 				>
 					<li>
-						<A href="/angebot">Angebot</A>
+						<A href="/angebot">
+							<span aria-hidden>/</span>angebot
+						</A>
 					</li>
 					<li>
-						<A href="/catering">Catering</A>
+						<A href="/catering">
+							<span aria-hidden>/</span>catering
+						</A>
 					</li>
 					<li>
-						<A href="/verein">Verein</A>
+						<A href="/verein">
+							<span aria-hidden>/</span>verein
+						</A>
 					</li>
 				</ul>
 				<ul
@@ -105,10 +114,10 @@ export const Footer: Component = function () {
 					}}
 				>
 					<li>
-						<A href="https://github.com/ascii-dresden">GitHub</A>
+						<A href="https://github.com/ascii-dresden">/github</A>
 					</li>
 					<li>
-						<A href="https://www.instagram.com/asciidresden">Instagram</A>
+						<A href="https://www.instagram.com/asciidresden">/instagram</A>
 					</li>
 				</ul>
 				<ul
@@ -121,10 +130,14 @@ export const Footer: Component = function () {
 					})}
 				>
 					<li>
-						<A href="/datenschutz">Datenschutz</A>
+						<A href="/datenschutz">
+							<span aria-hidden>/</span>datenschutz
+						</A>
 					</li>
 					<li>
-						<A href="/impressum">Impressum</A>
+						<A href="/impressum">
+							<span aria-hidden>/</span>impressum
+						</A>
 					</li>
 				</ul>
 				<p

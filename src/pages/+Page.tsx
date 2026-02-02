@@ -10,6 +10,8 @@ import { H1, H2 } from "src/components/heading.tsx";
 import { CONFIG } from "src/config.ts" with { type: "macro" };
 import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
 
+import { p } from "../../dist/client/assets/chunks/chunk-Chflhp3s.js";
+
 export const Page: Component = function () {
 	return (
 		<main>
@@ -29,9 +31,17 @@ export const Page: Component = function () {
 					on("@media (min-width: 1024px)", {
 						gap: "32px",
 						"align-items": "center",
-						"grid-template-columns": "repeat(6, minmax(0, 1fr))",
+						"grid-template-columns": "repeat(6, [main] minmax(0, 1fr)) [main]",
 						"padding-bottom": `${64 + dividerHeightPx}px`,
 						"padding-inline": "64px",
+					}),
+					on("@media (min-width: 1280px)", {
+						"grid-template-columns": [
+							"minmax(0, 1fr)",
+							"repeat(6, [main] minmax(0, 1fr))",
+							"[main] minmax(0, 1fr)",
+						].join(" "),
+						"padding-inline": 0,
 					})
 				)}
 			>
@@ -43,12 +53,8 @@ export const Page: Component = function () {
 						},
 						on("@media (min-width: 1024px)", {
 							"grid-row": 1,
-							"grid-column-start": 3,
-							"grid-column-end": -1,
-						}),
-						on("@media (min-width: 1280px)", {
-							"grid-column-start": 4,
-							"grid-column-end": -1,
+							"grid-column-start": "main 3",
+							"grid-column-end": "main -1",
 						})
 					)}
 				>

@@ -8,9 +8,9 @@
 		"fmt": "biome check --write --max-diagnostics 0"
 	},
 	"imports": {
-		"@ark-ui/solid": "npm:@ark-ui/solid@^5.30.0",
-		"@css-hooks/core": "npm:@css-hooks/core@^3.0.4",
-		"@css-hooks/solid": "npm:@css-hooks/solid@^3.0.4",
+		"@ark-ui/solid": "npm:@ark-ui/solid@^5.31.0",
+		"@css-hooks/core": "npm:@css-hooks/core@^3.0.5",
+		"@css-hooks/solid": "npm:@css-hooks/solid@^3.0.5",
 		"@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.6",
 		"@fontsource/maple-mono": "npm:@fontsource/maple-mono@^5.2.6",
 		"@remeda/remeda": "jsr:@remeda/remeda@^2.33.4",
@@ -23,8 +23,8 @@
 		"src/": "./src/",
 		"tailwindcss": "npm:tailwindcss@^4.1.18",
 		"temporal-polyfill": "npm:temporal-polyfill@^0.3.0",
-		"vike": "npm:vike@^0.4.252",
-		"vike-solid": "npm:vike-solid@^0.8.0",
+		"vike": "npm:vike@^0.4.253",
+		"vike-solid": "npm:vike-solid@^0.8.1",
 		"vite": "npm:vite@^7.3.1"
 	},
 	"nodeModulesDir": "auto",
@@ -32,6 +32,6 @@
 		"lib": ["deno.ns", "dom", "dom.iterable", "dom.asynciterable"],
 		"jsx": "react-jsx",
 		"jsxImportSource": "solid-js",
-		"types": ["vite/client"]
+		"types": ["vite/client", "vike-solid/client"]
 	}
 }
