@@ -1,4 +1,4 @@
-import { pipe } from "@remeda/remeda";
+import { pipe } from "remeda";
 import type { Component } from "solid-js";
 
 import { H1, H2, H3, H4 } from "src/components/heading.tsx";

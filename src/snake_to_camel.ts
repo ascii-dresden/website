@@ -2,7 +2,7 @@
  * @file Derived from <https://github.com/RossWilliams/ts-case-convert>
  */
 
-import { mapKeys } from "@remeda/remeda";
+import { mapKeys } from "remeda";
 
 /**
  * Convert a given snake_case literal into camelCase.

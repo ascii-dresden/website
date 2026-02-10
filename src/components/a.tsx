@@ -1,4 +1,4 @@
-import { merge, pipe } from "@remeda/remeda";
+import { merge, pipe } from "remeda";
 import type { ComponentProps, ParentComponent } from "solid-js";
 
 import { lineThicknessPx, on } from "src/css.ts";

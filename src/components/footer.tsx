@@ -1,4 +1,4 @@
-import { pipe } from "@remeda/remeda";
+import { pipe } from "remeda";
 import type { Component } from "solid-js";
 
 import { Divider } from "src/components/divider.tsx";

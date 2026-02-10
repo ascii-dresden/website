@@ -1,10 +1,11 @@
 import { Collapsible } from "@ark-ui/solid/collapsible";
-import { merge, pipe, when } from "@remeda/remeda";
+import { merge, pipe, when } from "remeda";
 import { type Component, createSignal, onMount } from "solid-js";
 
 import animations from "src/animations.module.css";
 import grain from "src/assets/grain.svg?no-inline";
 import { A } from "src/components/a.tsx";
+import { Surface } from "src/components/surface.tsx";
 import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
 
 export const Header: Component = function () {
@@ -136,24 +137,21 @@ const OpeningHoursCollapsible: Component = function () {
 			}}
 		>
 			<Collapsible.Trigger
-				style={pipe(
-					{
-						height: "32px",
-						display: "grid",
-						"grid-template-columns": "minmax(0, 1fr) 32px",
-						"z-index": 1,
-						"background-color": colors.espresso,
-						color: colors.milk,
-						"border-radius": "32px",
-						"transition-property": "box-shadow",
-						"transition-duration": "100ms",
-						"transition-timing-function": transitionTimingFunction,
-					},
-					on("&:is(:hover, :focus-visible)", {
-						// TODO: Replace with dither background
-						"box-shadow": `0 1px 4px 0 ${colors.espresso}`,
-					})
+				asChild={(props) => (
+					<Surface as="button" {...props({ style: { "border-style": "none" } })} />
 				)}
+				style={pipe({
+					height: "32px",
+					display: "grid",
+					"grid-template-columns": "minmax(0, 1fr) 32px",
+					"z-index": 1,
+					"background-color": colors.espresso,
+					color: colors.milk,
+					"border-radius": "32px",
+					"transition-property": "box-shadow",
+					"transition-duration": "100ms",
+					"transition-timing-function": transitionTimingFunction,
+				})}
 			>
 				<div
 					style={{
@@ -168,7 +166,7 @@ const OpeningHoursCollapsible: Component = function () {
 				<div
 					style={pipe({
 						"aspect-ratio": "1",
-						"padding-right": "1px", // shift visual center
+						"padding-right": "2px", // shift visual center
 						"border-left-color": colors.creme,
 						"border-left-style": "dotted",
 						// Optically balance dotted line by increasing their size slightly

@@ -1,4 +1,4 @@
-import { merge, pipe } from "@remeda/remeda";
+import { merge, pipe } from "remeda";
 import type { JSX, ParentComponent } from "solid-js";
 
 import { on } from "src/css.ts";

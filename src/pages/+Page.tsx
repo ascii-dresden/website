@@ -1,4 +1,4 @@
-import { pipe } from "@remeda/remeda";
+import { pipe } from "remeda";
 import { type Component, For } from "solid-js";
 
 import assetCafe from "src/assets/cafe.webp";
@@ -10,7 +10,7 @@ import { H1, H2 } from "src/components/heading.tsx";
 import { CONFIG } from "src/config.ts" with { type: "macro" };
 import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
 
-import { p } from "../../dist/client/assets/chunks/chunk-Chflhp3s.js";
+import { Surface } from "../components/surface.tsx";
 
 export const Page: Component = function () {
 	return (
@@ -49,7 +49,6 @@ export const Page: Component = function () {
 					style={pipe(
 						{
 							"aspect-ratio": "3 / 2",
-							position: "relative",
 						},
 						on("@media (min-width: 1024px)", {
 							"grid-row": 1,
@@ -58,43 +57,13 @@ export const Page: Component = function () {
 						})
 					)}
 				>
-					{/* Dithered backdrop */}
-					<div
-						// preserveAspectRatio="none"
-						style={{
-							"background-image": `url(${assetDither})`,
-							"background-repeat": "repeat",
-							"background-size": "8px 8px",
-							"background-position": "bottom left",
-							"clip-path":
-								"polygon(0 4px, 4px 4px, 4px 0, 100% 0," +
-								"100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%," +
-								"4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px))",
-							bottom: "-6px",
-							display: "block",
-							left: "-6px",
-							position: "absolute",
-							right: "6px",
-							top: "6px",
-						}}
-					></div>
-					<img
-						style={pipe({
-							position: "relative",
-							width: "100%",
-							height: "100%",
-							"background-color": colors.milk,
-							"border-color": colors.espresso,
-							"border-radius": "8px",
-							"border-style": "solid",
-							"border-width": `${lineThicknessPx}px`,
-							overflow: "hidden",
-						})}
+					<Surface
+						as="img"
 						// TODO: Optimize
 						src={assetCafe}
 						alt="Interior des „Ascii“ Cafés"
 						sizes="100vw"
-					/>
+					></Surface>
 				</div>
 				<div
 					style={pipe(

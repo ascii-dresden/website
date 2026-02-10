@@ -9,12 +9,12 @@ import {
 	pipe,
 	string,
 	transform,
-} from "@valibot/valibot";
+} from "valibot";
 
 import { mapSnakeKeysToCamel } from "src/snake_to_camel.ts";
 import { PlainDateTimeSchema, PlainTimeSchema, PlainYearMonthSchema } from "src/temporal.ts";
 
-// import config from "../ascii.toml?raw";
+import config from "../ascii.toml?raw";
 
 export const OpeningHoursDaySchema = optional(
 	object({
@@ -84,17 +84,4 @@ export const ConfigSchema = pipe(
 
 export type Config = InferOutput<typeof ConfigSchema>;
 
-// export const CONFIG: Config = parse(ConfigSchema, parseToml(config));
-
-export const CONFIG: Config = {
-	drinks: [],
-	events: [],
-	openingHours: {},
-	special: {
-		title: "",
-		image: "",
-		imageAlt: "",
-		description: "",
-		yearMonth: new Temporal.PlainYearMonth(2000, 1),
-	},
-};
+export const CONFIG: Config = parse(ConfigSchema, parseToml(config));

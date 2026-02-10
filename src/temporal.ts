@@ -1,4 +1,4 @@
-import { date, pipe, string, transform, union } from "@valibot/valibot";
+import { date, pipe, string, transform, union } from "valibot";
 // TODO: Remove polyfill once Temporal API is baseline
 // See: <https://caniuse.com/temporal>
 import "temporal-polyfill/global";

@@ -1,3 +1,5 @@
+// TODO: Polish and use in Ark's <Collapsible />
+
 import type { ComponentProps, ParentComponent } from "solid-js";
 
 import { colors, lineThicknessPx } from "src/css.ts";
