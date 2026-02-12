@@ -7,6 +7,7 @@ import { colors, lineThicknessPx } from "src/css.ts";
 
 export type SurfaceProps<T extends ValidComponent = "div"> = ComponentProps<T> & {
 	as?: T;
+	rootProps?: ComponentProps<"div">;
 };
 
 /**
@@ -20,12 +21,14 @@ export type SurfaceProps<T extends ValidComponent = "div"> = ComponentProps<T> &
  * and worry about it when it becomes relevant.
  */
 export function Surface<T extends ValidComponent>(props: SurfaceProps<T>) {
-	const [local, others] = splitProps(props, ["as"]);
+	const [local, others] = splitProps(props, ["as", "rootProps"]);
 
 	return (
 		<div
+			{...local.rootProps}
 			style={{
 				position: "relative",
+				...local.rootProps?.style,
 			}}
 		>
 			<Dither

@@ -152,14 +152,16 @@ export const Header: Component = function () {
 const OpeningHoursCollapsible: Component = function () {
 	return (
 		<Collapsible.Root
-			style={pipe({
-				"min-height": "100%",
-				display: "grid",
-				gap: `${lineThicknessPx}px`,
-				// FIXME: This creates a containing block interfering with
-				// the positioning of `Collapsible.Content` on mobile screens.
-				perspective: "10cm",
-			})}
+			style={pipe(
+				{
+					"min-height": "100%",
+					display: "grid",
+					gap: `${lineThicknessPx}px`,
+				},
+				on("@media (min-width: 1024px)", {
+					position: "relative",
+				})
+			)}
 		>
 			<Collapsible.Trigger
 				asChild={(props) => <Button {...props()} />}
@@ -212,16 +214,33 @@ const OpeningHoursCollapsible: Component = function () {
 			</Collapsible.Trigger>
 			<Collapsible.Content
 				class={styles["opening-hours-content"]}
-				style={{
-					position: "absolute",
-					left: 0,
-					right: 0,
-					top: "calc(100% + 4px)",
-					"transform-origin": "top center",
-					"animation-timing-function": transitionTimingFunction,
-				}}
+				style={pipe(
+					{
+						"animation-duration": "300ms",
+						"animation-fill-mode": "forwards",
+						perspective: "10cm",
+						position: "absolute",
+						left: "16px",
+						right: "16px",
+						top: "calc(100% - 10px)",
+					},
+					on("@media (min-width: 1024px)", {
+						left: 0,
+						right: 0,
+						top: "calc(100% + 4px)",
+					})
+				)}
 			>
-				<Surface>
+				<Surface
+					rootProps={{
+						class: styles["opening-hours-content-surface"],
+						style: {
+							"animation-duration": "300ms",
+							"animation-fill-mode": "forwards",
+							"transform-origin": "top center",
+						},
+					}}
+				>
 					<div
 						style={{
 							padding: "16px",

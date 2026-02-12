@@ -21,12 +21,15 @@
 }
 
 .opening-hours-content {
-	animation-duration: 300ms;
+	/* Placeholder animation-name so Ark UI animates it correctly. */
+	animation-name: a;
+}
 
-	&[data-state="open"] {
+.opening-hours-content-surface {
+	.opening-hours-content[data-state="open"] & {
 		animation-name: flip-in;
 	}
-	&[data-state="closed"] {
+	.opening-hours-content[data-state="closed"] & {
 		animation-name: flip-out;
 	}
 }

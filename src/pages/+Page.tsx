@@ -3,14 +3,14 @@ import { type Component, For } from "solid-js";
 
 import assetCafe from "src/assets/cafe.webp";
 // HACK: Inlined svg assets are broken in inline css styles
-import assetDither from "src/assets/dither.svg?no-inline";
 import assetGrain from "src/assets/grain.svg?no-inline";
 import { Divider, dividerHeightPx } from "src/components/divider.tsx";
 import { H1, H2 } from "src/components/heading.tsx";
+import { Surface } from "src/components/surface.tsx";
 import { CONFIG } from "src/config.ts" with { type: "macro" };
 import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
 
-import { Surface } from "../components/surface.tsx";
+import { Paper } from "../components/paper.tsx";
 
 export const Page: Component = function () {
 	return (
@@ -99,40 +99,14 @@ export const Page: Component = function () {
 					>
 						Willkommen!
 					</H1>
-					<div
-						style={{
-							"background-color": colors.milk,
-							"border-radius": "8px",
-							"border-bottom-right-radius": "16px",
-							"border-color": colors.espresso,
-							"border-width": `${lineThicknessPx}px`,
-							"corner-bottom-right-shape": "bevel",
-							padding: "16px",
-							position: "relative",
-						}}
-					>
-						<div
-							style={{
-								position: "absolute",
-								bottom: `-${lineThicknessPx}px`,
-								right: `-${lineThicknessPx}px`,
-								width: `${16 + lineThicknessPx}px`,
-								height: `${16 + lineThicknessPx}px`,
-								"background-color": colors.milk,
-								"border-top-left-radius": "6px",
-								"border-width": `${lineThicknessPx}px`,
-								"border-color": colors.espresso,
-								"border-bottom-right-radius": "16px",
-								"corner-bottom-right-shape": "bevel",
-							}}
-						/>
+					<Paper style={{ padding: "16px" }}>
 						<p>
 							Wir sind ein studentisch ge&shy;führtes Café in der Fakultät Informatik
 							der TU Dresden. Bei uns gibt es Snacks, Kalt- und Heiß&shy;getränke,
 							so&shy;wie Sofas als idealen Ort zum Ver&shy;weilen und Aus&shy;tauschen
 							mit anderen Studie&shy;renden.
 						</p>
-					</div>
+					</Paper>
 				</div>
 			</section>
 			<Divider lineColor={colors.black} backgroundColor={colors.milk} />
