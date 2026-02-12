@@ -5,12 +5,56 @@
 	src: url("src/assets/fonts/Bonbance-BoldCondensed.woff2");
 }
 
+@font-face {
+	font-display: swap;
+	font-family: "Maple Mono";
+	font-style: normal;
+	font-weight: 400;
+	src: url("src/assets/fonts/MapleMonoNormalNL-Regular.woff2");
+}
+@font-face {
+	font-display: swap;
+	font-family: "Maple Mono";
+	font-style: italic;
+	font-weight: 400;
+	src: url("src/assets/fonts/MapleMonoNormalNL-Italic.woff2");
+}
+@font-face {
+	font-display: swap;
+	font-family: "Maple Mono";
+	font-style: normal;
+	font-weight: 500;
+	src: url("src/assets/fonts/MapleMonoNormalNL-Medium.woff2");
+}
+@font-face {
+	font-display: swap;
+	font-family: "Maple Mono";
+	font-style: italic;
+	font-weight: 500;
+	src: url("src/assets/fonts/MapleMonoNormalNL-MediumItalic.woff2");
+}
+@font-face {
+	font-display: swap;
+	font-family: "Maple Mono";
+	font-style: normal;
+	font-weight: 800;
+	src: url("src/assets/fonts/MapleMonoNormalNL-ExtraBold.woff2");
+}
+@font-face {
+	font-display: swap;
+	font-family: "Maple Mono";
+	font-style: italic;
+	font-weight: 800;
+	src: url("src/assets/fonts/MapleMonoNormalNL-ExtraBoldItalic.woff2");
+}
+
 html {
 	/* TODO: This should depend on `color` in `src/css.ts` */
 	background-color: oklch(0.75 0.1 57);
 	color: oklch(0.27 0.06 40);
 	font-family: "Maple Mono", sans-serif;
 	font-size: 16px;
+	font-weight: 500;
 	line-height: 24px;
 	/* See demo at <https://font.subf.dev/en/playground/> */
 	font-feature-settings:

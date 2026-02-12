@@ -3,6 +3,8 @@ import { createHooks } from "@css-hooks/solid";
 export const { styleSheet, and, not, on, or } = createHooks(
 	// Interactive states
 	"&:is(:hover, :focus-visible)",
+	":is(:hover, :focus-visible) > &",
+	":active > &",
 	// Screen sizes
 	"@media (min-width: 480px)",
 	"@media (min-width: 768px)",
@@ -14,7 +16,8 @@ export const { styleSheet, and, not, on, or } = createHooks(
 	"[data-theme=dark] &",
 	"[data-theme=light] &",
 	// Component State
-	"&[data-state=open]"
+	'&[data-state="open"]',
+	'&[data-state="closed"]'
 );
 
 /**

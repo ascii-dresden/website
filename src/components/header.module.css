@@ -1,0 +1,32 @@
+@keyframes flip-in {
+	from {
+		opacity: 0;
+		rotate: x -45deg;
+	}
+	to {
+		opacity: 1;
+		rotate: x 0;
+	}
+}
+
+@keyframes flip-out {
+	from {
+		opacity: 1;
+		rotate: x 0;
+	}
+	to {
+		opacity: 0;
+		rotate: x -45deg;
+	}
+}
+
+.opening-hours-content {
+	animation-duration: 300ms;
+
+	&[data-state="open"] {
+		animation-name: flip-in;
+	}
+	&[data-state="closed"] {
+		animation-name: flip-out;
+	}
+}

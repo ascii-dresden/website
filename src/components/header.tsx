@@ -2,11 +2,18 @@ import { Collapsible } from "@ark-ui/solid/collapsible";
 import { merge, pipe, when } from "remeda";
 import { type Component, createSignal, onMount } from "solid-js";
 
-import animations from "src/animations.module.css";
 import grain from "src/assets/grain.svg?no-inline";
 import { A } from "src/components/a.tsx";
+import { Button } from "src/components/button.tsx";
 import { Surface } from "src/components/surface.tsx";
 import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
+
+import styles from "./header.module.css";
+
+// TODO: Use config instead of hardcoding values.
+const opens = new Temporal.PlainTime(9);
+const closes = new Temporal.PlainTime(17);
+const closesFriday = new Temporal.PlainTime(15);
 
 export const Header: Component = function () {
 	const [settle, setSettle] = createSignal(false);
@@ -24,12 +31,11 @@ export const Header: Component = function () {
 			style={pipe(
 				{
 					"backdrop-filter": "blur(0.5rem)",
-					"background-color": `color-mix(in srgb, ${colors.creme}, transparent)`,
+					"background-color": `oklch(from ${colors.creme} l c h / 0.75)`,
 					"border-bottom-color": colors.espresso,
 					"border-bottom-style": "solid",
 					"border-bottom-width": `${lineThicknessPx}px`,
 					"box-shadow": `0 0 0.5rem 0 rgba(0, 0, 0, 0.5)`,
-					color: colors.espresso,
 					"column-gap": "16px",
 					display: "grid",
 					"grid-template-columns": "56px minmax(0, 1fr) 64px",
@@ -74,13 +80,18 @@ export const Header: Component = function () {
 			)}
 		>
 			<nav
-				style={{
-					"grid-column-start": "main 1",
-					"grid-column-end": "main -3",
-					display: "grid",
-					"grid-template-columns": "subgrid",
-					"align-items": "center",
-				}}
+				style={pipe(
+					{
+						display: "grid",
+						"grid-template-columns": "subgrid",
+						"align-items": "center",
+						"justify-items": "start",
+					},
+					on("@media (min-width: 1024px)", {
+						"grid-column-start": "main 1",
+						"grid-column-end": "main -3",
+					})
+				)}
 			>
 				<a
 					style={pipe(
@@ -103,9 +114,20 @@ export const Header: Component = function () {
 						/>
 					</svg>
 				</a>
-				<A href="/angebot">/angebot</A>
-				<A href="/catering">/catering</A>
-				<A href="/verein">/verein</A>
+				<div
+					style={pipe(
+						{
+							display: "none",
+						},
+						on("@media (min-width: 1024px)", {
+							display: "contents",
+						})
+					)}
+				>
+					<A href="/angebot">/angebot</A>
+					<A href="/catering">/catering</A>
+					<A href="/verein">/verein</A>
+				</div>
 			</nav>
 			<div
 				style={pipe(
@@ -130,109 +152,165 @@ export const Header: Component = function () {
 const OpeningHoursCollapsible: Component = function () {
 	return (
 		<Collapsible.Root
-			style={{
+			style={pipe({
 				"min-height": "100%",
 				display: "grid",
 				gap: `${lineThicknessPx}px`,
-			}}
+				// FIXME: This creates a containing block interfering with
+				// the positioning of `Collapsible.Content` on mobile screens.
+				perspective: "10cm",
+			})}
 		>
 			<Collapsible.Trigger
-				asChild={(props) => (
-					<Surface as="button" {...props({ style: { "border-style": "none" } })} />
-				)}
+				asChild={(props) => <Button {...props()} />}
 				style={pipe({
-					height: "32px",
 					display: "grid",
-					"grid-template-columns": "minmax(0, 1fr) 32px",
-					"z-index": 1,
-					"background-color": colors.espresso,
-					color: colors.milk,
-					"border-radius": "32px",
-					"transition-property": "box-shadow",
-					"transition-duration": "100ms",
-					"transition-timing-function": transitionTimingFunction,
+					"grid-template-columns": "minmax(0, 1fr) 36px",
 				})}
 			>
-				<div
+				<h2
 					style={{
-						"align-self": "center",
-						"border-right-style": "none",
-						"border-top-left-radius": "8px",
-						"border-bottom-left-radius": "8px",
+						display: "grid",
+						"align-items": "center",
+						"border-right-style": "dotted",
+						// Optically balance dotted line by increasing their size slightly
+						"border-right-width": `${lineThicknessPx + 1}px`,
 					}}
 				>
 					Öffnungszeiten
-				</div>
-				<div
-					style={pipe({
-						"aspect-ratio": "1",
-						"padding-right": "2px", // shift visual center
-						"border-left-color": colors.creme,
-						"border-left-style": "dotted",
-						// Optically balance dotted line by increasing their size slightly
-						"border-left-width": `${lineThicknessPx + 1}px`,
-						"border-bottom-right-radius": "8px",
-						"border-top-right-radius": "8px",
-						display: "grid",
-						"place-content": "center",
-					})}
+				</h2>
+				<Collapsible.Indicator
+					style={pipe(
+						{
+							display: "grid",
+							"place-content": "center",
+							translate: "-2px", // shift visual center
+							"transition-property": "rotate",
+							"transition-duration": "500ms",
+							"transition-timing-function": transitionTimingFunction,
+						},
+						on('&[data-state="open"]', {
+							rotate: "180deg",
+						})
+					)}
 				>
-					<Collapsible.Indicator
-						style={pipe(
-							{
-								"transition-property": "rotate",
-								"transition-duration": "500ms",
-								"transition-timing-function": transitionTimingFunction,
-							},
-							on("&[data-state=open]", {
-								rotate: "180deg",
-							})
-						)}
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
 					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<title>Chevron</title>
-							<path d="M6 9l6 6l6 -6" />
-						</svg>
-					</Collapsible.Indicator>
-				</div>
+						<title>Chevron</title>
+						<path d="M6 9l6 6l6 -6" />
+					</svg>
+				</Collapsible.Indicator>
 			</Collapsible.Trigger>
 			<Collapsible.Content
+				class={styles["opening-hours-content"]}
 				style={{
 					position: "absolute",
 					left: 0,
 					right: 0,
-					top: `calc(100% - 0.5rem)`,
-					"padding-inline": "1rem",
-					perspective: "32rem",
-					"perspective-origin": "center",
+					top: "calc(100% + 4px)",
+					"transform-origin": "top center",
+					"animation-timing-function": transitionTimingFunction,
 				}}
 			>
-				<div
-					style={pipe(
-						{
-							"transform-origin": "top center",
-							"animation-name": animations.flipOut,
-							"animation-duration": "250ms",
-							"animation-timing-function": transitionTimingFunction,
-							"animation-fill-mode": "forwards",
-						},
-						on("&[data-state=open]", {
-							"animation-name": animations.flipIn,
-							"animation-duration": "500ms",
-						})
-					)}
-					// onAnimationEnd={onAnimationEnd}
-				></div>
+				<Surface>
+					<div
+						style={{
+							padding: "16px",
+							"border-bottom-style": "dotted",
+							// Optically balance dotted line by increasing their size slightly
+							"border-bottom-width": `${lineThicknessPx + 1}px`,
+						}}
+					>
+						<h3
+							style={{
+								"font-family": '"Chubbo", sans-serif',
+								"font-weight": "bold",
+								// TODO: Adjust this to the same capsize of body font.
+								// Cannot use `text-box-trim` as it isn't widely supported yet.
+								"font-size": "1.2rem",
+								"letter-spacing": "0.03125rem",
+								"padding-bottom": "8px",
+							}}
+						>
+							Während der Vorlesungszeit
+						</h3>
+						<dl>
+							<dt style={{ "font-weight": 800 }}>Montag bis Donnerstag</dt>
+							<dd style={{ "padding-bottom": "8px" }}>
+								<time datetime={opens.toString()}>
+									{opens.toLocaleString("de-DE", {
+										hour: "numeric",
+										minute: "numeric",
+										second: undefined,
+									})}
+									<span> Uhr</span>
+								</time>
+								<span> bis </span>
+								<time datetime={closes.toString()}>
+									{closes.toLocaleString("de-DE", {
+										hour: "numeric",
+										minute: "numeric",
+										second: undefined,
+									})}
+									<span> Uhr</span>
+								</time>
+							</dd>
+							<dt style={{ "font-weight": 800 }}>Freitag</dt>
+							<dd>
+								<time datetime={opens.toString()}>
+									{opens.toLocaleString("de-DE", {
+										hour: "numeric",
+										minute: "numeric",
+										second: undefined,
+									})}
+									<span> Uhr</span>
+								</time>
+								<span> bis </span>
+								<time datetime={closesFriday.toString()}>
+									{closesFriday.toLocaleString("de-DE", {
+										hour: "numeric",
+										minute: "numeric",
+										second: undefined,
+									})}
+									<span> Uhr</span>
+								</time>
+							</dd>
+						</dl>
+					</div>
+					<div
+						style={{
+							padding: "16px",
+						}}
+					>
+						<h3
+							style={{
+								"font-family": '"Chubbo", sans-serif',
+								"font-weight": "bold",
+								// TODO: Adjust this to the same capsize of body font.
+								// Cannot use `text-box-trim` as it isn't widely supported yet.
+								"font-size": "1.2rem",
+								"letter-spacing": "0.03125rem",
+								"padding-bottom": "8px",
+							}}
+						>
+							Vorlesungsfreie Zeit
+						</h3>
+						<p>
+							Keine festen Öffnungszeiten.
+							<br />
+							<i>„It's open when it's open“</i>
+						</p>
+					</div>
+				</Surface>
 			</Collapsible.Content>
 		</Collapsible.Root>
 	);

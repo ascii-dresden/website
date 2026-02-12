@@ -2,12 +2,24 @@ import { merge, pipe } from "remeda";
 import { type ComponentProps, splitProps, type ValidComponent } from "solid-js";
 import { Dynamic } from "solid-js/web";
 
-import assetDither from "src/assets/dither.svg?no-inline";
+import { Dither } from "src/components/dither.tsx";
 import { colors, lineThicknessPx } from "src/css.ts";
 
-export type SurfaceProps<T extends ValidComponent> = { as?: T } & ComponentProps<T>;
+export type SurfaceProps<T extends ValidComponent = "div"> = ComponentProps<T> & {
+	as?: T;
+};
 
-export function Surface<T extends ValidComponent = "div">(props: SurfaceProps<T>) {
+/**
+ * A raised surface with a dithered drop shadow.
+ *
+ * ## Limitations
+ *
+ * Since the props are applied to a child component, setting certain style
+ * properties like positioning (`top`, `right`, `bottom`, `left`) may create an
+ * undesired or unpredictable outcome. We will leave this as a limitation for now
+ * and worry about it when it becomes relevant.
+ */
+export function Surface<T extends ValidComponent>(props: SurfaceProps<T>) {
 	const [local, others] = splitProps(props, ["as"]);
 
 	return (
@@ -16,24 +28,15 @@ export function Surface<T extends ValidComponent = "div">(props: SurfaceProps<T>
 				position: "relative",
 			}}
 		>
-			<div
-				style={pipe({
-					"background-image": `url(${assetDither})`,
-					"background-repeat": "repeat",
-					"background-size": "8px 8px",
-					"background-position": "bottom left",
+			<Dither
+				style={{
+					// Inherit border radius of sibling
+					// NOTE: UB if `style` is a string, and not an object
 					"border-radius": others.style?.["border-radius"],
-					"clip-path":
-						"polygon(0 4px, 4px 4px, 4px 0, 100% 0," +
-						"100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%," +
-						"4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px))",
-					bottom: "-6px",
-					display: "block",
-					left: "-6px",
 					position: "absolute",
-					right: "6px",
-					top: "6px",
-				} as const)}
+					translate: "-6px 6px",
+					inset: 0,
+				}}
 			/>
 			<Dynamic
 				component={local.as ?? "div"}

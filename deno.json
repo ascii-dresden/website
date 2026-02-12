@@ -12,7 +12,6 @@
 		"@css-hooks/core": "npm:@css-hooks/core@^3.0.5",
 		"@css-hooks/solid": "npm:@css-hooks/solid@^3.0.5",
 		"@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.6",
-		"@fontsource/maple-mono": "npm:@fontsource/maple-mono@^5.2.6",
 		"remeda": "npm:remeda@^2.33.6",
 		"@std/path": "jsr:@std/path@^1.1.4",
 		"@std/toml": "jsr:@std/toml@^1.0.11",

@@ -175,7 +175,7 @@ export const Page: Component = function () {
 											"transition-property": "flex-grow",
 										},
 										// TODO: This should query if pager item is selected
-										on("&[data-state=open]", {
+										on('&[data-state="open"]', {
 											"flex-grow": "3",
 										})
 									)}
