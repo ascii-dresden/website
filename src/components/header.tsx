@@ -5,7 +5,7 @@ import { type Component, createSignal, onMount } from "solid-js";
 import grain from "src/assets/grain.svg?no-inline";
 import { A } from "src/components/a.tsx";
 import { Button } from "src/components/button.tsx";
-import { Surface } from "src/components/surface.tsx";
+import { Paper } from "src/components/paper.tsx";
 import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
 
 import styles from "./header.module.css";
@@ -231,14 +231,12 @@ const OpeningHoursCollapsible: Component = function () {
 					})
 				)}
 			>
-				<Surface
-					rootProps={{
-						class: styles["opening-hours-content-surface"],
-						style: {
-							"animation-duration": "300ms",
-							"animation-fill-mode": "forwards",
-							"transform-origin": "top center",
-						},
+				<Paper
+					class={styles["opening-hours-content-surface"]}
+					style={{
+						"animation-duration": "300ms",
+						"animation-fill-mode": "forwards",
+						"transform-origin": "top center",
 					}}
 				>
 					<div
@@ -329,7 +327,7 @@ const OpeningHoursCollapsible: Component = function () {
 							<i>„It's open when it's open“</i>
 						</p>
 					</div>
-				</Surface>
+				</Paper>
 			</Collapsible.Content>
 		</Collapsible.Root>
 	);

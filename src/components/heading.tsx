@@ -1,11 +1,11 @@
 import { merge, pipe } from "remeda";
-import type { JSX, ParentComponent } from "solid-js";
+import type { ComponentProps, ParentComponent } from "solid-js";
 
 import { on } from "src/css.ts";
 
 // TODO: Polish typography
 
-export const H1: ParentComponent<JSX.HTMLAttributes<HTMLHeadingElement>> = function (props) {
+export const H1: ParentComponent<ComponentProps<"h1">> = function (props) {
 	return (
 		<h1
 			{...props}
@@ -36,7 +36,7 @@ export const H1: ParentComponent<JSX.HTMLAttributes<HTMLHeadingElement>> = funct
 	);
 };
 
-export const H2: ParentComponent<JSX.HTMLAttributes<HTMLHeadingElement>> = function (props) {
+export const H2: ParentComponent<ComponentProps<"h2">> = function (props) {
 	return (
 		<h2
 			{...props}
@@ -66,7 +66,7 @@ export const H2: ParentComponent<JSX.HTMLAttributes<HTMLHeadingElement>> = funct
 	);
 };
 
-export const H3: ParentComponent<JSX.HTMLAttributes<HTMLHeadingElement>> = function (props) {
+export const H3: ParentComponent<ComponentProps<"h3">> = function (props) {
 	return (
 		<h3
 			{...props}
@@ -96,7 +96,7 @@ export const H3: ParentComponent<JSX.HTMLAttributes<HTMLHeadingElement>> = funct
 	);
 };
 
-export const H4: ParentComponent<JSX.HTMLAttributes<HTMLHeadingElement>> = function (props) {
+export const H4: ParentComponent<ComponentProps<"h4">> = function (props) {
 	return (
 		<h4
 			{...props}

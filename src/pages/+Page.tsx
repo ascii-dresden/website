@@ -6,10 +6,10 @@ import assetCafe from "src/assets/cafe.webp";
 import assetGrain from "src/assets/grain.svg?no-inline";
 import { Divider, dividerHeightPx } from "src/components/divider.tsx";
 import { H1, H2 } from "src/components/heading.tsx";
-import { Surface } from "src/components/surface.tsx";
 import { CONFIG } from "src/config.ts" with { type: "macro" };
 import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
 
+import { Dither } from "../components/dither.tsx";
 import { Paper } from "../components/paper.tsx";
 
 export const Page: Component = function () {
@@ -49,6 +49,7 @@ export const Page: Component = function () {
 					style={pipe(
 						{
 							"aspect-ratio": "3 / 2",
+							position: "relative",
 						},
 						on("@media (min-width: 1024px)", {
 							"grid-row": 1,
@@ -57,13 +58,29 @@ export const Page: Component = function () {
 						})
 					)}
 				>
-					<Surface
-						as="img"
+					<Dither
+						style={{
+							position: "absolute",
+							translate: "-6px 6px",
+							inset: 0,
+						}}
+					/>
+					<img
 						// TODO: Optimize
 						src={assetCafe}
 						alt="Interior des „Ascii“ Cafés"
 						sizes="100vw"
-					></Surface>
+						style={{
+							position: "relative",
+							width: "100%",
+							height: "100%",
+							"background-color": colors.milk,
+							"border-color": colors.espresso,
+							"border-radius": "8px",
+							"border-style": "solid",
+							"border-width": `${lineThicknessPx}px`,
+						}}
+					/>
 				</div>
 				<div
 					style={pipe(

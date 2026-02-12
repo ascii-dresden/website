@@ -1,4 +1,4 @@
-import type { ComponentProps, ValidComponent } from "solid-js";
+import { type ComponentProps, splitProps, type ValidComponent } from "solid-js";
 import { Dynamic } from "solid-js/web";
 
 import { colors, lineThicknessPx } from "src/css.ts";
@@ -8,9 +8,12 @@ export type PaperProps<T extends ValidComponent = "div"> = ComponentProps<T> & {
 };
 
 export function Paper<T extends ValidComponent>(props: PaperProps<T>) {
+	const [local, others] = splitProps(props, ["as"]);
+
 	return (
 		<Dynamic
-			component={props.as ?? "div"}
+			component={local.as ?? "div"}
+			{...others}
 			style={{
 				position: "relative",
 				"background-color": colors.milk,
@@ -20,7 +23,7 @@ export function Paper<T extends ValidComponent>(props: PaperProps<T>) {
 				"border-color": colors.espresso,
 				"border-width": `${lineThicknessPx}px`,
 				"corner-bottom-right-shape": "bevel",
-				...props.style,
+				...others.style,
 			}}
 		>
 			<div
