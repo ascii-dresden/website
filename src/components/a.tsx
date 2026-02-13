@@ -11,6 +11,7 @@ export type AProps = ComponentProps<"a">;
  */
 const UNDERLINE_OFFSET = "0.375rem";
 
+// TODO: Use a border instead of text-decoration, so non-text elements can be used inside the component
 export const A: ParentComponent<AProps> = function (props) {
 	return (
 		<a

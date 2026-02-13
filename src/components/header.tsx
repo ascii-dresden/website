@@ -6,6 +6,7 @@ import grain from "src/assets/grain.svg?no-inline";
 import { A } from "src/components/a.tsx";
 import { Button } from "src/components/button.tsx";
 import { Paper } from "src/components/paper.tsx";
+import { ChevronDown } from "src/components/svg.tsx";
 import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
 
 import styles from "./header.module.css";
@@ -196,20 +197,7 @@ const OpeningHoursCollapsible: Component = function () {
 						})
 					)}
 				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					>
-						<title>Chevron</title>
-						<path d="M6 9l6 6l6 -6" />
-					</svg>
+					<ChevronDown />
 				</Collapsible.Indicator>
 			</Collapsible.Trigger>
 			<Collapsible.Content

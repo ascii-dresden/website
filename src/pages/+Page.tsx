@@ -4,13 +4,15 @@ import { type Component, For } from "solid-js";
 import assetCafe from "src/assets/cafe.webp";
 // HACK: Inlined svg assets are broken in inline css styles
 import assetGrain from "src/assets/grain.svg?no-inline";
+import { A } from "src/components/a.tsx";
+import { Dither } from "src/components/dither.tsx";
 import { Divider, dividerHeightPx } from "src/components/divider.tsx";
 import { H1, H2 } from "src/components/heading.tsx";
+import { Paper } from "src/components/paper.tsx";
 import { CONFIG } from "src/config.ts" with { type: "macro" };
 import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
 
-import { Dither } from "../components/dither.tsx";
-import { Paper } from "../components/paper.tsx";
+import { WaveArrowRight } from "../components/svg.tsx";
 
 export const Page: Component = function () {
 	return (
@@ -48,11 +50,45 @@ export const Page: Component = function () {
 				<div
 					style={pipe(
 						{
+							"background-color": colors.light_teal,
+							color: colors.dark_teal,
+							padding: "16px",
+							"margin-top": "16px",
+							"border-radius": "8px",
+							"border-width": `${lineThicknessPx}px`,
+						},
+						on("@media (min-width: 1024px)", {
+							"grid-row": 1,
+							"grid-column-start": "main 1",
+							"grid-column-end": "main -1",
+							display: "grid",
+							"grid-auto-flow": "column",
+							"justify-content": "center",
+							gap: "16px",
+						})
+					)}
+				>
+					Wir suchen neue Mitglieder!
+					<A
+						href="/verein#mitglied-werden"
+						style={{
+							display: "grid",
+							"grid-auto-flow": "column",
+							gap: "8px",
+						}}
+					>
+						<WaveArrowRight />
+						Mehr erfahren
+					</A>
+				</div>
+				<div
+					style={pipe(
+						{
 							"aspect-ratio": "3 / 2",
 							position: "relative",
 						},
 						on("@media (min-width: 1024px)", {
-							"grid-row": 1,
+							"grid-row": 2,
 							"grid-column-start": "main 3",
 							"grid-column-end": "main -1",
 						})
@@ -93,7 +129,7 @@ export const Page: Component = function () {
 							"padding-top": "16px",
 						},
 						on("@media (min-width: 1024px)", {
-							"grid-row": 1,
+							"grid-row": 2,
 							"grid-column-start": 1,
 							"grid-column-end": "span 2",
 							padding: 0,
