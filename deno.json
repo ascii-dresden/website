@@ -22,7 +22,7 @@
 		"tailwindcss": "npm:tailwindcss@^4.1.18",
 		"temporal-polyfill": "npm:temporal-polyfill@^0.3.0",
 		"valibot": "npm:valibot@^1.2.0",
-		"vike": "npm:vike@^0.4.253",
+		"vike": "npm:vike@^0.4.252",
 		"vike-solid": "npm:vike-solid@^0.8.1",
 		"vite": "npm:vite@^7.3.1"
 	},

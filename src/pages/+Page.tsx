@@ -12,8 +12,6 @@ import { Paper } from "src/components/paper.tsx";
 import { CONFIG } from "src/config.ts" with { type: "macro" };
 import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
 
-import { WaveArrowRight } from "../components/svg.tsx";
-
 export const Page: Component = function () {
 	return (
 		<main>
@@ -50,6 +48,7 @@ export const Page: Component = function () {
 				<div
 					style={pipe(
 						{
+							display: "grid",
 							"background-color": colors.light_teal,
 							color: colors.dark_teal,
 							padding: "16px",
@@ -61,24 +60,15 @@ export const Page: Component = function () {
 							"grid-row": 1,
 							"grid-column-start": "main 1",
 							"grid-column-end": "main -1",
-							display: "grid",
 							"grid-auto-flow": "column",
 							"justify-content": "center",
 							gap: "16px",
 						})
 					)}
 				>
-					Wir suchen neue Mitglieder!
-					<A
-						href="/verein#mitglied-werden"
-						style={{
-							display: "grid",
-							"grid-auto-flow": "column",
-							gap: "8px",
-						}}
-					>
-						<WaveArrowRight />
-						Mehr erfahren
+					Wir suchen dringend neue Mitglieder!
+					<A href="/verein#mitglied-werden">
+						{">>>"}Mach mit!{"<<<"}
 					</A>
 				</div>
 				<div

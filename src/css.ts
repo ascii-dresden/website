@@ -5,6 +5,7 @@ export const { styleSheet, and, not, on, or } = createHooks(
 	"&:is(:hover, :focus-visible)",
 	":is(:hover, :focus-visible) > &",
 	":active > &",
+	"a:is(:hover, :focus-visible) &", // `src/components/a.tsx`
 	// Screen sizes
 	"@media (min-width: 480px)",
 	"@media (min-width: 768px)",

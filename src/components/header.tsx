@@ -12,6 +12,7 @@ import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.t
 import styles from "./header.module.css";
 
 // TODO: Use config instead of hardcoding values.
+import "temporal-polyfill/global";
 const opens = new Temporal.PlainTime(9);
 const closes = new Temporal.PlainTime(17);
 const closesFriday = new Temporal.PlainTime(15);
