@@ -1,11 +1,16 @@
+import { ResponsiveImage } from "@responsive-image/solid";
 import { type Component, For } from "solid-js";
+import { useData } from "vike-solid/useData";
 
 import { Divider } from "src/components/divider.tsx";
 import { H2 } from "src/components/heading.tsx";
-import { CONFIG } from "src/config.ts" with { type: "macro" };
 import { colors, lineThicknessPx } from "src/css.ts";
 
+import type { Data } from "./+data.ts";
+
 export const Page: Component = function () {
+	const data = useData<Data>();
+
 	return (
 		<main>
 			<section>
@@ -24,7 +29,7 @@ export const Page: Component = function () {
 						display: "grid",
 					}}
 				>
-					<For each={CONFIG.drinks}>
+					<For each={data.config.drinks}>
 						{(drink) => (
 							<li
 								style={{
@@ -34,7 +39,7 @@ export const Page: Component = function () {
 								}}
 							>
 								<h3>{drink.name}</h3>
-								<img src={drink.image} alt="" />
+								<ResponsiveImage src={drink.image} />
 							</li>
 						)}
 					</For>

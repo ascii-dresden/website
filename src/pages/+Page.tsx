@@ -1,5 +1,6 @@
 import { pipe } from "remeda";
 import { type Component, For } from "solid-js";
+import { useData } from "vike-solid/useData";
 
 import assetCafe from "src/assets/cafe.webp";
 // HACK: Inlined svg assets are broken in inline css styles
@@ -9,10 +10,13 @@ import { Dither } from "src/components/dither.tsx";
 import { Divider, dividerHeightPx } from "src/components/divider.tsx";
 import { H1, H2 } from "src/components/heading.tsx";
 import { Paper } from "src/components/paper.tsx";
-import { CONFIG } from "src/config.ts" with { type: "macro" };
 import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.ts";
 
+import type { Data } from "./+data";
+
 export const Page: Component = function () {
+	const data = useData<Data>();
+
 	return (
 		<main>
 			<section
@@ -179,7 +183,7 @@ export const Page: Component = function () {
 							})
 						)}
 					>
-						<For each={CONFIG.events}>
+						<For each={data.config.events}>
 							{(event, i) => (
 								<li
 									style={pipe(

@@ -21,8 +21,8 @@ vendor/
 
 # non-Deno lock files
 bun.lock
+deno.lock
 package-lock.json
-pnpm-lock.yaml
 yarn.lock
 
 .DS_Store

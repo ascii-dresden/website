@@ -27,8 +27,9 @@
           default = pkgs.mkShell {
             name = "ascii-website";
             packages = [
-              pkgs.deno
               pkgs.biome
+              pkgs.nodejs
+              pkgs.pnpm
               pkgs.tombi
             ];
           };

@@ -1,4 +1,4 @@
-import deno from "@deno/vite-plugin";
+import { setupPlugins as responsiveImage } from "@responsive-image/vite-plugin";
 import { resolve } from "@std/path";
 import vike from "vike/plugin";
 import vikeSolid from "vike-solid/vite";
@@ -12,7 +12,13 @@ export default defineConfig({
 	css: {
 		transformer: "lightningcss",
 	},
-	plugins: [deno(), vike(), vikeSolid()],
+	plugins: [
+		vike(),
+		vikeSolid(),
+		responsiveImage({
+			include: /^[^?]+\?responsive$/,
+		}),
+	],
 	resolve: {
 		alias: {
 			src: resolve(import.meta.dirname!, "src"),

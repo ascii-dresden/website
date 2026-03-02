@@ -5,4 +5,5 @@ export default {
 	extends: solid,
 	prerender: true,
 	title: "ascii Dresden",
+	passToClient: [],
 } satisfies Config;
