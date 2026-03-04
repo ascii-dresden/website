@@ -1,0 +1,268 @@
+[
+	{
+		"id": "club_mate_original",
+		"name": "Club Mate Original",
+		"image": "./images/club_mate.png",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "club_mate_beere",
+		"name": "Club Mate Beere",
+		"image": "./images/club_mate_beere.png",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "club_mate_zero",
+		"name": "Club Mate Zero",
+		"image": "./images/club_mate_zero.png",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "club_mate_granat",
+		"name": "Club Mate Granat",
+		"image": "./images/club_mate_granat.png",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "club_mate_ice_t",
+		"name": "Club Mate ICE-T",
+		"image": "./images/club_mate_icet.png",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "club_mate_winter",
+		"name": "Club Mate Winter",
+		"image": "./images/club_mate_winter.png",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "mio_mio_mate_original",
+		"name": "Mio Mio Mate Original",
+		"image": "./images/mio_mio_mate.webp",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "mio_mio_cola",
+		"name": "Mio Mio Cola",
+		"image": "./images/mio_mio_cola.webp",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "mio_mio_mate_ginger",
+		"name": "Mio Mio Mate Ginger",
+		"image": "./images/mio_mio_mate_ginger.webp",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "mio_mio_mate_zero",
+		"name": "Mio Mio Mate Zero",
+		"image": "./images/mio_mio_mate_zero.webp",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "mate_mate",
+		"name": "Mate Mate",
+		"image": "./images/mate_mate.webp",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "kolle_mate",
+		"name": "Kolle Mate",
+		"image": "./images/kolle_mate.webp",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "frau_kolle",
+		"name": "Frau Kolle",
+		"image": "./images/frau_kolle.png",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "zotrine",
+		"name": "Zotrine",
+		"image": "./images/zotrine.webp",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "kilimo",
+		"name": "Kilimo",
+		"image": "./images/kilimo.jpg",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "kolla",
+		"name": "Kolla",
+		"image": "./images/kolla.webp",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "premium_cola",
+		"name": "Premium Cola",
+		"image": "./images/premium_cola.png",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "premium_cola_zero",
+		"name": "Premium Cola Zero",
+		"image": "./images/premium_cola_zero.webp",
+		"size_litres": 0.33,
+		"price": 1.5
+	},
+	{
+		"id": "spezi",
+		"name": "Spezi",
+		"image": "./images/spezi.webp",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "spezi_zero",
+		"name": "Spezi Zero",
+		"image": "./images/spezi_zero.webp",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "fritz_spritz",
+		"name": "Fritz Spritz",
+		"image": "./images/fritz_spritz.webp",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "fritz_limo",
+		"name": "Fritz Limo",
+		"image": "./images/fritz_limo.webp",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "fritz_kola_superzero",
+		"name": "Fritz Kola Superzero",
+		"image": "./images/fritz_kola_superzero.webp",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "fritz_mischmasch",
+		"name": "Fritz Mischmasch",
+		"image": "./images/fritz_mischmasch.webp",
+		"size_litres": 0.5,
+		"price": 1.5
+	},
+	{
+		"id": "wostok_blaubeere_salbei",
+		"name": "Wostok Blaubeere Salbei",
+		"image": "./images/wostok_blaubeere_salbei.webp",
+		"size_litres": 0.33,
+		"price": 1.5
+	},
+	{
+		"id": "wostok_zitrone_minze",
+		"name": "Wostok Zitrone Minze",
+		"image": "./images/wostok_zitrone_minze.webp",
+		"size_litres": 0.33,
+		"price": 1.5
+	},
+	{
+		"id": "wostok_birne_rosmarin",
+		"name": "Wostok Birne Rosmarin",
+		"image": "./images/wostok_birne_rosmarin.webp",
+		"size_litres": 0.33,
+		"price": 1.5
+	},
+	{
+		"id": "wostok_tannenwald",
+		"name": "Wostok Tannenwald",
+		"image": "./images/wostok_tannenwald.webp",
+		"size_litres": 0.33,
+		"price": 1.5
+	},
+	{
+		"id": "bad_brambacher_grapefruit",
+		"name": "Bad Brambacher Grapefruit",
+		"image": "./images/bad_brambacher_grapefruit.png",
+		"size_litres": 0.5,
+		"price": 1
+	},
+	{
+		"id": "bad_brambacher_orange",
+		"name": "Bad Brambacher Orange",
+		"image": "./images/bad_brambacher_orange.png",
+		"size_litres": 0.5,
+		"price": 1
+	},
+	{
+		"id": "bad_brambacher_johannisbeere",
+		"name": "Bad Brambacher Johannisbeere",
+		"image": "./images/bad_brambacher_johannisbeere.png",
+		"size_litres": 0.5,
+		"price": 1
+	},
+	{
+		"id": "bad_brambacher_zitrone",
+		"name": "Bad Brambacher Zitrone",
+		"image": "./images/bad_brambacher_zitrone.png",
+		"size_litres": 0.5,
+		"price": 1
+	},
+	{
+		"id": "heide_orangensaft",
+		"name": "Heide Orangensaft",
+		"image": "./images/heide_orangensaft.png",
+		"size_litres": 1,
+		"price": 1
+	},
+	{
+		"id": "heide_multivitaminsaft",
+		"name": "Heide Multivitaminsaft",
+		"image": "./images/heide_multivitamin.png",
+		"size_litres": 1,
+		"price": 1
+	},
+	{
+		"id": "heide_apfelsaft",
+		"name": "Heide Apfelsaft",
+		"image": "./images/heide_apfelsaft.png",
+		"size_litres": 1,
+		"price": 1
+	},
+	{
+		"id": "margon_still",
+		"name": "Margon Still",
+		"image": "./images/margon_still.png",
+		"size_litres": 0.75,
+		"price": 0.5
+	},
+	{
+		"id": "margon_medium",
+		"name": "Margon Medium",
+		"image": "./images/margon_medium.png",
+		"size_litres": 0.75,
+		"price": 0.5
+	},
+	{
+		"id": "margon_classic",
+		"name": "Margon Classic",
+		"image": "./images/margon_classic.png",
+		"size_litres": 0.75,
+		"price": 0.5
+	}
+]

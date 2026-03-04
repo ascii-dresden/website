@@ -1,0 +1,49 @@
+[opening_hours]
+# TODO: Remove seconds once `@std/toml` supports TOML v1.1.0
+# See: <https://github.com/denoland/std/pull/6964>
+monday.open = 09:00:00
+monday.close = 17:00:00
+tuesday.open = 09:00:00
+tuesday.close = 17:00:00
+wednesday.open = 09:00:00
+wednesday.close = 17:00:00
+thursday.open = 09:00:00
+thursday.close = 17:00:00
+friday.open = 09:00:00
+friday.close = 17:00:00
+
+[special]
+title = "Mio Mio Mai"
+image = "getraenke.webp"
+image_alt = "Flaschen verschiedener Mate- und Colasorten auf einem Regal"
+description = "Mehr Mate im Mai. Mio Mio Getränke gibt es diesen Monat für 1.30€!"
+year_month = "2024-05"
+
+# Events
+
+[[events]]
+date_time = 2024-05-07T18:30:00
+title = "Spieleabend"
+image = "spieleabend.webp"
+image_alt = "Handkarten eines Spielers des Brettspiels „7 Wonders“"
+summary = """
+	Mit Brett, Karten, oder an der Leinwand. Wir treffen uns zum Essen, Quatschen,
+	und natürlich Spielen. Kommt vorbei!"""
+
+[[events]]
+date_time = 2024-05-07T18:30:00
+title = "Spieleabend"
+image = "spieleabend.webp"
+image_alt = "Handkarten eines Spielers des Brettspiels „7 Wonders“"
+summary = """
+	Mit Brett, Karten, oder an der Leinwand. Wir treffen uns zum Essen, Quatschen,
+	und natürlich Spielen. Kommt vorbei!"""
+
+[[events]]
+date_time = 2024-05-07T18:30:00
+title = "Spieleabend"
+image = "spieleabend.webp"
+image_alt = "Handkarten eines Spielers des Brettspiels „7 Wonders“"
+summary = """
+	Mit Brett, Karten, oder an der Leinwand. Wir treffen uns zum Essen, Quatschen,
+	und natürlich Spielen. Kommt vorbei!"""

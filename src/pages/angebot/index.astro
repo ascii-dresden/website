@@ -1,11 +1,13 @@
 ---
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 
 import Divider from "src/components/divider.astro";
 import { H2 } from "src/components/heading.tsx";
-import { CONFIG } from "src/config.ts";
 import { colors, lineThicknessPx } from "src/css.ts";
 import Layout from "src/layout.astro";
+
+const drinks = await getCollection("drinks");
 ---
 
 <Layout>
@@ -26,7 +28,7 @@ import Layout from "src/layout.astro";
 					display: "grid",
 				}}
 			>
-				{CONFIG.drinks.map((drink) =>
+				{drinks.map((drink) =>
 				<li
 					style={{
 						"background-color": colors.milk,
@@ -34,8 +36,8 @@ import Layout from "src/layout.astro";
 						"border-color": colors.espresso,
 					}}
 				>
-					<h3>{drink.name}</h3>
-					<Image src={drink.image} alt={drink.name} />
+					<h3>{drink.data.name}</h3>
+					<Image src={drink.data.image} alt={drink.data.name} />
 				</li>
 
 				)}
