@@ -4,7 +4,7 @@ import { array, type InferOutput, object, optional, parse, pipe, string, transfo
 import { mapSnakeKeysToCamel } from "src/snake_to_camel.ts";
 import { PlainDateTimeSchema, PlainTimeSchema, PlainYearMonthSchema } from "src/temporal.ts";
 
-import config from "../ascii.toml?raw";
+import config from "../content/ascii.toml?raw";
 
 export const OpeningHoursDaySchema = optional(
 	object({
