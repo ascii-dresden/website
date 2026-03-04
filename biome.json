@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.3.9/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.4.5/schema.json",
 	"root": true,
 	"assist": {
 		"actions": {
@@ -27,7 +27,10 @@
 		"lineWidth": 100
 	},
 	"html": {
-		"experimentalFullSupportEnabled": true
+		"experimentalFullSupportEnabled": true,
+		"formatter": {
+			"enabled": true
+		}
 	},
 	"json": {
 		"assist": {

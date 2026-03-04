@@ -9,6 +9,7 @@ secrets/
 temp/
 vendor/
 
+.astro/
 .devenv/
 .next/
 .pnpm/

@@ -1,0 +1,25 @@
+---
+import "tailwindcss/preflight.css";
+
+import "src/global.css";
+
+import Footer from "src/components/footer.astro";
+import { Header } from "src/components/header.tsx";
+import { styleSheet } from "src/css.ts";
+---
+
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>ascii Dresden</title>
+		<link href="https://api.fontshare.com/v2/css?f[]=chubbo@1,2&display=swap" rel="stylesheet">
+		<style set:text={styleSheet()} />
+	</head>
+	<body>
+		<Header client:load />
+		<slot />
+		<Footer />
+	</body>
+</html>

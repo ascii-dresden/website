@@ -1,19 +1,14 @@
-import type { ImageData } from "@responsive-image/core";
 import { parse as parseToml } from "@std/toml";
 import {
 	array,
-	arrayAsync,
 	type InferOutput,
 	number,
 	object,
-	objectAsync,
 	optional,
-	parseAsync,
+	parse,
 	pipe,
-	pipeAsync,
 	string,
 	transform,
-	transformAsync,
 } from "valibot";
 
 import { mapSnakeKeysToCamel } from "src/snake_to_camel.ts";
@@ -21,8 +16,8 @@ import { PlainDateTimeSchema, PlainTimeSchema, PlainYearMonthSchema } from "src/
 
 import config from "../ascii.toml?raw";
 
-const images = import.meta.glob("/content/images/**/*", {
-	query: "?responsive",
+const images: Record<string, ImageMetadata> = import.meta.glob("/content/images/**/*", {
+	eager: true,
 	import: "default",
 });
 
@@ -73,14 +68,12 @@ export const EventSchema = pipe(
 
 export type Event = InferOutput<typeof EventSchema>;
 
-export const DrinkSchema = pipeAsync(
-	objectAsync({
+export const DrinkSchema = pipe(
+	object({
 		name: string(),
-		image: pipeAsync(
+		image: pipe(
 			string(),
-			transformAsync(
-				async (image) => (await images[`/content/images/${image}`]()) as ImageData
-			)
+			transform(async (image) => images[`/content/images/${image}`])
 		),
 		size_litres: number(),
 		price: number(),
@@ -90,16 +83,16 @@ export const DrinkSchema = pipeAsync(
 
 export type Drink = InferOutput<typeof DrinkSchema>;
 
-export const ConfigSchema = pipeAsync(
-	objectAsync({
+export const ConfigSchema = pipe(
+	object({
 		opening_hours: OpeningHoursSchema,
 		special: SpecialSchema,
 		events: array(EventSchema),
-		drinks: arrayAsync(DrinkSchema),
+		drinks: array(DrinkSchema),
 	}),
 	transform(mapSnakeKeysToCamel)
 );
 
 export type Config = InferOutput<typeof ConfigSchema>;
 
-export const CONFIG: Config = await parseAsync(ConfigSchema, parseToml(config));
+export const CONFIG: Config = parse(ConfigSchema, parseToml(config));
