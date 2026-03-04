@@ -34,7 +34,7 @@ import ascii from "./footer_art.txt?raw";
 				"[main] minmax(0, 1fr)",
 			].join(" "),
 			"padding-inline": 0,
-		})
+		}),
 		// TODO: Dark theme
 		// on(dark, {
 		// 	"background-color": colors.black,
@@ -43,11 +43,10 @@ import ascii from "./footer_art.txt?raw";
 	)}
 >
 	<pre
-		style={{ 
+		style={{
 			"grid-column-start": "main",
 			"grid-column-end": "main -1",
-		}}
-	><code set:text={ascii} /></pre>
+		}}><code set:text={ascii} /></pre>
 	<address
 		style={pipe(
 			{
@@ -60,18 +59,18 @@ import ascii from "./footer_art.txt?raw";
 			},
 			on("@media (min-width: 1024px)", {
 				"grid-column-end": "span 2",
-			})
+			}),
 		)}
 	>
 		<A href="mailto:info@ascii-dresden.de">info@ascii-dresden.de</A>
 		<A href="tel:+4935146342221">+49 351 46342221</A>
 		<p>
 			ascii&nbsp;Dresden&nbsp;e.V.
-			<br>
+			<br />
 			Andreas-Pfitzmann-Bau, Raum&nbsp;E016
-			<br>
+			<br />
 			Nöthnitzer&nbsp;Strasse&nbsp;46
-			<br>
+			<br />
 			01187&nbsp;Dresden
 		</p>
 	</address>
@@ -100,7 +99,8 @@ import ascii from "./footer_art.txt?raw";
 			"row-gap": "16px",
 			"grid-auto-rows": "max-content",
 			"justify-items": "start",
-			"align-items": "start",}}
+			"align-items": "start",
+		}}
 	>
 		<li><A href="https://github.com/ascii-dresden">/github</A></li>
 		<li><A href="https://www.instagram.com/asciidresden">/instagram</A></li>
@@ -132,7 +132,7 @@ import ascii from "./footer_art.txt?raw";
 			}),
 			on("@media (min-width: 1280px)", {
 				"grid-column-end": "main 3",
-			})
+			}),
 		)}
 	>
 		&copy; ascii Dresden e.V. {new Date().getFullYear()}
@@ -148,7 +148,7 @@ import ascii from "./footer_art.txt?raw";
 			}),
 			on("@media (min-width: 1280px)", {
 				"grid-column-start": "main 3",
-			})
+			}),
 		)}
 	>
 		Designed with {"<3"} by{" "}

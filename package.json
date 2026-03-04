@@ -5,7 +5,7 @@
 		"dev": "astro dev",
 		"preview": "astro preview",
 		"check": "biome check",
-		"fmt": "biome check --write --max-diagnostics 0"
+		"fmt": "biome check --write --max-diagnostics 0 && prettier -w \"**/*\" --ignore-unknown --cache"
 	},
 	"dependencies": {
 		"@ark-ui/solid": "^5.34.0",
@@ -26,6 +26,8 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.5",
+		"prettier": "^3.8.1",
+		"prettier-plugin-astro": "^0.14.1",
 		"typescript": "^5.9.3"
 	}
 }

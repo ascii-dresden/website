@@ -1,5 +1,5 @@
-import { literal, optional, parse, union } from "valibot";
 import { createContext, useContext } from "solid-js";
+import { literal, optional, parse, union } from "valibot";
 
 export type Theme = "light" | "dark" | "system";
 

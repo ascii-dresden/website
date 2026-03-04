@@ -1,47 +1,225 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import { pipe } from "remeda";
 
+// HACK: Inlined svg assets are broken in inline css styles
+import assetGrain from "src/assets/grain.svg?no-inline";
 import Divider from "src/components/divider.astro";
-import { H2 } from "src/components/heading.tsx";
-import { colors, lineThicknessPx } from "src/css.ts";
+import { H2, H3, H4 } from "src/components/heading.tsx";
+import { Paper } from "src/components/paper.tsx";
+import { colors, lineThicknessPx, on } from "src/css.ts";
 import Layout from "src/layout.astro";
 
 const drinks = await getCollection("drinks");
+
+type Drink = (typeof drinks)[0];
+
+const drinkGroups: Map<string, Drink[]> = new Map();
+
+for (const drink of drinks) {
+	for (const group of drink.data.groups) {
+		const drinkGroup = drinkGroups.get(group);
+		if (drinkGroup) {
+			drinkGroup.push(drink);
+		} else {
+			drinkGroups.set(group, [drink]);
+		}
+	}
+}
 ---
 
 <Layout>
 	<main>
-		<section>
-			<H2>Heißgetränke</H2>
-		</section>
-		<Divider lineColor={colors.dark_teal} backgroundColor={colors.light_teal} />
 		<section
-			style={{
-				"background-color": colors.light_teal,
-				color: colors.dark_teal,
-			}}
-		>
-			<H2>Kaltgetränke</H2>
-			<ul
-				style={{
+			style={pipe(
+				{
+					"background-blend-mode": "overlay",
+					"background-color": colors.creme,
+					"background-image": `url(${assetGrain})`,
+					"background-size": "256px",
 					display: "grid",
-				}}
-			>
-				{drinks.map((drink) =>
-				<li
-					style={{
-						"background-color": colors.milk,
-						"border-width": `${lineThicknessPx}px`,
-						"border-color": colors.espresso,
-					}}
-				>
-					<h3>{drink.data.name}</h3>
-					<Image src={drink.data.image} alt={drink.data.name} />
-				</li>
-
+					gap: "32px",
+					"padding-inline": "32px",
+					"padding-block": "32px",
+				},
+				on("@media (min-width: 1024px)", {
+					gap: "32px",
+					"align-items": "center",
+					"grid-template-columns":
+						"repeat(6, [main] minmax(0, 1fr)) [main]",
+					"padding-inline": "64px",
+					"padding-block": "64px",
+				}),
+				on("@media (min-width: 1280px)", {
+					"grid-template-columns": [
+						"minmax(0, 1fr)",
+						"repeat(6, [main] minmax(0, 1fr))",
+						"[main] minmax(0, 1fr)",
+					].join(" "),
+					"padding-inline": 0,
+				}),
+			)}
+		>
+			<H2
+				style={pipe(
+					{
+						"font-size": "64px",
+						"grid-column-start": "main 1",
+						"grid-column-end": "main -1",
+						"justify-self": "start",
+						// Half of the stroke width is covered by the fill color
+						"-webkit-text-stroke-color": colors.espresso,
+						"-webkit-text-stroke-width": "8px",
+						"paint-order": "markers stroke fill",
+						color: colors.milk,
+						rotate: "1.5deg",
+					},
+					on("@media (min-width: 1024px)", {
+						"font-size": "96px",
+						"-webkit-text-stroke-width": "10px",
+					}),
 				)}
-			</ul>
+			>
+				Heiß&shy;getränke
+			</H2>
+		</section>
+		<Divider
+			lineColor={colors.dark_teal}
+			backgroundColor={colors.light_teal}
+		/>
+		<section
+			style={pipe(
+				{
+					"background-color": colors.light_teal,
+					color: colors.dark_teal,
+					display: "grid",
+					gap: "32px",
+					"padding-inline": "32px",
+					"padding-block": "32px",
+				},
+				on("@media (min-width: 1024px)", {
+					gap: "32px",
+					"align-items": "center",
+					"grid-template-columns":
+						"repeat(6, [main] minmax(0, 1fr)) [main]",
+					"padding-inline": "64px",
+					"padding-block": "64px",
+				}),
+				on("@media (min-width: 1280px)", {
+					"grid-template-columns": [
+						"minmax(0, 1fr)",
+						"repeat(6, [main] minmax(0, 1fr))",
+						"[main] minmax(0, 1fr)",
+					].join(" "),
+					"padding-inline": 0,
+				}),
+			)}
+		>
+			<H2
+				style={pipe(
+					{
+						"font-size": "64px",
+						"grid-column-start": "main 1",
+						"grid-column-end": "main -1",
+						"justify-self": "start",
+						// Half of the stroke width is covered by the fill color
+						"-webkit-text-stroke-color": colors.dark_teal,
+						"-webkit-text-stroke-width": "8px",
+						"paint-order": "markers stroke fill",
+						color: colors.milk,
+						rotate: "-1.5deg",
+					},
+					on("@media (min-width: 1024px)", {
+						"font-size": "96px",
+						"-webkit-text-stroke-width": "10px",
+					}),
+				)}
+			>
+				Kalt&shy;getränke
+			</H2>
+			{
+				drinkGroups.entries().map(([group, drinks]) => (
+					<>
+						<H3
+							style={pipe(
+								{
+									"grid-column-start": "main 1",
+									"grid-column-end": "main -1",
+									"font-size": "48px",
+									"padding-left": `${32 + 12 + lineThicknessPx}px`,
+								},
+								on("@media (min-width: 1024px)", {
+									"padding-left": `${32 + lineThicknessPx}px`,
+								}),
+							)}
+						>
+							{group}
+						</H3>
+						<ul
+							style={pipe(
+								{
+									display: "grid",
+									"grid-column-start": "main 1",
+									"grid-column-end": "main -1",
+									"grid-template-columns": "subgrid",
+									"align-items": "center",
+									"row-gap": "32px",
+									"padding-left": "12px",
+									"padding-bottom": "32px",
+								},
+								on("@media (min-width: 1024px)", {
+									"row-gap": "32px",
+									"padding-left": 0,
+								}),
+							)}
+						>
+							{drinks.map((drink) => (
+								<Paper
+									style={{
+										"grid-column-end": "span 2",
+										position: "relative",
+										"padding-block": "16px",
+										"padding-right": "16px",
+										"padding-left": "32px",
+									}}
+								>
+									<H4
+										style={{
+											"padding-bottom": "8px",
+										}}
+									>
+										{drink.data.name}
+									</H4>
+									{drink.data.image && (
+										<Image
+											src={drink.data.image}
+											alt={drink.data.name}
+											style={{
+												position: "absolute",
+												left: 0,
+												top: "-12px",
+												bottom: "-12px",
+												height: "calc(100% + 24px)",
+												width: "auto",
+												translate: "-50%",
+											}}
+										/>
+									)}
+									<p>{drink.data.size_litres}L</p>
+									{/* TODO: Internationalization */}
+									<p>
+										{new Intl.NumberFormat(undefined, {
+											style: "currency",
+											currency: "EUR",
+										}).format(drink.data.price)}
+									</p>
+								</Paper>
+							))}
+						</ul>
+					</>
+				))
+			}
 		</section>
 	</main>
 </Layout>

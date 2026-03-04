@@ -26,12 +26,6 @@
 		"indentWidth": 4,
 		"lineWidth": 100
 	},
-	"html": {
-		"experimentalFullSupportEnabled": true,
-		"formatter": {
-			"enabled": true
-		}
-	},
 	"json": {
 		"assist": {
 			"enabled": false
@@ -44,6 +38,7 @@
 		}
 	},
 	"linter": {
+		"includes": ["**", "!**/*.astro"],
 		"domains": {
 			"solid": "recommended"
 		},

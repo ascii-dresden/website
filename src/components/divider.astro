@@ -4,7 +4,13 @@ import type { DataType, Globals } from "csstype";
 
 import { lineThicknessPx } from "src/css.ts";
 
-import { endY, patternHeightPx, patternWidthPx, SIZE_PX, startY } from "./divider.ts";
+import {
+	endY,
+	patternHeightPx,
+	patternWidthPx,
+	SIZE_PX,
+	startY,
+} from "./divider.ts";
 
 type Props = {
 	backgroundColor?: Globals | DataType.Color;
@@ -17,7 +23,7 @@ type Props = {
 
 // TODO: Generate pattern ID
 const patternId = btoa(
-	`${Astro.props.lineColor}${Astro.props.backgroundColor ?? ""}${Astro.props.flip ? "flip" : ""}`
+	`${Astro.props.lineColor}${Astro.props.backgroundColor ?? ""}${Astro.props.flip ? "flip" : ""}`,
 );
 ---
 
@@ -49,10 +55,9 @@ const patternId = btoa(
 						`M0,${endY}`,
 						`C${SIZE_PX},${endY} ${SIZE_PX},${startY} ${SIZE_PX * 2},${startY}`,
 						`C${SIZE_PX * 3},${startY} ${SIZE_PX * 3},${endY} ${patternWidthPx},${endY}`,
-					].join(" ")}
-				/>
+					].join(" ")}></path>
 			</pattern>
 		</defs>
-		<rect width="100%" height="100%" fill={`url(#${patternId})`} />
+		<rect width="100%" height="100%" fill={`url(#${patternId})`}></rect>
 	</svg>
 </div>
