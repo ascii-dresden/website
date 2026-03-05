@@ -5,28 +5,30 @@ import { pipe } from "remeda";
 
 // HACK: Inlined svg assets are broken in inline css styles
 import assetGrain from "src/assets/grain.svg?no-inline";
+import { Coffee } from "src/components/coffee.tsx";
 import Divider from "src/components/divider.astro";
 import { H2, H3, H4 } from "src/components/heading.tsx";
 import { Paper } from "src/components/paper.tsx";
 import { colors, lineThicknessPx, on } from "src/css.ts";
 import Layout from "src/layout.astro";
 
-const drinks = await getCollection("drinks");
+const coldDrinks = await getCollection("coldDrinks");
+type ColdDrink = (typeof coldDrinks)[0];
 
-type Drink = (typeof drinks)[0];
-
-const drinkGroups: Map<string, Drink[]> = new Map();
-
-for (const drink of drinks) {
-	for (const group of drink.data.groups) {
-		const drinkGroup = drinkGroups.get(group);
-		if (drinkGroup) {
-			drinkGroup.push(drink);
+const coldDrinksByGroup: Map<string, ColdDrink[]> = new Map();
+for (const coldDrink of coldDrinks) {
+	for (const group of coldDrink.data.groups) {
+		const drinks = coldDrinksByGroup.get(group);
+		if (drinks) {
+			drinks.push(coldDrink);
 		} else {
-			drinkGroups.set(group, [drink]);
+			coldDrinksByGroup.set(group, [coldDrink]);
 		}
 	}
 }
+
+const hotDrinks = await getCollection("hotDrinks");
+type HotDrink = (typeof hotDrinks)[0];
 ---
 
 <Layout>
@@ -39,6 +41,7 @@ for (const drink of drinks) {
 					"background-image": `url(${assetGrain})`,
 					"background-size": "256px",
 					display: "grid",
+					"grid-template-columns": "[main] minmax(0, 1fr) [main]",
 					gap: "32px",
 					"padding-inline": "32px",
 					"padding-block": "32px",
@@ -83,6 +86,62 @@ for (const drink of drinks) {
 			>
 				Heiß&shy;getränke
 			</H2>
+			<Paper
+				style={pipe(
+					{
+						padding: "16px",
+					},
+					on("@media (min-width: 1024px)", {
+						rotate: "-1.5deg",
+						"grid-column-start": "main 1",
+						"grid-column-end": "span 2",
+					}),
+				)}
+			>
+				Alle milch&shy;haltigen Heiß&shy;getränke auch
+				<b style={{ color: colors.dark_green }}>vegan</b> mit Hafer&shy;milch
+				erhältlich!
+			</Paper>
+			<ul style={{ display: "contents" }}>
+				{
+					hotDrinks.map((hotDrink) => (
+						<li
+							style={pipe(
+								{},
+								on("@media (min-width: 1024px)", {
+									"grid-column-end": "span 2",
+								}),
+							)}
+						>
+							<div
+								style={{
+									"padding-left": "46px",
+									display: "grid",
+									"grid-auto-columns": "max-content",
+									"grid-auto-flow": "column",
+									gap: "16px",
+									"padding-bottom": "8px",
+								}}
+							>
+								<H4>{hotDrink.data.name}</H4>
+								<p>
+									{new Intl.NumberFormat(undefined, {
+										style: "currency",
+										currency: "EUR",
+									}).format(hotDrink.data.price)}
+								</p>
+							</div>
+							<Coffee
+								ingredients={hotDrink.data.ingredients}
+								style={{
+									height: "122px",
+								}}
+								client:load
+							/>
+						</li>
+					))
+				}
+			</ul>
 		</section>
 		<Divider
 			lineColor={colors.dark_teal}
@@ -139,7 +198,7 @@ for (const drink of drinks) {
 				Kalt&shy;getränke
 			</H2>
 			{
-				drinkGroups.entries().map(([group, drinks]) => (
+				coldDrinksByGroup.entries().map(([group, drinks]) => (
 					<>
 						<H3
 							style={pipe(
@@ -176,6 +235,7 @@ for (const drink of drinks) {
 						>
 							{drinks.map((drink) => (
 								<Paper
+									as="li"
 									style={{
 										"grid-column-end": "span 2",
 										position: "relative",

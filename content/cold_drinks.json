@@ -228,7 +228,7 @@
 		"image": "./images/bad_brambacher_grapefruit.png",
 		"size_litres": 0.5,
 		"price": 1,
-		"groups": ["Garten­limonaden"]
+		"groups": ["Garten\u00adlimonaden"]
 	},
 	{
 		"id": "bad_brambacher_orange",
@@ -236,7 +236,7 @@
 		"image": "./images/bad_brambacher_orange.png",
 		"size_litres": 0.5,
 		"price": 1,
-		"groups": ["Garten­limonaden"]
+		"groups": ["Garten\u00adlimonaden"]
 	},
 	{
 		"id": "bad_brambacher_johannisbeere",
@@ -244,7 +244,7 @@
 		"image": "./images/bad_brambacher_johannisbeere.png",
 		"size_litres": 0.5,
 		"price": 1,
-		"groups": ["Garten­limonaden"]
+		"groups": ["Garten\u00adlimonaden"]
 	},
 	{
 		"id": "bad_brambacher_zitrone",
@@ -252,7 +252,7 @@
 		"image": "./images/bad_brambacher_zitrone.png",
 		"size_litres": 0.5,
 		"price": 1,
-		"groups": ["Garten­limonaden"]
+		"groups": ["Garten\u00adlimonaden"]
 	},
 	{
 		"id": "heide_orangensaft",

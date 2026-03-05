@@ -1,0 +1,32 @@
+[
+	{
+		"id": "coffee",
+		"name": "Coffee",
+		"price": 1,
+		"ingredients": [
+			{
+				"amount": 0.5,
+				"type": "coffee"
+			},
+			{
+				"amount": 0.25,
+				"type": "water"
+			}
+		]
+	},
+	{
+		"id": "hot_chocolate",
+		"name": "Hot Chocolate",
+		"price": 1,
+		"ingredients": [
+			{
+				"amount": 0.5,
+				"type": "dark_chocolate"
+			},
+			{
+				"amount": 0.5,
+				"type": "milk"
+			}
+		]
+	}
+]

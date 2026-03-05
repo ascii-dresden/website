@@ -46,9 +46,10 @@ export const dark = or(
 export const colors = {
 	black: "oklch(0 0 0)",
 	creme: "oklch(0.75 0.1 57)",
+	dark_green: "oklch(0.55 0.15 132)",
 	dark_teal: "oklch(0.29 0.04 218)",
 	espresso: "oklch(0.27 0.06 40)",
-	green: "oklch(0.72 0.16 160)",
+	light_green: "oklch(0.85 0.15 128)",
 	light_teal: "oklch(0.95 0.02 210)",
 	milk: "oklch(1 0 0)",
 	red: "oklch(0.72 0.18 7)",
