@@ -1,11 +1,4 @@
-import {
-	type Component,
-	type ComponentProps,
-	createSignal,
-	For,
-	onMount,
-	splitProps,
-} from "solid-js";
+import { type Component, type ComponentProps, splitProps } from "solid-js";
 
 import { colors, lineThicknessPx } from "src/css.ts";
 
@@ -110,6 +103,11 @@ export const Coffee: Component<CoffeeProps> = function (props) {
 				stroke="currentColor"
 				stroke-width={`${lineThicknessPx}px`}
 			/>
+			<For each={props.ingredients}>
+				{(ingredient, i) => (
+					<CoffeeSegmentInfo offset={offsets()[i()]!} ingredient={ingredient} />
+				)}
+			</For>
 		</svg>
 	);
 };
@@ -122,17 +120,9 @@ type CoffeeSegmentProps = {
 const PADDING_PX = 8;
 
 const CoffeeSegment: Component<CoffeeSegmentProps> = function (props) {
-	const [textBbox, setTextBbox] = createSignal<DOMRect>();
-
 	const segmentCenter = () => ({
 		x: FLUID_BOTTOM.x + FLUID_BOTTOM.width / 2,
 		y: FLUID_BOTTOM.y + FLUID_VECTOR.y * (props.offset + props.ingredient.amount / 2),
-	});
-
-	let text: SVGTextElement;
-
-	onMount(() => {
-		setTextBbox(text!.getBBox());
 	});
 
 	return (
@@ -151,6 +141,38 @@ const CoffeeSegment: Component<CoffeeSegmentProps> = function (props) {
 				stroke-width={`${lineThicknessPx}px`}
 			/>
 			<circle
+				stroke-width={`${lineThicknessPx * 3}px`}
+				stroke={colors.milk}
+				fill="transparent"
+				cx={segmentCenter().x}
+				cy={segmentCenter().y}
+				r={2}
+			/>
+			<line
+				stroke-width={`${lineThicknessPx * 3}px`}
+				stroke={colors.milk}
+				x1={segmentCenter().x + 4}
+				y1={segmentCenter().y}
+				x2={
+					FLUID_BOTTOM.x +
+					FLUID_BOTTOM.width +
+					FLUID_VECTOR.x * (props.offset + props.ingredient.amount / 2)
+				}
+				y2={segmentCenter().y}
+			/>
+		</>
+	);
+};
+
+const CoffeeSegmentInfo: Component<CoffeeSegmentProps> = function (props) {
+	const segmentCenter = () => ({
+		x: FLUID_BOTTOM.x + FLUID_BOTTOM.width / 2,
+		y: FLUID_BOTTOM.y + FLUID_VECTOR.y * (props.offset + props.ingredient.amount / 2),
+	});
+
+	return (
+		<>
+			<circle
 				stroke-width={`${lineThicknessPx}px`}
 				stroke="currentColor"
 				fill="transparent"
@@ -166,19 +188,7 @@ const CoffeeSegment: Component<CoffeeSegmentProps> = function (props) {
 				x2={138}
 				y2={segmentCenter().y}
 			/>
-			<rect
-				x={138}
-				y={segmentCenter().y - 16 / 2 - PADDING_PX}
-				width={textBbox()?.width + 2 * PADDING_PX}
-				height={16 + 2 * PADDING_PX}
-				fill={colors.milk}
-				stroke-width={2}
-				stroke="currentColor"
-				rx={8}
-				ry={8}
-			/>
 			<text
-				ref={text!}
 				x={138 + PADDING_PX}
 				y={segmentCenter().y}
 				fill="currentColor"

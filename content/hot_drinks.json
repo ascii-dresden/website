@@ -15,6 +15,21 @@
 		]
 	},
 	{
+		"id": "cafe_creme",
+		"name": "Café Crème",
+		"price": 1,
+		"ingredients": [
+			{
+				"amount": 0.5,
+				"type": "coffee"
+			},
+			{
+				"amount": 0.25,
+				"type": "water"
+			}
+		]
+	},
+	{
 		"id": "hot_chocolate",
 		"name": "Hot Chocolate",
 		"price": 1,

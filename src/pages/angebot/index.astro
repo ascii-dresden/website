@@ -107,20 +107,37 @@ type HotDrink = (typeof hotDrinks)[0];
 					hotDrinks.map((hotDrink) => (
 						<li
 							style={pipe(
-								{},
+								{
+									display: "grid",
+									gap: "16px",
+									"grid-template-columns":
+										"16px minmax(0, 1fr)",
+									"grid-template-rows":
+										"max-content max-content",
+								},
 								on("@media (min-width: 1024px)", {
 									"grid-column-end": "span 2",
 								}),
 							)}
 						>
+							<Paper
+								style={{
+									"grid-column-start": "2",
+									"grid-column-end": "-1",
+									"grid-row-start": "1",
+									"grid-row-end": "-1",
+									"margin-bottom": "8px",
+								}}
+							/>
 							<div
 								style={{
-									"padding-left": "46px",
-									display: "grid",
-									"grid-auto-columns": "max-content",
-									"grid-auto-flow": "column",
-									gap: "16px",
-									"padding-bottom": "8px",
+									"grid-column-start": "2",
+									"grid-row-start": "1",
+									"z-index": "1",
+									padding: "16px",
+									"border-bottom-style": "dotted",
+									// Optically balance dotted line by increasing their size slightly
+									"border-bottom-width": `${lineThicknessPx + 1}px`,
 								}}
 							>
 								<H4>{hotDrink.data.name}</H4>
@@ -135,6 +152,11 @@ type HotDrink = (typeof hotDrinks)[0];
 								ingredients={hotDrink.data.ingredients}
 								style={{
 									height: "122px",
+									"grid-column-start": "1",
+									"grid-column-end": "-1",
+									"grid-row-start": "-2",
+									"grid-row-end": "-1",
+									"z-index": "1",
 								}}
 								client:load
 							/>
@@ -244,13 +266,7 @@ type HotDrink = (typeof hotDrinks)[0];
 										"padding-left": "32px",
 									}}
 								>
-									<H4
-										style={{
-											"padding-bottom": "8px",
-										}}
-									>
-										{drink.data.name}
-									</H4>
+									<H4 style={{}}>{drink.data.name}</H4>
 									{drink.data.image && (
 										<Image
 											src={drink.data.image}
@@ -266,7 +282,6 @@ type HotDrink = (typeof hotDrinks)[0];
 											}}
 										/>
 									)}
-									<p>{drink.data.size_litres}L</p>
 									{/* TODO: Internationalization */}
 									<p>
 										{new Intl.NumberFormat(undefined, {
@@ -274,6 +289,7 @@ type HotDrink = (typeof hotDrinks)[0];
 											currency: "EUR",
 										}).format(drink.data.price)}
 									</p>
+									<p>{drink.data.size_litres}L</p>
 								</Paper>
 							))}
 						</ul>
