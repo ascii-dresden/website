@@ -1,31 +1,37 @@
 [
 	{
-		"id": "coffee",
-		"name": "Coffee",
-		"price": 1,
-		"ingredients": [
-			{
-				"amount": 0.5,
-				"type": "coffee"
-			},
-			{
-				"amount": 0.25,
-				"type": "water"
-			}
-		]
-	},
-	{
 		"id": "cafe_creme",
 		"name": "Café Crème",
 		"price": 1,
 		"ingredients": [
 			{
-				"amount": 0.5,
-				"type": "coffee"
+				"type": "coffee",
+				"ml": 220,
+				"g": 13
+			}
+		]
+	},
+	{
+		"id": "cappuccino",
+		"name": "Cappuccino",
+		"price": 1.5,
+		"ingredients": [
+			{
+				"type": "milk",
+				"ml": 20
 			},
 			{
-				"amount": 0.25,
-				"type": "water"
+				"type": "espresso",
+				"ml": 40,
+				"g": 18
+			},
+			{
+				"type": "foam_liquid",
+				"ml": 180
+			},
+			{
+				"type": "foam_fluffy",
+				"ml": 30
 			}
 		]
 	},
@@ -35,12 +41,232 @@
 		"price": 1,
 		"ingredients": [
 			{
-				"amount": 0.5,
-				"type": "dark_chocolate"
+				"type": "milk",
+				"ml": 60
 			},
 			{
-				"amount": 0.5,
-				"type": "milk"
+				"type": "foam_creamy",
+				"ml": 30
+			},
+			{
+				"type": "chocolate",
+				"g": 30,
+				"ml": 95
+			},
+			{
+				"type": "foam_firm",
+				"ml": 20
+			}
+		]
+	},
+	{
+		"id": "coffee",
+		"name": "Coffee",
+		"price": 1,
+		"ingredients": [
+			{
+				"type": "coffee",
+				"g": 11,
+				"ml": 220
+			}
+		]
+	},
+	{
+		"id": "milk_coffee",
+		"name": "Milk Coffee",
+		"price": 1.5,
+		"ingredients": [
+			{
+				"type": "coffee",
+				"g": 9.5,
+				"ml": 190
+			},
+			{
+				"type": "milk",
+				"ml": 50
+			},
+			{
+				"type": "foam_creamy",
+				"ml": 30
+			}
+		]
+	},
+	{
+		"id": "weak_coffee",
+		"name": "Weak Coffee",
+		"price": 1,
+		"ingredients": [
+			{
+				"type": "coffee",
+				"g": 8,
+				"ml": 220
+			}
+		]
+	},
+	{
+		"id": "latte_macchiato",
+		"name": "Latte Macchiato",
+		"price": 1.5,
+		"ingredients": [
+			{
+				"type": "milk",
+				"ml": 120
+			},
+			{
+				"type": "foam_liquid",
+				"ml": 180
+			},
+			{
+				"type": "espresso",
+				"g": 16,
+				"ml": 40
+			}
+		]
+	},
+	{
+		"id": "strong_coffee",
+		"name": "Strong Coffee",
+		"price": 1,
+		"ingredients": [
+			{
+				"type": "coffee",
+				"g": 17,
+				"ml": 220
+			}
+		]
+	},
+	{
+		"id": "chococcino",
+		"name": "Chococcino",
+		"price": 1.5,
+		"ingredients": [
+			{
+				"type": "milk",
+				"ml": 55
+			},
+			{
+				"type": "foam_creamy",
+				"ml": 60
+			},
+			{
+				"type": "chocolate",
+				"g": 35,
+				"ml": 95
+			},
+			{
+				"type": "espresso",
+				"g": 16,
+				"ml": 40
+			}
+		]
+	},
+	{
+		"id": "americano",
+		"name": "Americano",
+		"price": 1,
+		"ingredients": [
+			{
+				"type": "espresso",
+				"g": 13,
+				"ml": 190
+			}
+		]
+	},
+	{
+		"id": "white_chococcino",
+		"name": "White Chococcino",
+		"price": 1.5,
+		"ingredients": [
+			{
+				"type": "milk",
+				"ml": 65
+			},
+			{
+				"type": "foam_creamy",
+				"ml": 70
+			},
+			{
+				"type": "white_chocolate",
+				"g": 25,
+				"ml": 100
+			},
+			{
+				"type": "espresso",
+				"g": 16,
+				"ml": 40
+			}
+		]
+	},
+	{
+		"id": "espresso",
+		"name": "Espresso",
+		"price": 1,
+		"ingredients": [
+			{
+				"type": "espresso",
+				"g": 16,
+				"ml": 40
+			}
+		]
+	},
+	{
+		"id": "chocolate_espresso",
+		"name": "Chocolate Espresso",
+		"price": 1.5,
+		"ingredients": [
+			{
+				"type": "foam_creamy",
+				"ml": 80
+			},
+			{
+				"type": "chocolate",
+				"g": 25,
+				"ml": 100
+			},
+			{
+				"type": "espresso",
+				"g": 16,
+				"ml": 40
+			}
+		]
+	},
+	{
+		"id": "espresso_doppio",
+		"name": "Espresso Doppio",
+		"price": 1.2,
+		"ingredients": [
+			{
+				"type": "espresso",
+				"g": 18,
+				"ml": 50
+			}
+		]
+	},
+	{
+		"id": "ristretto",
+		"name": "Ristretto",
+		"price": 1,
+		"ingredients": [
+			{
+				"type": "espresso",
+				"g": 16,
+				"ml": 16
+			}
+		]
+	},
+	{
+		"id": "espresso_macchiato",
+		"name": "Espresso Macchiato",
+		"price": 1,
+		"ingredients": [
+			{
+				"type": "espresso",
+				"g": 16,
+				"ml": 40
+			},
+			{
+				"type": "foam_liquid",
+				"ml": 25
 			}
 		]
 	}

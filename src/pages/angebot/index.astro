@@ -5,7 +5,7 @@ import { pipe } from "remeda";
 
 // HACK: Inlined svg assets are broken in inline css styles
 import assetGrain from "src/assets/grain.svg?no-inline";
-import { Coffee } from "src/components/coffee.tsx";
+import { Cup } from "src/components/coffee.tsx";
 import Divider from "src/components/divider.astro";
 import { H2, H3, H4 } from "src/components/heading.tsx";
 import { Paper } from "src/components/paper.tsx";
@@ -86,22 +86,6 @@ type HotDrink = (typeof hotDrinks)[0];
 			>
 				Heiß&shy;getränke
 			</H2>
-			<Paper
-				style={pipe(
-					{
-						padding: "16px",
-					},
-					on("@media (min-width: 1024px)", {
-						rotate: "-1.5deg",
-						"grid-column-start": "main 1",
-						"grid-column-end": "span 2",
-					}),
-				)}
-			>
-				Alle milch&shy;haltigen Heiß&shy;getränke auch
-				<b style={{ color: colors.dark_green }}>vegan</b> mit Hafer&shy;milch
-				erhältlich!
-			</Paper>
 			<ul style={{ display: "contents" }}>
 				{
 					hotDrinks.map((hotDrink) => (
@@ -148,10 +132,9 @@ type HotDrink = (typeof hotDrinks)[0];
 									}).format(hotDrink.data.price)}
 								</p>
 							</div>
-							<Coffee
+							<Cup
 								ingredients={hotDrink.data.ingredients}
 								style={{
-									height: "122px",
 									"grid-column-start": "1",
 									"grid-column-end": "-1",
 									"grid-row-start": "-2",

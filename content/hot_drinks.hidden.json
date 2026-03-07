@@ -1,0 +1,147 @@
+[
+	{
+		"id": "swift",
+		"name": "Swift",
+		"price": 1.5,
+		"ingredients": [
+			{
+				"type": "chocolate",
+				"g": 27,
+				"ml": 100
+			},
+			{
+				"type": "espresso",
+				"g": 12,
+				"ml": 24
+			},
+			{
+				"type": "milk",
+				"ml": 80
+			},
+			{
+				"type": "foam_liquid",
+				"ml": 25
+			}
+		]
+	},
+	{
+		"id": "schachkakao",
+		"name": "Schachkakao",
+		"price": 1.5,
+		"ingredients": [
+			{
+				"type": "milk",
+				"ml": 40
+			},
+			{
+				"type": "foam_creamy",
+				"ml": 30
+			},
+			{
+				"type": "chocolate",
+				"g": 5,
+				"ml": 40
+			},
+			{
+				"type": "chocolate",
+				"g": 30,
+				"ml": 85
+			},
+			{
+				"type": "foam_firm",
+				"ml": 20
+			}
+		]
+	},
+	{
+		"id": "hot_chocolate_no_foam",
+		"name": "Hot Chocolate (No Foam)",
+		"price": 1,
+		"ingredients": [
+			{
+				"type": "milk",
+				"ml": 130
+			},
+			{
+				"type": "chocolate",
+				"g": 27,
+				"ml": 100
+			}
+		]
+	},
+	{
+		"id": "johannsi",
+		"name": "Johannsi",
+		"price": 2,
+		"ingredients": [
+			{
+				"type": "milk",
+				"ml": 220
+			},
+			{
+				"type": "foam_liquid",
+				"ml": 280
+			},
+			{
+				"type": "espresso",
+				"g": 16,
+				"ml": 40
+			},
+			{
+				"type": "espresso",
+				"g": 10,
+				"ml": 20
+			}
+		]
+	},
+	{
+		"id": "detektrunk",
+		"name": "Detektrunk",
+		"price": 2,
+		"ingredients": [
+			{
+				"type": "milk",
+				"ml": 130
+			},
+			{
+				"type": "chocolate",
+				"g": 35,
+				"ml": 120
+			},
+			{
+				"type": "foam_liquid",
+				"ml": 170
+			},
+			{
+				"type": "espresso",
+				"g": 20,
+				"ml": 60
+			},
+			{
+				"type": "foam_firm",
+				"ml": 50
+			}
+		]
+	},
+	{
+		"id": "hot_chocolate_no_foam_with_shot",
+		"name": "Kakao w/o Schaum mit Schuss",
+		"price": 1.5,
+		"ingredients": [
+			{
+				"type": "espresso",
+				"g": 5,
+				"ml": 20
+			},
+			{
+				"type": "chocolate",
+				"g": 27,
+				"ml": 180
+			},
+			{
+				"type": "milk",
+				"ml": 110
+			}
+		]
+	}
+]
