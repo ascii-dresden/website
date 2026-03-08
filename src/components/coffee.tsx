@@ -137,7 +137,7 @@ const CupIngredients: Component<CupIngredientsProps> = function (props) {
 					].join("")}
 					fill={
 						INGREDIENTS[i.ingredient.type].dither
-							? `url(#dither-${INGREDIENTS[i.ingredient.type].dither?.intensity})`
+							? `url(#dither${INGREDIENTS[i.ingredient.type].dither?.intensity})`
 							: INGREDIENTS[i.ingredient.type].color
 					}
 					stroke="currentColor"
@@ -303,11 +303,11 @@ export const LargeCup: Component<CupProps> = function (props) {
 				<DitherPattern intensity={2} color="currentColor" />
 				<DitherPattern intensity={3} color="currentColor" />
 				<DitherPattern intensity={4} color="currentColor" />
+				<linearGradient id="largeCupGradient" gradientTransform="rotate(110)">
+					<stop offset="20%" stop-color="oklch(1 0 0)" />
+					<stop offset="100%" stop-color="oklch(0.7 0 0)" />
+				</linearGradient>
 			</defs>
-			<linearGradient id="largeCupGradient" gradientTransform="rotate(110)">
-				<stop offset="20%" stop-color="oklch(1 0 0)" />
-				<stop offset="100%" stop-color="oklch(0.7 0 0)" />
-			</linearGradient>
 			<CupIngredients ingredients={offsetIngredients()} metrics={LARGE_CUP_METRICS} />
 			<path
 				d="M3.39,1c0.929,0 1.721,0.671 1.874,1.588c1.205,7.23 6.169,37.016 7.439,44.633c0.197,1.18 0.569,2.324 1.104,3.394c0.736,1.472 1.812,3.623 2.507,5.014c0.454,0.908 0.753,1.886 0.884,2.893c1.363,10.449 9.347,71.661 11.347,86.997c0.26,1.992 1.957,3.483 3.966,3.483c10.062,0 38.914,0 48.976,0c2.009,0 3.707,-1.49 3.966,-3.483c1.971,-15.114 9.755,-74.787 11.284,-86.512c0.173,-1.328 0.567,-2.617 1.166,-3.814c0.759,-1.517 1.821,-3.643 2.484,-4.967c0.406,-0.811 0.688,-1.679 0.837,-2.574c1.135,-6.81 6.228,-37.368 7.491,-44.946c0.164,-0.984 1.015,-1.705 2.012,-1.705c0.001,0 0.001,0 0.002,0c0.58,0 1.134,0.245 1.523,0.676c0.389,0.43 0.579,1.005 0.521,1.583c-1.676,16.757 -12.189,121.886 -15.054,150.538c-0.409,4.09 -3.85,7.204 -7.96,7.204c-15.206,-0 -50.314,-0 -65.52,-0c-4.11,0 -7.551,-3.114 -7.96,-7.204c-2.865,-28.648 -13.375,-133.753 -15.053,-150.531c-0.058,-0.579 0.132,-1.156 0.522,-1.587c0.391,-0.432 0.945,-0.678 1.527,-0.678c0.038,-0 0.076,-0 0.114,-0Z"
@@ -321,13 +321,18 @@ export const LargeCup: Component<CupProps> = function (props) {
 };
 
 // TODO: Cleanup
-// FIXME: This is invisible
 export const DitherPattern: Component<{
 	intensity: 1 | 2 | 3 | 4;
 	color: Globals | DataType.Color;
 }> = function (props) {
 	return (
-		<pattern id={`dither-${props.intensity}`} viewBox="0 0 8 8" width="8" height="8">
+		<pattern
+			id={`dither${props.intensity}`}
+			viewBox="0 0 8 8"
+			width="8"
+			height="8"
+			patternUnits="userSpaceOnUse"
+		>
 			<rect fill={props.color} x="6" y="0" width="2" height="2" />
 			<rect fill={props.color} x="0" y="2" width="2" height="2" />
 			<rect fill={props.color} x="4" y="2" width="2" height="2" />

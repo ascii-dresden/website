@@ -27,7 +27,7 @@ for (const coldDrink of coldDrinks) {
 	}
 }
 
-const hotDrinks = await getCollection("hotDrinks");
+const hotDrinks = (await getCollection("hotDrinks")).slice(0, 2);
 type HotDrink = (typeof hotDrinks)[0];
 ---
 
