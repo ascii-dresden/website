@@ -9,26 +9,25 @@ import { Cup } from "src/components/coffee.tsx";
 import Divider from "src/components/divider.astro";
 import { H2, H3, H4 } from "src/components/heading.tsx";
 import { Paper } from "src/components/paper.tsx";
+import type { ColdDrink } from "src/content.config.ts";
 import { colors, lineThicknessPx, on } from "src/css.ts";
 import Layout from "src/layout.astro";
 
 const coldDrinks = await getCollection("coldDrinks");
-type ColdDrink = (typeof coldDrinks)[0];
 
 const coldDrinksByGroup: Map<string, ColdDrink[]> = new Map();
 for (const coldDrink of coldDrinks) {
 	for (const group of coldDrink.data.groups) {
 		const drinks = coldDrinksByGroup.get(group);
 		if (drinks) {
-			drinks.push(coldDrink);
+			drinks.push(coldDrink.data);
 		} else {
-			coldDrinksByGroup.set(group, [coldDrink]);
+			coldDrinksByGroup.set(group, [coldDrink.data]);
 		}
 	}
 }
 
 const hotDrinks = await getCollection("hotDrinks");
-type HotDrink = (typeof hotDrinks)[0];
 ---
 
 <Layout>
@@ -147,7 +146,6 @@ type HotDrink = (typeof hotDrinks)[0];
 										"margin-left": "-32px",
 									}),
 								)}
-								client:load
 							/>
 						</li>
 					))
@@ -255,11 +253,11 @@ type HotDrink = (typeof hotDrinks)[0];
 										"padding-left": "32px",
 									}}
 								>
-									<H4 style={{}}>{drink.data.name}</H4>
-									{drink.data.image && (
+									<H4 style={{}}>{drink.name}</H4>
+									{drink.image && (
 										<Image
-											src={drink.data.image}
-											alt={drink.data.name}
+											src={drink.image}
+											alt={drink.name}
 											style={{
 												position: "absolute",
 												left: 0,
@@ -276,9 +274,9 @@ type HotDrink = (typeof hotDrinks)[0];
 										{new Intl.NumberFormat(undefined, {
 											style: "currency",
 											currency: "EUR",
-										}).format(drink.data.price)}
+										}).format(drink.price)}
 									</p>
-									<p>{drink.data.size_litres}L</p>
+									<p>{drink.size_litres}L</p>
 								</Paper>
 							))}
 						</ul>

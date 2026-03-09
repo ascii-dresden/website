@@ -1,6 +1,7 @@
 // Cup sizes:
 // 6cl, 25cl, 35cl
 
+import { getCollection } from "astro:content";
 import type { DataType, Globals } from "csstype";
 import {
 	type Component,
@@ -11,99 +12,17 @@ import {
 	Switch,
 	splitProps,
 } from "solid-js";
-import { Dynamic } from "solid-js/web";
 
-import type { Ingredient, IngredientType } from "src/content.config.ts";
+import type { Ingredient } from "src/content.config.ts";
 import { colors, lineThicknessPx } from "src/css.ts";
-
-type IngredientData = {
-	color: Globals | DataType.Color;
-	dither?: {
-		intensity: 1 | 2 | 3 | 4;
-		color?: Globals | DataType.Color;
-	};
-	label: Component;
-
-	/**
-	 * Height of the label component
-	 */
-	labelHeight: number;
-};
-
-const INGREDIENTS: Record<IngredientType, IngredientData> = {
-	milk: {
-		color: colors.milk,
-		labelHeight: 36,
-		label: () => (
-			<g>
-				<text dominant-baseline="central">Milk</text>
-				<text dominant-baseline="central" y={20}>
-					Oat milk
-				</text>
-			</g>
-		),
-	},
-	chocolate: {
-		color: colors.espresso,
-		labelHeight: 16,
-		label: () => <text dominant-baseline="central">Chocolate</text>,
-	},
-	espresso: {
-		color: colors.espresso,
-		labelHeight: 16,
-		label: () => <text dominant-baseline="central">Espresso</text>,
-	},
-	coffee: {
-		color: colors.espresso,
-		labelHeight: 16,
-		label: () => <text dominant-baseline="central">Coffee</text>,
-	},
-	white_chocolate: {
-		color: colors.creme,
-		labelHeight: 16,
-		label: () => <text dominant-baseline="central">White Chocolate</text>,
-	},
-	foam_liquid: {
-		color: colors.milk,
-		dither: {
-			intensity: 1,
-			color: "oklch(0.5 0 0)",
-		},
-		labelHeight: 16,
-		label: () => <text dominant-baseline="central">Liquid Foam</text>,
-	},
-	foam_creamy: {
-		color: colors.espresso,
-		dither: {
-			intensity: 2,
-			color: "oklch(0.5 0 0)",
-		},
-		labelHeight: 16,
-		label: () => <text dominant-baseline="central">Creamy Foam</text>,
-	},
-	foam_fluffy: {
-		color: colors.espresso,
-		dither: {
-			intensity: 3,
-			color: "oklch(0.5 0 0)",
-		},
-		labelHeight: 16,
-		label: () => <text dominant-baseline="central">Fluffy Foam</text>,
-	},
-	foam_firm: {
-		color: colors.espresso,
-		dither: {
-			intensity: 4,
-			color: "oklch(0.5 0 0)",
-		},
-		labelHeight: 16,
-		label: () => <text dominant-baseline="central">Firm Foam</text>,
-	},
-};
 
 export type CupProps = ComponentProps<"svg"> & {
 	ingredients: Ingredient[];
 };
+
+const ingredientTypes = Object.fromEntries(
+	(await getCollection("ingredients")).map((ingredient) => [ingredient.id, ingredient.data])
+);
 
 export const Cup: Component<CupProps> = function (props) {
 	const totalSizeMl = () => props.ingredients.reduce((sum, ingredient) => sum + ingredient.ml, 0);
@@ -159,9 +78,10 @@ const CupIngredients: Component<CupIngredientsProps> = function (props) {
 						"Z",
 					].join("")}
 					fill={
-						INGREDIENTS[i.ingredient.type].dither
-							? `url(#dither${INGREDIENTS[i.ingredient.type].dither?.intensity})`
-							: INGREDIENTS[i.ingredient.type].color
+						ingredientTypes[i.ingredient.type.id]!.color
+						// INGREDIENTS[i.ingredient.type].dither
+						// 	? `url(#dither${INGREDIENTS[i.ingredient.type].dither?.intensity})`
+						// 	: INGREDIENTS[i.ingredient.type].color
 					}
 					stroke="currentColor"
 					stroke-width={`${lineThicknessPx}px`}
@@ -211,7 +131,8 @@ const CupIngredientLabels: Component<CupIngredientsProps> = function (props) {
 	const labeledOffsetIngredients = createMemo(() => {
 		let totalHeight = 0;
 		for (let i = props.ingredients.length - 1; i >= 0; i--) {
-			totalHeight += INGREDIENTS[props.ingredients[i]!.ingredient.type].labelHeight;
+			// TODO: Replace `16` with computed label height based on lines
+			totalHeight += 16;
 			if (i < props.ingredients.length - 1) {
 				totalHeight += LABEL_GAP;
 			}
@@ -222,7 +143,7 @@ const CupIngredientLabels: Component<CupIngredientsProps> = function (props) {
 		for (let i = props.ingredients.length - 1; i >= 0; i--) {
 			const ingredient = props.ingredients[i]!;
 			v[i] = { ingredient, labelY };
-			labelY += INGREDIENTS[ingredient.ingredient.type].labelHeight + LABEL_GAP;
+			labelY += 16 + LABEL_GAP;
 		}
 		return v;
 	});
@@ -238,8 +159,8 @@ const CupIngredientLabels: Component<CupIngredientsProps> = function (props) {
 
 				const labelAnchorY =
 					label.labelY +
-					(INGREDIENTS[label.ingredient.ingredient.type].labelHeight - LABEL_FONT_SIZE) /
-						2;
+					// TODO: Replace `16` with computed label height based on lines
+					(16 - LABEL_FONT_SIZE) / 2;
 
 				return (
 					<>
@@ -271,14 +192,13 @@ const CupIngredientLabels: Component<CupIngredientsProps> = function (props) {
 							stroke="currentColor"
 							d={`M${ingredientCenterX + 2},${ingredientCenterY} h8 L${props.metrics.width},${labelAnchorY} h8`}
 						/>
-						<g
-							transform={`translate(${props.metrics.width + 12} ${label.labelY})`}
-							fill="currentColor"
+						<text
+							x={props.metrics.width + 16}
+							y={label.labelY}
+							dominant-baseline="central"
 						>
-							<Dynamic
-								component={INGREDIENTS[label.ingredient.ingredient.type].label}
-							/>
-						</g>
+							{ingredientTypes[label.ingredient.ingredient.type.id]!.label}
+						</text>
 					</>
 				);
 			}}
@@ -312,7 +232,7 @@ export const SmallCup: Component<CupProps> = function (props) {
 			<CupIngredients ingredients={offsetIngredients()} metrics={SMALL_CUP_METRICS} />
 			<path
 				d="M34.967,53.006l-24.967,-14.415c-4.134,-2.387 -7.151,-6.318 -8.387,-10.93c-1.236,-4.611 -0.589,-9.524 1.798,-13.659c4.971,-8.609 15.979,-11.559 24.588,-6.588l1.367,0.789l-0.338,-2.707c-0.274,-2.191 1.282,-4.191 3.473,-4.465c2.191,-0.274 4.191,1.282 4.465,3.473l7.343,58.744c0.125,1.001 0.976,1.752 1.985,1.752l45.407,0c1.009,0 1.859,-0.751 1.985,-1.752l7.343,-58.744c0.274,-2.191 2.275,-3.747 4.465,-3.473c2.191,0.274 3.747,2.275 3.473,4.465l-7.343,58.744c-0.626,5.004 -4.88,8.76 -9.923,8.76l-45.407,-0c-5.043,0 -9.297,-3.755 -9.923,-8.76l-1.404,-11.235Zm-4.356,-34.846l-6.611,-3.817c-4.783,-2.761 -10.899,-1.123 -13.66,3.66c-1.326,2.297 -1.685,5.026 -0.999,7.588c0.686,2.562 2.362,4.746 4.659,6.072l19.723,11.387l-3.111,-24.89Z"
-				fill={colors.milk}
+				fill="oklch(0.95 0 0)"
 				stroke="currentColor"
 				stroke-width={`${lineThicknessPx}px`}
 			/>
@@ -387,8 +307,8 @@ export const LargeCup: Component<CupProps> = function (props) {
 				<DitherPattern intensity={3} color="currentColor" />
 				<DitherPattern intensity={4} color="currentColor" />
 				<linearGradient id="largeCupGradient" gradientTransform="rotate(110)">
-					<stop offset="20%" stop-color="oklch(1 0 0)" />
-					<stop offset="100%" stop-color="oklch(0.7 0 0)" />
+					<stop offset="20%" stop-color="oklch(1 0.03 240)" />
+					<stop offset="100%" stop-color="oklch(0.8 0.03 240)" />
 				</linearGradient>
 			</defs>
 			<CupIngredients ingredients={offsetIngredients()} metrics={LARGE_CUP_METRICS} />

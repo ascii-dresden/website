@@ -1,0 +1,63 @@
+[
+	{
+		"id": "milk",
+		"label": "(Oat) Milk",
+		"color": "white"
+	},
+	{
+		"id": "espresso",
+		"label": "Espresso",
+		"color": "brown"
+	},
+	{
+		"id": "chocolate",
+		"label": "Chocolate",
+		"color": "brown"
+	},
+	{
+		"id": "coffee",
+		"label": "Coffee",
+		"color": "brown"
+	},
+	{
+		"id": "white_chocolate",
+		"label": "White Chocolate",
+		"color": "white"
+	},
+	{
+		"id": "foam_liquid",
+		"label": "Liquid Foam",
+		"color": "white",
+		"dither": {
+			"intensity": 1,
+			"color": "oklch(0.5 0 0)"
+		}
+	},
+	{
+		"id": "foam_creamy",
+		"label": "Creamy Foam",
+		"color": "white",
+		"dither": {
+			"intensity": 2,
+			"color": "oklch(0.5 0 0)"
+		}
+	},
+	{
+		"id": "foam_fluffy",
+		"label": "Fluffy Foam",
+		"color": "white",
+		"dither": {
+			"intensity": 4,
+			"color": "oklch(0.5 0 0)"
+		}
+	},
+	{
+		"id": "foam_firm",
+		"label": "Firm Foam",
+		"color": "white",
+		"dither": {
+			"intensity": 3,
+			"color": "oklch(0.5 0 0)"
+		}
+	}
+]
