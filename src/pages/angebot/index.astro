@@ -12,6 +12,7 @@ import { Paper } from "src/components/paper.tsx";
 import type { ColdDrink } from "src/content.config.ts";
 import { colors, lineThicknessPx, on } from "src/css.ts";
 import Layout from "src/layout.astro";
+import { prng } from "src/prng.ts";
 
 const coldDrinks = await getCollection("coldDrinks");
 
@@ -28,6 +29,8 @@ for (const coldDrink of coldDrinks) {
 }
 
 const hotDrinks = await getCollection("hotDrinks");
+
+const random = prng(-1.5, 1.5, 0.75);
 ---
 
 <Layout>
@@ -85,7 +88,16 @@ const hotDrinks = await getCollection("hotDrinks");
 			>
 				Heiß&shy;getränke
 			</H2>
-			<ul style={{ display: "contents" }}>
+			<ul
+				style={{
+					display: "grid",
+					"align-items": "center",
+					"grid-template-columns": "subgrid",
+					"grid-column-start": "main 1",
+					"grid-column-end": "main -1",
+					"row-gap": "32px",
+				}}
+			>
 				{
 					hotDrinks.map((hotDrink) => (
 						<li
@@ -96,10 +108,10 @@ const hotDrinks = await getCollection("hotDrinks");
 									"grid-template-columns": "minmax(0, 1fr)",
 									"grid-template-rows":
 										"max-content max-content",
+									rotate: `${random()}deg`,
 								},
 								on("@media (min-width: 1024px)", {
 									"grid-column-end": "span 2",
-									"padding-right": "32px",
 								}),
 							)}
 						>
@@ -109,7 +121,6 @@ const hotDrinks = await getCollection("hotDrinks");
 									"grid-column-end": "-1",
 									"grid-row-start": "1",
 									"grid-row-end": "-1",
-									"margin-bottom": "8px",
 								}}
 							/>
 							<div
@@ -133,19 +144,15 @@ const hotDrinks = await getCollection("hotDrinks");
 							</div>
 							<Cup
 								ingredients={hotDrink.data.ingredients}
-								style={pipe(
-									{
-										"grid-column-start": "1",
-										"grid-column-end": "-1",
-										"grid-row-start": "-2",
-										"grid-row-end": "-1",
-										"margin-left": "-16px",
-										"z-index": "1",
-									},
-									on("@media (min-width: 1024px)", {
-										"margin-left": "-32px",
-									}),
-								)}
+								style={pipe({
+									"grid-column-start": "1",
+									"grid-column-end": "-1",
+									"grid-row-start": "-2",
+									"grid-row-end": "-1",
+									"margin-left": "-16px",
+									"margin-bottom": "-8px",
+									"z-index": "1",
+								})}
 							/>
 						</li>
 					))
@@ -251,6 +258,7 @@ const hotDrinks = await getCollection("hotDrinks");
 										"padding-block": "16px",
 										"padding-right": "16px",
 										"padding-left": "32px",
+										rotate: `${random()}deg`,
 									}}
 								>
 									<H4 style={{}}>{drink.name}</H4>
