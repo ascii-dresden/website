@@ -2,27 +2,27 @@
 	{
 		"id": "milk",
 		"label": "(Oat) Milk",
-		"color": "white"
+		"color": "oklch(1 0 0)"
 	},
 	{
 		"id": "espresso",
 		"label": "Espresso",
-		"color": "brown"
+		"color": "oklch(0.27 0.06 40)"
 	},
 	{
 		"id": "chocolate",
 		"label": "Chocolate",
-		"color": "brown"
+		"color": "oklch(0.5 0.1 40)"
 	},
 	{
 		"id": "coffee",
 		"label": "Coffee",
-		"color": "brown"
+		"color": "oklch(0.27 0.06 40)"
 	},
 	{
 		"id": "white_chocolate",
 		"label": "White Chocolate",
-		"color": "white"
+		"color": "oklch(0.9 0.06 57)"
 	},
 	{
 		"id": "foam_liquid",
@@ -30,7 +30,7 @@
 		"color": "white",
 		"dither": {
 			"intensity": 1,
-			"color": "oklch(0.5 0 0)"
+			"color": "oklch(0.27 0.06 40)"
 		}
 	},
 	{
@@ -39,7 +39,7 @@
 		"color": "white",
 		"dither": {
 			"intensity": 2,
-			"color": "oklch(0.5 0 0)"
+			"color": "oklch(0.27 0.06 40)"
 		}
 	},
 	{
@@ -47,8 +47,8 @@
 		"label": "Fluffy Foam",
 		"color": "white",
 		"dither": {
-			"intensity": 4,
-			"color": "oklch(0.5 0 0)"
+			"intensity": 3,
+			"color": "oklch(0.27 0.06 40)"
 		}
 	},
 	{
@@ -56,8 +56,8 @@
 		"label": "Firm Foam",
 		"color": "white",
 		"dither": {
-			"intensity": 3,
-			"color": "oklch(0.5 0 0)"
+			"intensity": 4,
+			"color": "oklch(0.27 0.06 40)"
 		}
 	}
 ]

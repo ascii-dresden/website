@@ -14,11 +14,11 @@ export type Ingredient = z.output<typeof IngredientSchema>;
 
 const IngredientTypeSchema = z.object({
 	label: z.string(),
-	color: z.string(),
+	color: z.string().default("transparent"),
 	dither: z.optional(
 		z.object({
 			intensity: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]),
-			color: z.string(),
+			color: z.string().default("currentColor"),
 		})
 	),
 });
