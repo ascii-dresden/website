@@ -40,7 +40,7 @@ export const Header: Component = function () {
 					"box-shadow": `0 0 0.5rem 0 rgba(0, 0, 0, 0.5)`,
 					"column-gap": "16px",
 					display: "grid",
-					"grid-template-columns": "56px minmax(0, 1fr) 64px",
+					"grid-template-columns": "[main] 56px minmax(0, 1fr) 64px [main]",
 					"justify-items": "center",
 					"align-items": "center",
 					height: "4rem",
@@ -65,11 +65,14 @@ export const Header: Component = function () {
 				),
 				on("@media (min-width: 480px)", {
 					"padding-inline": "64px",
+					"justify-items": "start",
+				}),
+				on("@media (min-width: 768px)", {
+					"grid-template-columns": "repeat(4, [main] minmax(0, 1fr)) [main]",
+					"column-gap": "32px",
 				}),
 				on("@media (min-width: 1024px)", {
-					"column-gap": "32px",
 					"grid-template-columns": "repeat(6, [main] minmax(0, 1fr)) [main]",
-					"justify-items": "start",
 				}),
 				on("@media (min-width: 1280px)", {
 					"grid-template-columns": [
@@ -137,6 +140,10 @@ export const Header: Component = function () {
 						width: "100%",
 						"align-self": "center",
 					},
+					on("@media (min-width: 768px)", {
+						"grid-column-start": "main 2",
+						"grid-column-end": "main 4",
+					}),
 					on("@media (min-width: 1024px)", {
 						"grid-column-start": "span 2",
 						"grid-column-end": "main -1",
@@ -160,7 +167,7 @@ const OpeningHoursCollapsible: Component = function () {
 					display: "grid",
 					gap: `${lineThicknessPx}px`,
 				},
-				on("@media (min-width: 1024px)", {
+				on("@media (min-width: 768px)", {
 					position: "relative",
 				})
 			)}
@@ -213,7 +220,7 @@ const OpeningHoursCollapsible: Component = function () {
 						right: "16px",
 						top: "calc(100% - 10px)",
 					},
-					on("@media (min-width: 1024px)", {
+					on("@media (min-width: 768px)", {
 						left: 0,
 						right: 0,
 						top: "calc(100% + 4px)",

@@ -21,11 +21,15 @@ import ascii from "./footer_art.txt?raw";
 			"grid-template-columns": "repeat(2, [main] minmax(0, 1fr)) [main]",
 			gap: "32px",
 		},
-		on("@media (min-width: 480px)", {}),
-		on("@media (min-width: 1024px)", {
-			"grid-template-columns": "repeat(6, [main] minmax(0, 1fr)) [main]",
+		on("@media (min-width: 480px)", {
 			"padding-block": "64px",
 			"padding-inline": "64px",
+		}),
+		on("@media (min-width: 768px)", {
+			"grid-template-columns": "repeat(4, [main] minmax(0, 1fr)) [main]",
+		}),
+		on("@media (min-width: 1024px)", {
+			"grid-template-columns": "repeat(6, [main] minmax(0, 1fr)) [main]",
 		}),
 		on("@media (min-width: 1280px)", {
 			"grid-template-columns": [
@@ -44,6 +48,8 @@ import ascii from "./footer_art.txt?raw";
 >
 	<pre
 		style={{
+			// Compensate for the `ii` in `ascii` being taller than the other letters
+			"margin-top": "-1em",
 			"grid-column-start": "main",
 			"grid-column-end": "main -1",
 		}}><code set:text={ascii} /></pre>

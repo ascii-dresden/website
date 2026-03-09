@@ -17,11 +17,15 @@
 	{
 		"id": "coffee",
 		"label": "Coffee",
-		"color": "oklch(0.27 0.06 40)"
+		"color": "oklch(0.27 0.06 40)",
+		"dither": {
+			"intensity": 3,
+			"color": "oklch(0.7 0.1 57)"
+		}
 	},
 	{
 		"id": "white_chocolate",
-		"label": "White Chocolate",
+		"label": "White Choc.",
 		"color": "oklch(0.9 0.06 57)"
 	},
 	{

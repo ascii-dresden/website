@@ -248,7 +248,8 @@ const CupIngredientLabels: Component<CupIngredientsProps> = function (props) {
 		});
 
 		const v = new Array<LabeledOffsetIngredient>(props.ingredients.length);
-		let labelY = Math.max((props.metrics.height - totalHeight) / 2, 8);
+		// Subtract 4px to shift visual center slightly up to compensate the 8px vertical overflow
+		let labelY = Math.max((props.metrics.height - totalHeight) / 2 - 4, 8);
 		props.ingredients.forEach((ingredient, i) => {
 			v[i] = { ingredient, labelY };
 			labelY += 16 + LABEL_GAP;
@@ -305,6 +306,9 @@ const CupIngredientLabels: Component<CupIngredientsProps> = function (props) {
 							y={label.labelY}
 							dominant-baseline="central"
 						>
+							<Show when={label.ingredient.ingredient.g}>
+								{(g) => <tspan style={{ "font-weight": 800 }}>{g()}g</tspan>}
+							</Show>{" "}
 							{ingredientTypes[label.ingredient.ingredient.type.id]!.label}
 						</text>
 					</>

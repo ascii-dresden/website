@@ -23,6 +23,7 @@ import Layout from "src/layout.astro";
 
 <Layout>
 	<main>
+		<!-- TODO: Rework hero section to be more informative, with CTA to menu -->
 		<section
 			style={pipe(
 				{
@@ -36,8 +37,17 @@ import Layout from "src/layout.astro";
 					"padding-bottom": `${16 + dividerHeightPx}px`,
 					"padding-inline": "16px",
 				},
-				on("@media (min-width: 1024px)", {
+				on("@media (min-width: 480px)", {
 					gap: "32px",
+					"padding-bottom": `${64 + dividerHeightPx}px`,
+					"padding-inline": "64px",
+				}),
+				on("@media (min-width: 768px)", {
+					"align-items": "center",
+					"grid-template-columns":
+						"repeat(4, [main] minmax(0, 1fr)) [main]",
+				}),
+				on("@media (min-width: 1024px)", {
 					"align-items": "center",
 					"grid-template-columns":
 						"repeat(6, [main] minmax(0, 1fr)) [main]",
@@ -57,20 +67,21 @@ import Layout from "src/layout.astro";
 			<div
 				style={pipe(
 					{
-						display: "grid",
 						"background-color": colors.light_teal,
 						color: colors.dark_teal,
 						padding: "16px",
 						"margin-top": "16px",
 						"border-radius": "8px",
 						"border-width": `${lineThicknessPx}px`,
+						"text-align": "center",
+						"text-wrap": "balance",
 					},
-					on("@media (min-width: 1024px)", {
+					on("@media (min-width: 768px)", {
 						"grid-row": 1,
 						"grid-column-start": "main 1",
 						"grid-column-end": "main -1",
-						"grid-auto-flow": "column",
-						"justify-content": "center",
+					}),
+					on("@media (min-width: 1024px)", {
 						gap: "16px",
 					}),
 				)}
@@ -84,9 +95,13 @@ import Layout from "src/layout.astro";
 						"aspect-ratio": "3 / 2",
 						position: "relative",
 					},
-					on("@media (min-width: 1024px)", {
+					on("@media (min-width: 768px)", {
 						"grid-row": 2,
-						"grid-column-start": "main 3",
+						"grid-column-start": "span 2",
+						"grid-column-end": "main -1",
+					}),
+					on("@media (min-width: 1024px)", {
+						"grid-column-start": "span 4",
 						"grid-column-end": "main -1",
 					}),
 				)}
@@ -121,16 +136,13 @@ import Layout from "src/layout.astro";
 						display: "flex",
 						"flex-direction": "column",
 						"row-gap": "16px",
-						"padding-bottom": "32px",
-						"padding-inline": "32px",
-						"padding-top": "16px",
 					},
-					on("@media (min-width: 1024px)", {
+					on("@media (min-width: 768px)", {
 						"grid-row": 2,
 						"grid-column-start": 1,
 						"grid-column-end": "span 2",
-						padding: 0,
 					}),
+					on("@media (min-width: 1024px)", {}),
 					on("@media (min-width: 1280px)", {
 						"grid-column-start": 2,
 					}),
@@ -151,11 +163,9 @@ import Layout from "src/layout.astro";
 				</H1>
 				<Paper style={{ padding: "16px" }}>
 					<p>
-						Wir sind ein studentisch ge&shy;führtes Café in der
+						Wir sind das studentisch ge&shy;führte Café in der
 						Fakultät Informatik der TU Dresden. Bei uns gibt es
-						Snacks, Kalt- und Heiß&shy;getränke, so&shy;wie Sofas
-						als idealen Ort zum Ver&shy;weilen und Aus&shy;tauschen
-						mit anderen Studie&shy;renden.
+						Snacks, Kalt- und Heiß&shy;getränke, und Sofas!
 					</p>
 				</Paper>
 			</div>

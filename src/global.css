@@ -55,7 +55,7 @@ html {
 	font-family: "Maple Mono", sans-serif;
 	font-size: 16px;
 	font-weight: 500;
-	line-height: 24px;
+	line-height: 1.5;
 	/* See demo at <https://font.subf.dev/en/playground/> */
 	font-feature-settings:
 		"calt" off, /* Disable default ligatures */
