@@ -22,7 +22,7 @@
 			},
 			{
 				"type": "foam_liquid",
-				"ml": 180
+				"ml": 160
 			},
 			{
 				"type": "milk",
@@ -87,7 +87,7 @@
 			{
 				"type": "coffee",
 				"g": 9.5,
-				"ml": 190
+				"ml": 170
 			}
 		]
 	},
@@ -179,16 +179,16 @@
 		"ingredients": [
 			{
 				"type": "foam_creamy",
-				"ml": 70
+				"ml": 60
 			},
 			{
 				"type": "milk",
-				"ml": 65
+				"ml": 55
 			},
 			{
 				"type": "white_chocolate",
 				"g": 25,
-				"ml": 100
+				"ml": 95
 			},
 			{
 				"type": "espresso",

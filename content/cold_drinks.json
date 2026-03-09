@@ -114,7 +114,7 @@
 	{
 		"id": "kilimo",
 		"name": "Kilimo",
-		"image": "./images/kilimo.jpg",
+		"image": "./images/kilimo.webp",
 		"size_litres": 0.5,
 		"price": 1.5,
 		"groups": ["Kolle Mate"]
