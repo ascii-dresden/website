@@ -8,7 +8,7 @@
 		"fmt": "biome check --write --max-diagnostics 0 && prettier -w \"**/*\" --ignore-unknown --cache"
 	},
 	"dependencies": {
-		"@ark-ui/solid": "^5.34.0",
+		"@ark-ui/solid": "^5.34.1",
 		"@astrojs/solid-js": "^5.1.3",
 		"@css-hooks/core": "^3.0.5",
 		"@css-hooks/solid": "^3.0.5",
@@ -16,7 +16,7 @@
 		"@std/toml": "jsr:^1.0.11",
 		"astro": "^5.18.0",
 		"csstype": "^3.2.3",
-		"lightningcss": "^1.31.1",
+		"lightningcss": "^1.32.0",
 		"remeda": "^2.33.6",
 		"solid-js": "^1.9.11",
 		"tailwindcss": "^4.2.1",
@@ -25,7 +25,7 @@
 		"vite": "^7.3.1"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.5",
+		"@biomejs/biome": "2.4.6",
 		"prettier": "^3.8.1",
 		"prettier-plugin-astro": "^0.14.1",
 		"typescript": "^5.9.3"

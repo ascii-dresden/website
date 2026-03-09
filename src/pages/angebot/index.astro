@@ -27,7 +27,7 @@ for (const coldDrink of coldDrinks) {
 	}
 }
 
-const hotDrinks = (await getCollection("hotDrinks")).slice(0, 2);
+const hotDrinks = await getCollection("hotDrinks");
 type HotDrink = (typeof hotDrinks)[0];
 ---
 
@@ -94,19 +94,19 @@ type HotDrink = (typeof hotDrinks)[0];
 								{
 									display: "grid",
 									gap: "16px",
-									"grid-template-columns":
-										"16px minmax(0, 1fr)",
+									"grid-template-columns": "minmax(0, 1fr)",
 									"grid-template-rows":
 										"max-content max-content",
 								},
 								on("@media (min-width: 1024px)", {
 									"grid-column-end": "span 2",
+									"padding-right": "32px",
 								}),
 							)}
 						>
 							<Paper
 								style={{
-									"grid-column-start": "2",
+									"grid-column-start": "1",
 									"grid-column-end": "-1",
 									"grid-row-start": "1",
 									"grid-row-end": "-1",
@@ -115,7 +115,7 @@ type HotDrink = (typeof hotDrinks)[0];
 							/>
 							<div
 								style={{
-									"grid-column-start": "2",
+									"grid-column-start": "1",
 									"grid-row-start": "1",
 									"z-index": "1",
 									padding: "16px",
@@ -134,13 +134,19 @@ type HotDrink = (typeof hotDrinks)[0];
 							</div>
 							<Cup
 								ingredients={hotDrink.data.ingredients}
-								style={{
-									"grid-column-start": "1",
-									"grid-column-end": "-1",
-									"grid-row-start": "-2",
-									"grid-row-end": "-1",
-									"z-index": "1",
-								}}
+								style={pipe(
+									{
+										"grid-column-start": "1",
+										"grid-column-end": "-1",
+										"grid-row-start": "-2",
+										"grid-row-end": "-1",
+										"margin-left": "-16px",
+										"z-index": "1",
+									},
+									on("@media (min-width: 1024px)", {
+										"margin-left": "-32px",
+									}),
+								)}
 								client:load
 							/>
 						</li>

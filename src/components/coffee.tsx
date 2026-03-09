@@ -23,27 +23,44 @@ type IngredientData = {
 		color?: Globals | DataType.Color;
 	};
 	label: Component;
+
+	/**
+	 * Height of the label component
+	 */
+	labelHeight: number;
 };
 
 const INGREDIENTS: Record<IngredientType, IngredientData> = {
 	milk: {
 		color: colors.milk,
-		label: () => <text dominant-baseline="central">Milk or Oat milk</text>,
+		labelHeight: 36,
+		label: () => (
+			<g>
+				<text dominant-baseline="central">Milk</text>
+				<text dominant-baseline="central" y={20}>
+					Oat milk
+				</text>
+			</g>
+		),
 	},
 	chocolate: {
 		color: colors.espresso,
+		labelHeight: 16,
 		label: () => <text dominant-baseline="central">Chocolate</text>,
 	},
 	espresso: {
 		color: colors.espresso,
+		labelHeight: 16,
 		label: () => <text dominant-baseline="central">Espresso</text>,
 	},
 	coffee: {
 		color: colors.espresso,
+		labelHeight: 16,
 		label: () => <text dominant-baseline="central">Coffee</text>,
 	},
 	white_chocolate: {
-		color: colors.espresso,
+		color: colors.creme,
+		labelHeight: 16,
 		label: () => <text dominant-baseline="central">White Chocolate</text>,
 	},
 	foam_liquid: {
@@ -52,6 +69,7 @@ const INGREDIENTS: Record<IngredientType, IngredientData> = {
 			intensity: 1,
 			color: "oklch(0.5 0 0)",
 		},
+		labelHeight: 16,
 		label: () => <text dominant-baseline="central">Liquid Foam</text>,
 	},
 	foam_creamy: {
@@ -60,6 +78,7 @@ const INGREDIENTS: Record<IngredientType, IngredientData> = {
 			intensity: 2,
 			color: "oklch(0.5 0 0)",
 		},
+		labelHeight: 16,
 		label: () => <text dominant-baseline="central">Creamy Foam</text>,
 	},
 	foam_fluffy: {
@@ -68,6 +87,7 @@ const INGREDIENTS: Record<IngredientType, IngredientData> = {
 			intensity: 3,
 			color: "oklch(0.5 0 0)",
 		},
+		labelHeight: 16,
 		label: () => <text dominant-baseline="central">Fluffy Foam</text>,
 	},
 	foam_firm: {
@@ -76,6 +96,7 @@ const INGREDIENTS: Record<IngredientType, IngredientData> = {
 			intensity: 4,
 			color: "oklch(0.5 0 0)",
 		},
+		labelHeight: 16,
 		label: () => <text dominant-baseline="central">Firm Foam</text>,
 	},
 };
@@ -104,6 +125,8 @@ export const Cup: Component<CupProps> = function (props) {
 };
 
 type CupMetrics = {
+	width: number;
+	height: number;
 	bottomX: number;
 	bottomY: number;
 	bottomWidth: number;
@@ -172,7 +195,100 @@ function computeOffsets(ingredients: Ingredient[]): OffsetIngredient[] {
 	return v;
 }
 
+type LabeledOffsetIngredient = {
+	ingredient: OffsetIngredient;
+	labelY: number;
+};
+
+const LABEL_FONT_SIZE = 16;
+
+/**
+ * Gap between ingredient labels in SVG pixels.
+ */
+const LABEL_GAP = 12;
+
+const CupIngredientLabels: Component<CupIngredientsProps> = function (props) {
+	const labeledOffsetIngredients = createMemo(() => {
+		let totalHeight = 0;
+		for (let i = props.ingredients.length - 1; i >= 0; i--) {
+			totalHeight += INGREDIENTS[props.ingredients[i]!.ingredient.type].labelHeight;
+			if (i < props.ingredients.length - 1) {
+				totalHeight += LABEL_GAP;
+			}
+		}
+
+		const v = new Array<LabeledOffsetIngredient>(props.ingredients.length);
+		let labelY = Math.max((props.metrics.height - totalHeight) / 2, 8);
+		for (let i = props.ingredients.length - 1; i >= 0; i--) {
+			const ingredient = props.ingredients[i]!;
+			v[i] = { ingredient, labelY };
+			labelY += INGREDIENTS[ingredient.ingredient.type].labelHeight + LABEL_GAP;
+		}
+		return v;
+	});
+
+	return (
+		<For each={labeledOffsetIngredients()}>
+			{(label) => {
+				const ingredientCenterX = props.metrics.bottomX + props.metrics.bottomWidth / 2;
+				const ingredientCenterY =
+					props.metrics.bottomY +
+					props.metrics.dY *
+						(label.ingredient.offsetMl + label.ingredient.ingredient.ml / 2);
+
+				const labelAnchorY =
+					label.labelY +
+					(INGREDIENTS[label.ingredient.ingredient.type].labelHeight - LABEL_FONT_SIZE) /
+						2;
+
+				return (
+					<>
+						<circle
+							stroke-width={`${lineThicknessPx * 3}px`}
+							stroke={colors.milk}
+							fill="transparent"
+							cx={ingredientCenterX}
+							cy={ingredientCenterY}
+							r={2}
+						/>
+						<path
+							fill="none"
+							stroke-width={`${lineThicknessPx * 3}px`}
+							stroke={colors.milk}
+							d={`M${ingredientCenterX + 2},${ingredientCenterY} h8 L${props.metrics.width},${labelAnchorY} h8`}
+						/>
+						<circle
+							stroke-width={`${lineThicknessPx}px`}
+							stroke="currentColor"
+							fill="transparent"
+							cx={ingredientCenterX}
+							cy={ingredientCenterY}
+							r={2}
+						/>
+						<path
+							fill="none"
+							stroke-width={`${lineThicknessPx}px`}
+							stroke="currentColor"
+							d={`M${ingredientCenterX + 2},${ingredientCenterY} h8 L${props.metrics.width},${labelAnchorY} h8`}
+						/>
+						<g
+							transform={`translate(${props.metrics.width + 12} ${label.labelY})`}
+							fill="currentColor"
+						>
+							<Dynamic
+								component={INGREDIENTS[label.ingredient.ingredient.type].label}
+							/>
+						</g>
+					</>
+				);
+			}}
+		</For>
+	);
+};
+
 const SMALL_CUP_METRICS: CupMetrics = {
+	width: 110,
+	height: 74,
 	bottomX: 42,
 	bottomY: 65,
 	bottomWidth: 54,
@@ -186,7 +302,12 @@ export const SmallCup: Component<CupProps> = function (props) {
 	const offsetIngredients = createMemo(() => computeOffsets(props.ingredients));
 
 	return (
-		<svg viewBox="0 0 300 74" height={74} xmlns="http://www.w3.org/2000/svg" {...others}>
+		<svg
+			viewBox={`0 0 300 ${SMALL_CUP_METRICS.height}`}
+			height={SMALL_CUP_METRICS.height}
+			xmlns="http://www.w3.org/2000/svg"
+			{...others}
+		>
 			<title>Coffee diagram</title>
 			<CupIngredients ingredients={offsetIngredients()} metrics={SMALL_CUP_METRICS} />
 			<path
@@ -201,6 +322,8 @@ export const SmallCup: Component<CupProps> = function (props) {
 };
 
 const MEDIUM_CUP_METRICS: CupMetrics = {
+	width: 130,
+	height: 122,
 	bottomX: 57,
 	bottomY: 113,
 	bottomWidth: 50,
@@ -214,7 +337,12 @@ export const MediumCup: Component<CupProps> = function (props) {
 	const offsetIngredients = createMemo(() => computeOffsets(props.ingredients));
 
 	return (
-		<svg viewBox="0 0 300 122" height={122} xmlns="http://www.w3.org/2000/svg" {...others}>
+		<svg
+			viewBox={`0 0 300 ${MEDIUM_CUP_METRICS.height}`}
+			height={MEDIUM_CUP_METRICS.height}
+			xmlns="http://www.w3.org/2000/svg"
+			{...others}
+		>
 			<title>Coffee Diagram</title>
 			<CupIngredients ingredients={offsetIngredients()} metrics={MEDIUM_CUP_METRICS} />
 			<path
@@ -229,59 +357,9 @@ export const MediumCup: Component<CupProps> = function (props) {
 	);
 };
 
-const CupIngredientLabels: Component<CupIngredientsProps> = function (props) {
-	return (
-		<For each={props.ingredients}>
-			{(i) => {
-				const segmentCenterX = () => props.metrics.bottomX + props.metrics.bottomWidth / 2;
-				const segmentCenterY = () =>
-					props.metrics.bottomY + props.metrics.dY * (i.offsetMl + i.ingredient.ml / 2);
-
-				return (
-					<>
-						<circle
-							stroke-width={`${lineThicknessPx * 3}px`}
-							stroke={colors.milk}
-							fill="transparent"
-							cx={segmentCenterX()}
-							cy={segmentCenterY()}
-							r={2}
-						/>
-						<line
-							stroke-width={`${lineThicknessPx * 3}px`}
-							stroke={colors.milk}
-							x1={segmentCenterX() + 4}
-							y1={segmentCenterY()}
-							x2={128}
-							y2={segmentCenterY()}
-						/>
-						<circle
-							stroke-width={`${lineThicknessPx}px`}
-							stroke="currentColor"
-							fill="transparent"
-							cx={segmentCenterX()}
-							cy={segmentCenterY()}
-							r={2}
-						/>
-						<line
-							stroke-width={`${lineThicknessPx}px`}
-							stroke="currentColor"
-							x1={segmentCenterX() + 2}
-							y1={segmentCenterY()}
-							x2={138}
-							y2={segmentCenterY()}
-						/>
-						<g transform={`translate(142 ${segmentCenterY()})`} fill="currentColor">
-							<Dynamic component={INGREDIENTS[i.ingredient.type].label} />
-						</g>
-					</>
-				);
-			}}
-		</For>
-	);
-};
-
 const LARGE_CUP_METRICS: CupMetrics = {
+	width: 114,
+	height: 162,
 	bottomX: 24,
 	bottomY: 149,
 	bottomWidth: 66,
@@ -295,7 +373,12 @@ export const LargeCup: Component<CupProps> = function (props) {
 	const offsetIngredients = createMemo(() => computeOffsets(props.ingredients));
 
 	return (
-		<svg viewBox="0 0 300 162" height={162} xmlns="http://www.w3.org/2000/svg" {...others}>
+		<svg
+			viewBox={`0 0 300 ${LARGE_CUP_METRICS.height}`}
+			height={LARGE_CUP_METRICS.height}
+			xmlns="http://www.w3.org/2000/svg"
+			{...others}
+		>
 			<title>Coffee Diagram</title>
 			<defs>
 				{/* TODO: Do not hardcode colors */}
