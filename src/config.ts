@@ -1,5 +1,6 @@
 import { parse as parseToml } from "@std/toml";
-import { array, type InferOutput, object, optional, parse, pipe, string, transform } from "valibot";
+import type { InferOutput } from "valibot";
+import { array, object, optional, parse, pipe, string, transform } from "valibot";
 
 import { mapSnakeKeysToCamel } from "src/snake_to_camel.ts";
 import { PlainDateTimeSchema, PlainTimeSchema, PlainYearMonthSchema } from "src/temporal.ts";
@@ -8,32 +9,32 @@ import config from "../content/ascii.toml?raw";
 
 export const OpeningHoursDaySchema = optional(
 	object({
-		open: PlainTimeSchema,
 		close: PlainTimeSchema,
-	})
+		open: PlainTimeSchema,
+	}),
 );
 
 export const OpeningHoursSchema = object({
-	monday: OpeningHoursDaySchema,
-	tuesday: OpeningHoursDaySchema,
-	wednesday: OpeningHoursDaySchema,
-	thursday: OpeningHoursDaySchema,
 	friday: OpeningHoursDaySchema,
+	monday: OpeningHoursDaySchema,
 	saturday: OpeningHoursDaySchema,
 	sunday: OpeningHoursDaySchema,
+	thursday: OpeningHoursDaySchema,
+	tuesday: OpeningHoursDaySchema,
+	wednesday: OpeningHoursDaySchema,
 });
 
 export type OpeningHours = InferOutput<typeof OpeningHoursSchema>;
 
 export const SpecialSchema = pipe(
 	object({
-		title: string(),
+		description: string(),
 		image: string(),
 		image_alt: string(),
-		description: string(),
+		title: string(),
 		year_month: PlainYearMonthSchema,
 	}),
-	transform(mapSnakeKeysToCamel)
+	transform(mapSnakeKeysToCamel),
 );
 
 export type Special = InferOutput<typeof SpecialSchema>;
@@ -41,23 +42,23 @@ export type Special = InferOutput<typeof SpecialSchema>;
 export const EventSchema = pipe(
 	object({
 		date_time: PlainDateTimeSchema,
-		title: string(),
 		image: string(),
 		image_alt: string(),
 		summary: string(),
+		title: string(),
 	}),
-	transform(mapSnakeKeysToCamel)
+	transform(mapSnakeKeysToCamel),
 );
 
 export type Event = InferOutput<typeof EventSchema>;
 
 export const ConfigSchema = pipe(
 	object({
+		events: array(EventSchema),
 		opening_hours: OpeningHoursSchema,
 		special: SpecialSchema,
-		events: array(EventSchema),
 	}),
-	transform(mapSnakeKeysToCamel)
+	transform(mapSnakeKeysToCamel),
 );
 
 export type Config = InferOutput<typeof ConfigSchema>;

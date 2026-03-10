@@ -1,33 +1,37 @@
 {
 	"$schema": "https://www.schemastore.org/package.json",
+	"type": "module",
 	"scripts": {
 		"build": "astro build",
 		"dev": "astro dev",
 		"preview": "astro preview",
-		"check": "biome check",
-		"fmt": "biome check --write --max-diagnostics 0 && prettier -w \"**/*\" --ignore-unknown --cache"
+		"lint": "oxlint",
+		"lint:fix": "oxlint --fix",
+		"fmt": "oxfmt",
+		"fmt:check": "oxfmt --check"
 	},
 	"dependencies": {
-		"@ark-ui/solid": "^5.34.1",
-		"@astrojs/solid-js": "^6.0.0",
-		"@css-hooks/core": "^3.0.5",
-		"@css-hooks/solid": "^3.0.5",
+		"@ark-ui/solid": "^5.36.2",
+		"@astrojs/solid-js": "^6.0.1",
+		"@css-hooks/core": "^3.0.6",
+		"@css-hooks/solid": "^3.0.6",
 		"@std/path": "jsr:^1.1.4",
 		"@std/toml": "jsr:^1.0.11",
-		"astro": "^6.0.2",
+		"astro": "^6.1.9",
 		"csstype": "^3.2.3",
 		"lightningcss": "^1.32.0",
-		"remeda": "^2.33.6",
-		"solid-js": "^1.9.11",
-		"tailwindcss": "^4.2.1",
+		"remeda": "^2.33.7",
+		"solid-js": "^1.9.12",
+		"tailwindcss": "^4.2.4",
 		"temporal-polyfill": "^0.3.2",
-		"valibot": "^1.2.0",
-		"vite": "^7.3.1"
+		"valibot": "^1.3.1",
+		"vite": "^8.0.10"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.6",
-		"prettier": "^3.8.1",
-		"prettier-plugin-astro": "^0.14.1",
-		"typescript": "^5.9.3"
+		"@types/node": "^25.6.0",
+		"oxfmt": "^0.46.0",
+		"oxlint": "^1.61.0",
+		"oxlint-tsgolint": "^0.21.1",
+		"typescript": "^6.0.3"
 	}
 }

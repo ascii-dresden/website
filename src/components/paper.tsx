@@ -1,4 +1,5 @@
-import { type ComponentProps, splitProps, type ValidComponent } from "solid-js";
+import type { ComponentProps, ValidComponent } from "solid-js";
+import { splitProps } from "solid-js";
 import { Dynamic } from "solid-js/web";
 
 import { colors, lineThicknessPx } from "src/css.ts";
@@ -15,31 +16,33 @@ export function Paper<T extends ValidComponent>(props: PaperProps<T>) {
 			component={local.as ?? "div"}
 			{...others}
 			style={{
-				position: "relative",
 				"background-color": colors.milk,
-				color: colors.espresso,
-				"border-radius": "8px",
 				"border-bottom-right-radius": "16px",
 				"border-color": colors.espresso,
+				"border-radius": "8px",
 				"border-width": `${lineThicknessPx}px`,
-				"corner-bottom-right-shape": "bevel",
+				color: colors.espresso,
+				// HACK: Use type assertion because `csstype` does not define `corner-shape`
+				["corner-bottom-right-shape" as string]: "bevel",
+				position: "relative",
 				...others.style,
 			}}
 		>
 			<div
 				aria-hidden
 				style={{
-					position: "absolute",
-					bottom: `-${lineThicknessPx}px`,
-					right: `-${lineThicknessPx}px`,
-					width: `${16 + lineThicknessPx}px`,
-					height: `${16 + lineThicknessPx}px`,
 					"background-color": colors.milk,
+					"border-bottom-right-radius": "16px",
+					"border-color": colors.espresso,
 					"border-top-left-radius": "6px",
 					"border-width": `${lineThicknessPx}px`,
-					"border-color": colors.espresso,
-					"border-bottom-right-radius": "16px",
-					"corner-bottom-right-shape": "bevel",
+					bottom: `-${lineThicknessPx}px`,
+					// HACK: Use type assertion because `csstype` does not define `corner-shape`
+					["corner-bottom-right-shape" as string]: "bevel",
+					height: `${16 + lineThicknessPx}px`,
+					position: "absolute",
+					right: `-${lineThicknessPx}px`,
+					width: `${16 + lineThicknessPx}px`,
 				}}
 			/>
 			{props.children}

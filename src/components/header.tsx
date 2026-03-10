@@ -1,6 +1,8 @@
 import { Collapsible } from "@ark-ui/solid/collapsible";
 import { merge, pipe, when } from "remeda";
-import { type Component, createSignal, onMount } from "solid-js";
+import type { Component } from "solid-js";
+import { createSignal, onMount } from "solid-js";
+import * as _ from "temporal-polyfill/global";
 
 import grain from "src/assets/grain.svg?no-inline";
 import { A } from "src/components/a.tsx";
@@ -12,12 +14,11 @@ import { colors, lineThicknessPx, on, transitionTimingFunction } from "src/css.t
 import styles from "./header.module.css";
 
 // TODO: Use config instead of hardcoding values.
-import "temporal-polyfill/global";
 const opens = new Temporal.PlainTime(9);
 const closes = new Temporal.PlainTime(17);
 const closesFriday = new Temporal.PlainTime(15);
 
-export const Header: Component = function () {
+export const Header: Component = function Header() {
 	const [settle, setSettle] = createSignal(false);
 
 	onMount(() => {
@@ -32,6 +33,7 @@ export const Header: Component = function () {
 		<header
 			style={pipe(
 				{
+					"align-items": "center",
 					"backdrop-filter": "blur(0.5rem)",
 					"background-color": `oklch(from ${colors.creme} l c h / 0.75)`,
 					"border-bottom-color": colors.espresso,
@@ -41,35 +43,34 @@ export const Header: Component = function () {
 					"column-gap": "16px",
 					display: "grid",
 					"grid-template-columns": "[main] 56px minmax(0, 1fr) 64px [main]",
-					"justify-items": "center",
-					"align-items": "center",
 					height: "4rem",
+					"justify-items": "center",
 					"padding-inline": "16px",
 					position: "sticky",
+					top: 0,
 					"transition-duration": "100ms",
 					"transition-property": "background-color, color, border-bottom-color",
 					"transition-timing-function": transitionTimingFunction,
-					top: 0,
 					"z-index": 2,
 				} as const,
 				when(
 					settle,
 					merge({
-						"box-shadow": "none",
-						"border-bottom-color": "transparent",
+						"background-blend-mode": "overlay",
 						"background-color": colors.creme,
 						"background-image": `url(${grain})`,
-						"background-blend-mode": "overlay",
 						"background-size": "256px",
-					} as const)
+						"border-bottom-color": "transparent",
+						"box-shadow": "none",
+					} as const),
 				),
 				on("@media (min-width: 480px)", {
-					"padding-inline": "64px",
 					"justify-items": "start",
+					"padding-inline": "64px",
 				}),
 				on("@media (min-width: 768px)", {
-					"grid-template-columns": "repeat(4, [main] minmax(0, 1fr)) [main]",
 					"column-gap": "32px",
+					"grid-template-columns": "repeat(4, [main] minmax(0, 1fr)) [main]",
 				}),
 				on("@media (min-width: 1024px)", {
 					"grid-template-columns": "repeat(6, [main] minmax(0, 1fr)) [main]",
@@ -81,21 +82,21 @@ export const Header: Component = function () {
 						"[main] minmax(0, 1fr)",
 					].join(" "),
 					"padding-inline": 0,
-				})
+				}),
 			)}
 		>
 			<nav
 				style={pipe(
 					{
+						"align-items": "center",
 						display: "grid",
 						"grid-template-columns": "subgrid",
-						"align-items": "center",
 						"justify-items": "start",
 					},
 					on("@media (min-width: 1024px)", {
-						"grid-column-start": "main 1",
 						"grid-column-end": "main -3",
-					})
+						"grid-column-start": "main 1",
+					}),
 				)}
 			>
 				<a
@@ -103,7 +104,7 @@ export const Header: Component = function () {
 						{},
 						on("@media (min-width: 1024px)", {
 							"grid-column-start": "main 1",
-						})
+						}),
 					)}
 					href="/"
 				>
@@ -126,7 +127,7 @@ export const Header: Component = function () {
 						},
 						on("@media (min-width: 1024px)", {
 							display: "contents",
-						})
+						}),
 					)}
 				>
 					<A href="/angebot">/angebot</A>
@@ -137,17 +138,17 @@ export const Header: Component = function () {
 			<div
 				style={pipe(
 					{
-						width: "100%",
 						"align-self": "center",
+						width: "100%",
 					},
 					on("@media (min-width: 768px)", {
-						"grid-column-start": "main 2",
 						"grid-column-end": "main 4",
+						"grid-column-start": "main 2",
 					}),
 					on("@media (min-width: 1024px)", {
-						"grid-column-start": "span 2",
 						"grid-column-end": "main -1",
-					})
+						"grid-column-start": "span 2",
+					}),
 				)}
 			>
 				<OpeningHoursCollapsible />
@@ -158,18 +159,18 @@ export const Header: Component = function () {
 	);
 };
 
-const OpeningHoursCollapsible: Component = function () {
+const OpeningHoursCollapsible: Component = function OpeningHoursCollapsible() {
 	return (
 		<Collapsible.Root
 			style={pipe(
 				{
-					"min-height": "100%",
 					display: "grid",
 					gap: `${lineThicknessPx}px`,
+					"min-height": "100%",
 				},
 				on("@media (min-width: 768px)", {
 					position: "relative",
-				})
+				}),
 			)}
 		>
 			<Collapsible.Trigger
@@ -195,14 +196,14 @@ const OpeningHoursCollapsible: Component = function () {
 						{
 							display: "grid",
 							"place-content": "center",
-							translate: "-2px", // shift visual center
+							translate: "-2px", // Shift visual center
 							"transition-property": "rotate",
 							"transition-duration": "500ms",
 							"transition-timing-function": transitionTimingFunction,
 						},
 						on('&[data-state="open"]', {
 							rotate: "180deg",
-						})
+						}),
 					)}
 				>
 					<ChevronDown />
@@ -214,9 +215,9 @@ const OpeningHoursCollapsible: Component = function () {
 					{
 						"animation-duration": "300ms",
 						"animation-fill-mode": "forwards",
+						left: "16px",
 						perspective: "10cm",
 						position: "absolute",
-						left: "16px",
 						right: "16px",
 						top: "calc(100% - 10px)",
 					},
@@ -224,7 +225,7 @@ const OpeningHoursCollapsible: Component = function () {
 						left: 0,
 						right: 0,
 						top: "calc(100% + 4px)",
-					})
+					}),
 				)}
 			>
 				<Paper

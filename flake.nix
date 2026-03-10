@@ -29,7 +29,6 @@
             packages = [
               pkgs.nodejs
               pkgs.pnpm
-              pkgs.tombi
             ];
           };
         };

@@ -1,4 +1,5 @@
-import { type ComponentProps, splitProps, type ValidComponent } from "solid-js";
+import { splitProps } from "solid-js";
+import type { ComponentProps, ValidComponent } from "solid-js";
 import { Dynamic } from "solid-js/web";
 
 import assetDither from "src/assets/dither.svg?no-inline";
@@ -16,9 +17,9 @@ export function Dither<T extends ValidComponent>(props: DitherProps<T>) {
 			{...others}
 			style={{
 				"background-image": `url(${assetDither})`,
+				"background-position": "bottom left",
 				"background-repeat": "repeat",
 				"background-size": "8px 8px",
-				"background-position": "bottom left",
 				"clip-path":
 					"polygon(0 4px, 4px 4px, 4px 0, 100% 0," +
 					"100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%," +

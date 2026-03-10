@@ -25,9 +25,10 @@ export type SnakeToCamel<S> = S extends string
  * // -> "helloWorld"
  */
 export function snakeToCamel<T extends string>(input: T): SnakeToCamel<T> {
+	// oxlint-disable-next-line typescript/no-unsafe-type-assertion
 	return input
-		.replace(/^([A-Z])/, (m) => m[0].toLowerCase())
-		.replace(/[_]([a-z0-9])/g, (m) => m[1].toUpperCase()) as SnakeToCamel<T>;
+		.replace(/^([A-Z])/, (m) => m[0]!.toLowerCase())
+		.replace(/[_]([a-z0-9])/g, (m) => m[1]!.toUpperCase()) as SnakeToCamel<T>;
 }
 
 /**
@@ -49,10 +50,11 @@ export function snakeToCamel<T extends string>(input: T): SnakeToCamel<T> {
  * }
  */
 export function mapSnakeKeysToCamel<T extends {}>(
-	input: T
+	input: T,
 ): {
 	[K in keyof T as SnakeToCamel<K>]: T[K];
 } {
+	// oxlint-disable-next-line typescript/no-unsafe-type-assertion
 	return mapKeys(input, (key) => snakeToCamel(key)) as unknown as {
 		[K in keyof T as SnakeToCamel<K>]: T[K];
 	};

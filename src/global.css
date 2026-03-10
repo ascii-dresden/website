@@ -58,17 +58,17 @@ html {
 	line-height: 1.5;
 	/* See demo at <https://font.subf.dev/en/playground/> */
 	font-feature-settings:
-		"calt" off, /* Disable default ligatures */
-		"cv01", /* Remove gaps */
-		"cv02", /* Alternative a */
-		"cv05", /* Alternative g */
-		"cv08", /* Alternative r */
-		"cv61", /* Alternative comma */
-		"cv31", /* Alternative italic a */
-		"cv33", /* Alternative italic i and j */
-		"cv35", /* Alternative italic l */
-		"cv38", /* Alternative italic g */
-		"cv41"; /* Alternative italic r */
+		"calt" off,
+		/* Disable default ligatures */ "cv01",
+		/* Remove gaps */ "cv02",
+		/* Alternative a */ "cv05",
+		/* Alternative g */ "cv08",
+		/* Alternative r */ "cv61",
+		/* Alternative comma */ "cv31",
+		/* Alternative italic a */ "cv33",
+		/* Alternative italic i and j */ "cv35",
+		/* Alternative italic l */ "cv38",
+		/* Alternative italic g */ "cv41"; /* Alternative italic r */
 }
 
 address {

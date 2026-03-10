@@ -8,7 +8,7 @@ const THEME_LOCAL_STORAGE_KEY = "theme";
 
 const ThemeSchema = optional(
 	union([literal("light"), literal("dark"), literal("system")]),
-	"system"
+	"system",
 );
 
 export const ThemeContext = createContext<Theme>("system");

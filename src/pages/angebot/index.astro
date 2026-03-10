@@ -17,7 +17,7 @@ import { prng } from "src/prng.ts";
 
 const coldDrinks = await getCollection("coldDrinks");
 
-const coldDrinksByGroup: Map<string, ColdDrink[]> = new Map();
+const coldDrinksByGroup = new Map<string, ColdDrink[]>();
 for (const coldDrink of coldDrinks) {
 	for (const group of coldDrink.data.groups) {
 		const drinks = coldDrinksByGroup.get(group);
@@ -87,7 +87,7 @@ const random = prng(-1.5, 1.5, 0.75);
 						"-webkit-text-stroke-width": "8px",
 						"paint-order": "markers stroke fill",
 						color: colors.milk,
-						rotate: "1.5deg",
+						rotate: "1deg",
 					},
 					on("@media (min-width: 1024px)", {
 						"font-size": "96px",
@@ -183,7 +183,6 @@ const random = prng(-1.5, 1.5, 0.75);
 					"padding-top": "32px",
 					"padding-bottom": `${32 + dividerHeightPx}px`,
 				},
-
 				on("@media (min-width: 480px)", {
 					"padding-inline": "64px",
 					"padding-top": "64px",
@@ -308,6 +307,68 @@ const random = prng(-1.5, 1.5, 0.75);
 					</>
 				))
 			}
+		</section>
+		<Divider lineColor={colors.espresso} backgroundColor={colors.creme} />
+		<section
+			style={pipe(
+				{
+					"background-color": colors.creme,
+					color: colors.espresso,
+					display: "grid",
+					gap: "32px",
+					"padding-inline": "32px",
+					"padding-top": "32px",
+					"padding-bottom": `${32 + dividerHeightPx}px`,
+				},
+				on("@media (min-width: 480px)", {
+					"padding-inline": "64px",
+					"padding-top": "64px",
+					"padding-bottom": `${64 + dividerHeightPx}px`,
+				}),
+				on("@media (min-width: 768px)", {
+					"grid-template-columns":
+						"repeat(4, [main] minmax(0, 1fr)) [main]",
+				}),
+				on("@media (min-width: 1024px)", {
+					"align-items": "center",
+					"grid-template-columns":
+						"repeat(6, [main] minmax(0, 1fr)) [main]",
+				}),
+				on("@media (min-width: 1280px)", {
+					"grid-template-columns": [
+						"minmax(0, 1fr)",
+						"repeat(6, [main] minmax(0, 1fr))",
+						"[main] minmax(0, 1fr)",
+					].join(" "),
+					"padding-inline": 0,
+				}),
+			)}
+		>
+			<H2
+				style={pipe(
+					{
+						"font-size": "64px",
+						"grid-column-start": "main 1",
+						"grid-column-end": "main -1",
+						"justify-self": "start",
+						// Half of the stroke width is covered by the fill color
+						"-webkit-text-stroke-color": colors.espresso,
+						"-webkit-text-stroke-width": "8px",
+						"paint-order": "markers stroke fill",
+						color: colors.milk,
+						rotate: "1.5deg",
+					},
+					on("@media (min-width: 1024px)", {
+						"font-size": "96px",
+						"-webkit-text-stroke-width": "10px",
+					}),
+				)}
+			>
+				Snacks
+			</H2>
+			<ul>
+				<!-- TODO: Snacks -->
+			</ul>
 		</section>
 	</main>
 </Layout>

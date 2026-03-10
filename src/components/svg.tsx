@@ -1,6 +1,6 @@
 import type { Component, ComponentProps } from "solid-js";
 
-export const ChevronDown: Component<ComponentProps<"svg">> = function (props) {
+export const ChevronDown: Component<ComponentProps<"svg">> = function ChevronDown(props) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"

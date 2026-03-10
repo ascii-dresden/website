@@ -5,7 +5,7 @@ import { on } from "src/css.ts";
 
 // TODO: Polish typography
 
-export const H1: ParentComponent<ComponentProps<"h1">> = function (props) {
+export const H1: ParentComponent<ComponentProps<"h1">> = function H1(props) {
 	return (
 		<h1
 			{...props}
@@ -22,7 +22,7 @@ export const H1: ParentComponent<ComponentProps<"h1">> = function (props) {
 				on("@media (min-width: 1280px)", {
 					"font-size": "86px",
 				}),
-				merge(props.style)
+				merge(props.style),
 			)}
 		>
 			{props.children}
@@ -30,7 +30,7 @@ export const H1: ParentComponent<ComponentProps<"h1">> = function (props) {
 	);
 };
 
-export const H2: ParentComponent<ComponentProps<"h2">> = function (props) {
+export const H2: ParentComponent<ComponentProps<"h2">> = function H2(props) {
 	return (
 		<h2
 			{...props}
@@ -46,7 +46,7 @@ export const H2: ParentComponent<ComponentProps<"h2">> = function (props) {
 				on("@media (min-width: 1280px)", {
 					"font-size": "64px",
 				}),
-				merge(props.style)
+				merge(props.style),
 			)}
 		>
 			{props.children}
@@ -54,7 +54,7 @@ export const H2: ParentComponent<ComponentProps<"h2">> = function (props) {
 	);
 };
 
-export const H3: ParentComponent<ComponentProps<"h3">> = function (props) {
+export const H3: ParentComponent<ComponentProps<"h3">> = function H3(props) {
 	return (
 		<h3
 			{...props}
@@ -67,7 +67,7 @@ export const H3: ParentComponent<ComponentProps<"h3">> = function (props) {
 				on("@media (min-width: 1280px)", {
 					"font-size": "48px",
 				}),
-				merge(props.style)
+				merge(props.style),
 			)}
 		>
 			{props.children}
@@ -75,17 +75,17 @@ export const H3: ParentComponent<ComponentProps<"h3">> = function (props) {
 	);
 };
 
-export const H4: ParentComponent<ComponentProps<"h4">> = function (props) {
+export const H4: ParentComponent<ComponentProps<"h4">> = function H4(props) {
 	return (
 		<h4
 			{...props}
 			style={pipe(
 				{
 					"font-family": '"Chubbo", sans-serif',
-					"font-weight": "bold",
 					"font-size": "18px",
+					"font-weight": "bold",
 				},
-				merge(props.style)
+				merge(props.style),
 			)}
 		>
 			{props.children}

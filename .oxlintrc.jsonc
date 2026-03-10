@@ -1,0 +1,44 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"categories": {
+		// Code that is definitely wrong or useless
+		"correctness": "error",
+		// Rules that aim to improve runtime performance
+		"perf": "warn",
+		// Code that is likely to be wrong or useless
+		"suspicious": "warn",
+		// Rules that ban specific patterns or features
+		"restriction": "off",
+		// Idiomatic and consistent style rules
+		"style": "off",
+		// Extra strict rules that may have false positives
+		"pedantic": "off",
+		// Rules under development that may change
+		"nursery": "off",
+	},
+	"plugins": [
+		"eslint",
+		"import",
+		"jsdoc",
+		"jsx-a11y",
+		"oxc",
+		"promise",
+		"typescript",
+		"unicorn",
+		"vitest",
+	],
+	"options": {
+		"typeAware": true,
+		"typeCheck": true,
+	},
+	"rules": {
+		"eslint/no-bitwise": "off",
+		"eslint/no-empty": "error",
+		"eslint/no-var": "error",
+		"eslint/prefer-const": "error",
+		"import/no-commonjs": "error",
+		"import/no-unassigned-import": ["warn", { "allow": ["**/*.css"] }],
+		"typescript/no-explicit-any": "error",
+		"typescript/no-unsafe-type-assertion": "error",
+	},
+}

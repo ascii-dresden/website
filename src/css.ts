@@ -18,7 +18,7 @@ export const { styleSheet, and, not, on, or } = createHooks(
 	"[data-theme=light] &",
 	// Component State
 	'&[data-state="open"]',
-	'&[data-state="closed"]'
+	'&[data-state="closed"]',
 );
 
 /**
@@ -40,7 +40,7 @@ export const { styleSheet, and, not, on, or } = createHooks(
  */
 export const dark = or(
 	"[data-theme=dark] &",
-	and(not("[data-theme=light] &"), "@media (prefers-color-scheme: dark)")
+	and(not("[data-theme=light] &"), "@media (prefers-color-scheme: dark)"),
 );
 
 export const colors = {
