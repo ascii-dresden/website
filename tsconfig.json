@@ -1,12 +1,27 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
-	"extends": "astro/tsconfigs/strictest",
-	"include": [".astro/types.d.ts", "**/*"],
 	"exclude": ["dist"],
+	"include": ["**/*.ts", "**/*.tsx"],
 	"compilerOptions": {
+		"target": "es2022",
 		"jsx": "preserve",
 		"jsxImportSource": "solid-js",
-		"types": ["node"],
+		"module": "esnext",
+		"lib": ["ES2022", "DOM", "DOM.Iterable"],
+		"types": ["vite/client"],
+
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"verbatimModuleSyntax": true,
+		"noEmit": true,
+
+		"skipLibCheck": true,
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedSideEffectImports": true,
+
 		"paths": {
 			"src/*": ["./src/*"]
 		}
