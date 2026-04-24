@@ -1,0 +1,106 @@
+import { createFileRoute } from "@tanstack/solid-router";
+import { pipe } from "remeda";
+
+import { A } from "src/components/a.tsx";
+import { H1, H2 } from "src/components/heading.tsx";
+import { colors, lineThicknessPx, on } from "src/css.ts";
+
+export const Route = createFileRoute("/impressum")({
+	component: Index,
+});
+
+function Index() {
+	return (
+		<main
+			style={pipe(
+				{
+					"border-top-color": colors.black,
+					"border-top-width": `${lineThicknessPx}px`,
+					"background-color": colors.milk,
+					display: "grid",
+					"padding-inline": "16px",
+					"padding-block": "32px",
+				},
+				on("@media (min-width: 1024px)", {
+					"padding-inline": "64px",
+					"padding-block": "64px",
+				}),
+				on("@media (min-width: 1280px)", {
+					"grid-template-columns": "repeat(6, minmax(0, 1fr))",
+					"column-gap": "32px",
+				}),
+			)}
+		>
+			<div
+				style={pipe(
+					{
+						display: "flex",
+						"flex-direction": "column",
+						"row-gap": "16px",
+					},
+					on("@media (min-width: 1280px)", {
+						"grid-column": "2 / -2",
+					}),
+				)}
+			>
+				<H1 style={{ "padding-bottom": "16px" }}>Impressum</H1>
+				<address
+					style={{
+						display: "flex",
+						"flex-direction": "column",
+						"row-gap": "16px",
+						"padding-bottom": "16px",
+					}}
+				>
+					<p>
+						ascii&nbsp;Dresden&nbsp;e.V.
+						<br />
+						Andreas-Pfitzmann-Bau, Raum&nbsp;E016
+						<br />
+						Nöthnitzer&nbsp;Strasse&nbsp;46
+						<br />
+						01187&nbsp;Dresden
+					</p>
+					<A href="mailto:info@ascii-dresden.de">
+						<p>info@ascii-dresden.de</p>
+					</A>
+					<A href="tel:+4935146342221"> +49 351 46342221 </A>
+				</address>
+				<H2 style={{ "padding-block": "16px" }}>Vorstand</H2>
+				<h3
+					style={{
+						"font-family": '"Chubbo", sans-serif',
+						"font-weight": "bold",
+						"font-size": "18px",
+						"line-height": "18px",
+					}}
+				>
+					Erster Vorstand
+				</h3>
+				<p>Johanna Berger</p>
+				<h3
+					style={{
+						"font-family": '"Chubbo", sans-serif',
+						"font-weight": "bold",
+						"font-size": "18px",
+						"line-height": "18px",
+					}}
+				>
+					Zweiter Vorstand
+				</h3>
+				<p>Maria Hampel</p>
+				<h3
+					style={{
+						"font-family": '"Chubbo", sans-serif',
+						"font-weight": "bold",
+						"font-size": "18px",
+						"line-height": "18px",
+					}}
+				>
+					Finanzen
+				</h3>
+				<p>Matthias Holthues</p>
+			</div>
+		</main>
+	);
+}

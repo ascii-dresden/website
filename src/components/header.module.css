@@ -1,35 +1,23 @@
-@keyframes flip-in {
-	from {
-		opacity: 0;
-		rotate: x -45deg;
-	}
-	to {
-		opacity: 1;
-		rotate: x 0;
-	}
-}
-
-@keyframes flip-out {
-	from {
-		opacity: 1;
-		rotate: x 0;
-	}
-	to {
-		opacity: 0;
-		rotate: x -45deg;
-	}
-}
-
 .opening-hours-content {
-	/* Placeholder animation-name so Ark UI animates it correctly. */
-	animation-name: a;
+	animation-duration: 300ms;
+	animation-fill-mode: forwards;
+	left: 16px;
+	perspective: 10cm;
+	position: absolute;
+	right: 16px;
+	top: calc(100% - 10px);
+}
+
+@media (min-width: 768px) {
+	.opening-hours-content {
+		left: 0;
+		right: 0;
+		top: calc(100% + 4px);
+	}
 }
 
 .opening-hours-content-surface {
-	.opening-hours-content[data-state="open"] & {
-		animation-name: flip-in;
-	}
-	.opening-hours-content[data-state="closed"] & {
-		animation-name: flip-out;
-	}
+	animation-duration: 300ms;
+	animation-fill-mode: forwards;
+	transform-origin: top center;
 }

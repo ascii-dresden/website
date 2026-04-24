@@ -1,6 +1,7 @@
 import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/solid-start/plugin/vite";
 import { defineConfig } from "vite";
+import { imagetools } from "vite-imagetools";
 import solidPlugin from "vite-plugin-solid";
 import viteTsConfigPaths from "vite-tsconfig-paths";
 // import { nitro } from 'nitro/vite'
@@ -12,6 +13,7 @@ export default defineConfig({
 	},
 	plugins: [
 		devtools(),
+		imagetools(),
 		// nitro(),
 		viteTsConfigPaths({ projects: ["./tsconfig.json"] }),
 		tanstackStart({
